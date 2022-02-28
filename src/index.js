@@ -27,17 +27,41 @@ class MyGame extends Phaser.Scene
         // this.arcade.world.setBounds(0, 0, game.config.width, game.config.hei
         this.matter.world.setGravity(0,0);
         cat = this.matter.add.sprite(400,300,'cat',null, { shape: catshape});
-        hat = this.matter.add.sprite(100,300,'hat');
+        hat = this.matter.add.sprite(600,300,'hat');
         cat.setStatic(true);
         cat.setSensor(true);
         cat.setScale(0.6);
         hat.setScale(0.6);
         hat.setInteractive();
         this.input.setDraggable(hat);
-        var rectangle = this.matter.add.rectangle(cat.getBounds());
 
-    
+        var hatGroup = this.add.group();
+
+        createCloset(hatGroup);
+
+        //Closet Prototype
+        function createCloset(sprites){
+            //Create duplicate hats and give them random color tint
+            for (var i = 0; i < 12; i++)
+            {
+                var newhat = sprites.create(360 + Math.random() * 200, 120 + Math.random() * 200, 'hat');
+                newhat.tint = Math.random() * 0xffffff;
+                newhat.setScale(0.3);
+                sprites.add(newhat);
+            }
+            //Align hats in group in a grid
+            Phaser.Actions.GridAlign(sprites.getChildren(), {
+                width: 3,
+                height: 10,
+                cellWidth: 50,
+                cellHeight: 50,
+                x: 50,
+                y: 50
+            });
+        }
     }
+
+
     update(){
         this.input.on('drag', function (pointer, gameObject, dragX, dragY) {
             gameObject.x = dragX;
