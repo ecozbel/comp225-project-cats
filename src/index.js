@@ -2,6 +2,10 @@ import Phaser from 'phaser';
 import logoImg from './assets/logo.png';
 import catimg from './assets/cat.png';
 import hatimg from './assets/hat.png';
+import catHitbox from './assets/cat-shape2.json';
+var cat;
+var hat;
+
 class MyGame extends Phaser.Scene
 {
     constructor ()
@@ -14,39 +18,40 @@ class MyGame extends Phaser.Scene
         this.load.image('logo', logoImg);
         this.load.image('cat',catimg);
         this.load.image('hat',hatimg);
-        this.load.json('catshape', 'assets/cat-shape2.json');
+        this.load.json('catshape', catHitbox);
     }
       
     create ()
     {
         var catshape = this.cache.json.get('catshape');
         // this.arcade.world.setBounds(0, 0, game.config.width, game.config.hei
-        // this.arcade.world.setGravity(0,0);
-        var cat = this.physics.add.sprite(400,300,'cat',null, { shape: catshape});
-        var hat = this.physics.add.sprite(100,300,'hat');
+        this.matter.world.setGravity(0,0);
+        cat = this.matter.add.sprite(400,300,'cat',null, { shape: catshape});
+        hat = this.matter.add.sprite(100,300,'hat');
+        cat.setStatic(true);
+        cat.setSensor(true);
         cat.setScale(0.6);
         hat.setScale(0.6);
         hat.setInteractive();
         this.input.setDraggable(hat);
-        this.input.on('drag', function (pointer, gameObject, dragX, dragY) {
-
-            gameObject.x = dragX;
-            gameObject.y = dragY;
+        var rectangle = this.matter.add.rectangle(cat.getBounds());
 
     
+    }
+    update(){
+        this.input.on('drag', function (pointer, gameObject, dragX, dragY) {
+            gameObject.x = dragX;
+            gameObject.y = dragY;
+            onDragStop(gameObject,pointer);
         });
-         while(checkOverlap(hat,cat))
-        {
-            hat.setPosition(cat.getCenter);
-            console.log("Collision!");
-        }
-        function checkOverlap(spriteA, spriteB) {
-            var boundsA = spriteA.getBounds();
-            var boundsB = spriteB.getBounds();
-            console.log(boundsA);
-            console.log(boundsB);
-            return Phaser.Geom.Intersects.RectangleToRectangle(boundsA, boundsB);
+        //overlap check and snap
+        function onDragStop(sprite, pointer) {
+            if(Phaser.Geom.Intersects.RectangleToRectangle(sprite.getBounds(), cat.getBounds())){
+                //console.log( cat.getBounds());
+                sprite.x = cat.x;
+                sprite.y = cat.y-170;
             }
+          }
     }
 }
 
@@ -59,8 +64,8 @@ const config = {
     height: 600,
     backgroundColor: '#FFFFFF',
     physics: {
-        default: 'arcade',
-        arcade: {
+        default: 'matter',
+        matter: {
             debug: true
         }
     },
