@@ -63,19 +63,19 @@ class MyGame extends Phaser.Scene
 
 
     update(){
-        this.input.on('drag', function (pointer, gameObject, dragX, dragY) {
+        this.input.on('drag', (pointer, gameObject, dragX, dragY) => {
             gameObject.x = dragX;
             gameObject.y = dragY;
-            onDragStop(gameObject,pointer);
+            snapToCat(gameObject,pointer);
         });
         //overlap check and snap
-        function onDragStop(sprite, pointer) {
+        function snapToCat(sprite, pointer) {
             if(Phaser.Geom.Intersects.RectangleToRectangle(sprite.getBounds(), cat.getBounds())){
                 //console.log( cat.getBounds());
                 sprite.x = cat.x;
-                sprite.y = cat.y-170;
+                sprite.y = cat.y - 170;
             }
-          }
+        }
     }
 }
 
