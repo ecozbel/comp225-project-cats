@@ -28,6 +28,10 @@ class MyGame extends Phaser.Scene
         this.matter.world.setGravity(0,0);
         cat = this.matter.add.sprite(400,300,'cat',null, { shape: catshape});
         hat = this.matter.add.sprite(600,300,'hat');
+        cat.hatPosition = { 
+            x : 400,
+            y : 300- 170,
+        }
         cat.setStatic(true);
         cat.setSensor(true);
         cat.setScale(0.6);
@@ -72,8 +76,8 @@ class MyGame extends Phaser.Scene
         function snapToCat(sprite, pointer) {
             if(Phaser.Geom.Intersects.RectangleToRectangle(sprite.getBounds(), cat.getBounds())){
                 //console.log( cat.getBounds());
-                sprite.x = cat.x;
-                sprite.y = cat.y - 170;
+                sprite.x = cat.hatPosition.x;
+                sprite.y = cat.hatPosition.y;
             }
         }
     }
