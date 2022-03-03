@@ -25,13 +25,13 @@ class MyGame extends Phaser.Scene
     {
         var catshape = this.cache.json.get('catshape');
         // this.arcade.world.setBounds(0, 0, game.config.width, game.config.hei
+
         this.matter.world.setGravity(0,0);
         cat = this.matter.add.sprite(400,300,'cat',null, { shape: catshape});
         hat = this.matter.add.sprite(600,300,'hat');
-        cat.hatPosition = { 
-            x : 400,
-            y : 300- 170,
-        }
+
+        createClothingSnapPoints(cat)
+
         cat.setStatic(true);
         cat.setSensor(true);
         cat.setScale(0.6);
@@ -63,6 +63,21 @@ class MyGame extends Phaser.Scene
                 y: 50
             });
         }
+
+        //different clothes snap to different places on cat. only shoe and hat right now
+        function createClothingSnapPoints(cat){
+
+            cat.hatPosition = { 
+                x : 400,
+                y : 300 - 170,
+            }
+    
+            cat.shoePosition = { 
+                x : 400,
+                y : 300 + 170,
+            }
+        }
+
     }
 
 
