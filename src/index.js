@@ -30,14 +30,24 @@ class MyGame extends Phaser.Scene
         cat = this.matter.add.sprite(400,300,'cat',null, { shape: catshape});
         hat = this.matter.add.sprite(600,300,'hat');
 
+        //placeholder for shoes
+        var shoe = this.matter.add.sprite(600,300,'hat');
+        shoe.tint = Math.random() * 0xffffff;
+
         createClothingSnapPoints(cat)
+        var clothingTypes = createClothingTypes();
 
         cat.setStatic(true);
         cat.setSensor(true);
         cat.setScale(0.6);
         hat.setScale(0.6);
         hat.setInteractive();
+        shoe.setScale(0.6);
+        shoe.setInteractive();
+        shoe.clothingType = clothingTypes.shoe;
+        hat.clothingType = clothingTypes.hat;
         this.input.setDraggable(hat);
+        this.input.setDraggable(shoe);
 
         var hatGroup = this.add.group();
 
@@ -78,6 +88,17 @@ class MyGame extends Phaser.Scene
             }
         }
 
+        function createClothingTypes(){
+
+            var clothingTypes = {
+
+                hat : 0,
+                shoe : 1,
+
+            }
+            return clothingTypes;
+        }
+
     }
 
 
@@ -90,7 +111,7 @@ class MyGame extends Phaser.Scene
         //overlap check and snap
         function snapToCat(sprite, pointer) {
             if(Phaser.Geom.Intersects.RectangleToRectangle(sprite.getBounds(), cat.getBounds())){
-                //console.log( cat.getBounds());
+                
                 sprite.x = cat.hatPosition.x;
                 sprite.y = cat.hatPosition.y;
             }
