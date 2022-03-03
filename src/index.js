@@ -5,6 +5,7 @@ import hatimg from './assets/hat.png';
 import catHitbox from './assets/cat-shape2.json';
 var cat;
 var hat;
+var clothingTypes;
 
 class MyGame extends Phaser.Scene
 {
@@ -35,7 +36,13 @@ class MyGame extends Phaser.Scene
         shoe.tint = Math.random() * 0xffffff;
 
         createClothingSnapPoints(cat)
-        var clothingTypes = createClothingTypes();
+
+        clothingTypes = {//did this because I dont think javascript has enums
+
+            hat : 0,
+            shoe : 1,
+
+        }
 
         cat.setStatic(true);
         cat.setSensor(true);
@@ -88,16 +95,6 @@ class MyGame extends Phaser.Scene
             }
         }
 
-        function createClothingTypes(){
-
-            var clothingTypes = {
-
-                hat : 0,
-                shoe : 1,
-
-            }
-            return clothingTypes;
-        }
 
     }
 
@@ -111,9 +108,21 @@ class MyGame extends Phaser.Scene
         //overlap check and snap
         function snapToCat(sprite, pointer) {
             if(Phaser.Geom.Intersects.RectangleToRectangle(sprite.getBounds(), cat.getBounds())){
-                
-                sprite.x = cat.hatPosition.x;
-                sprite.y = cat.hatPosition.y;
+            
+                console.log(sprite.clothingType);
+
+                switch (sprite.clothingType){
+                    case clothingTypes.hat:
+                        sprite.x = cat.hatPosition.x;
+                        sprite.y = cat.hatPosition.y;
+                        break;
+                    case clothingTypes.shoe:
+                        sprite.x = cat.shoePosition.x;
+                        sprite.y = cat.shoePosition.y;
+                        break;
+                }
+
+
             }
         }
     }
