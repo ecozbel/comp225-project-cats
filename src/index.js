@@ -109,8 +109,8 @@ class MyGame extends Phaser.Scene
         function snapToCat(sprite, pointer) {
             if(Phaser.Geom.Intersects.RectangleToRectangle(sprite.getBounds(), cat.getBounds())){
             
-                console.log(sprite.clothingType);
 
+                //switch statement to handle multiple types of clothes
                 switch (sprite.clothingType){
                     case clothingTypes.hat:
                         sprite.x = cat.hatPosition.x;
