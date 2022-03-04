@@ -24,6 +24,7 @@ class MyGame extends Phaser.Scene
       
     create ()
     {
+
         var catshape = this.cache.json.get('catshape');
         // this.arcade.world.setBounds(0, 0, game.config.width, game.config.hei
 
@@ -31,11 +32,16 @@ class MyGame extends Phaser.Scene
         cat = this.matter.add.sprite(400,300,'cat',null, { shape: catshape});
         hat = this.matter.add.sprite(600,300,'hat');
 
+
+        
+
         //placeholder for shoes
         var shoe = this.matter.add.sprite(600,300,'hat');
         shoe.tint = Math.random() * 0xffffff;
 
-        createClothingSnapPoints(cat)
+
+
+        createClothingSnapPoints(cat);
 
         clothingTypes = {//did this because I dont think javascript has enums
 
@@ -47,11 +53,11 @@ class MyGame extends Phaser.Scene
         cat.setStatic(true);
         cat.setSensor(true);
         cat.setScale(0.6);
-        hat.setScale(0.6);
+        hat.setScale(0.2);
         hat.setInteractive();
         hat.setSensor(true);
 
-        shoe.setScale(0.6);
+        shoe.setScale(0.2);
         shoe.setInteractive();
         shoe.clothingType = clothingTypes.shoe;
         hat.clothingType = clothingTypes.hat;
@@ -59,33 +65,30 @@ class MyGame extends Phaser.Scene
         this.input.setDraggable(hat);
         this.input.setDraggable(shoe);
 
-        var hatGroup = this.add.group();
+        //Creates a layer acting as a closet. Layer is like a type of array, but meant to store graphics objects.
+        var hatGroup = this.add.layer();
+        //createCloset(hatGroup);
 
-        createCloset(hatGroup);
+        //Adds hat to closet
+        hatGroup.add(hat);
+        hatGroup.add(shoe);
 
-        //Closet Prototype
-        function createCloset(sprites){
-            //Create duplicate hats and give them random color tint
-            for (var i = 0; i < 12; i++)
-            {
-                var newhat = sprites.create(360 + Math.random() * 200, 120 + Math.random() * 200, 'hat');
-                newhat.tint = Math.random() * 0xffffff;
-                newhat.setScale(0.3)
-                newhat.setInteractive(true);
-                newhat.setDraggable(true);
-                sprites.add(newhat);
+        //Organizes items in layer in a grid
+        Phaser.Actions.GridAlign(hatGroup.getChildren(), {
+                    width: 3,
+                    height: 10,
+                    cellWidth: 50,
+                    cellHeight: 50,
+                    x: 50,
+                    y: 50
+                });
 
-            }
-            //Align hats in group in a grid
-            Phaser.Actions.GridAlign(sprites.getChildren(), {
-                width: 3,
-                height: 10,
-                cellWidth: 50,
-                cellHeight: 50,
-                x: 50,
-                y: 50
-            });
-        }
+        //Goes through each sprite in the layer (closet), and saves their origin position
+        //Needed for snapping back/un-eqquiping
+        hatGroup.each(function(gameObject) {
+            gameObject.setData('origin', gameObject.getCenter());
+        });
+
 
         //different clothes snap to different places on cat. only shoe and hat right now
         function createClothingSnapPoints(cat){
@@ -107,10 +110,16 @@ class MyGame extends Phaser.Scene
 
     update(){
         this.input.on('drag', (pointer, gameObject, dragX, dragY) => {
+            gameObject.setScale(0.6);
             gameObject.x = dragX;
             gameObject.y = dragY;
+            //snapToCat(gameObject,pointer);
+        });
+
+        this.input.on('dragend', (pointer, gameObject, dragX, dragY) => {
             snapToCat(gameObject,pointer);
         });
+
         //overlap check and snap
         function snapToCat(sprite, pointer) {
             if(Phaser.Geom.Intersects.RectangleToRectangle(sprite.getBounds(), cat.getBounds())){
@@ -129,6 +138,12 @@ class MyGame extends Phaser.Scene
                 }
 
 
+            }
+            //Sprite shrinks and returns to closet if it is not dropped on cat.
+            else{
+                sprite.setScale(0.2);
+                sprite.x=sprite.getData('origin').x;
+                sprite.y=sprite.getData('origin').y;
             }
         }
     }
