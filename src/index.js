@@ -84,7 +84,7 @@ class MyGame extends Phaser.Scene
                 });
 
         //Goes through each sprite in the layer (closet), and saves their origin position
-        //Needed for snapping back/un-eqquiping
+        //Needed for snapping back/un-equipping
         hatGroup.each(function(gameObject) {
             gameObject.setData('origin', gameObject.getCenter());
         });
