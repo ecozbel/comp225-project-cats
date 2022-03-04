@@ -3,8 +3,11 @@ import logoImg from './assets/logo.png';
 import catimg from './assets/cat.png';
 import hatimg from './assets/hat.png';
 import catHitbox from './assets/cat-shape2.json';
+
 var cat;
 var hat;
+
+
 
 class MyGame extends Phaser.Scene
 {
@@ -19,6 +22,7 @@ class MyGame extends Phaser.Scene
         this.load.image('cat',catimg);
         this.load.image('hat',hatimg);
         this.load.json('catshape', catHitbox);
+       
     }
       
     create ()
@@ -28,14 +32,20 @@ class MyGame extends Phaser.Scene
         this.matter.world.setGravity(0,0);
         cat = this.matter.add.sprite(400,300,'cat',null, { shape: catshape});
         hat = this.matter.add.sprite(600,300,'hat');
+        
         cat.setStatic(true);
         cat.setSensor(true);
         cat.setScale(0.6);
         hat.setScale(0.6);
         hat.setInteractive();
+
+
         this.input.setDraggable(hat);
+        this.input.setDraggable(firefighter_shirt);
+        this.input.setDraggable(firefighter_shirt);
 
         var hatGroup = this.add.group();
+        
 
         createCloset(hatGroup);
 
