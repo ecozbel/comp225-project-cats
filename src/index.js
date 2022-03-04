@@ -136,12 +136,15 @@ class MyGame extends Phaser.Scene
         var self = this;
 
         //temporary function to emulate switching categories
+        //When toggleButton is pressed,
+        //swaps between two layers by making one invisible
         function toggleVisible(layers){
             for(const layer  of layers){
                 if(layer.visible==true){
                     layer.setVisible(false);
                     layer.each(function(gameObject) {
                         if(gameObject != null){
+                           gameObject.disableInteractive();
                             self.input.setDraggable(gameObject,false);
                         }
                     });
@@ -151,6 +154,7 @@ class MyGame extends Phaser.Scene
                     togglebutton.setText("Displaying: "+ layer.first.getData('type') + "group. Press to toggle.")
                     layer.each(function(gameObject) {
                         if(gameObject != null){
+                            gameObject.setInteractive();
                             self.input.setDraggable(gameObject,true);
                         }
                     });
