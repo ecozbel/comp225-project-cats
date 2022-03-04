@@ -109,12 +109,14 @@ class MyGame extends Phaser.Scene
         //Needed for snapping back/un-equipping
         hatGroup.each(function(gameObject) {
             gameObject.setData('origin', gameObject.getCenter());
+            gameObject.setData('type', "hat");
             gameObject.setData('group', hatGroup);
             gameObject.setData('index', hatGroup.getIndex(gameObject));
         });
 
         shoeGroup.each(function(gameObject) {
             gameObject.setData('origin', gameObject.getCenter());
+            gameObject.setData('type', "shoe");
             gameObject.setData('group', shoeGroup);
             gameObject.setData('index', shoeGroup.getIndex(gameObject));
         });
@@ -126,7 +128,7 @@ class MyGame extends Phaser.Scene
     
 
         //Test button for switching between categories
-        const clickButton = this.add.text(40, 100, 'Toggle!', { fill: '#0f0' })
+        const togglebutton = this.add.text(40, 100, 'Toggle!', { fill: '#0f0' })
         .setInteractive()
         .on('pointerdown', () => toggleVisible(layers));
 
@@ -146,6 +148,7 @@ class MyGame extends Phaser.Scene
                 }
                 else{
                     layer.setVisible(true);
+                    togglebutton.setText("Displaying: "+ layer.first.getData('type') + "group. Press to toggle.")
                     layer.each(function(gameObject) {
                         if(gameObject != null){
                             self.input.setDraggable(gameObject,true);
