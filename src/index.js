@@ -49,10 +49,13 @@ class MyGame extends Phaser.Scene
         cat.setScale(0.6);
         hat.setScale(0.6);
         hat.setInteractive();
+        hat.setSensor(true);
+
         shoe.setScale(0.6);
         shoe.setInteractive();
         shoe.clothingType = clothingTypes.shoe;
         hat.clothingType = clothingTypes.hat;
+        
         this.input.setDraggable(hat);
         this.input.setDraggable(shoe);
 
@@ -67,8 +70,11 @@ class MyGame extends Phaser.Scene
             {
                 var newhat = sprites.create(360 + Math.random() * 200, 120 + Math.random() * 200, 'hat');
                 newhat.tint = Math.random() * 0xffffff;
-                newhat.setScale(0.3);
+                newhat.setScale(0.3)
+                newhat.setInteractive(true);
+                newhat.setDraggable(true);
                 sprites.add(newhat);
+
             }
             //Align hats in group in a grid
             Phaser.Actions.GridAlign(sprites.getChildren(), {
