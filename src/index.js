@@ -64,14 +64,14 @@ class MyGame extends Phaser.Scene
 
         
 
-
-
         createClothingSnapPoints(cat);
         //did this because I dont think javascript has enums
         clothingTypes = {
 
             hat : 0,
             shoe : 1,
+            shirt : 2,
+            pants : 3,
 
         }
 
@@ -196,6 +196,17 @@ class MyGame extends Phaser.Scene
                 x : 400,
                 y : 300 + 149,
             }
+            
+            cat.shirtPosition = { //these values arent quite right. need test images i think before they can be set right.
+                x : 400,
+                y : 300,
+            }
+    
+            cat.pantsPosition = { //these values arent quite right. need test images i think before they can be set right.
+                x : 400,
+                y : 300 + 70,
+            }
+
         }
 
 
@@ -231,6 +242,14 @@ class MyGame extends Phaser.Scene
                         sprite.x = cat.shoePosition.x;
                         sprite.y = cat.shoePosition.y;
                         break;
+                    case clothingTypes.shirt:
+                        sprite.x = cat.shirtPosition.x;
+                        sprite.y = cat.shirtPosition.y;
+                        break;   
+                    case clothingTypes.pants:
+                        sprite.x = cat.pantsPosition.x;
+                        sprite.y = cat.pantsPosition.y;
+                        break;                                                 
                 }
 
 
