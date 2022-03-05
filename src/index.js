@@ -34,14 +34,19 @@ class MyGame extends Phaser.Scene
         cat = this.matter.add.sprite(400,300,'cat',null, { shape: catshape});
         hat = this.matter.add.sprite(600,300,'hat');
 
+        //Set up placeholder transparent sprite for closet
         blankSprite = this.matter.add.sprite(600,300,'hat');
         blankSprite.setVisible(false);
         blankSprite.setSensor(true);
         blankSprite.setInteractive(false);
 
+        //add a layer into the cat, it contains clothes that are equipped on the cat
         cat.setData('catLayer',this.add.layer());
 
-        //var layers = Phaser.Utils.Array();
+        //set up sprite properties of catt
+        cat.setStatic(true);
+        cat.setSensor(true);
+        cat.setScale(0.6);
         
 
         //placeholder for shoes
@@ -59,32 +64,35 @@ class MyGame extends Phaser.Scene
 
         }
 
-        cat.setStatic(true);
-        cat.setSensor(true);
-        cat.setScale(0.6);
+        //set up sprite properties of test hat object
         hat.setScale(0.2);
         hat.setInteractive();
         hat.setSensor(true);
 
+        //set up sprite properties of test shoe object
         shoe.setScale(0.2);
         shoe.setInteractive();
         shoe.setSensor(true);
 
+        //specify typing og test hat & test shoe 
         shoe.clothingType = clothingTypes.shoe;
         hat.clothingType = clothingTypes.hat;
         
+        //set Spritees to be draggable
         this.input.setDraggable(hat);
         this.input.setDraggable(shoe);
 
         //Creates a layer acting as a closet category. Layer is like a type of array, but meant to store graphics objects.
         var hatGroup = this.add.layer();
-        //Adds hat to closet
-        hatGroup.add(hat);
-
         var shoeGroup = this.add.layer();
-        shoeGroup.add(shoe);
 
-        //Organizes items in layer in a grid. For testing purposes, hasn't been encapsulated yet.
+        //Adds items into layers/closet
+        hatGroup.add(hat);
+        shoeGroup.add(shoe);
+        
+
+        //Organizes hat items in layer in a grid. 
+        //TODO: General method  instead of copy paste
         Phaser.Actions.GridAlign(hatGroup.getChildren(), {
                     width: 3,
                     height: 10,
@@ -93,7 +101,7 @@ class MyGame extends Phaser.Scene
                     x: 50,
                     y: 50
                 });
-
+        //Organizes shoe items in layer in a grid.
         Phaser.Actions.GridAlign(shoeGroup.getChildren(), {
                     width: 3,
                     height: 10,
@@ -107,6 +115,7 @@ class MyGame extends Phaser.Scene
         //Goes through each sprite in the hat group and saves their origin position and index
         //Also saves what group they belong to
         //Needed for snapping back/un-equipping
+        //TODO: General method
         hatGroup.each(function(gameObject) {
             gameObject.setData('origin', gameObject.getCenter());
             gameObject.setData('type', "hat");
