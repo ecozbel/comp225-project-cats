@@ -2,10 +2,12 @@ import Phaser from 'phaser';
 import logoImg from './assets/logo.png';
 import catimg from './assets/cat.png';
 import hatimg from './assets/hat1.png';
-
 import catHitbox from './assets/cat-shape2.json';
 import shoe1img from './assets/shoe1.png';
+import closetimg from './assets/closet.png';
+
 var cat;
+var closet;
 var hat;
 var clothingType;
 var blankSprite;
@@ -24,6 +26,7 @@ class MyGame extends Phaser.Scene
         this.load.image('cat',catimg);
         this.load.image('hat1',hatimg);
         this.load.image('shoe1',shoe1img);
+        this.load.image('closet',closetimg);
         this.load.json('catshape', catHitbox);
     }
       
@@ -34,6 +37,9 @@ class MyGame extends Phaser.Scene
         // this.arcade.world.setBounds(0, 0, game.config.width, game.config.hei
 
         this.matter.world.setGravity(0,0);
+        closet = this.matter.add.sprite(200,200,'closet');
+        closet.setStatic(true);
+        closet.setScale(0.2);
         cat = this.matter.add.sprite(400,300,'cat',null, { shape: catshape});
         hat = this.matter.add.sprite(600,300,'hat1');
 
