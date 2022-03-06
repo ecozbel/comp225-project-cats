@@ -60,6 +60,7 @@ class MyGame extends Phaser.Scene
         cat.setStatic(true);
         cat.setSensor(true);
         cat.setScale(0.6);
+      
         
 
         
