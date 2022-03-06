@@ -123,23 +123,21 @@ class MyGame extends Phaser.Scene
                 });
 
 
-        //Goes through each sprite in the hat group and saves their origin position and index
+        assignSpriteData(hatGroup,"hat");
+        assignSpriteData(shoeGroup,"shoe");
+
+        //Goes through each sprite in the object layer  and saves their origin position and index
         //Also saves what group they belong to
         //Needed for snapping back/un-equipping
-        //TODO: General method
-        hatGroup.each(function(gameObject) {
-            gameObject.setData('origin', gameObject.getCenter());
-            gameObject.setData('type', "hat");
-            gameObject.setData('group', hatGroup);
-            gameObject.setData('index', hatGroup.getIndex(gameObject));
-        });
-
-        shoeGroup.each(function(gameObject) {
-            gameObject.setData('origin', gameObject.getCenter());
-            gameObject.setData('type', "shoe");
-            gameObject.setData('group', shoeGroup);
-            gameObject.setData('index', shoeGroup.getIndex(gameObject));
-        });
+        function assignSpriteData(objectLayer,type){
+            objectLayer.each(function(gameObject) {
+                gameObject.setData('origin', gameObject.getCenter());
+                gameObject.setData('type', type);
+                gameObject.setData('group', objectLayer);
+                gameObject.setData('index', objectLayer.getIndex(gameObject));
+            });
+    
+        }
 
         //only show hats first until toggle is pressed
         shoeGroup.setVisible(false);
