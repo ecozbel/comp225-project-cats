@@ -102,25 +102,20 @@ class MyGame extends Phaser.Scene
         shoeGroup.add(shoe);
         
 
-        //Organizes hat items in layer in a grid. 
-        //TODO: General method  instead of copy paste
-        Phaser.Actions.GridAlign(hatGroup.getChildren(), {
-                    width: 3,
-                    height: 10,
-                    cellWidth: 50,
-                    cellHeight: 50,
-                    x: 50,
-                    y: 50
-                });
-        //Organizes shoe items in layer in a grid.
-        Phaser.Actions.GridAlign(shoeGroup.getChildren(), {
-                    width: 3,
-                    height: 10,
-                    cellWidth: 50,
-                    cellHeight: 50,
-                    x: 50,
-                    y: 50
-                });
+        gridAlignLayer(hatGroup);
+        gridAlignLayer(shoeGroup);
+
+        //Visually arranges items in layer in a grid formation. 
+        function gridAlignLayer(objectLayer){
+            Phaser.Actions.GridAlign(objectLayer.getChildren(), {
+                width: 3,
+                height: 10,
+                cellWidth: 50,
+                cellHeight: 50,
+                x: 50,
+                y: 50
+            });
+        }
 
 
         assignSpriteData(hatGroup,"hat");
