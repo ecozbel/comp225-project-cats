@@ -2,7 +2,7 @@ import Phaser from 'phaser';
 import logoImg from './assets/logo.png';
 import catimg from './assets/cat.png';
 import hatimg from './assets/hat1.png';
-import shoeimg from './assets/shoe1.png';
+import shoe1img from './assets/shoe1.png';
 import closetimg from './assets/closet.png';
 import greenshirt from './assets/greentshirt.png';
 import flowertop from './assets/flowertop.png';
@@ -15,6 +15,9 @@ import firefightercoat from './assets/firefightercoat.png';
 var cat;
 var closet;
 var hat;
+var hat2;
+var shirt;
+var shoe;
 var clothingType;
 var blankSprite;
 var clothingTypes;
@@ -34,6 +37,7 @@ class MyGame extends Phaser.Scene
         this.load.image('shoe1',shoe1img);
         this.load.image('closet',closetimg);
         this.load.image('background', backgroundImg);
+        this.load.image('shirt1', shirt1img);
     }
       
     create ()
@@ -58,8 +62,7 @@ class MyGame extends Phaser.Scene
         //test assets for shirts
         shirt = this.matter.add.sprite(0,0,'shirt1');
 
-        //placeholder for shoes
-        var shoe = this.matter.add.sprite(600,300,'shoe1');
+
 
 
         //Set up placeholder transparent sprite for closet
@@ -97,30 +100,42 @@ class MyGame extends Phaser.Scene
         hat.setScale(0.2);
         hat.setInteractive();
         hat.setSensor(true);
+        hat2.setScale(0.2);
+        hat2.setInteractive();
+        hat2.setSensor(true);
 
         //set up sprite properties of test shoe object
         shoe.setScale(0.2);
         shoe.setInteractive();
         shoe.setSensor(true);
 
+        //set up sprite properties of test shirt object
+        shirt.setScale(0.2);
+        shirt.setInteractive();
+        shirt.setSensor(true);
+
         //specify typing og test hat & test shoe 
+        shirt.clothingType = clothingTypes.shirt;
         shoe.clothingType = clothingTypes.shoe;
+        hat2.clothingType = clothingTypes.hat;
         hat.clothingType = clothingTypes.hat;
-        
         //set Spritees to be draggable
         this.input.setDraggable(hat);
+        this.input.setDraggable(hat2);
         this.input.setDraggable(shoe);
-
+        this.input.setDraggable(shirt);
         //Creates a layer acting as a closet category. Layer is like a type of array, but meant to store graphics objects.
         var hatGroup = this.add.layer();
         var shoeGroup = this.add.layer();
-
+        var shirtGroup = this.add.layer();
         //Adds items into layers/closet
         hatGroup.add(hat);
+        hatGroup.add(hat2);
         shoeGroup.add(shoe);
+        shirtGroup.add(shirt);
         
-
         gridAlignLayer(hatGroup);
+        gridAlignLayer(shirtGroup);
         gridAlignLayer(shoeGroup);
 
         //Visually arranges items in layer in a grid formation. 
@@ -137,8 +152,9 @@ class MyGame extends Phaser.Scene
 
 
         assignSpriteData(hatGroup,"hat");
+        assignSpriteData(hatGroup,"hat2");
         assignSpriteData(shoeGroup,"shoe");
-
+        assignSpriteData(shirtGroup,"shirt");
         //Goes through each sprite in the object layer  and saves their origin position and index
         //Also saves what group they belong to
         //Needed for snapping back/un-equipping
@@ -151,48 +167,57 @@ class MyGame extends Phaser.Scene
             });
     
         }
+        
+        //only show layer after button is pressed
+        clearLayer(shoeGroup)
+        clearLayer(shirtGroup)
+        clearLayer(hatGroup)
+    
 
-        //only show hats first until toggle is pressed
-        shoeGroup.setVisible(false);
-        var layers = [shoeGroup,hatGroup];
+        var layers = [shoeGroup,hatGroup,shirtGroup];
 
     
 
         //Test button for switching between categories
-        const togglebutton = this.add.text(40, 100, 'Toggle!', { fill: '#0f0' })
+        const hatbutton = this.add.text(40, 100, 'hats!', { fill: '#0f0' })
         .setInteractive()
-        .on('pointerdown', () => toggleVisible(layers));
-
+        .on('pointerdown', () => displayLayer(hatGroup));
+        const shirtbutton = this.add.text(140, 100, 'shirts!', { fill: '#0f0' })
+        .setInteractive()
+        .on('pointerdown', () => displayLayer(shirtGroup));
+        const shoebutton = this.add.text(240, 100, 'shoes!', { fill: '#0f0' })
+        .setInteractive()
+        .on('pointerdown', () => displayLayer(shoeGroup));
         //
-        var self = this;
 
-        //temporary function to emulate switching categories
-        //When toggleButton is pressed,
-        //swaps between two layers by making one invisible
-        function toggleVisible(layers){
+
+        //Display chosen layer
+        function displayLayer(chosenLayer){
             for(const layer  of layers){
                 if(layer.visible==true){
-                    layer.setVisible(false);
+                    clearLayer(layer);
+                }
+            }
+            chosenLayer.visible=true;
+            chosenLayer.each(function(gameObject) {
+                if(gameObject != null){
+                    gameObject.setInteractive();
+                    self.input.setDraggable(gameObject,true);
+                }
+            });
+        }
+        
+        //clears layer from canvas
+        function clearLayer(layer){
+            layer.setVisible(false);
                     layer.each(function(gameObject) {
                         if(gameObject != null){
-                           gameObject.disableInteractive();
+                            gameObject.disableInteractive();
                             self.input.setDraggable(gameObject,false);
                         }
                     });
-                }
-                else{
-                    layer.setVisible(true);
-                    togglebutton.setText("Displaying: "+ layer.first.getData('type') + "group. Press to toggle.")
-                    layer.each(function(gameObject) {
-                        if(gameObject != null){
-                            gameObject.setInteractive();
-                            self.input.setDraggable(gameObject,true);
-                        }
-                    });
-                }
-            }
-            return;
         }
+
 
 
         //different clothes snap to different places on cat. only shoe and hat right now
@@ -210,7 +235,7 @@ class MyGame extends Phaser.Scene
             
             cat.shirtPosition = { //these values arent quite right. need test images i think before they can be set right.
                 x : 400,
-                y : 300,
+                y : 330,
             }
     
             cat.pantsPosition = { //these values arent quite right. need test images i think before they can be set right.
@@ -226,11 +251,9 @@ class MyGame extends Phaser.Scene
 
     update(){
         this.input.on('drag', (pointer, gameObject, dragX, dragY) => {
-            gameObject.addToDispla
             gameObject.setScale(0.6);
             gameObject.x = dragX;
             gameObject.y = dragY;
-            //snapToCat(gameObject,pointer);
         });
 
         this.input.on('dragend', (pointer, gameObject, dragX, dragY) => {
