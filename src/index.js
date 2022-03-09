@@ -44,11 +44,11 @@ class MyGame extends Phaser.Scene
     {
         var self = this;
         
-        var catshape = this.cache.json.get('catshape');
-        // this.arcade.world.setBounds(0, 0, game.config.width, game.config.hei
-
+        var bg = this.matter.add.image(350,250,'background');
+        bg.setStatic(true);
+        console.log(bg);
         this.matter.world.setGravity(0,0);
-        closet = this.matter.add.sprite(200,200,'closet');
+        closet = this.matter.add.sprite(150,200,'closet');
         closet.setStatic(true);
         closet.setScale(0.2);
         cat = setupCat();
@@ -74,7 +74,7 @@ class MyGame extends Phaser.Scene
 
         //set up sprite properties of cat
         function setupCat(){
-            cat = self.matter.add.sprite(400,300,'cat',null);
+            cat = self.matter.add.sprite(500,350,'cat',null);
             //add a layer into the cat, it contains clothes that are equipped on the cat
             cat.setData('catLayer',self.add.layer());
             //Cat sprite properties
@@ -145,7 +145,7 @@ class MyGame extends Phaser.Scene
                 height: 10,
                 cellWidth: 50,
                 cellHeight: 50,
-                x: 50,
+                x: 0,
                 y: 50
             });
         }
@@ -155,6 +155,7 @@ class MyGame extends Phaser.Scene
         assignSpriteData(hatGroup,"hat2");
         assignSpriteData(shoeGroup,"shoe");
         assignSpriteData(shirtGroup,"shirt");
+
         //Goes through each sprite in the object layer  and saves their origin position and index
         //Also saves what group they belong to
         //Needed for snapping back/un-equipping
@@ -224,23 +225,23 @@ class MyGame extends Phaser.Scene
         function createClothingSnapPoints(cat){
 
             cat.hatPosition = { 
-                x : 400,
-                y : 300 - 180,
+                x : cat.x,
+                y : 300 - 130,
             }
     
             cat.shoePosition = { 
-                x : 400,
-                y : 300 + 149,
+                x : cat.x,
+                y : 300 + 195,
             }
             
             cat.shirtPosition = { //these values arent quite right. need test images i think before they can be set right.
-                x : 400,
-                y : 330,
+                x : cat.x,
+                y : 370,
             }
     
             cat.pantsPosition = { //these values arent quite right. need test images i think before they can be set right.
-                x : 400,
-                y : 300 + 70,
+                x : cat.x,
+                y : 300 + 100,
             }
 
         }
