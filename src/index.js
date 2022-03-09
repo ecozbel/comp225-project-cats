@@ -48,7 +48,7 @@ class MyGame extends Phaser.Scene
         
         var bg = this.matter.add.image(350,250,'background');
         bg.setStatic(true);
-        console.log(bg);
+
         this.matter.world.setGravity(0,0);
         closet = this.matter.add.sprite(150,200,'closet');
         closet.setStatic(true);
@@ -84,7 +84,6 @@ class MyGame extends Phaser.Scene
             cat.setStatic(true);
             cat.setSensor(true);
             cat.setScale(0.6);
-            createClothingSnapPoints(cat);
             return cat;
         }
 
@@ -148,7 +147,7 @@ class MyGame extends Phaser.Scene
         gridAlignLayer(hatGroup);
         gridAlignLayer(shirtGroup);
         gridAlignLayer(shoeGroup);
-        console.log(closet.displayWidth)
+
         //Visually arranges items in layer in a grid formation. 
         function gridAlignLayer(objectLayer){
             Phaser.Actions.GridAlign(objectLayer.getChildren(), {
@@ -230,24 +229,24 @@ class MyGame extends Phaser.Scene
                     });
         }
 
-
+        //console.log(cat.displayHeight);
 
         //different clothes snap to different places on cat. only shoe and hat right now
         function createClothingSnapPoints(cat){
-
+        
             cat.hatPosition = { 
                 x : cat.x,
-                y : 300 - 130,
+                y : cat.y-cat.displayHeight/2,
             }
     
             cat.shoePosition = { 
                 x : cat.x,
-                y : 300 + 195,
+                y : cat.y+cat.displayHeight/2.65,
             }
             
             cat.shirtPosition = { //these values arent quite right. need test images i think before they can be set right.
                 x : cat.x,
-                y : 376,
+                y : cat.y+cat.displayHeight/12,
             }
     
             cat.pantsPosition = { //these values arent quite right. need test images i think before they can be set right.
