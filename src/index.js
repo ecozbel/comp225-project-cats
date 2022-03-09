@@ -124,6 +124,8 @@ class MyGame extends Phaser.Scene
         this.input.setDraggable(hat2);
         this.input.setDraggable(shoe);
         this.input.setDraggable(shirt);
+
+        
         //Creates a layer acting as a closet category. Layer is like a type of array, but meant to store graphics objects.
         var hatGroup = this.add.layer();
         var shoeGroup = this.add.layer();
@@ -236,7 +238,7 @@ class MyGame extends Phaser.Scene
             
             cat.shirtPosition = { //these values arent quite right. need test images i think before they can be set right.
                 x : cat.x,
-                y : 370,
+                y : 376,
             }
     
             cat.pantsPosition = { //these values arent quite right. need test images i think before they can be set right.
