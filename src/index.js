@@ -1,3 +1,4 @@
+
 import Phaser from 'phaser';
 import logoImg from './assets/logo.png';
 import catimg from './assets/cat.png';
@@ -6,14 +7,17 @@ import catHitbox from './assets/cat-shape2.json';
 import shoe1img from './assets/shoe1.png';
 import closetimg from './assets/closet.png';
 
+
+
 var cat;
 var closet;
 var hat;
 var clothingType;
 var blankSprite;
 var clothingTypes;
-
-
+var layers;
+var shirt;
+var shoe;
 
 class MyGame extends Phaser.Scene
 {
@@ -30,7 +34,7 @@ class MyGame extends Phaser.Scene
         this.load.image('shoe1',shoe1img);
         this.load.image('closet',closetimg);
         this.load.json('catshape', catHitbox);
-       
+ 
     }
       
     create ()
@@ -38,7 +42,7 @@ class MyGame extends Phaser.Scene
 
         var catshape = this.cache.json.get('catshape');
         // this.arcade.world.setBounds(0, 0, game.config.width, game.config.hei
-
+        console.log(this.cache.text.get('data'));
         this.matter.world.setGravity(0,0);
         closet = this.matter.add.sprite(200,200,'closet');
         closet.setStatic(true);
@@ -47,8 +51,8 @@ class MyGame extends Phaser.Scene
         hat = this.matter.add.sprite(600,300,'hat1');
 
         //placeholder for shoes
-        var shoe = this.matter.add.sprite(600,300,'shoe1');
-
+        shoe = this.matter.add.sprite(600,300,'shoe1');
+    
 
         //Set up placeholder transparent sprite for closet
         blankSprite = this.matter.add.sprite(600,300,'hat1');
@@ -63,6 +67,7 @@ class MyGame extends Phaser.Scene
         cat.setStatic(true);
         cat.setSensor(true);
         cat.setScale(0.6);
+      
         
 
         
@@ -88,25 +93,32 @@ class MyGame extends Phaser.Scene
         shoe.setInteractive();
         shoe.setSensor(true);
 
+
+
+
         //specify typing og test hat & test shoe 
         shoe.clothingType = clothingTypes.shoe;
         hat.clothingType = clothingTypes.hat;
+       
         
         //set Spritees to be draggable
         this.input.setDraggable(hat);
         this.input.setDraggable(shoe);
-
+        
         //Creates a layer acting as a closet category. Layer is like a type of array, but meant to store graphics objects.
         var hatGroup = this.add.layer();
         var shoeGroup = this.add.layer();
+    
 
         //Adds items into layers/closet
         hatGroup.add(hat);
         shoeGroup.add(shoe);
+  
         
 
         gridAlignLayer(hatGroup);
         gridAlignLayer(shoeGroup);
+        
 
         //Visually arranges items in layer in a grid formation. 
         function gridAlignLayer(objectLayer){
@@ -123,6 +135,7 @@ class MyGame extends Phaser.Scene
 
         assignSpriteData(hatGroup,"hat");
         assignSpriteData(shoeGroup,"shoe");
+   
 
         //Goes through each sprite in the object layer  and saves their origin position and index
         //Also saves what group they belong to
@@ -139,7 +152,8 @@ class MyGame extends Phaser.Scene
 
         //only show hats first until toggle is pressed
         shoeGroup.setVisible(false);
-        var layers = [shoeGroup,hatGroup];
+       
+        layers = [shoeGroup,hatGroup];
 
     
 
