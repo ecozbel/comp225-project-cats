@@ -2,12 +2,12 @@ import Phaser from 'phaser';
 import logoImg from './assets/logo.png';
 import catimg from './assets/cat.png';
 import hatimg from './assets/hat1.png';
-import catHitbox from './assets/cat-shape2.json';
 import shoeimg from './assets/shoe1.png';
 import closetimg from './assets/closet.png';
-import greenshirt from './assets/greenshirt.png';
+import greenshirt from './assets/greentshirt.png';
 import flowertop from './assets/flowertop.png';
 import shirt1img from './assets/shirt1.png';
+import backgroundImg from './assets/background.png';
 
 var cat;
 var closet;
@@ -35,29 +35,25 @@ class MyGame extends Phaser.Scene
         this.load.image('shoe1',shoeimg);
         this.load.image('shirt1',shirt1img);
         this.load.image('closet',closetimg);
-        this.load.json('catshape', catHitbox);
+        this.load.image('background', backgroundImg);
     }
       
     create ()
     {
         var self = this;
-        var catshape = this.cache.json.get('catshape');
-        // this.arcade.world.setBounds(0, 0, game.config.width, game.config.hei
-
-
         this.matter.world.setGravity(0,0);
         closet = this.matter.add.sprite(200,200,'closet');
         closet.setStatic(true);
         closet.setScale(0.2);
-        cat = this.matter.add.sprite(400,300,'cat',null, { shape: catshape});
+        cat = setupCat();
 
         //test assets for hats
         hat = this.matter.add.sprite(600,300,'hat1');
         hat2 = this.matter.add.sprite(600,300,'hat1');
         hat2.setTint(Math.random() * 0xffffff);
-        //test asset for shoes
+        //test assets for shoes
         shoe = this.matter.add.sprite(600,300,'shoe1');
-        //test asset for shirt
+        //test assets for shirts
         shirt = this.matter.add.sprite(0,0,'shirt1');
 
         
@@ -67,17 +63,20 @@ class MyGame extends Phaser.Scene
         blankSprite.setSensor(true);
         blankSprite.setInteractive(false);
 
-        //add a layer into the cat, it contains clothes that are equipped on the cat
-        cat.setData('catLayer',this.add.layer());
 
-        //set up sprite properties of catt
-        cat.setStatic(true);
-        cat.setSensor(true);
-        cat.setScale(0.6);
+        //set up sprite properties of cat
+        function setupCat(){
+            cat = self.matter.add.sprite(400,300,'cat',null);
+            //add a layer into the cat, it contains clothes that are equipped on the cat
+            cat.setData('catLayer',self.add.layer());
+            //Cat sprite properties
+            cat.setStatic(true);
+            cat.setSensor(true);
+            cat.setScale(0.6);
+            createClothingSnapPoints(cat);
+            return cat;
+        }
 
-        
-
-        createClothingSnapPoints(cat);
         clothingTypes = {
 
             hat : 0,
