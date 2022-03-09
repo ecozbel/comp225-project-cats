@@ -7,6 +7,8 @@ import shoe1img from './assets/shoe1.png';
 import closetimg from './assets/closet.png';
 import greenshirt from './assets/greenshirt.png';
 import flowertop from './assets/flowertop.png';
+import firefighterhat from './assets/firefighterhat.png';
+import firefighterboots from './assets/firefighterboots.png';
 
 var cat;
 var closet;
