@@ -9,6 +9,7 @@ import greenshirt from './assets/greenshirt.png';
 import flowertop from './assets/flowertop.png';
 import firefighterhat from './assets/firefighterhat.png';
 import firefighterboots from './assets/firefighterboots.png';
+import firefightercoat from './assets/firefightercoat.png';
 
 var cat;
 var closet;
