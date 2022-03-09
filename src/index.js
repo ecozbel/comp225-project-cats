@@ -5,6 +5,7 @@ import hatimg from './assets/hat1.png';
 import catHitbox from './assets/cat-shape2.json';
 import shoe1img from './assets/shoe1.png';
 import closetimg from './assets/closet.png';
+import greenshirt from './assets/greenshirt.png';
 
 var cat;
 var closet;
