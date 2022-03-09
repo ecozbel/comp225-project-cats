@@ -17,6 +17,7 @@ var closet;
 var hat;
 var hat2;
 var shirt;
+var shirt2;
 var shoe;
 var clothingType;
 var blankSprite;
@@ -38,6 +39,7 @@ class MyGame extends Phaser.Scene
         this.load.image('closet',closetimg);
         this.load.image('background', backgroundImg);
         this.load.image('shirt1', shirt1img);
+        this.load.image('shirt2', firefightercoat);
     }
       
     create ()
@@ -61,6 +63,7 @@ class MyGame extends Phaser.Scene
         shoe = this.matter.add.sprite(600,300,'shoe1');
         //test assets for shirts
         shirt = this.matter.add.sprite(0,0,'shirt1');
+        shirt2 = this.matter.add.sprite(0,0,'shirt2');
 
 
 
@@ -113,9 +116,13 @@ class MyGame extends Phaser.Scene
         shirt.setScale(0.2);
         shirt.setInteractive();
         shirt.setSensor(true);
+        shirt2.setScale(0.2);
+        shirt2.setInteractive();
+        shirt2.setSensor(true);
 
         //specify typing og test hat & test shoe 
         shirt.clothingType = clothingTypes.shirt;
+        shirt2.clothingType = clothingTypes.shirt;
         shoe.clothingType = clothingTypes.shoe;
         hat2.clothingType = clothingTypes.hat;
         hat.clothingType = clothingTypes.hat;
@@ -124,6 +131,7 @@ class MyGame extends Phaser.Scene
         this.input.setDraggable(hat2);
         this.input.setDraggable(shoe);
         this.input.setDraggable(shirt);
+        this.input.setDraggable(shirt2);
 
         
         //Creates a layer acting as a closet category. Layer is like a type of array, but meant to store graphics objects.
@@ -135,11 +143,12 @@ class MyGame extends Phaser.Scene
         hatGroup.add(hat2);
         shoeGroup.add(shoe);
         shirtGroup.add(shirt);
+        shirtGroup.add(shirt2);
         
         gridAlignLayer(hatGroup);
         gridAlignLayer(shirtGroup);
         gridAlignLayer(shoeGroup);
-
+        console.log(closet.displayWidth)
         //Visually arranges items in layer in a grid formation. 
         function gridAlignLayer(objectLayer){
             Phaser.Actions.GridAlign(objectLayer.getChildren(), {
@@ -147,16 +156,16 @@ class MyGame extends Phaser.Scene
                 height: 10,
                 cellWidth: 50,
                 cellHeight: 50,
-                x: 0,
-                y: 50
+                x: closet.x-closet.displayWidth+objectLayer.first.displayWidth,
+                y: closet.y-closet.displayHeight+objectLayer.first.displayHeight
             });
         }
 
 
         assignSpriteData(hatGroup,"hat");
-        assignSpriteData(hatGroup,"hat2");
         assignSpriteData(shoeGroup,"shoe");
         assignSpriteData(shirtGroup,"shirt");
+        
 
         //Goes through each sprite in the object layer  and saves their origin position and index
         //Also saves what group they belong to
