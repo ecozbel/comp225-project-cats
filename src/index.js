@@ -6,6 +6,7 @@ import catHitbox from './assets/cat-shape2.json';
 import shoe1img from './assets/shoe1.png';
 import closetimg from './assets/closet.png';
 import greenshirt from './assets/greenshirt.png';
+import shirt1img from './assets/shirt1.png';
 import flowertop from './assets/flowertop.png';
 import firefighterhat from './assets/firefighterhat.png';
 import firefighterboots from './assets/firefighterboots.png';
