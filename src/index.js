@@ -307,14 +307,15 @@ class MyGame extends Phaser.Scene
             }
             //Sprite shrinks and returns to closet if it is not dropped on cat.
             else{
-                sprite.getData('group').addAt(sprite, sprite.getData('index'));
+                returnSpritetoCloset(sprite)
+            }
+        }
+        function returnSpritetoCloset(sprite){
+            sprite.getData('group').addAt(sprite, sprite.getData('index'));
                 scaletoIconSize(sprite);
                 sprite.x=sprite.getData('origin').x;
                 sprite.y=sprite.getData('origin').y;
-                
-            }
         }
-
 
     }
 
