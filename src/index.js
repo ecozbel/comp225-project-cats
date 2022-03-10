@@ -327,6 +327,7 @@ function scaletoIconSize(sprite){
     sprite.displayWidth=game.config.width*0.08; 
     sprite.scaleY=sprite.scaleX;
 }
+//comment
 
 
 const config = {
