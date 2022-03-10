@@ -1,3 +1,4 @@
+
 import Phaser from 'phaser';
 import logoImg from './assets/logo.png';
 import catimg from './assets/cat.png';
@@ -12,6 +13,8 @@ import firefighterhat from './assets/firefighterhat.png';
 import firefighterboots from './assets/firefighterboots.png';
 import firefightercoat from './assets/firefightercoat.png';
 
+
+
 var cat;
 var closet;
 var hat;
@@ -22,6 +25,9 @@ var shoe;
 var clothingType;
 var blankSprite;
 var clothingTypes;
+var layers;
+var shirt;
+var shoe;
 
 
 class MyGame extends Phaser.Scene
@@ -41,11 +47,18 @@ class MyGame extends Phaser.Scene
         this.load.image('closet',closetimg);
         this.load.image('background', backgroundImg);
         this.load.image('shirt1', shirt1img);
+
+        // console.log('---------> preloading')
+        // this.load.json('prompts','src/assets/prompts.json');
         this.load.image('shirt2', firefightercoat);
     }
       
     create ()
     {
+        // let jsonFile = this.cache.json.get('prompts');
+        // console.log('--------->', jsonFile.prompt[0].introduction)
+        
+
         var self = this;
         
         var bg = this.matter.add.image(350,250,'background');
@@ -66,7 +79,6 @@ class MyGame extends Phaser.Scene
         //test assets for shirts
         shirt = this.matter.add.sprite(0,0,'shirt1');
         shirt2 = this.matter.add.sprite(0,0,'shirt2');
-
 
 
 
@@ -145,6 +157,7 @@ class MyGame extends Phaser.Scene
         gridAlignLayer(hatGroup);
         gridAlignLayer(shirtGroup);
         gridAlignLayer(shoeGroup);
+        
 
         //Visually arranges items in layer in a grid formation. 
         function gridAlignLayer(objectLayer){
@@ -197,7 +210,7 @@ class MyGame extends Phaser.Scene
         const shoebutton = this.add.text(240, 100, 'shoes!', { fill: '#0f0' })
         .setInteractive()
         .on('pointerdown', () => displayLayer(shoeGroup));
-        //
+    
 
 
         //Display chosen layer
@@ -253,6 +266,13 @@ class MyGame extends Phaser.Scene
             }
 
         }
+
+
+    }
+
+
+    update(){
+    
 
         this.input.on('drag', (pointer, gameObject, dragX, dragY) => {
             normalizeClothing(gameObject);
