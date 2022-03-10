@@ -254,11 +254,6 @@ class MyGame extends Phaser.Scene
 
         }
 
-
-    }
-
-
-    update(){
         this.input.on('drag', (pointer, gameObject, dragX, dragY) => {
             normalizeClothing(gameObject);
             gameObject.x = dragX;
@@ -306,6 +301,13 @@ class MyGame extends Phaser.Scene
                 
             }
         }
+
+
+    }
+
+
+    update(){
+        
     }
     
 }
@@ -315,7 +317,7 @@ function normalizeScale(sprite){
     sprite.displayWidth=game.config.width*0.3; 
     sprite.scaleY=sprite.scaleX;
 }
-
+//Scales given sprite to clothing size
 function normalizeClothing(sprite){
     sprite.displayWidth=game.config.width*0.28; 
     sprite.scaleY=sprite.scaleX;
