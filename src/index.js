@@ -265,15 +265,8 @@ class MyGame extends Phaser.Scene
                 y : 300 + 100,
             }
 
+
         }
-
-
-    }
-
-
-    update(){
-    
-
         this.input.on('drag', (pointer, gameObject, dragX, dragY) => {
             normalizeClothing(gameObject);
             gameObject.x = dragX;
