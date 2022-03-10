@@ -23,12 +23,14 @@ var clothingType;
 var blankSprite;
 var clothingTypes;
 
+
 class MyGame extends Phaser.Scene
 {
     constructor ()
-    {
+    {   
         super();
     }
+    
 
     preload ()
     {
@@ -52,7 +54,7 @@ class MyGame extends Phaser.Scene
         this.matter.world.setGravity(0,0);
         closet = this.matter.add.sprite(150,200,'closet');
         closet.setStatic(true);
-        closet.setScale(0.2);
+        normalizeScale(closet);
         cat = setupCat();
 
         //test assets for hats
@@ -83,7 +85,7 @@ class MyGame extends Phaser.Scene
             //Cat sprite properties
             cat.setStatic(true);
             cat.setSensor(true);
-            cat.setScale(0.6);
+            normalizeScale(cat);
             return cat;
         }
 
@@ -99,23 +101,23 @@ class MyGame extends Phaser.Scene
         }
 
         //set up sprite properties of test hat object
-        hat.setScale(0.2);
+        scaletoIconSize(hat);
         hat.setInteractive();
         hat.setSensor(true);
-        hat2.setScale(0.2);
+        scaletoIconSize(hat2);
         hat2.setInteractive();
         hat2.setSensor(true);
 
         //set up sprite properties of test shoe object
-        shoe.setScale(0.2);
+        scaletoIconSize(shoe);
         shoe.setInteractive();
         shoe.setSensor(true);
 
         //set up sprite properties of test shirt object
-        shirt.setScale(0.2);
+        scaletoIconSize(shirt);
         shirt.setInteractive();
         shirt.setSensor(true);
-        shirt2.setScale(0.2);
+        scaletoIconSize(shirt2);
         shirt2.setInteractive();
         shirt2.setSensor(true);
 
@@ -126,11 +128,7 @@ class MyGame extends Phaser.Scene
         hat2.clothingType = clothingTypes.hat;
         hat.clothingType = clothingTypes.hat;
         //set Spritees to be draggable
-        this.input.setDraggable(hat);
-        this.input.setDraggable(hat2);
-        this.input.setDraggable(shoe);
-        this.input.setDraggable(shirt);
-        this.input.setDraggable(shirt2);
+        
 
         
         //Creates a layer acting as a closet category. Layer is like a type of array, but meant to store graphics objects.
@@ -262,7 +260,7 @@ class MyGame extends Phaser.Scene
 
     update(){
         this.input.on('drag', (pointer, gameObject, dragX, dragY) => {
-            gameObject.setScale(0.6);
+            normalizeClothing(gameObject);
             gameObject.x = dragX;
             gameObject.y = dragY;
         });
@@ -302,13 +300,30 @@ class MyGame extends Phaser.Scene
             //Sprite shrinks and returns to closet if it is not dropped on cat.
             else{
                 sprite.getData('group').addAt(sprite, sprite.getData('index'));
-                sprite.setScale(0.2);
+                scaletoIconSize(sprite);
                 sprite.x=sprite.getData('origin').x;
                 sprite.y=sprite.getData('origin').y;
                 
             }
         }
     }
+    
+}
+//Utilities
+//Scales given sprite to normal size
+function normalizeScale(sprite){
+    sprite.displayWidth=game.config.width*0.3; 
+    sprite.scaleY=sprite.scaleX;
+}
+
+function normalizeClothing(sprite){
+    sprite.displayWidth=game.config.width*0.28; 
+    sprite.scaleY=sprite.scaleX;
+}
+//Scales given sprite to icon size
+function scaletoIconSize(sprite){
+    sprite.displayWidth=game.config.width*0.08; 
+    sprite.scaleY=sprite.scaleX;
 }
 
 
