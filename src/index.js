@@ -20,6 +20,7 @@ var closet;
 var hat;
 var hat2;
 var shirt;
+var shirt2;
 var shoe;
 var clothingType;
 var blankSprite;
@@ -28,12 +29,14 @@ var layers;
 var shirt;
 var shoe;
 
+
 class MyGame extends Phaser.Scene
 {
     constructor ()
-    {
+    {   
         super();
     }
+    
 
     preload ()
     {
@@ -47,6 +50,7 @@ class MyGame extends Phaser.Scene
 
         // console.log('---------> preloading')
         // this.load.json('prompts','src/assets/prompts.json');
+        this.load.image('shirt2', firefightercoat);
     }
       
     create ()
@@ -59,11 +63,11 @@ class MyGame extends Phaser.Scene
         
         var bg = this.matter.add.image(350,250,'background');
         bg.setStatic(true);
-        console.log(bg);
+
         this.matter.world.setGravity(0,0);
         closet = this.matter.add.sprite(150,200,'closet');
         closet.setStatic(true);
-        closet.setScale(0.2);
+        normalizeScale(closet);
         cat = setupCat();
 
         //test assets for hats
@@ -74,6 +78,7 @@ class MyGame extends Phaser.Scene
         shoe = this.matter.add.sprite(600,300,'shoe1');
         //test assets for shirts
         shirt = this.matter.add.sprite(0,0,'shirt1');
+        shirt2 = this.matter.add.sprite(0,0,'shirt2');
 
 
 
@@ -92,8 +97,7 @@ class MyGame extends Phaser.Scene
             //Cat sprite properties
             cat.setStatic(true);
             cat.setSensor(true);
-            cat.setScale(0.6);
-            createClothingSnapPoints(cat);
+            normalizeScale(cat);
             return cat;
         }
 
@@ -109,33 +113,36 @@ class MyGame extends Phaser.Scene
         }
 
         //set up sprite properties of test hat object
-        hat.setScale(0.2);
+        scaletoIconSize(hat);
         hat.setInteractive();
         hat.setSensor(true);
-        hat2.setScale(0.2);
+        scaletoIconSize(hat2);
         hat2.setInteractive();
         hat2.setSensor(true);
 
         //set up sprite properties of test shoe object
-        shoe.setScale(0.2);
+        scaletoIconSize(shoe);
         shoe.setInteractive();
         shoe.setSensor(true);
 
         //set up sprite properties of test shirt object
-        shirt.setScale(0.2);
+        scaletoIconSize(shirt);
         shirt.setInteractive();
         shirt.setSensor(true);
+        scaletoIconSize(shirt2);
+        shirt2.setInteractive();
+        shirt2.setSensor(true);
 
         //specify typing og test hat & test shoe 
         shirt.clothingType = clothingTypes.shirt;
+        shirt2.clothingType = clothingTypes.shirt;
         shoe.clothingType = clothingTypes.shoe;
         hat2.clothingType = clothingTypes.hat;
         hat.clothingType = clothingTypes.hat;
         //set Spritees to be draggable
-        this.input.setDraggable(hat);
-        this.input.setDraggable(hat2);
-        this.input.setDraggable(shoe);
-        this.input.setDraggable(shirt);
+        
+
+        
         //Creates a layer acting as a closet category. Layer is like a type of array, but meant to store graphics objects.
         var hatGroup = this.add.layer();
         var shoeGroup = this.add.layer();
@@ -145,6 +152,7 @@ class MyGame extends Phaser.Scene
         hatGroup.add(hat2);
         shoeGroup.add(shoe);
         shirtGroup.add(shirt);
+        shirtGroup.add(shirt2);
         
         gridAlignLayer(hatGroup);
         gridAlignLayer(shirtGroup);
@@ -158,16 +166,16 @@ class MyGame extends Phaser.Scene
                 height: 10,
                 cellWidth: 50,
                 cellHeight: 50,
-                x: 0,
-                y: 50
+                x: closet.x-closet.displayWidth+objectLayer.first.displayWidth,
+                y: closet.y-closet.displayHeight+objectLayer.first.displayHeight
             });
         }
 
 
         assignSpriteData(hatGroup,"hat");
-        assignSpriteData(hatGroup,"hat2");
         assignSpriteData(shoeGroup,"shoe");
         assignSpriteData(shirtGroup,"shirt");
+        
 
         //Goes through each sprite in the object layer  and saves their origin position and index
         //Also saves what group they belong to
@@ -232,24 +240,24 @@ class MyGame extends Phaser.Scene
                     });
         }
 
-
+        //console.log(cat.displayHeight);
 
         //different clothes snap to different places on cat. only shoe and hat right now
         function createClothingSnapPoints(cat){
-
+        
             cat.hatPosition = { 
                 x : cat.x,
-                y : 300 - 130,
+                y : cat.y-cat.displayHeight/2,
             }
     
             cat.shoePosition = { 
                 x : cat.x,
-                y : 300 + 195,
+                y : cat.y+cat.displayHeight/2.65,
             }
             
             cat.shirtPosition = { //these values arent quite right. need test images i think before they can be set right.
                 x : cat.x,
-                y : 370,
+                y : cat.y+cat.displayHeight/12,
             }
     
             cat.pantsPosition = { //these values arent quite right. need test images i think before they can be set right.
@@ -267,7 +275,7 @@ class MyGame extends Phaser.Scene
     
 
         this.input.on('drag', (pointer, gameObject, dragX, dragY) => {
-            gameObject.setScale(0.6);
+            normalizeClothing(gameObject);
             gameObject.x = dragX;
             gameObject.y = dragY;
         });
@@ -307,13 +315,37 @@ class MyGame extends Phaser.Scene
             //Sprite shrinks and returns to closet if it is not dropped on cat.
             else{
                 sprite.getData('group').addAt(sprite, sprite.getData('index'));
-                sprite.setScale(0.2);
+                scaletoIconSize(sprite);
                 sprite.x=sprite.getData('origin').x;
                 sprite.y=sprite.getData('origin').y;
                 
             }
         }
+
+
     }
+
+
+    update(){
+        
+    }
+    
+}
+//Utilities
+//Scales given sprite to normal size
+function normalizeScale(sprite){
+    sprite.displayWidth=game.config.width*0.3; 
+    sprite.scaleY=sprite.scaleX;
+}
+//Scales given sprite to clothing size
+function normalizeClothing(sprite){
+    sprite.displayWidth=game.config.width*0.28; 
+    sprite.scaleY=sprite.scaleX;
+}
+//Scales given sprite to icon size
+function scaletoIconSize(sprite){
+    sprite.displayWidth=game.config.width*0.08; 
+    sprite.scaleY=sprite.scaleX;
 }
 
 
