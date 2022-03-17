@@ -2,16 +2,19 @@
 import Phaser from 'phaser';
 import logoImg from './assets/logo.png';
 import catimg from './assets/cat.png';
-import hatimg from './assets/hat1.png';
-import shoe1img from './assets/shoe1.png';
+import hat1img from './assets/clothing/hat1.png';
+import hat2img from './assets/clothing/hat2.png';
+import shoe1img from './assets/clothing/shoe1.png';
+import shoe2img from './assets/clothing/shoe2.png';
+import shoe3img from './assets/clothing/shoe3.png';
 import closetimg from './assets/closet.png';
-import greenshirt from './assets/greentshirt.png';
-import flowertop from './assets/flowertop.png';
-import shirt1img from './assets/shirt1.png';
+import greenshirt from './assets/clothing/greentshirt.png';
+import flowertop from './assets/clothing/flowertop.png';
+import shirt1img from './assets/clothing/shirt1.png';
 import backgroundImg from './assets/background.png';
-import firefighterhat from './assets/firefighterhat.png';
-import firefighterboots from './assets/firefighterboots.png';
-import firefightercoat from './assets/firefightercoat.png';
+import firefighterhat from './assets/clothing/firefighterhat.png';
+import firefighterboots from './assets/clothing/firefighterboots.png';
+import firefightercoat from './assets/clothing/firefightercoat.png';
 
 
 
@@ -22,6 +25,8 @@ var hat2;
 var shirt;
 var shirt2;
 var shoe;
+var shoe2;
+var shoe3;
 var clothingType;
 var blankSprite;
 var clothingTypes;
@@ -42,8 +47,11 @@ class MyGame extends Phaser.Scene
     {
         this.load.image('logo', logoImg);
         this.load.image('cat',catimg);
-        this.load.image('hat1',hatimg);
+        this.load.image('hat1',hat1img);
+        this.load.image('hat2',hat2img);
         this.load.image('shoe1',shoe1img);
+        this.load.image('shoe2',shoe2img);
+        this.load.image('shoe3',shoe3img);
         this.load.image('closet',closetimg);
         this.load.image('background', backgroundImg);
         this.load.image('shirt1', shirt1img);
@@ -72,10 +80,12 @@ class MyGame extends Phaser.Scene
 
         //test assets for hats
         hat = this.matter.add.sprite(600,300,'hat1');
-        hat2 = this.matter.add.sprite(600,300,'hat1');
-        hat2.setTint(Math.random() * 0xffffff);
+        hat2 = this.matter.add.sprite(600,300,'hat2');
+
         //test assets for shoes
         shoe = this.matter.add.sprite(600,300,'shoe1');
+        shoe2 = this.matter.add.sprite(600,300,'shoe2');
+        shoe3 = this.matter.add.sprite(600,300,'shoe3');
         //test assets for shirts
         shirt = this.matter.add.sprite(0,0,'shirt1');
         shirt2 = this.matter.add.sprite(0,0,'shirt2');
@@ -124,6 +134,12 @@ class MyGame extends Phaser.Scene
         scaletoIconSize(shoe);
         shoe.setInteractive();
         shoe.setSensor(true);
+        scaletoIconSize(shoe2);
+        shoe2.setInteractive();
+        shoe2.setSensor(true);
+        scaletoIconSize(shoe3);
+        shoe3.setInteractive();
+        shoe3.setSensor(true);
 
         //set up sprite properties of test shirt object
         scaletoIconSize(shirt);
@@ -137,6 +153,8 @@ class MyGame extends Phaser.Scene
         shirt.clothingType = clothingTypes.shirt;
         shirt2.clothingType = clothingTypes.shirt;
         shoe.clothingType = clothingTypes.shoe;
+        shoe2.clothingType = clothingTypes.shoe;
+        shoe3.clothingType = clothingTypes.shoe;
         hat2.clothingType = clothingTypes.hat;
         hat.clothingType = clothingTypes.hat;
         //set Spritees to be draggable
@@ -151,6 +169,8 @@ class MyGame extends Phaser.Scene
         hatGroup.add(hat);
         hatGroup.add(hat2);
         shoeGroup.add(shoe);
+        shoeGroup.add(shoe2);
+        shoeGroup.add(shoe3);
         shirtGroup.add(shirt);
         shirtGroup.add(shirt2);
         
@@ -247,7 +267,7 @@ class MyGame extends Phaser.Scene
         
             cat.hatPosition = { 
                 x : cat.x,
-                y : cat.y-cat.displayHeight/2,
+                y : cat.y-cat.displayHeight/2.4,
             }
     
             cat.shoePosition = { 
@@ -310,6 +330,7 @@ class MyGame extends Phaser.Scene
                 returnSpritetoCloset(sprite)
             }
         }
+
         function returnSpritetoCloset(sprite){
             sprite.getData('group').addAt(sprite, sprite.getData('index'));
                 scaletoIconSize(sprite);
@@ -318,7 +339,6 @@ class MyGame extends Phaser.Scene
         }
 
     }
-
 
     update(){
         
