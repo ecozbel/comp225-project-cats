@@ -268,25 +268,25 @@ class MyGame extends Phaser.Scene
             cat.hatPosition = { 
                 x : cat.x,
                 y : cat.y-cat.displayHeight/2.4,
-                hasClothing : null,
+                currentClothing : null,
             }
     
             cat.shoePosition = { 
                 x : cat.x,
                 y : cat.y+cat.displayHeight/2.65,
-                hasClothing : null,
+                currentClothing : null,
             }
             
             cat.shirtPosition = { //these values arent quite right. need test images i think before they can be set right.
                 x : cat.x,
                 y : cat.y+cat.displayHeight/12,
-                hasClothing : null,
+                currentClothing : null,
             }
     
             cat.pantsPosition = { //these values arent quite right. need test images i think before they can be set right.
                 x : cat.x,
                 y : 300 + 100,
-                hasClothing : null,
+                currentClothing : null,
             }
 
 
@@ -307,35 +307,34 @@ class MyGame extends Phaser.Scene
                 sprite.getData('group').replace(sprite,blankSprite );
                 cat.getData('catLayer').add(sprite);
 
+                // function to make sure that same article of clothing can't be placed on a cat twice
+                function handleClothingPlacement(clothingPosition) {
+
+                    // multiple clothes of same type cant be on cat
+                    if (clothingPosition.currentClothing != null && clothingPosition.currentClothing != sprite) { 
+                        returnSpritetoCloset(clothingPosition.currentClothing);
+                    } 
+                    //set the position of the sprite 
+                    sprite.x = clothingPosition.x;
+                    sprite.y = clothingPosition.y;
+                    //set the clothPositions current clothing to be what was just dropped on it
+                    clothingPosition.currentClothing = sprite;
+
+                }
+
                 //switch statement to handle multiple types of clothes
                 switch (sprite.clothingType){
                     case clothingTypes.hat:
-
-                        console.log(cat.hatPosition);
-
-                        if (cat.hatPosition.hasClothing != null && cat.hatPosition.hasClothing != sprite) { // multiple clothes of same type cant be on cat
-
-                            returnSpritetoCloset( cat.hatPosition.hasClothing);
-                            
-                        } 
-
-                        sprite.x = cat.hatPosition.x;
-                        sprite.y = cat.hatPosition.y;
-                        cat.hatPosition.hasClothing = sprite;
-
-                        
+                        handleClothingPlacement(cat.hatPosition);    
                         break;
                     case clothingTypes.shoe:
-                        sprite.x = cat.shoePosition.x;
-                        sprite.y = cat.shoePosition.y;
+                        handleClothingPlacement(cat.shoePosition); 
                         break;
                     case clothingTypes.shirt:
-                        sprite.x = cat.shirtPosition.x;
-                        sprite.y = cat.shirtPosition.y;
+                        handleClothingPlacement(cat.shirtPosition); 
                         break;   
                     case clothingTypes.pants:
-                        sprite.x = cat.pantsPosition.x;
-                        sprite.y = cat.pantsPosition.y;
+                        handleClothingPlacement(cat.pantsPosition); 
                         break;                                                 
                 }
 
