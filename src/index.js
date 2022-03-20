@@ -268,21 +268,25 @@ class MyGame extends Phaser.Scene
             cat.hatPosition = { 
                 x : cat.x,
                 y : cat.y-cat.displayHeight/2.4,
+                hasClothing : null,
             }
     
             cat.shoePosition = { 
                 x : cat.x,
                 y : cat.y+cat.displayHeight/2.65,
+                hasClothing : false,
             }
             
             cat.shirtPosition = { //these values arent quite right. need test images i think before they can be set right.
                 x : cat.x,
                 y : cat.y+cat.displayHeight/12,
+                hasClothing : false,
             }
     
             cat.pantsPosition = { //these values arent quite right. need test images i think before they can be set right.
                 x : cat.x,
                 y : 300 + 100,
+                hasClothing : false,
             }
 
 
@@ -306,8 +310,17 @@ class MyGame extends Phaser.Scene
                 //switch statement to handle multiple types of clothes
                 switch (sprite.clothingType){
                     case clothingTypes.hat:
+
                         sprite.x = cat.hatPosition.x;
                         sprite.y = cat.hatPosition.y;
+
+                        if (cat.hatPosition.hasClothing == null) { // multiple clothes of same type cant be on cat
+                            cat.hatPosition.hasClothing = sprite;
+                            console.log(cat.hatPosition);
+                        } else {
+                            returnSpritetoCloset( cat.hatPosition.hasClothing); //return the sprite currently on cat
+                        }
+
                         break;
                     case clothingTypes.shoe:
                         sprite.x = cat.shoePosition.x;
@@ -327,7 +340,7 @@ class MyGame extends Phaser.Scene
             }
             //Sprite shrinks and returns to closet if it is not dropped on cat.
             else{
-                returnSpritetoCloset(sprite)
+                returnSpritetoCloset(sprite);
             }
         }
 
