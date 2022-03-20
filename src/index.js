@@ -15,7 +15,7 @@ import backgroundImg from './assets/background.png';
 import firefighterhat from './assets/clothing/firefighterhat.png';
 import firefighterboots from './assets/clothing/firefighterboots.png';
 import firefightercoat from './assets/clothing/firefightercoat.png';
-
+import hatSilhoetteimg from './assets/clothing/hatSilhoette.png';
 
 
 var cat;
@@ -33,6 +33,7 @@ var clothingTypes;
 var layers;
 var shirt;
 var shoe;
+var hatSilhoette;
 
 
 class MyGame extends Phaser.Scene
@@ -55,7 +56,7 @@ class MyGame extends Phaser.Scene
         this.load.image('closet',closetimg);
         this.load.image('background', backgroundImg);
         this.load.image('shirt1', shirt1img);
-
+        this.load.image('hatSilhoette', hatSilhoetteimg);
         // console.log('---------> preloading')
         // this.load.json('prompts','src/assets/prompts.json');
         this.load.image('shirt2', firefightercoat);
@@ -220,13 +221,19 @@ class MyGame extends Phaser.Scene
 
     
 
-        //Test button for switching between categories
-        const hatbutton = this.add.text(40, 100, 'hats!', { fill: '#0f0' })
+        //button for switching between categories
+        
+        //this.add.text(40, 100, 'hats!', { fill: '#0f0' })
+
+        const hatbutton = this.add.sprite(90,125,"hatSilhoette")
         .setInteractive()
         .on('pointerdown', () => displayLayer(hatGroup));
+        scaletoIconSize(hatbutton);
+ 
         const shirtbutton = this.add.text(140, 100, 'shirts!', { fill: '#0f0' })
         .setInteractive()
         .on('pointerdown', () => displayLayer(shirtGroup));
+        
         const shoebutton = this.add.text(240, 100, 'shoes!', { fill: '#0f0' })
         .setInteractive()
         .on('pointerdown', () => displayLayer(shoeGroup));
