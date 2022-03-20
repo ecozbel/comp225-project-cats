@@ -274,19 +274,19 @@ class MyGame extends Phaser.Scene
             cat.shoePosition = { 
                 x : cat.x,
                 y : cat.y+cat.displayHeight/2.65,
-                hasClothing : false,
+                hasClothing : null,
             }
             
             cat.shirtPosition = { //these values arent quite right. need test images i think before they can be set right.
                 x : cat.x,
                 y : cat.y+cat.displayHeight/12,
-                hasClothing : false,
+                hasClothing : null,
             }
     
             cat.pantsPosition = { //these values arent quite right. need test images i think before they can be set right.
                 x : cat.x,
                 y : 300 + 100,
-                hasClothing : false,
+                hasClothing : null,
             }
 
 
@@ -311,16 +311,19 @@ class MyGame extends Phaser.Scene
                 switch (sprite.clothingType){
                     case clothingTypes.hat:
 
+                        console.log(cat.hatPosition);
+
+                        if (cat.hatPosition.hasClothing != null && cat.hatPosition.hasClothing != sprite) { // multiple clothes of same type cant be on cat
+
+                            returnSpritetoCloset( cat.hatPosition.hasClothing);
+                            
+                        } 
+
                         sprite.x = cat.hatPosition.x;
                         sprite.y = cat.hatPosition.y;
+                        cat.hatPosition.hasClothing = sprite;
 
-                        if (cat.hatPosition.hasClothing == null) { // multiple clothes of same type cant be on cat
-                            cat.hatPosition.hasClothing = sprite;
-                            console.log(cat.hatPosition);
-                        } else {
-                            returnSpritetoCloset( cat.hatPosition.hasClothing); //return the sprite currently on cat
-                        }
-
+                        
                         break;
                     case clothingTypes.shoe:
                         sprite.x = cat.shoePosition.x;
