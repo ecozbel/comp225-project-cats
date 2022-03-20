@@ -16,7 +16,8 @@ import firefighterhat from './assets/clothing/firefighterhat.png';
 import firefighterboots from './assets/clothing/firefighterboots.png';
 import firefightercoat from './assets/clothing/firefightercoat.png';
 import hatSilhoetteimg from './assets/clothing/hatSilhoette.png';
-
+import shirtSilhoetteimg from './assets/clothing/shirtSilhoette.png';
+import shoeSilhoetteimg from './assets/clothing/shoeSilhoette.png';
 
 var cat;
 var closet;
@@ -27,13 +28,12 @@ var shirt2;
 var shoe;
 var shoe2;
 var shoe3;
-var clothingType;
 var blankSprite;
 var clothingTypes;
 var layers;
 var shirt;
 var shoe;
-var hatSilhoette;
+
 
 
 class MyGame extends Phaser.Scene
@@ -57,6 +57,8 @@ class MyGame extends Phaser.Scene
         this.load.image('background', backgroundImg);
         this.load.image('shirt1', shirt1img);
         this.load.image('hatSilhoette', hatSilhoetteimg);
+        this.load.image('shirtSilhoette', shirtSilhoetteimg);
+        this.load.image('shoeSilhoette', shoeSilhoetteimg);
         // console.log('---------> preloading')
         // this.load.json('prompts','src/assets/prompts.json');
         this.load.image('shirt2', firefightercoat);
@@ -222,22 +224,21 @@ class MyGame extends Phaser.Scene
     
 
         //button for switching between categories
-        
-        //this.add.text(40, 100, 'hats!', { fill: '#0f0' })
 
-        const hatbutton = this.add.sprite(90,125,"hatSilhoette")
+        const hatbutton = this.add.sprite(90,100,"hatSilhoette")
         .setInteractive()
         .on('pointerdown', () => displayLayer(hatGroup));
         scaletoIconSize(hatbutton);
  
-        const shirtbutton = this.add.text(140, 100, 'shirts!', { fill: '#0f0' })
+        const shirtbutton = this.add.sprite(90 + game.config.width*0.08,100,"shirtSilhoette")
         .setInteractive()
         .on('pointerdown', () => displayLayer(shirtGroup));
-        
-        const shoebutton = this.add.text(240, 100, 'shoes!', { fill: '#0f0' })
+        scaletoIconSize(shirtbutton);
+
+        const shoebutton = this.add.sprite(90 + game.config.width*0.16,100,"shoeSilhoette")
         .setInteractive()
         .on('pointerdown', () => displayLayer(shoeGroup));
-    
+        scaletoIconSize(shoebutton);  
 
 
         //Display chosen layer
