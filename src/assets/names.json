@@ -1,0 +1,30 @@
+
+
+
+{"names":
+    [
+        {
+            "title":"Mr",
+            "adjective": "Fluffy",
+            "noun": "whiskers"     
+        }
+    ]
+    }
+    
+    function getRandomItem(arr) {
+
+        // get random index value
+        const randomIndex = Math.floor(Math.random() * arr.length);
+    
+        // get random item
+        const item = arr[randomIndex];
+    
+        return item;
+    }
+    
+    const titleArray = [''Mr.', 'Ms.', 'Mrs.', 'Sir' '];
+    const adjArray = [''Fluffy.', 'Cuddly.''];
+    const nounArray = ['Whiskers','Kitty', '']
+
+    const result = getRandomItem(array);
+    console.log(result);
