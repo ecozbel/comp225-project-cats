@@ -33,7 +33,31 @@ var clothingTypes;
 var layers;
 var shirt;
 var shoe;
+var logo;
 
+class begginingScene extends Phaser.Scene
+{
+    constructor ()
+    {   
+        super();
+        Phaser.Scene.call(this, { key: 'sceneA' });
+    }
+    preload ()
+    {
+    }
+    create ()
+    {
+        const shoebutton = this.add.text(400,300,"Start Screen! Click Anywhere");
+        this.input.once('pointerdown', function () {
+
+            console.log('From SceneA to SceneB');
+
+            this.scene.start('sceneB');
+
+        }, this);
+    }
+
+}
 
 
 class MyGame extends Phaser.Scene
@@ -41,8 +65,8 @@ class MyGame extends Phaser.Scene
     constructor ()
     {   
         super();
+        Phaser.Scene.call(this, { key: 'sceneB' });
     }
-    
 
     preload ()
     {
@@ -69,7 +93,7 @@ class MyGame extends Phaser.Scene
         // let jsonFile = this.cache.json.get('prompts');
         // console.log('--------->', jsonFile.prompt[0].introduction)
         
-
+        logo = this.add.sprite(400, 300, logo);
         var self = this;
         
         var bg = this.matter.add.image(350,250,'background');
@@ -400,7 +424,7 @@ const config = {
             debug: false
         }
     },
-    scene: MyGame
+    scene: [begginingScene,MyGame]
 };
 
 const game = new Phaser.Game(config);
