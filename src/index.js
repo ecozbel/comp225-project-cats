@@ -404,3 +404,17 @@ const config = {
 };
 
 const game = new Phaser.Game(config);
+
+function getRandomItem(arr) {
+    // get random index value
+    const randomIndex = Math.floor(Math.random() * arr.length);
+    // get random item
+    const item = arr[randomIndex];
+    return item;
+}
+const titleArray = ['Mr.', 'Ms.', 'Mrs.', 'Sir'];
+const adjArray = ['Fluffy', 'Cuddly'];
+const nounArray = ['Whiskers','Kitty', 'Cat']
+
+const result = getRandomItem(titleArray) + getRandomItem(adjArray) + getRandomItem(nounArray);
+console.log(result);
