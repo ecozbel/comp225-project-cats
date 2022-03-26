@@ -300,24 +300,28 @@ class MyGame extends Phaser.Scene
             cat.hatPosition = { 
                 x : cat.x,
                 y : cat.y-cat.displayHeight/2.4,
+                z : 3,
                 currentClothing : null,
             }
     
             cat.shoePosition = { 
                 x : cat.x,
                 y : cat.y+cat.displayHeight/2.65,
+                z : 1,
                 currentClothing : null,
             }
             
             cat.shirtPosition = { //these values arent quite right. need test images i think before they can be set right.
                 x : cat.x,
                 y : cat.y+cat.displayHeight/12,
+                z : 2,
                 currentClothing : null,
             }
     
             cat.pantsPosition = { //these values arent quite right. need test images i think before they can be set right.
                 x : cat.x,
                 y : 300 + 100,
+                z : 0,
                 currentClothing : null,
             }
 
@@ -349,6 +353,7 @@ class MyGame extends Phaser.Scene
                     //set the position of the sprite 
                     sprite.x = clothingPosition.x;
                     sprite.y = clothingPosition.y;
+                    sprite.depth = clothingPosition.z;
                     //set the clothPositions current clothing to be what was just dropped on it
                     clothingPosition.currentClothing = sprite;
 
@@ -424,7 +429,8 @@ const config = {
             debug: false
         }
     },
-    scene: [begginingScene,MyGame]
+    //scene: [begginingScene,MyGame]
+    scene: [MyGame]
 };
 
 const game = new Phaser.Game(config);
