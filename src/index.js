@@ -15,9 +15,10 @@ import backgroundImg from './assets/background.png';
 import firefighterhat from './assets/clothing/firefighterhat.png';
 import firefighterboots from './assets/clothing/firefighterboots.png';
 import firefightercoat from './assets/clothing/firefightercoat.png';
-import hatSilhoetteimg from './assets/clothing/hatSilhoette.png';
-import shirtSilhoetteimg from './assets/clothing/shirtSilhoette.png';
-import shoeSilhoetteimg from './assets/clothing/shoeSilhoette.png';
+import hatSilhoetteimg from './assets/icons/hatIcon.png';
+import shirtSilhoetteimg from './assets/icons/shirtIcon.png';
+import shoeSilhoetteimg from './assets/icons/shoesIcon.png';
+import pantsSilhoetteimg from './assets/icons/pantsIcon.png';
 
 var cat;
 var closet;
@@ -90,6 +91,7 @@ class MyGame extends Phaser.Scene
         this.load.image('hatSilhoette', hatSilhoetteimg);
         this.load.image('shirtSilhoette', shirtSilhoetteimg);
         this.load.image('shoeSilhoette', shoeSilhoetteimg);
+        this.load.image('pantsSilhoette', pantsSilhoetteimg);
         // console.log('---------> preloading')
         // this.load.json('prompts','src/assets/prompts.json');
         this.load.image('shirt2', firefightercoat);
@@ -266,11 +268,15 @@ class MyGame extends Phaser.Scene
         .on('pointerdown', () => displayLayer(shirtGroup));
         scaletoIconSize(shirtbutton);
 
-        const shoebutton = this.add.sprite(90 + game.config.width*0.16,100,"shoeSilhoette")
+        const shoebutton = this.add.sprite(90 + game.config.width*0.24,100,"shoeSilhoette")
         .setInteractive()
         .on('pointerdown', () => displayLayer(shoeGroup));
         scaletoIconSize(shoebutton);  
 
+        const pantsbutton = this.add.sprite(90 + game.config.width*0.16,100,"pantsSilhoette")
+        .setInteractive()
+        .on('pointerdown', () => displayLayer(shoeGroup));
+        scaletoIconSize(pantsbutton);  
 
         //Display chosen layer
         function displayLayer(chosenLayer){
