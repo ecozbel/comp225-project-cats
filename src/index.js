@@ -271,12 +271,12 @@ class MyGame extends Phaser.Scene
         .on('pointerdown', () => displayLayer(shirtGroup));
         scaletoIconSize(shirtbutton);
 
-        const shoebutton = this.add.sprite(90 + game.config.width*0.16,100,"shoeSilhoette")
+        const shoebutton = this.add.sprite(90 + game.config.width*0.24,100,"shoeSilhoette")
         .setInteractive()
         .on('pointerdown', () => displayLayer(shoeGroup));
         scaletoIconSize(shoebutton);  
 
-        const pantsbutton = this.add.sprite(90 + game.config.width*0.24,100,"pantsSilhoette")
+        const pantsbutton = this.add.sprite(90 + game.config.width*0.16,100,"pantsSilhoette")
         .setInteractive()
         .on('pointerdown', () => displayLayer(pantsGroup));
         scaletoIconSize(pantsbutton);  
@@ -427,6 +427,11 @@ function normalizeClothing(sprite){
 //Scales given sprite to icon size
 function scaletoIconSize(sprite){
     sprite.displayWidth=game.config.width*0.08; 
+    sprite.scaleY=sprite.scaleX;
+}
+
+function scaletoCategorySize(sprite){
+    sprite.displayWidth=game.config.width*0.06; 
     sprite.scaleY=sprite.scaleX;
 }
 //comment
