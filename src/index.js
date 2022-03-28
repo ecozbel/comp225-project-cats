@@ -15,10 +15,10 @@ import backgroundImg from './assets/background.png';
 import firefighterhat from './assets/clothing/firefighterhat.png';
 import firefighterboots from './assets/clothing/firefighterboots.png';
 import firefightercoat from './assets/clothing/firefightercoat.png';
-import hatSilhoetteimg from './assets/clothing/hatSilhoette.png';
-import shirtSilhoetteimg from './assets/clothing/shirtSilhoette.png';
-import shoeSilhoetteimg from './assets/clothing/shoeSilhoette.png';
-import pantsSilhoetteimg from './assets/clothing/pantsSilhoette.png';
+import hatSilhoetteimg from './assets/icons/hatIcon.png';
+import shirtSilhoetteimg from './assets/icons/shirtIcon.png';
+import shoeSilhoetteimg from './assets/icons/shoesIcon.png';
+import pantsSilhoetteimg from './assets/icons/pantsIcon.png';
 
 var cat;
 var closet;
@@ -445,8 +445,8 @@ const config = {
             debug: false
         }
     },
-    //scene: [begginingScene,MyGame]
-    scene: [MyGame]
+    scene: [begginingScene,MyGame]
+    //scene: [MyGame]
 };
 
 const game = new Phaser.Game(config);
