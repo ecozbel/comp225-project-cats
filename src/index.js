@@ -19,6 +19,7 @@ import hatSilhoetteimg from './assets/icons/hatIcon.png';
 import shirtSilhoetteimg from './assets/icons/shirtIcon.png';
 import shoeSilhoetteimg from './assets/icons/shoesIcon.png';
 import pantsSilhoetteimg from './assets/icons/pantsIcon.png';
+import BegginingScene from './intro.js';
 
 var cat;
 var closet;
@@ -36,6 +37,10 @@ var shirt;
 var shoe;
 var logo;
 
+
+
+
+
 class begginingScene extends Phaser.Scene
 {
     constructor ()
@@ -45,10 +50,13 @@ class begginingScene extends Phaser.Scene
     }
     preload ()
     {
+        this.load.image('logo', logoImg);
     }
     create ()
     {
-        const shoebutton = this.add.text(400,300,"Start Screen! Click Anywhere");
+        logo = this.add.sprite(400,300,'logo');
+        //const startButton = this.add.text(400,300,"Start Screen! Click Anywhere");
+        //console.log(startButton.text);
         this.input.once('pointerdown', function () {
 
             console.log('From SceneA to SceneB');
