@@ -35,7 +35,7 @@ var layers;
 var shirt;
 var shoe;
 var logo;
-
+var pants;
 
 
 
@@ -125,6 +125,8 @@ class MyGame extends Phaser.Scene
         //test assets for shirts
         shirt = this.matter.add.sprite(0,0,'shirt1');
         shirt2 = this.matter.add.sprite(0,0,'shirt2');
+        //test assets for pants
+        pants = this.matter.add.sprite(0,0,'shirt2');
 
 
 
@@ -185,7 +187,12 @@ class MyGame extends Phaser.Scene
         shirt2.setInteractive();
         shirt2.setSensor(true);
 
-        //specify typing og test hat & test shoe 
+        //pants
+        scaletoIconSize(pants);
+        pants.setInteractive();
+        pants.setSensor();
+
+        //specify typing of test hat & test shoe 
         shirt.clothingType = clothingTypes.shirt;
         shirt2.clothingType = clothingTypes.shirt;
         shoe.clothingType = clothingTypes.shoe;
@@ -193,6 +200,7 @@ class MyGame extends Phaser.Scene
         shoe3.clothingType = clothingTypes.shoe;
         hat2.clothingType = clothingTypes.hat;
         hat.clothingType = clothingTypes.hat;
+        pants.clothingType = clothingTypes.pants;
         //set Spritees to be draggable
         
 
@@ -201,6 +209,8 @@ class MyGame extends Phaser.Scene
         var hatGroup = this.add.layer();
         var shoeGroup = this.add.layer();
         var shirtGroup = this.add.layer();
+        var pantsGroup = this.add.layer();
+
         //Adds items into layers/closet
         hatGroup.add(hat);
         hatGroup.add(hat2);
@@ -209,11 +219,12 @@ class MyGame extends Phaser.Scene
         shoeGroup.add(shoe3);
         shirtGroup.add(shirt);
         shirtGroup.add(shirt2);
-        
+        pantsGroup.add(pants);
+
         gridAlignLayer(hatGroup);
         gridAlignLayer(shirtGroup);
         gridAlignLayer(shoeGroup);
-        
+        gridAlignLayer(pantsGroup);      
 
         //Visually arranges items in layer in a grid formation. 
         function gridAlignLayer(objectLayer){
@@ -231,7 +242,7 @@ class MyGame extends Phaser.Scene
         assignSpriteData(hatGroup,"hat");
         assignSpriteData(shoeGroup,"shoe");
         assignSpriteData(shirtGroup,"shirt");
-        
+        assignSpriteData(pantsGroup,"pants");       
 
         //Goes through each sprite in the object layer  and saves their origin position and index
         //Also saves what group they belong to
@@ -250,9 +261,9 @@ class MyGame extends Phaser.Scene
         clearLayer(shoeGroup)
         clearLayer(shirtGroup)
         clearLayer(hatGroup)
-    
+        clearLayer(pantsGroup)
 
-        var layers = [shoeGroup,hatGroup,shirtGroup];
+        var layers = [shoeGroup,hatGroup,shirtGroup,pantsGroup];
 
     
 
@@ -275,7 +286,7 @@ class MyGame extends Phaser.Scene
 
         const pantsbutton = this.add.sprite(90 + game.config.width*0.16,100,"pantsSilhoette")
         .setInteractive()
-        .on('pointerdown', () => displayLayer(shoeGroup));
+        .on('pointerdown', () => displayLayer(pantsGroup));
         scaletoIconSize(pantsbutton);  
 
         //Display chosen layer
