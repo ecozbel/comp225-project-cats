@@ -33,12 +33,12 @@ var clothingTypes;
 var layers;
 var shirt;
 var shoe;
+var logo;
 
 
 
 
-
-class begginingScene extends Phaser.Scene
+class BegginingScene extends Phaser.Scene
 {
     constructor ()
     {   
@@ -71,6 +71,7 @@ class MyGame extends Phaser.Scene
     constructor ()
     {   
         super();
+        Phaser.Scene.call(this, { key: 'sceneB' });
     }
     
 
@@ -430,7 +431,7 @@ const config = {
             debug: false
         }
     },
-    scene: MyGame
+    scene: [BegginingScene,MyGame]
 };
 
 const game = new Phaser.Game(config);
