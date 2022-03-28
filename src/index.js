@@ -15,10 +15,9 @@ import backgroundImg from './assets/background.png';
 import firefighterhat from './assets/clothing/firefighterhat.png';
 import firefighterboots from './assets/clothing/firefighterboots.png';
 import firefightercoat from './assets/clothing/firefightercoat.png';
-import hatSilhoetteimg from './assets/icons/hatIcon.png';
-import shirtSilhoetteimg from './assets/icons/shirtIcon.png';
-import shoeSilhoetteimg from './assets/icons/shoesIcon.png';
-import pantsSilhoetteimg from './assets/icons/pantsIcon.png';
+import hatSilhoetteimg from './assets/clothing/hatSilhoette.png';
+import shirtSilhoetteimg from './assets/clothing/shirtSilhoette.png';
+import shoeSilhoetteimg from './assets/clothing/shoeSilhoette.png';
 
 var cat;
 var closet;
@@ -34,31 +33,7 @@ var clothingTypes;
 var layers;
 var shirt;
 var shoe;
-var logo;
 
-class begginingScene extends Phaser.Scene
-{
-    constructor ()
-    {   
-        super();
-        Phaser.Scene.call(this, { key: 'sceneA' });
-    }
-    preload ()
-    {
-    }
-    create ()
-    {
-        const shoebutton = this.add.text(400,300,"Start Screen! Click Anywhere");
-        this.input.once('pointerdown', function () {
-
-            console.log('From SceneA to SceneB');
-
-            this.scene.start('sceneB');
-
-        }, this);
-    }
-
-}
 
 
 class MyGame extends Phaser.Scene
@@ -66,8 +41,8 @@ class MyGame extends Phaser.Scene
     constructor ()
     {   
         super();
-        Phaser.Scene.call(this, { key: 'sceneB' });
     }
+    
 
     preload ()
     {
@@ -84,7 +59,6 @@ class MyGame extends Phaser.Scene
         this.load.image('hatSilhoette', hatSilhoetteimg);
         this.load.image('shirtSilhoette', shirtSilhoetteimg);
         this.load.image('shoeSilhoette', shoeSilhoetteimg);
-        this.load.image('pantsSilhoette', pantsSilhoetteimg);
         // console.log('---------> preloading')
         // this.load.json('prompts','src/assets/prompts.json');
         this.load.image('shirt2', firefightercoat);
@@ -95,7 +69,7 @@ class MyGame extends Phaser.Scene
         // let jsonFile = this.cache.json.get('prompts');
         // console.log('--------->', jsonFile.prompt[0].introduction)
         
-        logo = this.add.sprite(400, 300, logo);
+
         var self = this;
         
         var bg = this.matter.add.image(350,250,'background');
@@ -118,8 +92,7 @@ class MyGame extends Phaser.Scene
         //test assets for shirts
         shirt = this.matter.add.sprite(0,0,'shirt1');
         shirt2 = this.matter.add.sprite(0,0,'shirt2');
-        //assets for pants
-        var pants1 = this.matter.add.sprite(600,300,'pantsSilhoette');
+
 
 
         //Set up placeholder transparent sprite for closet
@@ -179,11 +152,6 @@ class MyGame extends Phaser.Scene
         shirt2.setInteractive();
         shirt2.setSensor(true);
 
-        //pants
-        scaletoIconSize(pants1);
-        pants1.setInteractive();
-        pants1.setSensor(true);
-
         //specify typing og test hat & test shoe 
         shirt.clothingType = clothingTypes.shirt;
         shirt2.clothingType = clothingTypes.shirt;
@@ -192,7 +160,6 @@ class MyGame extends Phaser.Scene
         shoe3.clothingType = clothingTypes.shoe;
         hat2.clothingType = clothingTypes.hat;
         hat.clothingType = clothingTypes.hat;
-        pants1.clothingType = clothingTypes.pants;
         //set Spritees to be draggable
         
 
@@ -201,8 +168,6 @@ class MyGame extends Phaser.Scene
         var hatGroup = this.add.layer();
         var shoeGroup = this.add.layer();
         var shirtGroup = this.add.layer();
-        var pantsGroup = this.add.layer();
-
         //Adds items into layers/closet
         hatGroup.add(hat);
         hatGroup.add(hat2);
@@ -211,12 +176,11 @@ class MyGame extends Phaser.Scene
         shoeGroup.add(shoe3);
         shirtGroup.add(shirt);
         shirtGroup.add(shirt2);
-        pantsGroup.add(pants1);
-
+        
         gridAlignLayer(hatGroup);
         gridAlignLayer(shirtGroup);
         gridAlignLayer(shoeGroup);
-        gridAlignLayer(pantsGroup);       
+        
 
         //Visually arranges items in layer in a grid formation. 
         function gridAlignLayer(objectLayer){
@@ -234,7 +198,7 @@ class MyGame extends Phaser.Scene
         assignSpriteData(hatGroup,"hat");
         assignSpriteData(shoeGroup,"shoe");
         assignSpriteData(shirtGroup,"shirt");
-        assignSpriteData(pantsGroup,"pants");
+        
 
         //Goes through each sprite in the object layer  and saves their origin position and index
         //Also saves what group they belong to
@@ -250,12 +214,12 @@ class MyGame extends Phaser.Scene
         }
         
         //only show layer after button is pressed
-        clearLayer(shoeGroup);
-        clearLayer(shirtGroup);
-        clearLayer(hatGroup);
-        clearLayer(pantsGroup);
+        clearLayer(shoeGroup)
+        clearLayer(shirtGroup)
+        clearLayer(hatGroup)
+    
 
-        var layers = [shoeGroup,hatGroup,shirtGroup,pantsGroup];
+        var layers = [shoeGroup,hatGroup,shirtGroup];
 
     
 
@@ -271,15 +235,11 @@ class MyGame extends Phaser.Scene
         .on('pointerdown', () => displayLayer(shirtGroup));
         scaletoIconSize(shirtbutton);
 
-        const shoebutton = this.add.sprite(90 + game.config.width*0.24,100,"shoeSilhoette")
+        const shoebutton = this.add.sprite(90 + game.config.width*0.16,100,"shoeSilhoette")
         .setInteractive()
         .on('pointerdown', () => displayLayer(shoeGroup));
         scaletoIconSize(shoebutton);  
 
-        const pantsbutton = this.add.sprite(90 + game.config.width*0.16,100,"pantsSilhoette")
-        .setInteractive()
-        .on('pointerdown', () => displayLayer(pantsGroup));
-        scaletoIconSize(pantsbutton);  
 
         //Display chosen layer
         function displayLayer(chosenLayer){
@@ -316,28 +276,24 @@ class MyGame extends Phaser.Scene
             cat.hatPosition = { 
                 x : cat.x,
                 y : cat.y-cat.displayHeight/2.4,
-                z : 3,
                 currentClothing : null,
             }
     
             cat.shoePosition = { 
                 x : cat.x,
                 y : cat.y+cat.displayHeight/2.65,
-                z : 1,
                 currentClothing : null,
             }
             
             cat.shirtPosition = { //these values arent quite right. need test images i think before they can be set right.
                 x : cat.x,
                 y : cat.y+cat.displayHeight/12,
-                z : 2,
                 currentClothing : null,
             }
     
             cat.pantsPosition = { //these values arent quite right. need test images i think before they can be set right.
                 x : cat.x,
                 y : 300 + 100,
-                z : 0,
                 currentClothing : null,
             }
 
@@ -369,7 +325,6 @@ class MyGame extends Phaser.Scene
                     //set the position of the sprite 
                     sprite.x = clothingPosition.x;
                     sprite.y = clothingPosition.y;
-                    sprite.depth = clothingPosition.z;
                     //set the clothPositions current clothing to be what was just dropped on it
                     clothingPosition.currentClothing = sprite;
 
@@ -429,11 +384,6 @@ function scaletoIconSize(sprite){
     sprite.displayWidth=game.config.width*0.08; 
     sprite.scaleY=sprite.scaleX;
 }
-
-function scaletoCategorySize(sprite){
-    sprite.displayWidth=game.config.width*0.06; 
-    sprite.scaleY=sprite.scaleX;
-}
 //comment
 
 
@@ -450,8 +400,7 @@ const config = {
             debug: false
         }
     },
-    scene: [begginingScene,MyGame]
-    //scene: [MyGame]
+    scene: MyGame
 };
 
 const game = new Phaser.Game(config);
@@ -463,9 +412,10 @@ function getRandomItem(arr) {
     const item = arr[randomIndex];
     return item;
 }
-const titleArray = ['Mr.', 'Ms.', 'Mrs.', 'Sir'];
+const titleArray = ['Mr.', 'Ms.', 'Mrs.', 'Sir',''];
 const adjArray = ['Fluffy', 'Cuddly'];
 const nounArray = ['Whiskers','Kitty', 'Cat']
+const suffixArray = ['Jr.','Sr.', 'IV', 'II', 'PhD', '']
 
-const result = getRandomItem(titleArray) + getRandomItem(adjArray) + getRandomItem(nounArray);
-console.log(result);
+var name = getRandomItem(titleArray) + getRandomItem(adjArray) + getRandomItem(nounArray) + getRandomItem(suffixArray);
+console.log(name);
