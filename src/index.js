@@ -38,6 +38,35 @@ var logo;
 var pants;
 
 
+
+class BegginingScene extends Phaser.Scene
+{
+    constructor ()
+    {   
+        super();
+        Phaser.Scene.call(this, { key: 'sceneA' });
+    }
+    preload ()
+    {
+        this.load.image('logo', logoImg);
+    }
+    create ()
+    {
+        logo = this.add.sprite(400,300,'logo');
+        //const startButton = this.add.text(400,300,"Start Screen! Click Anywhere");
+        //console.log(startButton.text);
+        this.input.once('pointerdown', function () {
+
+            console.log('From SceneA to SceneB');
+
+            this.scene.start('sceneB');
+
+        }, this);
+    }
+
+}
+
+
 class MyGame extends Phaser.Scene
 {
     constructor ()
@@ -173,7 +202,6 @@ class MyGame extends Phaser.Scene
         hat.clothingType = clothingTypes.hat;
         pants.clothingType = clothingTypes.pants;
         //set Spritees to be draggable
-        
 
         
         //Creates a layer acting as a closet category. Layer is like a type of array, but meant to store graphics objects.
@@ -241,22 +269,22 @@ class MyGame extends Phaser.Scene
         //button for switching between categories
 
         const hatbutton = this.add.sprite(90,100,"hatSilhoette")
-        .setInteractive()
+        .setInteractive({ useHandCursor: true })
         .on('pointerdown', () => displayLayer(hatGroup));
         scaletoIconSize(hatbutton);
  
         const shirtbutton = this.add.sprite(90 + game.config.width*0.08,100,"shirtSilhoette")
-        .setInteractive()
+        .setInteractive({ useHandCursor: true })
         .on('pointerdown', () => displayLayer(shirtGroup));
         scaletoIconSize(shirtbutton);
 
         const shoebutton = this.add.sprite(90 + game.config.width*0.24,100,"shoeSilhoette")
-        .setInteractive()
+        .setInteractive({ useHandCursor: true })
         .on('pointerdown', () => displayLayer(shoeGroup));
         scaletoIconSize(shoebutton);  
 
         const pantsbutton = this.add.sprite(90 + game.config.width*0.16,100,"pantsSilhoette")
-        .setInteractive()
+        .setInteractive({ useHandCursor: true })
         .on('pointerdown', () => displayLayer(pantsGroup));
         scaletoIconSize(pantsbutton);  
 
@@ -431,10 +459,10 @@ function getRandomItem(arr) {
     const item = arr[randomIndex];
     return item;
 }
-const titleArray = ['Mr.', 'Ms.', 'Mrs.', 'Sir',''];
-const adjArray = ['Fluffy', 'Cuddly', 'Blue', 'Tabby', 'Orange'];
-const nounArray = ['Whiskers','Kitty', 'Cat']
-const suffixArray = ['Jr.','Sr.', 'IV', 'II', 'PhD', '']
+const titleArray = ['Mr.', 'Ms.', 'Mrs.', 'Sir', 'Dame','','',''];
+const adjArray = ['Fluffy', 'Cuddly', 'Blue', 'Tabby', 'Silly',];
+const nounArray = ['Whiskers','Kitty', 'Cat', 'Socks', 'Patches', 'Spot',]
+const suffixArray = ['Jr.','Sr.', 'IV', 'II', 'PhD', '', '', '']
 
 var name = getRandomItem(titleArray) + " " + getRandomItem(adjArray) + getRandomItem(nounArray) + " " + getRandomItem(suffixArray);
 console.log(name);
