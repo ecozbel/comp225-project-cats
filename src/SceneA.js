@@ -94,31 +94,30 @@ class BegginingScene extends Phaser.Scene
 
         this.add.text(randomCatButton.x, randomCatButton.y, 'Randomize Cat', { fontFamily: 'MinecraftiaRegular', fontSize: '18px',align:'left',stroke: '#000000',strokeThickness: 2  })
             .setOrigin(0.5)
-
+        const titleArray = ['Mr.', 'Ms.', 'Mrs.', 'Sir', 'Dame','','',''];
+        const adjArray = ['Fluffy', 'Cuddly', 'Blue', 'Tabby', 'Silly',];
+        const nounArray = ['Whiskers','Kitty', 'Cat', 'Socks', 'Patches', 'Spot',]    ;        
+        const suffixArray = ['Jr.','Sr.', 'IV', 'II', 'PhD', '', '', '']    ;
         //gets random item from an array
         function getRandomItem(arr) {
             // get random index value
-            const randomIndex = Math.floor(Math.random() * arr.length);
-            const item = arr[randomIndex];
-                return item;
-}           const titleArray = ['Mr.', 'Ms.', 'Mrs.', 'Sir', 'Dame','','',''];
-            const adjArray = ['Fluffy', 'Cuddly', 'Blue', 'Tabby', 'Silly',];
-            const nounArray = ['Whiskers','Kitty', 'Cat', 'Socks', 'Patches', 'Spot',]
-            const suffixArray = ['Jr.','Sr.', 'IV', 'II', 'PhD', '', '', '']
-        this.fullName = getRandomItem(titleArray) + " " + getRandomItem(adjArray) + getRandomItem(nounArray) + " " + getRandomItem(suffixArray);
+            //const randomIndex = Math.floor(Math.random() * arr.length());
+            var item = Phaser.Utils.Array.GetRandom(arr);
+            //const item = arr[randomIndex];
+            //console.log(item);
+            return item;
+        }
+        console.log(getRandomItem(titleArray));
+        // const titleArray = ['Mr.', 'Ms.', 'Mrs.', 'Sir', 'Dame','','',''];
+        // const adjArray = ['Fluffy', 'Cuddly', 'Blue', 'Tabby', 'Silly',];
+        // const nounArray = ['Whiskers','Kitty', 'Cat', 'Socks', 'Patches', 'Spot',]
+        // const suffixArray = ['Jr.','Sr.', 'IV', 'II', 'PhD', '', '', '']
+        function getRandomFullName(){
+            var fullName = getRandomItem(titleArray) + " " + getRandomItem(adjArray) + getRandomItem(nounArray) + " " + getRandomItem(suffixArray);
+            return fullName;
+        }
+        //var fullName = getRandomItem(titleArray) + " " + getRandomItem(adjArray) + getRandomItem(nounArray) + " " + getRandomItem(suffixArray);
 
-        //get name function
-        // this.nameText = this.fullName;
-        const randomNameButton = this.add.image(randomCatButton.x, randomCatButton.y + randomCatButton.displayHeight + 10, 'itemFrame')
-            .setDisplaySize(300, 50)
-            .setInteractive({ useHandCursor: true })
-        //     .on('pointerdown', () => this.updateNameText())
-            this.add.text(randomNameButton.x, randomNameButton.y, 'Randomize Name', { fontFamily: 'MinecraftiaRegular', fontSize: '18px',align:'left',stroke: '#000000',strokeThickness: 2  })
-                .setOrigin(0.5)
-        //   }
-        //     updateNameText() {
-        //         this.nameText.setText(this.fullName)
-            
 
         // Randomize Prompt button
         const randomPrompt = this.add.image(randomNameButton.x, randomNameButton.y + randomNameButton.displayHeight + 10, 'itemFrame')
@@ -128,11 +127,16 @@ class BegginingScene extends Phaser.Scene
 
         this.add.text(randomPrompt.x, randomPrompt.y, 'Randomize Prompt',{ fontFamily: 'MinecraftiaRegular', fontSize: '18px',align:'left',stroke: '#000000',strokeThickness: 2 })
             .setOrigin(0.5)
-        }
-
         
 
-    
+            const randomName = this.add.image(randomPrompt.x, randomPrompt.y + randomPrompt.displayHeight + 10, 'itemFrame')
+            .setDisplaySize(300, 50)
+            .setInteractive({ useHandCursor: true })
+            .on('pointerdown', () => console.log(getRandomFullName()));//Call function to randomize prompt here
+
+        this.add.text(randomName.x, randomName.y, 'Randomize Name',{ fontFamily: 'MinecraftiaRegular', fontSize: '18px',align:'left',stroke: '#000000',strokeThickness: 2 })
+            .setOrigin(0.5)
+        }
     }
     //Utilities
 //Scales given sprite to normal size
