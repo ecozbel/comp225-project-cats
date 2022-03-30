@@ -12,6 +12,7 @@ import greenshirt from './assets/clothing/greentshirt.png';
 import flowertop from './assets/clothing/flowertop.png';
 import shirt1img from './assets/clothing/shirt1.png';
 import backgroundImg from './assets/background.png';
+import backgroundImg2 from './assets/background2.png';
 import firefighterhat from './assets/clothing/firefighterhat.png';
 import firefighterboots from './assets/clothing/firefighterboots.png';
 import firefightercoat from './assets/clothing/firefightercoat.png';
@@ -64,6 +65,7 @@ class MyGame extends Phaser.Scene
         this.load.image('shoe3',shoe3img);
         this.load.image('closet',closetimg);
         this.load.image('background', backgroundImg);
+        this.load.image('background2', backgroundImg2);
         this.load.image('shirt1', shirt1img);
         this.load.image('hatSilhoette', hatSilhoetteimg);
         this.load.image('shirtSilhoette', shirtSilhoetteimg);
@@ -85,8 +87,10 @@ class MyGame extends Phaser.Scene
 
         var self = this;
         //his.add.existing(catBlink);
-        var bg = this.matter.add.image(350,250,'background');
+        //var bg = this.matter.add.image(350,250,'background');
+        var bg = this.matter.add.image(350,250,'background2');
         bg.setStatic(true);
+
 
         this.matter.world.setGravity(0,0);
         closet = this.matter.add.sprite(150,200,'closet');
