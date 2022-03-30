@@ -73,15 +73,18 @@ class MyGame extends Phaser.Scene
         // this.load.json('prompts','src/assets/prompts.json');
         this.load.image('shirt2', firefightercoat);
 
+
     }
       
     create ()
     {
+        //var catBlink = game.scenes.BegginingScene.catAnimated;
+
         // let jsonFile = this.cache.json.get('prompts');
         // console.log('--------->', jsonFile.prompt[0].introduction)
 
         var self = this;
-        
+        //his.add.existing(catBlink);
         var bg = this.matter.add.image(350,250,'background');
         bg.setStatic(true);
 
