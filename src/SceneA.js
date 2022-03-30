@@ -2,7 +2,7 @@ import Phaser, { Game } from 'phaser';
 import logoImg from './assets/logo.png';
 import itemFrame from './assets/itemFrame.png';
 import animatedLogo from './assets/logoAnimated.png';
-import catPalette from './assets/cat-palette.png';
+import catPalette from './assets/cat-palette2.png';
 import catAnimation from './assets/catanimated.png'
 var catAnimated;
 var atlasKey;
@@ -31,7 +31,8 @@ class BegginingScene extends Phaser.Scene
     {
         const catRandomizerConfig  = {
             paletteKey: 'cat-palette',                         // Palette file we're referencing.
-            paletteNames: ['tabby', 'dark', 'light', 'funky'],   // Names for each palette to build out the names for the atlas.
+            paletteNames: ['tabby', 'dark', 'light', 'purple','rainbow','arctic',
+        'vaporwave', 'blackfur','black/white','brown'],   // Names for each palette to build out the names for the atlas.
             spriteSheet: {                                      // Spritesheet we're manipulating.
                 key: 'catanimated',
                 frameWidth: 64,                                 
