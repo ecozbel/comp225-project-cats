@@ -4,7 +4,9 @@ import itemFrame from './assets/itemFrame.png';
 import animatedLogo from './assets/logoAnimated.png';
 import catPalette from './assets/cat-palette.png';
 import catAnimation from './assets/catanimated.png'
-
+var catAnimated;
+var atlasKey;
+var logo;
 
 class BegginingScene extends Phaser.Scene
 {
@@ -38,8 +40,9 @@ class BegginingScene extends Phaser.Scene
                 {key: 'catanimated', frameRate: 1, startFrame: 0, endFrame: 1}
             ]
         };
-        createPalettes(catRandomizerConfig);
         var self = this;
+        createPalettes(catRandomizerConfig,self);
+        //var self = this;
         catAnimated = this.add.sprite(700, 400, 'catanimated-' + catRandomizerConfig.paletteNames[0]).setScale(4);
         catAnimated.color = catRandomizerConfig.paletteNames[0];
         catAnimated.anims.play('catanimated-' + catAnimated.color);
@@ -119,12 +122,13 @@ function scaletoIconSize(sprite){
     sprite.scaleY=sprite.scaleX;
 }
 
-function createPalettes(catRandomizerConfig)
+function createPalettes(catRandomizerConfig,game)
 {
     // Create color lookup from palette image.
     var colorLookup = {};
     var x, y;
     var pixel, palette;
+    console.log(game);
     var paletteWidth = game.textures.get(catRandomizerConfig.paletteKey).getSourceImage().width;
 
     // Go through each pixel in the palette image and add it to the color lookup.
