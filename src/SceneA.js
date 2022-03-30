@@ -59,7 +59,7 @@ class BegginingScene extends Phaser.Scene
 
         const { width, height } = this.scale
         // Play button
-        const confirmCatButton = this.add.image(width * 0.5, height * 0.6, 'itemFrame')
+        const confirmCatButton = this.add.image(width * 0.5, height * 0.575, 'itemFrame')
             .setDisplaySize(300, 50)
             .setInteractive({ useHandCursor: true })
             //call function to pass on cat and prompt selection to next scene here
@@ -101,18 +101,27 @@ class BegginingScene extends Phaser.Scene
             const randomIndex = Math.floor(Math.random() * arr.length);
             const item = arr[randomIndex];
                 return item;
-}
-        const titleArray = ['Mr.', 'Ms.', 'Mrs.', 'Sir', 'Dame','','',''];
-        const adjArray = ['Fluffy', 'Cuddly', 'Blue', 'Tabby', 'Silly',];
-        const nounArray = ['Whiskers','Kitty', 'Cat', 'Socks', 'Patches', 'Spot',]
-        const suffixArray = ['Jr.','Sr.', 'IV', 'II', 'PhD', '', '', '']
+}           const titleArray = ['Mr.', 'Ms.', 'Mrs.', 'Sir', 'Dame','','',''];
+            const adjArray = ['Fluffy', 'Cuddly', 'Blue', 'Tabby', 'Silly',];
+            const nounArray = ['Whiskers','Kitty', 'Cat', 'Socks', 'Patches', 'Spot',]
+            const suffixArray = ['Jr.','Sr.', 'IV', 'II', 'PhD', '', '', '']
+        this.fullName = getRandomItem(titleArray) + " " + getRandomItem(adjArray) + getRandomItem(nounArray) + " " + getRandomItem(suffixArray);
 
-        var fullName = getRandomItem(titleArray) + " " + getRandomItem(adjArray) + getRandomItem(nounArray) + " " + getRandomItem(suffixArray);
-        console.log(fullName);
+        //get name function
+        // this.nameText = this.fullName;
+        const randomNameButton = this.add.image(randomCatButton.x, randomCatButton.y + randomCatButton.displayHeight + 10, 'itemFrame')
+            .setDisplaySize(300, 50)
+            .setInteractive({ useHandCursor: true })
+        //     .on('pointerdown', () => this.updateNameText())
+            this.add.text(randomNameButton.x, randomNameButton.y, 'Randomize Name', { fontFamily: 'MinecraftiaRegular', fontSize: '18px',align:'left',stroke: '#000000',strokeThickness: 2  })
+                .setOrigin(0.5)
+        //   }
+        //     updateNameText() {
+        //         this.nameText.setText(this.fullName)
+            
 
-        
         // Randomize Prompt button
-        const randomPrompt = this.add.image(randomCatButton.x, randomCatButton.y + randomCatButton.displayHeight + 10, 'itemFrame')
+        const randomPrompt = this.add.image(randomNameButton.x, randomNameButton.y + randomNameButton.displayHeight + 10, 'itemFrame')
             .setDisplaySize(300, 50)
             .setInteractive({ useHandCursor: true })
             .on('pointerdown', () => console.log("Random prompt"));//Call function to randomize prompt here
