@@ -95,6 +95,22 @@ class BegginingScene extends Phaser.Scene
         this.add.text(randomCatButton.x, randomCatButton.y, 'Randomize Cat', { fontFamily: 'MinecraftiaRegular', fontSize: '18px',align:'left',stroke: '#000000',strokeThickness: 2  })
             .setOrigin(0.5)
 
+        //gets random item from an array
+        function getRandomItem(arr) {
+            // get random index value
+            const randomIndex = Math.floor(Math.random() * arr.length);
+            const item = arr[randomIndex];
+                return item;
+}
+        const titleArray = ['Mr.', 'Ms.', 'Mrs.', 'Sir', 'Dame','','',''];
+        const adjArray = ['Fluffy', 'Cuddly', 'Blue', 'Tabby', 'Silly',];
+        const nounArray = ['Whiskers','Kitty', 'Cat', 'Socks', 'Patches', 'Spot',]
+        const suffixArray = ['Jr.','Sr.', 'IV', 'II', 'PhD', '', '', '']
+
+        var fullName = getRandomItem(titleArray) + " " + getRandomItem(adjArray) + getRandomItem(nounArray) + " " + getRandomItem(suffixArray);
+        console.log(fullName);
+
+        
         // Randomize Prompt button
         const randomPrompt = this.add.image(randomCatButton.x, randomCatButton.y + randomCatButton.displayHeight + 10, 'itemFrame')
             .setDisplaySize(300, 50)
@@ -104,6 +120,10 @@ class BegginingScene extends Phaser.Scene
         this.add.text(randomPrompt.x, randomPrompt.y, 'Randomize Prompt',{ fontFamily: 'MinecraftiaRegular', fontSize: '18px',align:'left',stroke: '#000000',strokeThickness: 2 })
             .setOrigin(0.5)
         }
+
+        
+
+    
     }
     //Utilities
 //Scales given sprite to normal size
@@ -228,3 +248,4 @@ function createPalettes(catRandomizerConfig,game)
 export const chosenCat = catAnimated;
 console.log(chosenCat);
 export { BegginingScene };
+
