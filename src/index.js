@@ -62,7 +62,7 @@ class BegginingScene extends Phaser.Scene
         const windBlow = this.anims.create({
             key: 'windblowing',
             frames: this.anims.generateFrameNumbers('animatedlogo',{ start: 0, end: 2 }),
-            frameRate: 9
+            frameRate: 8
         });
 
 
@@ -76,7 +76,7 @@ class BegginingScene extends Phaser.Scene
             //call function to pass on cat and prompt selection to next scene here
             .on('pointerdown', () => this.scene.start('sceneB'));
         
-        this.add.text(confirmCatButton.x, confirmCatButton.y, 'Confirm')
+        this.add.text(confirmCatButton.x, confirmCatButton.y, 'Confirm',{ fontFamily: 'Jellee', fontSize: '20px' })
             .setOrigin(0.5)
 
 
@@ -86,7 +86,7 @@ class BegginingScene extends Phaser.Scene
             .setInteractive({ useHandCursor: true })
             .on('pointerdown', () => console.log("Settings?"));
             
-        this.add.text(settingsButton.x, settingsButton.y, 'Settings')
+        this.add.text(settingsButton.x, settingsButton.y, 'Settings',{ fontFamily: 'Jellee', fontSize: '20px' })
             .setOrigin(0.5)
 
         // Randomize Cat button
@@ -95,7 +95,7 @@ class BegginingScene extends Phaser.Scene
             .setInteractive({ useHandCursor: true })
             .on('pointerdown', () => console.log("Random cat")); //call function to randomize cat here
 
-        this.add.text(randomCatButton.x, randomCatButton.y, 'Randomize Cat')
+        this.add.text(randomCatButton.x, randomCatButton.y, 'Randomize Cat', { fontFamily: 'Jellee', fontSize: '20px' })
             .setOrigin(0.5)
 
         // Randomize Prompt button
@@ -104,7 +104,7 @@ class BegginingScene extends Phaser.Scene
             .setInteractive({ useHandCursor: true })
             .on('pointerdown', () => console.log("Random prompt"));//Call function to randomize prompt here
 
-        this.add.text(randomPrompt.x, randomPrompt.y, 'Randomize Prompt')
+        this.add.text(randomPrompt.x, randomPrompt.y, 'Randomize Prompt',{ fontFamily: 'Jellee', fontSize: '20px' })
             .setOrigin(0.5)
         }
     }
