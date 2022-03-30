@@ -1,5 +1,10 @@
-import Phaser from 'phaser';
+import Phaser, { Game } from 'phaser';
 import logoImg from './assets/logo.png';
+import itemFrame from './assets/itemFrame.png';
+import animatedLogo from './assets/logoAnimated.png';
+import catPalette from './assets/cat-palette.png';
+import catAnimation from './assets/catanimated.png'
+
 
 class BegginingScene extends Phaser.Scene
 {
