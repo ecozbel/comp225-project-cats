@@ -15,43 +15,45 @@ class BegginingScene extends Phaser.Scene
     }
     create ()
     {
-        logo = this.add.sprite(400,300,'logo');
-        //const startButton = this.add.text(400,300,"Start Screen! Click Anywhere");
-        //console.log(startButton.text);
-        this.input.once('pointerdown', function () {
-
-            console.log('From SceneA to SceneB');
-
-            this.scene.start('sceneB');
-
-        }, this);
+        logo = this.add.sprite(400,200,'logo').setDisplaySize(300, 300);
 
         const { width, height } = this.scale
         // Play button
         const confirmCatButton = this.add.image(width * 0.5, height * 0.6, 'itemFrame')
-            .setDisplaySize(150, 50)
+            .setDisplaySize(300, 50)
+            .setInteractive({ useHandCursor: true })
+            //call function to pass on cat and prompt selection to next scene here
+            .on('pointerdown', () => this.scene.start('sceneB'));
         
         this.add.text(confirmCatButton.x, confirmCatButton.y, 'Confirm')
             .setOrigin(0.5)
 
+
         // Settings button
         const settingsButton = this.add.image(confirmCatButton.x, confirmCatButton.y + confirmCatButton.displayHeight + 10, 'itemFrame')
-            .setDisplaySize(150, 50)
-
+            .setDisplaySize(300, 50)
+            .setInteractive({ useHandCursor: true })
+            .on('pointerdown', () => console.log("Settings?"));
+            
         this.add.text(settingsButton.x, settingsButton.y, 'Settings')
             .setOrigin(0.5)
 
         // Randomize Cat button
         const randomCatButton = this.add.image(settingsButton.x, settingsButton.y + settingsButton.displayHeight + 10, 'itemFrame')
-            .setDisplaySize(150, 50)
+            .setDisplaySize(300, 50)
+            .setInteractive({ useHandCursor: true })
+            .on('pointerdown', () => console.log("Random cat")); //call function to randomize cat here
 
         this.add.text(randomCatButton.x, randomCatButton.y, 'Randomize Cat')
             .setOrigin(0.5)
+
         // Randomize Prompt button
         const randomPrompt = this.add.image(randomCatButton.x, randomCatButton.y + randomCatButton.displayHeight + 10, 'itemFrame')
-            .setDisplaySize(150, 50)
+            .setDisplaySize(300, 50)
+            .setInteractive({ useHandCursor: true })
+            .on('pointerdown', () => console.log("Random prompt"));//Call function to randomize prompt here
 
-        this.add.text(creditsButton.x, creditsButton.y, 'Randomize Cat')
+        this.add.text(randomPrompt.x, randomPrompt.y, 'Randomize Prompt')
             .setOrigin(0.5)
         }
     }
