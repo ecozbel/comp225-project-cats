@@ -225,5 +225,6 @@ function createPalettes(catRandomizerConfig,game)
     game.textures.get(catRandomizerConfig.spriteSheet.key).destroy();
     game.textures.get(catRandomizerConfig.paletteKey).destroy();
 }
-
+export const chosenCat = catAnimated;
+console.log(chosenCat);
 export { BegginingScene };
