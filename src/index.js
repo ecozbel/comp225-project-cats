@@ -92,16 +92,13 @@ class MyGame extends Phaser.Scene
         this.load.image('shirtSilhoette', shirtSilhoetteimg);
         this.load.image('shoeSilhoette', shoeSilhoetteimg);
         this.load.image('pantsSilhoette', pantsSilhoetteimg);
-        // console.log('---------> preloading')
-        // this.load.json('prompts','src/assets/prompts.json');
+        this.load.json('prompts','src/assets/prompts.json');
         this.load.image('shirt2', firefightercoat);
     }
       
     create ()
     {
-        // let jsonFile = this.cache.json.get('prompts');
-        // console.log('--------->', jsonFile.prompt[0].introduction)
-        
+        let promptJsonFile = this.cache.json.get('prompts');
 
         var self = this;
         
@@ -407,6 +404,28 @@ class MyGame extends Phaser.Scene
                 sprite.x=sprite.getData('origin').x;
                 sprite.y=sprite.getData('origin').y;
         }
+        //gets random item from an array
+        function getRandomItem(arr) {
+            // get random index value
+            const randomIndex = Math.floor(Math.random() * arr.length);
+            const item = arr[randomIndex];
+                return item;
+}
+        const titleArray = ['Mr.', 'Ms.', 'Mrs.', 'Sir', 'Dame','','',''];
+        const adjArray = ['Fluffy', 'Cuddly', 'Blue', 'Tabby', 'Silly',];
+        const nounArray = ['Whiskers','Kitty', 'Cat', 'Socks', 'Patches', 'Spot',]
+        const suffixArray = ['Jr.','Sr.', 'IV', 'II', 'PhD', '', '', '']
+
+        var fullName = getRandomItem(titleArray) + " " + getRandomItem(adjArray) + getRandomItem(nounArray) + " " + getRandomItem(suffixArray);
+        console.log(fullName);
+
+        // working on how to put new names in prompts, looping through inner array doesn't work yet - Ifraah
+        // for (var i = 0; i < promptJsonFile.prompt.length; i++ ) {
+        //     for (var j = 0; j < Object.keys(promptJsonFile.prompt[i]).length; j++ ) {
+        //         promptJsonFile.prompt = Object.keys(promptJsonFile.prompt[i]).replace("{{full_name", fullName);
+        //     }
+
+        // }
 
     }
 
@@ -451,18 +470,3 @@ const config = {
 };
 
 const game = new Phaser.Game(config);
-
-//gets random item from an array
-function getRandomItem(arr) {
-    // get random index value
-    const randomIndex = Math.floor(Math.random() * arr.length);
-    const item = arr[randomIndex];
-    return item;
-}
-const titleArray = ['Mr.', 'Ms.', 'Mrs.', 'Sir', 'Dame','','',''];
-const adjArray = ['Fluffy', 'Cuddly', 'Blue', 'Tabby', 'Silly',];
-const nounArray = ['Whiskers','Kitty', 'Cat', 'Socks', 'Patches', 'Spot',]
-const suffixArray = ['Jr.','Sr.', 'IV', 'II', 'PhD', '', '', '']
-
-var name = getRandomItem(titleArray) + " " + getRandomItem(adjArray) + getRandomItem(nounArray) + " " + getRandomItem(suffixArray);
-console.log(name);
