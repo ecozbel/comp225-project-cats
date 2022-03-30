@@ -20,6 +20,7 @@ import shirtSilhoetteimg from './assets/icons/shirtIcon.png';
 import shoeSilhoetteimg from './assets/icons/shoesIcon.png';
 import pantsSilhoetteimg from './assets/icons/pantsIcon.png';
 import itemFrame from './assets/itemFrame.png';
+import animatedLogo from './assets/logoAnimated.png';
 
 var cat;
 var closet;
@@ -51,10 +52,21 @@ class BegginingScene extends Phaser.Scene
     {
         this.load.image('logo', logoImg);
         this.load.image('itemFrame',itemFrame);
+        this.load.spritesheet('animatedlogo', animatedLogo, { frameWidth: 800, frameHeight: 800 });
     }
     create ()
     {
-        logo = this.add.sprite(400,200,'logo').setDisplaySize(300, 300);
+        logo = this.add.sprite(400,200,'animatedlogo').setDisplaySize(300, 300);
+        //var windBlow = logo.animations.add('windblowing');
+
+        const windBlow = this.anims.create({
+            key: 'windblowing',
+            frames: this.anims.generateFrameNumbers('animatedlogo',{ start: 0, end: 2 }),
+            frameRate: 9
+        });
+
+
+        logo.play({key:'windblowing',repeat:-1});
 
         const { width, height } = this.scale
         // Play button
