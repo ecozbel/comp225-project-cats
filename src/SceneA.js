@@ -7,6 +7,7 @@ import catAnimation from './assets/catanimated.png'
 var catAnimated;
 var atlasKey;
 var logo;
+var nameText;
 
 class BegginingScene extends Phaser.Scene
 {
@@ -43,11 +44,11 @@ class BegginingScene extends Phaser.Scene
         var self = this;
         createPalettes(catRandomizerConfig,self);
         //var self = this;
-        catAnimated = this.add.sprite(700, 400, 'catanimated-' + catRandomizerConfig.paletteNames[0]).setScale(4);
+        catAnimated = this.add.sprite(600, 400, 'catanimated-' + catRandomizerConfig.paletteNames[0]).setScale(4);
         catAnimated.color = catRandomizerConfig.paletteNames[0];
         catAnimated.anims.play('catanimated-' + catAnimated.color);
         var self = this;
-        logo = this.add.sprite(400,200,'animatedlogo').setDisplaySize(300, 300);
+        logo = this.add.sprite(250,150,'animatedlogo').setDisplaySize(300, 300);
         const windBlow = this.anims.create({
             key: 'windblowing',
             frames: this.anims.generateFrameNumbers('animatedlogo',{ start: 0, end: 2 }),
@@ -59,7 +60,7 @@ class BegginingScene extends Phaser.Scene
 
         const { width, height } = this.scale
         // Play button
-        const confirmCatButton = this.add.image(width * 0.5, height * 0.575, 'itemFrame')
+        const confirmCatButton = this.add.image(logo.x, logo.y +logo.displayHeight/1.75 , 'itemFrame')
             .setDisplaySize(300, 50)
             .setInteractive({ useHandCursor: true })
             //call function to pass on cat and prompt selection to next scene here
@@ -100,24 +101,24 @@ class BegginingScene extends Phaser.Scene
         const suffixArray = ['Jr.','Sr.', 'IV', 'II', 'PhD', '', '', '']    ;
         //gets random item from an array
         function getRandomItem(arr) {
-            // get random index value
-            //const randomIndex = Math.floor(Math.random() * arr.length());
             var item = Phaser.Utils.Array.GetRandom(arr);
-            //const item = arr[randomIndex];
-            //console.log(item);
             return item;
         }
         console.log(getRandomItem(titleArray));
-        // const titleArray = ['Mr.', 'Ms.', 'Mrs.', 'Sir', 'Dame','','',''];
-        // const adjArray = ['Fluffy', 'Cuddly', 'Blue', 'Tabby', 'Silly',];
-        // const nounArray = ['Whiskers','Kitty', 'Cat', 'Socks', 'Patches', 'Spot',]
-        // const suffixArray = ['Jr.','Sr.', 'IV', 'II', 'PhD', '', '', '']
         function getRandomFullName(){
             var fullName = getRandomItem(titleArray) + " " + getRandomItem(adjArray) + getRandomItem(nounArray) + " " + getRandomItem(suffixArray);
+            nameText.setText(fullName);
             return fullName;
         }
         //var fullName = getRandomItem(titleArray) + " " + getRandomItem(adjArray) + getRandomItem(nounArray) + " " + getRandomItem(suffixArray);
+        // Randomize Name button
+        const randomNameButton = this.add.image(randomCatButton.x, randomCatButton.y + randomCatButton.displayHeight + 10, 'itemFrame')
+            .setDisplaySize(300, 50)
+            .setInteractive({ useHandCursor: true })
+            .on('pointerdown', () => console.log(getRandomFullName()));//Call function to randomize prompt here
 
+        this.add.text(randomNameButton.x, randomNameButton.y, 'Randomize Name',{ fontFamily: 'MinecraftiaRegular', fontSize: '18px',align:'left',stroke: '#000000',strokeThickness: 2 })
+            .setOrigin(0.5)
 
         // Randomize Prompt button
         const randomPrompt = this.add.image(randomNameButton.x, randomNameButton.y + randomNameButton.displayHeight + 10, 'itemFrame')
@@ -127,14 +128,15 @@ class BegginingScene extends Phaser.Scene
 
         this.add.text(randomPrompt.x, randomPrompt.y, 'Randomize Prompt',{ fontFamily: 'MinecraftiaRegular', fontSize: '18px',align:'left',stroke: '#000000',strokeThickness: 2 })
             .setOrigin(0.5)
-        
 
-            const randomName = this.add.image(randomPrompt.x, randomPrompt.y + randomPrompt.displayHeight + 10, 'itemFrame')
-            .setDisplaySize(300, 50)
-            .setInteractive({ useHandCursor: true })
-            .on('pointerdown', () => console.log(getRandomFullName()));//Call function to randomize prompt here
 
-        this.add.text(randomName.x, randomName.y, 'Randomize Name',{ fontFamily: 'MinecraftiaRegular', fontSize: '18px',align:'left',stroke: '#000000',strokeThickness: 2 })
+        //Initial Name of cat to be displayed
+        var initialName = getRandomItem(titleArray) + " " + getRandomItem(adjArray) + getRandomItem(nounArray) + " " + getRandomItem(suffixArray);
+        //Background eleement of name display
+        const catNameBar = this.add.image(catAnimated.x, catAnimated.y - catAnimated.displayHeight/1.5, 'itemFrame')
+            .setDisplaySize(400, 50)
+        //Displayed text
+        nameText = this.add.text(catNameBar.x, catNameBar.y,initialName,{ fontFamily: 'MinecraftiaRegular', fontSize: '16px',align:'left',stroke: '#000000',strokeThickness: 2 })
             .setOrigin(0.5)
         }
     }
