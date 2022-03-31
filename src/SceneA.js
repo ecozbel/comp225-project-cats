@@ -65,7 +65,19 @@ class BegginingScene extends Phaser.Scene
             .setDisplaySize(300, 50)
             .setInteractive({ useHandCursor: true })
             //call function to pass on cat and prompt selection to next scene here
-            .on('pointerdown', () => this.scene.start('sceneB'));
+            .on('pointerdown', function(pointer, localX, localY, event){
+                this.scene.start('sceneB')
+                this.game.cat = catAnimated;
+
+                // obj.scene.sys.updateList.remove(pawn);
+                // obj.scene.sys.displayList.remove(pawn);
+                // obj.scene = scene;
+                // scene.sys.updateList.add(obj);
+                // scene.sys.displayList.add(obj);
+            
+            
+            },self );
+
         
         this.add.text(confirmCatButton.x, confirmCatButton.y, 'Confirm',{ fontFamily: 'MinecraftiaRegular', fontSize: '18px',stroke: '#000000',strokeThickness: 2,align:'left'  })
             .setOrigin(0.5)
@@ -105,7 +117,7 @@ class BegginingScene extends Phaser.Scene
             var item = Phaser.Utils.Array.GetRandom(arr);
             return item;
         }
-        console.log(getRandomItem(titleArray));
+
         function getRandomFullName(){
             var fullName = getRandomItem(titleArray) + " " + getRandomItem(adjArray) + getRandomItem(nounArray) + " " + getRandomItem(suffixArray);
             nameText.setText(fullName);
@@ -240,7 +252,7 @@ function createPalettes(catRandomizerConfig,game)
         for (var a = 0; a < catRandomizerConfig.animations.length; a++) {
             anim = catRandomizerConfig.animations[a];
             animKey = atlasKey;
-            console.log(animKey)
+            //console.log(animKey)
 
             // Add the animation to the game.
             game.anims.create({

@@ -84,10 +84,13 @@ class MyGame extends Phaser.Scene
 
         // let jsonFile = this.cache.json.get('prompts');
         // console.log('--------->', jsonFile.prompt[0].introduction)
+        console.log(this.game.cat);
 
         var self = this;
-        //his.add.existing(catBlink);
-        //var bg = this.matter.add.image(350,250,'background');
+        //cat.scene = this;
+        //cat = this.add.existing(this.game.cat);
+        
+        var bg = this.matter.add.image(350,250,'background');
         var bg = this.matter.add.image(350,250,'background2');
         bg.setStatic(true);
 
@@ -97,6 +100,10 @@ class MyGame extends Phaser.Scene
         closet.setStatic(true);
         normalizeScale(closet);
         cat = setupCat();
+        //cat = this.add.existing(self.game.cat);
+        console.log(cat);
+        console.log(closet);
+
 
         //test assets for hats
         hat = this.matter.add.sprite(600,300,'hat1');
@@ -123,13 +130,16 @@ class MyGame extends Phaser.Scene
 
         //set up sprite properties of cat
         function setupCat(){
-            cat = self.matter.add.sprite(500,350,'cat',null);
-            //add a layer into the cat, it contains clothes that are equipped on the cat
+            //cat = self.matter.add.sprite(500,350,'cat',null);
+            cat = self.add.existing(self.game.cat);
+            cat.x=500;
+            cat.y=350;
+            cat.setDepth(0);
+            cat.setVisible(true);
             cat.setData('catLayer',self.add.layer());
-            //Cat sprite properties
-            cat.setStatic(true);
-            cat.setSensor(true);
-            normalizeScale(cat);
+            //self.children.bringToTop(cat);
+            //normalizeScale(cat);
+            cat.setScale(6.7);
             return cat;
         }
 
@@ -307,24 +317,28 @@ class MyGame extends Phaser.Scene
             cat.hatPosition = { 
                 x : cat.x,
                 y : cat.y-cat.displayHeight/2.4,
+                z : 4,
                 currentClothing : null,
             }
     
             cat.shoePosition = { 
                 x : cat.x,
                 y : cat.y+cat.displayHeight/2.65,
+                z : 1,
                 currentClothing : null,
             }
             
             cat.shirtPosition = { //these values arent quite right. need test images i think before they can be set right.
                 x : cat.x,
                 y : cat.y+cat.displayHeight/12,
+                z : 3,
                 currentClothing : null,
             }
     
             cat.pantsPosition = { //these values arent quite right. need test images i think before they can be set right.
                 x : cat.x,
                 y : 300 + 100,
+                z : 2,
                 currentClothing : null,
             }
 
@@ -356,6 +370,7 @@ class MyGame extends Phaser.Scene
                     //set the position of the sprite 
                     sprite.x = clothingPosition.x;
                     sprite.y = clothingPosition.y;
+                    sprite.setDepth(clothingPosition.z);
                     //set the clothPositions current clothing to be what was just dropped on it
                     clothingPosition.currentClothing = sprite;
 
