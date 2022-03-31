@@ -36,7 +36,7 @@ class BegginingScene extends Phaser.Scene
         const catRandomizerConfig  = {
             paletteKey: 'cat-palette',                         // Palette file we're referencing.
             paletteNames: ['tabby', 'dark', 'light', 'purple','rainbow','arctic',
-        'vaporwave', 'blackfur','black/white','brown','wbb','siamese','garfield','pikachu'],   // Names for each palette to build out the names for the atlas.
+        'vaporwave', 'blackfur','black/white','spottybrown','wbb','siamese','garfield','tiger','brown'],   // Names for each palette to build out the names for the atlas.
             spriteSheet: {                                      // Spritesheet we're manipulating.
                 key: 'catanimated',
                 frameWidth: 64,                                 
