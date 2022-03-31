@@ -282,6 +282,19 @@ class MyGame extends Phaser.Scene
         .on('pointerdown', () => displayLayer(pantsGroup));
         scaletoIconSize(pantsbutton);  
 
+        // Ending Scene button
+        const EndingButton = this.add.image(cat.x - 150, cat.y - 330 , 'itemFrame')
+            .setDisplaySize(300, 50)
+            .setInteractive({ useHandCursor: true })
+            //call function to pass on cat and prompt selection to next scene here
+            .on('pointerdown', function(pointer, localX, localY, event){
+                this.scene.start('sceneC')
+                this.game.cat = cat;
+            },self );
+
+            this.add.text(EndingButton.x, EndingButton.y, 'Continue',{ fontFamily: 'MinecraftiaRegular', fontSize: '18px',stroke: '#000000',strokeThickness: 2,align:'left'  })
+            .setOrigin(0.5)
+
         //Display chosen layer
         function displayLayer(chosenLayer){
             for(const layer  of layers){
