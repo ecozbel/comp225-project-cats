@@ -3,7 +3,8 @@ import logoImg from './assets/logo.png';
 import itemFrame from './assets/itemFrame.png';
 import animatedLogo from './assets/logoAnimated.png';
 import catPalette from './assets/cat-palette2.png';
-import catAnimation from './assets/catanimated.png'
+import catAnimation from './assets/catanimated.png';
+
 var catAnimated;
 var atlasKey;
 var logo;
@@ -22,6 +23,7 @@ class BegginingScene extends Phaser.Scene
         this.load.image('itemFrame',itemFrame);
         this.load.spritesheet('animatedlogo', animatedLogo, { frameWidth: 800, frameHeight: 800 });
         this.load.image('cat-palette', catPalette);
+        // this.load.audio('backgroundMusic', ['assets/audio/music.mp3']);
         this.load.spritesheet('catanimated', catAnimation, {
             frameWidth: 64,
             frameHeight: 64
@@ -29,6 +31,8 @@ class BegginingScene extends Phaser.Scene
     }
     create ()
     {
+        // backgroundMusic = this.add.audio('backgroundMusic');
+
         const catRandomizerConfig  = {
             paletteKey: 'cat-palette',                         // Palette file we're referencing.
             paletteNames: ['tabby', 'dark', 'light', 'purple','rainbow','arctic',
