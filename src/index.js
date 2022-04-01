@@ -26,6 +26,7 @@ import catAnimation from './assets/catanimated.png'
 
 import { BegginingScene } from './SceneA';
 import { MyGame } from './SceneB';
+import { EndingScene } from './SceneC';
 
 var cat;
 var closet;
@@ -62,7 +63,7 @@ const config = {
             debug: false
         }
     },
-    scene: [BegginingScene,MyGame]
+    scene: [BegginingScene,MyGame,EndingScene]
 };
 
 const game = new Phaser.Game(config);

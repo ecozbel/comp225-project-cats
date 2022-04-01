@@ -12,6 +12,7 @@ import greenshirt from './assets/clothing/greentshirt.png';
 import flowertop from './assets/clothing/flowertop.png';
 import shirt1img from './assets/clothing/shirt1.png';
 import backgroundImg from './assets/background.png';
+import backgroundImg2 from './assets/background2.png';
 import firefighterhat from './assets/clothing/firefighterhat.png';
 import firefighterboots from './assets/clothing/firefighterboots.png';
 import firefightercoat from './assets/clothing/firefightercoat.png';
@@ -24,7 +25,7 @@ import animatedLogo from './assets/logoAnimated.png';
 import catPalette from './assets/cat-palette.png';
 import catAnimation from './assets/catanimated.png';
 import { game } from './index.js';
-import { chosenCat } from './SceneA';
+import { chosenCat } from './SceneA';//can we delete this?
 var cat;
 var closet;
 var hat;
@@ -64,6 +65,7 @@ class MyGame extends Phaser.Scene
         this.load.image('shoe3',shoe3img);
         this.load.image('closet',closetimg);
         this.load.image('background', backgroundImg);
+        this.load.image('background2', backgroundImg2);
         this.load.image('shirt1', shirt1img);
         this.load.image('hatSilhoette', hatSilhoetteimg);
         this.load.image('shirtSilhoette', shirtSilhoetteimg);
@@ -73,23 +75,38 @@ class MyGame extends Phaser.Scene
         // this.load.json('prompts','src/assets/prompts.json');
         this.load.image('shirt2', firefightercoat);
 
+
     }
       
     create ()
     {
+        //var catBlink = game.scenes.BegginingScene.catAnimated;
+
         // let jsonFile = this.cache.json.get('prompts');
         // console.log('--------->', jsonFile.prompt[0].introduction)
+        console.log("sceneB this.game.cat: ");
+        console.log(this.game.cat);
 
         var self = this;
+        //cat.scene = this;
+        //cat = this.add.existing(this.game.cat);
         
         var bg = this.matter.add.image(350,250,'background');
+        var bg = this.matter.add.image(350,250,'background2');
         bg.setStatic(true);
+
 
         this.matter.world.setGravity(0,0);
         closet = this.matter.add.sprite(150,200,'closet');
         closet.setStatic(true);
         normalizeScale(closet);
         cat = setupCat();
+        //cat = this.add.existing(self.game.cat);
+        console.log("sceneB cat: ");
+        console.log(cat);
+        console.log("sceneB closet: ");
+        console.log(closet);
+
 
         //test assets for hats
         hat = this.matter.add.sprite(600,300,'hat1');
@@ -116,13 +133,16 @@ class MyGame extends Phaser.Scene
 
         //set up sprite properties of cat
         function setupCat(){
-            cat = self.matter.add.sprite(500,350,'cat',null);
-            //add a layer into the cat, it contains clothes that are equipped on the cat
+            //cat = self.matter.add.sprite(500,350,'cat',null);
+            cat = self.add.existing(self.game.cat);
+            cat.x=500;
+            cat.y=350;
+            cat.setDepth(0);
+            cat.setVisible(true);
             cat.setData('catLayer',self.add.layer());
-            //Cat sprite properties
-            cat.setStatic(true);
-            cat.setSensor(true);
-            normalizeScale(cat);
+            //self.children.bringToTop(cat);
+            //normalizeScale(cat);
+            cat.setScale(6.7);
             return cat;
         }
 
@@ -265,6 +285,19 @@ class MyGame extends Phaser.Scene
         .on('pointerdown', () => displayLayer(pantsGroup));
         scaletoIconSize(pantsbutton);  
 
+        // Ending Scene button
+        const EndingButton = this.add.image(cat.x - 150, cat.y - 330 , 'itemFrame')
+            .setDisplaySize(300, 50)
+            .setInteractive({ useHandCursor: true })
+            //call function to pass on cat and prompt selection to next scene here
+            .on('pointerdown', function(pointer, localX, localY, event){
+                this.scene.start('sceneC')
+                this.game.cat = cat;
+            },self );
+
+            this.add.text(EndingButton.x, EndingButton.y, 'Continue',{ fontFamily: 'MinecraftiaRegular', fontSize: '18px',stroke: '#000000',strokeThickness: 2,align:'left'  })
+            .setOrigin(0.5)
+
         //Display chosen layer
         function displayLayer(chosenLayer){
             for(const layer  of layers){
@@ -300,24 +333,28 @@ class MyGame extends Phaser.Scene
             cat.hatPosition = { 
                 x : cat.x,
                 y : cat.y-cat.displayHeight/2.4,
+                z : 4,
                 currentClothing : null,
             }
     
             cat.shoePosition = { 
                 x : cat.x,
                 y : cat.y+cat.displayHeight/2.65,
+                z : 1,
                 currentClothing : null,
             }
             
             cat.shirtPosition = { //these values arent quite right. need test images i think before they can be set right.
                 x : cat.x,
                 y : cat.y+cat.displayHeight/12,
+                z : 3,
                 currentClothing : null,
             }
     
             cat.pantsPosition = { //these values arent quite right. need test images i think before they can be set right.
                 x : cat.x,
                 y : 300 + 100,
+                z : 2,
                 currentClothing : null,
             }
 
@@ -349,6 +386,7 @@ class MyGame extends Phaser.Scene
                     //set the position of the sprite 
                     sprite.x = clothingPosition.x;
                     sprite.y = clothingPosition.y;
+                    sprite.setDepth(clothingPosition.z);
                     //set the clothPositions current clothing to be what was just dropped on it
                     clothingPosition.currentClothing = sprite;
 
