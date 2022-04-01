@@ -16,7 +16,8 @@ class EndingScene extends Phaser.Scene
 
     create ()
     {
-        console.log("ending scene cat " + this.game.cat);
+        console.log("ending scene cat: " + this.game.cat);
+        console.log(this.game.cat);
     }
 }
 

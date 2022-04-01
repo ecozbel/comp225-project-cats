@@ -25,7 +25,7 @@ import animatedLogo from './assets/logoAnimated.png';
 import catPalette from './assets/cat-palette.png';
 import catAnimation from './assets/catanimated.png';
 import { game } from './index.js';
-import { chosenCat } from './SceneA';
+import { chosenCat } from './SceneA';//can we delete this?
 var cat;
 var closet;
 var hat;
@@ -84,6 +84,7 @@ class MyGame extends Phaser.Scene
 
         // let jsonFile = this.cache.json.get('prompts');
         // console.log('--------->', jsonFile.prompt[0].introduction)
+        console.log("sceneB this.game.cat: ");
         console.log(this.game.cat);
 
         var self = this;
@@ -101,7 +102,9 @@ class MyGame extends Phaser.Scene
         normalizeScale(closet);
         cat = setupCat();
         //cat = this.add.existing(self.game.cat);
+        console.log("sceneB cat: ");
         console.log(cat);
+        console.log("sceneB closet: ");
         console.log(closet);
 
 
