@@ -17,6 +17,7 @@ class BegginingScene extends Phaser.Scene
     }
     preload ()
     {
+        this.load.json('prompts','src/assets/prompts.json');
         this.load.image('logo', logoImg);
         this.load.image('itemFrame',itemFrame);
         this.load.spritesheet('animatedlogo', animatedLogo, { frameWidth: 800, frameHeight: 800 });
@@ -28,6 +29,7 @@ class BegginingScene extends Phaser.Scene
     }
     create ()
     {
+        let jsonFile = this.cache.json.get('prompts');
         const catRandomizerConfig  = {
             paletteKey: 'cat-palette',                         // Palette file we're referencing.
             paletteNames: ['tabby', 'dark', 'light', 'funky'],   // Names for each palette to build out the names for the atlas.
@@ -53,7 +55,6 @@ class BegginingScene extends Phaser.Scene
             frames: this.anims.generateFrameNumbers('animatedlogo',{ start: 0, end: 2 }),
             frameRate: 8
         });
-
 
         logo.play({key:'windblowing',repeat:-1});
 
@@ -98,19 +99,30 @@ class BegginingScene extends Phaser.Scene
         //gets random item from an array
         function getRandomItem(arr) {
             // get random index value
-            const randomIndex = Math.floor(Math.random() * arr.length);
-            const item = arr[randomIndex];
+            var randomIndex = Math.floor(Math.random() * arr.length);
+            var item = arr[randomIndex];
                 return item;
-}
+        }
         const titleArray = ['Mr.', 'Ms.', 'Mrs.', 'Sir', 'Dame','','',''];
         const adjArray = ['Fluffy', 'Cuddly', 'Blue', 'Tabby', 'Silly',];
         const nounArray = ['Whiskers','Kitty', 'Cat', 'Socks', 'Patches', 'Spot',]
         const suffixArray = ['Jr.','Sr.', 'IV', 'II', 'PhD', '', '', '']
 
         var fullName = getRandomItem(titleArray) + " " + getRandomItem(adjArray) + getRandomItem(nounArray) + " " + getRandomItem(suffixArray);
-        console.log(fullName);
-
         
+        // takes data from json file and stores into a new updated object with prompts plus new random cat names
+        var updatedPrompts = [];
+        for (var indivPrompt = 0; indivPrompt < jsonFile.prompt.length; indivPrompt++ ) {
+            if (!updatedPrompts[indivPrompt]) {
+                updatedPrompts[indivPrompt] = {};
+                updatedPrompts[indivPrompt].objective = jsonFile.prompt[indivPrompt].objective.replaceAll("{{full_name}}", fullName);
+                updatedPrompts[indivPrompt].introduction = jsonFile.prompt[indivPrompt].introduction.replaceAll("{{full_name}}", fullName);
+                updatedPrompts[indivPrompt].outcome = jsonFile.prompt[indivPrompt].outcome.replaceAll("{{full_name}}", fullName);
+            }
+        }
+        // stores a generated random prompt into a variable we can use later
+        var generatedPrompt = updatedPrompts[Math.floor(Math.random() * updatedPrompts.length)];
+
         // Randomize Prompt button
         const randomPrompt = this.add.image(randomCatButton.x, randomCatButton.y + randomCatButton.displayHeight + 10, 'itemFrame')
             .setDisplaySize(300, 50)
@@ -121,9 +133,6 @@ class BegginingScene extends Phaser.Scene
             .setOrigin(0.5)
         }
 
-        
-
-    
     }
     //Utilities
 //Scales given sprite to normal size
@@ -220,6 +229,7 @@ function createPalettes(catRandomizerConfig,game)
             frameHeight: catRandomizerConfig.spriteSheet.frameHeight,
         });
 
+
         // Iterate over each animation.
         for (var a = 0; a < catRandomizerConfig.animations.length; a++) {
             anim = catRandomizerConfig.animations[a];
@@ -237,6 +247,9 @@ function createPalettes(catRandomizerConfig,game)
 
         // Destroy temp texture.
         game.textures.get(catRandomizerConfig.spriteSheet.key + '-temp').destroy();
+
+        //  // working on how to put new names in prompts, looping through inner array doesn't work yet - Ifraah
+        
     }
 
     // Destroy textures that are not longer needed.
@@ -245,6 +258,11 @@ function createPalettes(catRandomizerConfig,game)
     game.textures.get(catRandomizerConfig.spriteSheet.key).destroy();
     game.textures.get(catRandomizerConfig.paletteKey).destroy();
 }
+
+   
+
+
+
 export const chosenCat = catAnimated;
 console.log(chosenCat);
 export { BegginingScene };
