@@ -128,17 +128,17 @@ class BegginingScene extends Phaser.Scene
         var fullName;
 
         // takes data from json file and stores into a new updated object with prompts plus new random cat names
-        var updatedPrompts = [];
-        for (var indivPrompt = 0; indivPrompt < jsonFile.prompt.length; indivPrompt++ ) {
-            if (!updatedPrompts[indivPrompt]) {
-                updatedPrompts[indivPrompt] = {};
-                updatedPrompts[indivPrompt].objective = jsonFile.prompt[indivPrompt].objective.replaceAll("{{full_name}}", fullName);
-                updatedPrompts[indivPrompt].introduction = jsonFile.prompt[indivPrompt].introduction.replaceAll("{{full_name}}", fullName);
-                updatedPrompts[indivPrompt].outcome = jsonFile.prompt[indivPrompt].outcome.replaceAll("{{full_name}}", fullName);
-            }
-        }
-        // stores a generated random prompt into a variable we can use later
-        var generatedPrompt = updatedPrompts[Math.floor(Math.random() * updatedPrompts.length)];
+        // var updatedPrompts = [];
+        // for (var indivPrompt = 0; indivPrompt < jsonFile.prompt.length; indivPrompt++ ) {
+        //     if (!updatedPrompts[indivPrompt]) {
+        //         updatedPrompts[indivPrompt] = {};
+        //         updatedPrompts[indivPrompt].objective = jsonFile.prompt[indivPrompt].objective.replaceAll("{{full_name}}", fullName);
+        //         updatedPrompts[indivPrompt].introduction = jsonFile.prompt[indivPrompt].introduction.replaceAll("{{full_name}}", fullName);
+        //         updatedPrompts[indivPrompt].outcome = jsonFile.prompt[indivPrompt].outcome.replaceAll("{{full_name}}", fullName);
+        //     }
+        // }
+        // // stores a generated random prompt into a variable we can use later
+        // var generatedPrompt = updatedPrompts[Math.floor(Math.random() * updatedPrompts.length)];
         
         function getRandomFullName(){
             fullName = getRandomItem(titleArray) + " " + getRandomItem(adjArray) + getRandomItem(nounArray) + " " + getRandomItem(suffixArray);
