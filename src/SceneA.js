@@ -5,6 +5,7 @@ import animatedLogo from './assets/logoAnimated.png';
 import catPalette from './assets/cat-palette2.png';
 import catAnimation from './assets/catanimated.png';
 
+
 var catAnimated;
 var atlasKey;
 var logo;
@@ -49,6 +50,9 @@ class BegginingScene extends Phaser.Scene
             ]
         };
         var self = this;
+
+
+
         createPalettes(catRandomizerConfig,self);
         //var self = this;
         catAnimated = this.add.sprite(600, 400, 'catanimated-' + catRandomizerConfig.paletteNames[0]).setScale(6);

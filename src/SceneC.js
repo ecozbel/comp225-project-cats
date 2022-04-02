@@ -1,10 +1,12 @@
 import Phaser from "phaser";
 import { game } from './index.js';
 import polaroidImg from './assets/polaroid.png';
+import scenery1 from './assets/background3.png';
 
 var cat;
 var polaroid;
 var frame;
+var bg;
 
 var gameReady=false;
 class EndingScene extends Phaser.Scene
@@ -18,15 +20,18 @@ class EndingScene extends Phaser.Scene
     preload ()
     {
         this.load.image('polaroid', polaroidImg);
+        this.load.image('scenery1',scenery1);
     }
 
     create ()
     {
         cat = this.add.existing(this.game.cat);
         frame = this.add.sprite(0,0,'polaroid');
+        bg = this.add.sprite(0,0,'scenery1');
 
         cat.setVisible(false);
         frame.setVisible(false);
+        bg.setVisible(false);
 
 
 
@@ -77,7 +82,7 @@ class EndingScene extends Phaser.Scene
 
         //cat = this.add.existing(this.game.cat);
         cat.setVisible(true);
-        cat.depth=1;
+        cat.setDepth(3);
         cat.x=_x;
         cat.y=_y;
         cat.setScale(3.5);
@@ -88,13 +93,17 @@ class EndingScene extends Phaser.Scene
     }
 
     setUpPolaroid(){
-        var rect = this.add.rectangle(0,0,312,280,0x4287f5);//the background of the polaroid
-        rect.depth=0;
+
+        bg.setVisible(true);
+        bg.setScale(0.6);
+        bg.setDepth(-1);
+
         frame.setVisible(true);
-        frame.setScale(13);
-        frame.depth=2;
-        console.log(frame);
-        polaroid = this.add.container(400,-1000,[frame,rect]);
+        frame.setScale(20);
+        
+        frame.setDepth(1);
+        polaroid = this.add.container(400,-1000,[ bg,frame]);
+
 
     }
 
