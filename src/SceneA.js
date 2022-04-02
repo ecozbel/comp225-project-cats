@@ -54,6 +54,7 @@ class BegginingScene extends Phaser.Scene
         catAnimated = this.add.sprite(600, 400, 'catanimated-' + catRandomizerConfig.paletteNames[0]).setScale(6);
         catAnimated.color = catRandomizerConfig.paletteNames[0];
         catAnimated.anims.play('catanimated-' + catAnimated.color);
+        catAnimated.ignoreDestroy=true;
         var self = this;
         logo = this.add.sprite(250,150,'animatedlogo').setDisplaySize(300, 300);
         const windBlow = this.anims.create({
