@@ -52,7 +52,7 @@ var catAnimated;
 
 const config = {
     type: Phaser.AUTO,
-    parent: 'phaser-example',
+    parent: 'mygame',
     pixelArt:true,
     width: 800,
     height: 600,
@@ -63,6 +63,7 @@ const config = {
             debug: false
         }
     },
+    
     scene: [BegginingScene,MyGame,EndingScene]
 };
 

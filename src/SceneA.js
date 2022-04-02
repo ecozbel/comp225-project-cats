@@ -4,6 +4,7 @@ import itemFrame from './assets/itemFrame.png';
 import animatedLogo from './assets/logoAnimated.png';
 import catPalette from './assets/cat-palette2.png';
 import catAnimation from './assets/catanimated.png';
+import menuBackground from './assets/menu_background.png';
 
 
 var catAnimated;
@@ -23,6 +24,7 @@ class BegginingScene extends Phaser.Scene
         this.load.json('prompts','src/assets/prompts.json');
         this.load.image('logo', logoImg);
         this.load.image('itemFrame',itemFrame);
+        this.load.image('menuBackground',menuBackground);
         this.load.spritesheet('animatedlogo', animatedLogo, { frameWidth: 800, frameHeight: 800 });
         this.load.image('cat-palette', catPalette);
         // this.load.audio('backgroundMusic', ['assets/audio/music.mp3']);
@@ -50,6 +52,9 @@ class BegginingScene extends Phaser.Scene
             ]
         };
         var self = this;
+
+        var bg = this.matter.add.image(400,300,'menuBackground');
+        bg.setStatic(true);
 
 
 
