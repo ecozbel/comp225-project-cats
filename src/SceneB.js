@@ -93,8 +93,8 @@ class MyGame extends Phaser.Scene
         //cat.scene = this;
         //cat = this.add.existing(this.game.cat);
         
-        var bg = this.matter.add.image(350,250,'background');
-        var bg = this.matter.add.image(350,250,'background2');
+        //var bg = this.matter.add.image(350,250,'background');
+        var bg = this.matter.add.image(400,300,'background2');
         bg.setStatic(true);
 
 
