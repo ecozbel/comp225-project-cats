@@ -1,7 +1,7 @@
 import Phaser from "phaser";
 import { game } from './index.js';
 import polaroidImg from './assets/polaroid.png';
-import scenery1 from './assets/background3.png';
+import scenery1 from './assets/background4.png';
 
 var cat;
 var polaroid;
@@ -141,14 +141,12 @@ class EndingScene extends Phaser.Scene
         endingPrompt.set
         //add all contents of polaroid into container
         polaroid = this.add.container(400,-1000,[ bg,frame,cat,endingPrompt]);
-        //adjust's sprite's position relative to the container
+        //adjusts sprite's position relative to the container
         bg.y=bg.y-50;
         endingPrompt.y=endingPrompt.y+50;
         endingPrompt.x= frame.x-50;
         endingPrompt.y= frame.y +200;
-
-        
-
+        cat.x=cat.x-25;
 
     }
 
