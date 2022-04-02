@@ -28,11 +28,11 @@ class EndingScene extends Phaser.Scene
         cat.setVisible(false);
         frame.setVisible(false);
 
-        //this.cameras.main.fadeFrom(100,0,0,0);
 
-        var photoInfo = this.add.text("Click for photo!")
 
-        this.cameras.main.setBackgroundColor('0x4287f5');
+        var photoInfo = this.add.text(100,100,"Click for photo!")
+
+        this.cameras.main.setBackgroundColor('000000');
         var self = this;
 
 
@@ -57,6 +57,8 @@ class EndingScene extends Phaser.Scene
         //Listener for when camera flash effect is done
         this.cameras.main.on('cameraflashcomplete', function () {
             //Maybe could add camera sound here too
+
+            //Maybe polaroid sliding out of camera sound effect
 
 
         });
@@ -102,7 +104,7 @@ class EndingScene extends Phaser.Scene
             targets: cat,
             x: 400,
             y: 280,
-            duration: 1000,
+            duration: 2000,
             yoyo: false,
             delay: 10
         });
@@ -110,7 +112,7 @@ class EndingScene extends Phaser.Scene
             targets: polaroid,
             x: 400,
             y: 280,
-            duration: 1000,
+            duration: 2000,
             yoyo: false,
             delay: 10
         });
