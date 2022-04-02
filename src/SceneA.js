@@ -7,6 +7,10 @@ import catAnimation from './assets/catanimated.png';
 import menuBackground from './assets/menu_innerbackground.png';
 import menuSpriteSheet from './assets/menu_spriteSheet.png';
 
+import musicmp3 from "./assets/audio/music.mp3";
+import musicogg from "./assets/audio/music.ogg" ;
+
+
 
 var catAnimated;
 var atlasKey;
@@ -34,11 +38,13 @@ class BegginingScene extends Phaser.Scene
             frameWidth: 64,
             frameHeight: 64
         });
+        this.load.audio("music",[musicmp3,musicogg ])
     }
     create ()
     {
         let jsonFile = this.cache.json.get('prompts');
-        // backgroundMusic = this.add.audio('backgroundMusic');
+        var backgroundMusic = this.sound.add('music',{ loop: true }).setPan(1);
+
         this.matter.world.setGravity(0,0);
         const catRandomizerConfig  = {
             paletteKey: 'cat-palette',                         // Palette file we're referencing.
@@ -132,9 +138,9 @@ class BegginingScene extends Phaser.Scene
             .setDisplaySize(300, 50)
             .setDepth(4)
             .setInteractive({ useHandCursor: true })
-            .on('pointerdown', () => console.log("Settings?"));
+            .on('pointerdown', () => backgroundMusic.play());
             
-        this.add.text(settingsButton.x, settingsButton.y, 'Settings',{ fontFamily: 'MinecraftiaRegular', fontSize: '18px',align:'left',stroke: '#000000',strokeThickness: 2  })
+        this.add.text(settingsButton.x, settingsButton.y, 'Music on/off',{ fontFamily: 'MinecraftiaRegular', fontSize: '18px',align:'left',stroke: '#000000',strokeThickness: 2  })
             .setOrigin(0.5)
             .setDepth(4)
 
