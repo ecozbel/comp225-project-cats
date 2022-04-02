@@ -43,7 +43,11 @@ class BegginingScene extends Phaser.Scene
     create ()
     {
         let jsonFile = this.cache.json.get('prompts');
-        var backgroundMusic = this.sound.add('music',{ loop: true }).setPan(1);
+
+
+        //MUSIC 
+        //works nut only on chrome
+        //var backgroundMusic = this.sound.add('music',{ loop: false }).setPan(1);
 
         this.matter.world.setGravity(0,0);
         const catRandomizerConfig  = {
