@@ -46,8 +46,7 @@ class BegginingScene extends Phaser.Scene
 
 
         //MUSIC 
-        //works nut only on chrome
-        //var backgroundMusic = this.sound.add('music',{ loop: false }).setPan(1);
+        var backgroundMusic = this.sound.add('music',{ loop: false });
 
         this.matter.world.setGravity(0,0);
         const catRandomizerConfig  = {

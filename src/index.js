@@ -63,6 +63,9 @@ const config = {
             debug: false
         }
     },
+    audio: {
+        disableWebAudio: true
+    },
     
     scene: [BegginingScene,MyGame,EndingScene]
 };
