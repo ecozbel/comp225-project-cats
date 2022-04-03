@@ -134,7 +134,7 @@ class BegginingScene extends Phaser.Scene
         
         this.add.text(confirmCatButton.x, confirmCatButton.y, 'Confirm',{ fontFamily: 'MinecraftiaRegular', fontSize: '18px',stroke: '#000000',strokeThickness: 2,align:'left'  })
             .setOrigin(0.5)
-            .setDepth(4)
+            .setDepth(4);
 
 
         // Settings button
@@ -146,7 +146,7 @@ class BegginingScene extends Phaser.Scene
             
         this.add.text(settingsButton.x, settingsButton.y, 'Music on/off',{ fontFamily: 'MinecraftiaRegular', fontSize: '18px',align:'left',stroke: '#000000',strokeThickness: 2  })
             .setOrigin(0.5)
-            .setDepth(4)
+            .setDepth(4);
 
         // Randomize Cat button
         const randomCatButton = this.add.image(settingsButton.x, settingsButton.y + settingsButton.displayHeight + 10, 'itemFrame')
@@ -168,12 +168,12 @@ class BegginingScene extends Phaser.Scene
 
         this.add.text(randomCatButton.x, randomCatButton.y, 'Randomize Cat', { fontFamily: 'MinecraftiaRegular', fontSize: '18px',align:'left',stroke: '#000000',strokeThickness: 2  })
             .setOrigin(0.5)
-            .setDepth(4)
+            .setDepth(4);
 
         const titleArray = ['Mr.', 'Ms.', 'Mrs.', 'Sir', 'Dame','','',''];
         const adjArray = ['Fluffy', 'Cuddly', 'Blue', 'Tabby', 'Silly',];
-        const nounArray = ['Whiskers','Kitty', 'Cat', 'Socks', 'Patches', 'Spot',]    ;        
-        const suffixArray = ['Jr.','Sr.', 'IV', 'II', 'PhD', '', '', '']    ;
+        const nounArray = ['Whiskers','Kitty', 'Cat', 'Socks', 'Patches', 'Spot',];        
+        const suffixArray = ['Jr.','Sr.', 'IV', 'II', 'PhD', '', '', ''];
         //gets random item from an array
         function getRandomItem(arr) {
             var item = Phaser.Utils.Array.GetRandom(arr);
@@ -225,7 +225,7 @@ class BegginingScene extends Phaser.Scene
             fullName = getRandomItem(titleArray) + " " + getRandomItem(adjArray) + getRandomItem(nounArray) + " " + getRandomItem(suffixArray);
             nameText.setText(fullName);
             return fullName;
-
+        }
        
         
         fullName = getRandomFullName;
@@ -299,6 +299,8 @@ function createPalettes(catRandomizerConfig,game)
         }
     }
 
+}
+
     // Create sheets and animations from base sheet.
     var sheet = game.textures.get(catRandomizerConfig.spriteSheet.key).getSourceImage();
     var anim, animKey;
@@ -320,7 +322,7 @@ function createPalettes(catRandomizerConfig,game)
         // Get image data from the new sheet.
         imageData = context.getImageData(0, 0, sheet.width, sheet.height);
         pixelArray = imageData.data;
-
+        
         // Iterate through every pixel in the image.
         for (var p = 0; p < pixelArray.length / 4; p++) {
             var index = 4 * p;
@@ -347,6 +349,8 @@ function createPalettes(catRandomizerConfig,game)
                 }
             }
         }
+
+       
 
         // Put our modified pixel data back into the context.
         context.putImageData(imageData, 0, 0);
@@ -386,6 +390,7 @@ function createPalettes(catRandomizerConfig,game)
     game.textures.get(catRandomizerConfig.spriteSheet.key).destroy();
     game.textures.get(catRandomizerConfig.paletteKey).destroy();
 }
+
 
 
    
