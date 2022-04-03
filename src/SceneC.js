@@ -3,6 +3,13 @@ import { game } from './index.js';
 import polaroidImg from './assets/polaroid.png';
 import scenery1 from './assets/background4.png';
 
+
+import cameraShutterSound from "./assets/audio/cameraShutter.mp3";
+import cameraShutterSoundOGG from "./assets/audio/cameraShutter.ogg";
+import polaroidPrintSound from "./assets/audio/polaroidPrinting.mp3" ;
+import polaroidPrintSoundOGG from "./assets/audio/polaroidPrinting.ogg" ;
+
+
 var cat;
 var polaroid;
 var frame;
@@ -22,6 +29,8 @@ class EndingScene extends Phaser.Scene
     {
         this.load.image('polaroid', polaroidImg);
         this.load.image('scenery1',scenery1);
+        this.load.audio("printSound",[polaroidPrintSound,polaroidPrintSoundOGG ])
+        this.load.audio("shutterSound",[cameraShutterSound,cameraShutterSoundOGG])
     }
 
     create ()
@@ -39,6 +48,11 @@ class EndingScene extends Phaser.Scene
         var self = this;
         this.initialSpriteSetup(self);
 
+        var printSound = this.sound.add('printSound',{ loop: false });
+
+        var shutterSound = this.sound.add('shutterSound',{ loop: false });
+
+
 
 
         var photoInfo = this.add.text(100,100,"Click for photo!")
@@ -49,7 +63,7 @@ class EndingScene extends Phaser.Scene
 
         //"Takes photo" when clicked on screen
         this.input.on('pointerdown', function () {
- 
+            shutterSound.play();
             this.cameras.main.flash(1000);
             //ADD camera flash sound here
             this.setUpPolaroid();
@@ -68,7 +82,7 @@ class EndingScene extends Phaser.Scene
         //Listener for when camera flash effect is done
         this.cameras.main.on('cameraflashcomplete', function () {
             //Maybe could add camera sound here too
-
+            printSound.play();
             //Maybe polaroid sliding out of camera sound effect
 
 
@@ -164,9 +178,9 @@ class EndingScene extends Phaser.Scene
             targets: polaroid,
             x: 400,
             y: 280,
-            duration: 2000,
+            duration: 3900,
             yoyo: false,
-            delay: 10
+            delay: 0
         });
         console.log("built tweens");
         //console.log(gameScene.slideOver);
