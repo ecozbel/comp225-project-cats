@@ -87,12 +87,14 @@ class MyGame extends Phaser.Scene
         console.log("sceneB this.game.cat: ");
         console.log(this.game.cat);
 
+        var camera = this.cameras.main;
+
         var self = this;
         //cat.scene = this;
         //cat = this.add.existing(this.game.cat);
         
-        var bg = this.matter.add.image(350,250,'background');
-        var bg = this.matter.add.image(350,250,'background2');
+        //var bg = this.matter.add.image(350,250,'background');
+        var bg = this.matter.add.image(400,300,'background2');
         bg.setStatic(true);
 
 
@@ -291,12 +293,28 @@ class MyGame extends Phaser.Scene
             .setInteractive({ useHandCursor: true })
             //call function to pass on cat and prompt selection to next scene here
             .on('pointerdown', function(pointer, localX, localY, event){
-                this.scene.start('sceneC')
+                camera.fadeOut(1000); 
                 this.game.cat = cat;
+                //camera.on('camerafadeoutcomplete', functionstartNextScene(), camera);
+                //this.scene.start('sceneC')
+                //
             },self );
+
+            camera.on('camerafadeoutcomplete', function(){
+                startNextScene();
+
+            },self);
+                //this.scene.start('sceneC')
 
             this.add.text(EndingButton.x, EndingButton.y, 'Continue',{ fontFamily: 'MinecraftiaRegular', fontSize: '18px',stroke: '#000000',strokeThickness: 2,align:'left'  })
             .setOrigin(0.5)
+        // function startNextScene(){
+        //     this.scene.start('sceneC')
+        // }
+        function startNextScene(){
+            self.scene.start('sceneC');
+        }
+
 
         //Display chosen layer
         function displayLayer(chosenLayer){
@@ -425,12 +443,13 @@ class MyGame extends Phaser.Scene
 
     }
 
+
+
     update(){
         
     }
     
 }
-
 //Utilities
 //Scales given sprite to normal size
 function normalizeScale(sprite){
