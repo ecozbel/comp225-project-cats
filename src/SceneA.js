@@ -10,6 +10,7 @@ var atlasKey;
 var logo;
 var nameText;
 
+
 class BegginingScene extends Phaser.Scene
 {
     constructor ()
@@ -37,8 +38,8 @@ class BegginingScene extends Phaser.Scene
 
         const catRandomizerConfig  = {
             paletteKey: 'cat-palette',                         // Palette file we're referencing.
-            paletteNames: ['tabby', 'dark', 'light', 'purple','rainbow','arctic',
-        'vaporwave', 'blackfur','black/white','spottybrown','wbb','siamese','garfield','tiger','brown'],   // Names for each palette to build out the names for the atlas.
+            paletteNames: ['tabby', 'dark', 'light', 'purple','rainbow','arctic', 'vaporwave', 'blackfur','black/white',
+            'spottybrown','wbb','siamese','garfield','tiger','brown'],   // Names for each palette to build out the names for the atlas.
             spriteSheet: {                                      // Spritesheet we're manipulating.
                 key: 'catanimated',
                 frameWidth: 64,                                 
@@ -124,55 +125,81 @@ class BegginingScene extends Phaser.Scene
             return item;
         }
 
-        var fullName;
-
-        // takes data from json file and stores into a new updated object with prompts plus new random cat names
-        var updatedPrompts = [];
-        for (var indivPrompt = 0; indivPrompt < jsonFile.prompt.length; indivPrompt++ ) {
-            if (!updatedPrompts[indivPrompt]) {
-                updatedPrompts[indivPrompt] = {};
-                updatedPrompts[indivPrompt].objective = jsonFile.prompt[indivPrompt].objective.replaceAll("{{full_name}}", fullName);
-                updatedPrompts[indivPrompt].introduction = jsonFile.prompt[indivPrompt].introduction.replaceAll("{{full_name}}", fullName);
-                updatedPrompts[indivPrompt].outcome = jsonFile.prompt[indivPrompt].outcome.replaceAll("{{full_name}}", fullName);
-            }
-        }
-        // stores a generated random prompt into a variable we can use later
-        var generatedPrompt = updatedPrompts[Math.floor(Math.random() * updatedPrompts.length)];
         
-        function getRandomFullName(){
-            fullName = getRandomItem(titleArray) + " " + getRandomItem(adjArray) + getRandomItem(nounArray) + " " + getRandomItem(suffixArray);
-            nameText.setText(fullName);
-            return fullName;
-        }
-        //var fullName = getRandomItem(titleArray) + " " + getRandomItem(adjArray) + getRandomItem(nounArray) + " " + getRandomItem(suffixArray);
         // Randomize Name button
         const randomNameButton = this.add.image(randomCatButton.x, randomCatButton.y + randomCatButton.displayHeight + 10, 'itemFrame')
             .setDisplaySize(300, 50)
             .setInteractive({ useHandCursor: true })
-            .on('pointerdown', () => console.log(getRandomFullName()));//Call function to randomize prompt here
+            .on('pointerdown', () => console.log(getRandomFullName()));
 
         this.add.text(randomNameButton.x, randomNameButton.y, 'Randomize Name',{ fontFamily: 'MinecraftiaRegular', fontSize: '18px',align:'left',stroke: '#000000',strokeThickness: 2 })
             .setOrigin(0.5)
 
-        // Randomize Prompt button
-        const randomPrompt = this.add.image(randomNameButton.x, randomNameButton.y + randomNameButton.displayHeight + 10, 'itemFrame')
-            .setDisplaySize(300, 50)
-            .setInteractive({ useHandCursor: true })
-            .on('pointerdown', () => console.log("Random prompt"));//Call function to randomize prompt here
+         // Randomize Prompt button
+         const randomPrompt = this.add.image(randomNameButton.x, randomNameButton.y + randomNameButton.displayHeight + 10, 'itemFrame')
+         .setDisplaySize(300, 50)
+         .setInteractive({ useHandCursor: true })
+         .on('pointerdown', () => console.log(getRandomPrompt()));//Call function to randomize prompt here
+     
 
         this.add.text(randomPrompt.x, randomPrompt.y, 'Randomize Prompt',{ fontFamily: 'MinecraftiaRegular', fontSize: '18px',align:'left',stroke: '#000000',strokeThickness: 2 })
-            .setOrigin(0.5)
+            .setOrigin(0.5);
 
 
         //Initial Name of cat to be displayed
         var initialName = getRandomItem(titleArray) + " " + getRandomItem(adjArray) + getRandomItem(nounArray) + " " + getRandomItem(suffixArray);
         //Background eleement of name display
         const catNameBar = this.add.image(catAnimated.x, catAnimated.y - catAnimated.displayHeight/1.5, 'itemFrame')
-            .setDisplaySize(400, 50)
+            .setDisplaySize(400, 50);
+
+    
         //Displayed text
         nameText = this.add.text(catNameBar.x, catNameBar.y,initialName,{ fontFamily: 'MinecraftiaRegular', fontSize: '16px',align:'left',stroke: '#000000',strokeThickness: 2 })
-            .setOrigin(0.5)
+            .setOrigin(0.5);
+            
+        var fullName;
+
+        function getRandomFullName(){
+            fullName = getRandomItem(titleArray) + " " + getRandomItem(adjArray) + getRandomItem(nounArray) + " " + getRandomItem(suffixArray);
+            nameText.setText(fullName);
+            return fullName;
         }
+        
+        fullName = getRandomFullName;
+
+        // takes data from json file and stores into a new updated object with prompts plus new random cat names
+        var updatedPrompts = [];
+        var generatedPrompt = "";
+
+        function getUpdatedPrompts() {
+            for (var indivPrompt = 0; indivPrompt < jsonFile.prompt.length; indivPrompt++ ) {
+                if (!updatedPrompts[indivPrompt]) {
+                    updatedPrompts[indivPrompt] = {};
+                    updatedPrompts[indivPrompt].objective = jsonFile.prompt[indivPrompt].objective.replaceAll("{{full_name}}", fullName);
+                    updatedPrompts[indivPrompt].introduction = jsonFile.prompt[indivPrompt].introduction.replaceAll("{{full_name}}", fullName);
+                    updatedPrompts[indivPrompt].outcome = jsonFile.prompt[indivPrompt].outcome.replaceAll("{{full_name}}", fullName);
+            }
+        }
+            return updatedPrompts;  
+    }
+        
+
+        const randomNumber = (min, max) => { 
+            //Use below if final number doesn't need to be whole number
+            //return Math.random() * (max - min) + min;
+            return Math.floor(Math.random() * (max - min) + min);
+        }
+
+        function getRandomPrompt() {
+            var promptIndex = randomNumber(0, getUpdatedPrompts().length);
+            generatedPrompt = getUpdatedPrompts()[promptIndex]; // stores a generated random prompt into a variable we can use later
+            return generatedPrompt;
+        }
+        
+        
+        }
+
+        
     }
     //Utilities
 //Scales given sprite to normal size
@@ -298,6 +325,7 @@ function createPalettes(catRandomizerConfig,game)
     game.textures.get(catRandomizerConfig.spriteSheet.key).destroy();
     game.textures.get(catRandomizerConfig.paletteKey).destroy();
 }
+
 
    
 
