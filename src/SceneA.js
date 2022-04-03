@@ -261,8 +261,9 @@ class BegginingScene extends Phaser.Scene
         
         
         }
+    }
         
-    //Utilities
+//Utilities
         //Scales given sprite to normal size
         function normalizeScale(sprite){
             sprite.displayWidth=game.config.width*0.3; 
@@ -299,8 +300,6 @@ function createPalettes(catRandomizerConfig,game)
         }
     }
 
-}
-
     // Create sheets and animations from base sheet.
     var sheet = game.textures.get(catRandomizerConfig.spriteSheet.key).getSourceImage();
     var anim, animKey;
@@ -322,7 +321,7 @@ function createPalettes(catRandomizerConfig,game)
         // Get image data from the new sheet.
         imageData = context.getImageData(0, 0, sheet.width, sheet.height);
         pixelArray = imageData.data;
-        
+
         // Iterate through every pixel in the image.
         for (var p = 0; p < pixelArray.length / 4; p++) {
             var index = 4 * p;
@@ -349,8 +348,6 @@ function createPalettes(catRandomizerConfig,game)
                 }
             }
         }
-
-       
 
         // Put our modified pixel data back into the context.
         context.putImageData(imageData, 0, 0);
@@ -390,9 +387,6 @@ function createPalettes(catRandomizerConfig,game)
     game.textures.get(catRandomizerConfig.spriteSheet.key).destroy();
     game.textures.get(catRandomizerConfig.paletteKey).destroy();
 }
-
-
-
    
 
 
