@@ -48,6 +48,15 @@ class BegginingScene extends Phaser.Scene
         //MUSIC 
         var backgroundMusic = this.sound.add('music',{ loop: false });
 
+        function toggleSound(givenSound){
+            if (givenSound.isPlaying){
+                givenSound.stop();
+            }
+            else{
+                givenSound.play();
+            }
+        }
+
         this.matter.world.setGravity(0,0);
         const catRandomizerConfig  = {
             paletteKey: 'cat-palette',                         // Palette file we're referencing.
@@ -141,7 +150,7 @@ class BegginingScene extends Phaser.Scene
             .setDisplaySize(300, 50)
             .setDepth(4)
             .setInteractive({ useHandCursor: true })
-            .on('pointerdown', () => backgroundMusic.play());
+            .on('pointerdown', () => toggleSound(backgroundMusic));
             
         this.add.text(settingsButton.x, settingsButton.y, 'Music on/off',{ fontFamily: 'MinecraftiaRegular', fontSize: '18px',align:'left',stroke: '#000000',strokeThickness: 2  })
             .setOrigin(0.5)
