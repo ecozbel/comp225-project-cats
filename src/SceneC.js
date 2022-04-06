@@ -125,6 +125,10 @@ class EndingScene extends Phaser.Scene
         frame = currentScene.add.sprite(0,0,'polaroid');
         bg = currentScene.add.sprite(0,0,'scenery1',);
 
+        console.log("cat: ");
+        console.log(cat);
+
+
         endingPrompt = currentScene.add.text(0,0,'Ending prompt for Cat!',{
 			fontFamily: 'Permanent Marker',
 			fontSize: '30px',

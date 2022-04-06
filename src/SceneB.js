@@ -45,6 +45,7 @@ var pants;
 var atlasKey;
 var catAnimated;
 
+
 class MyGame extends Phaser.Scene
 {
     constructor ()
@@ -58,22 +59,28 @@ class MyGame extends Phaser.Scene
     {
         this.load.image('logo', logoImg);
         this.load.image('cat',catimg);
-        this.load.image('hat1',hat1img);
-        this.load.image('hat2',hat2img);
-        this.load.image('shoe1',shoe1img);
-        this.load.image('shoe2',shoe2img);
-        this.load.image('shoe3',shoe3img);
         this.load.image('closet',closetimg);
         this.load.image('background', backgroundImg);
         this.load.image('background2', backgroundImg2);
-        this.load.image('shirt1', shirt1img);
         this.load.image('hatSilhoette', hatSilhoetteimg);
         this.load.image('shirtSilhoette', shirtSilhoetteimg);
         this.load.image('shoeSilhoette', shoeSilhoetteimg);
         this.load.image('pantsSilhoette', pantsSilhoetteimg);
         // console.log('---------> preloading')
         // this.load.json('prompts','src/assets/prompts.json');
-        this.load.image('shirt2', firefightercoat);
+        loadClothing(this);
+
+        //helper function to organize better
+        function loadClothing(scene){
+            scene.load.image('hat1',hat1img);
+            scene.load.image('hat2',hat2img);
+            scene.load.image('shoe1',shoe1img);
+            scene.load.image('shoe2',shoe2img);
+            scene.load.image('shoe3',shoe3img);
+            scene.load.image('shirt1', shirt1img);
+            scene.load.image('shirt2', firefightercoat);
+        }
+
 
 
     }
@@ -235,6 +242,16 @@ class MyGame extends Phaser.Scene
                 y: closet.y-closet.displayHeight+objectLayer.first.displayHeight
             });
         }
+
+        function createClothing(spriteString,clothingType,){
+
+
+
+
+
+        }
+
+
 
 
         assignSpriteData(hatGroup,"hat");
