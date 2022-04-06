@@ -63,6 +63,11 @@ class EndingScene extends Phaser.Scene
         //var self = this;
 
 
+
+
+
+
+
         //"Takes photo" when clicked on screen
         this.input.on('pointerdown', function () {
             if (pictureCreated == false){
@@ -74,6 +79,7 @@ class EndingScene extends Phaser.Scene
                 //this.setUpCat(400,-1000);
                 this.setUpTween(cat,polaroid,self);
                 gameReady=true;
+
             }
 
 
@@ -125,6 +131,21 @@ class EndingScene extends Phaser.Scene
         frame = currentScene.add.sprite(0,0,'polaroid');
         bg = currentScene.add.sprite(0,0,'scenery1',);
 
+        if (cat.hatPosition.currentClothing != null) {
+            currentScene.add.existing(cat.hatPosition.currentClothing);
+        }
+        if (cat.shoePosition.currentClothing != null) {
+            currentScene.add.existing(cat.shoePosition.currentClothing);
+        }
+        if (cat.pantsPosition.currentClothing != null) {
+            currentScene.add.existing(cat.pantsPosition.currentClothing);
+        }
+        if (cat.shirtPosition.currentClothing != null) {
+            currentScene.add.existing(cat.shirtPosition.currentClothing);
+        }
+
+
+
         console.log("cat: ");
         console.log(cat);
 
@@ -141,6 +162,13 @@ class EndingScene extends Phaser.Scene
         frame.setVisible(false);
         bg.setVisible(false);
         endingPrompt.setVisible(false);
+
+
+        // currentScene.add.existing(cat.hatPosition.currentClothing);
+        // currentScene.add.existing(cat.shoePosition.currentClothing);
+        // currentScene.add.existing(cat.shirtPosition.currentClothing);
+        // currentScene.add.existing(cat.pantsPosition.currentClothing);
+
 
     }
 
@@ -195,7 +223,6 @@ class EndingScene extends Phaser.Scene
         console.log("built tweens");
         //console.log(gameScene.slideOver);
     }
-
 
 
 }
