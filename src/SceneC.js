@@ -15,6 +15,7 @@ var polaroid;
 var frame;
 var bg;
 var endingPrompt;
+var pictureCreated;
 
 var gameReady=false;
 class EndingScene extends Phaser.Scene
@@ -35,6 +36,7 @@ class EndingScene extends Phaser.Scene
 
     create ()
     {
+        pictureCreated = false;
         // cat = this.add.existing(this.game.cat);
         // cat.x=0;
         // cat.y=0;
@@ -63,13 +65,17 @@ class EndingScene extends Phaser.Scene
 
         //"Takes photo" when clicked on screen
         this.input.on('pointerdown', function () {
-            shutterSound.play();
-            this.cameras.main.flash(1000);
-            //ADD camera flash sound here
-            this.setUpPolaroid();
-            //this.setUpCat(400,-1000);
-            this.setUpTween(cat,polaroid,self);
-            gameReady=true;
+            if (pictureCreated == false){
+                pictureCreated = true;
+                shutterSound.play();
+                this.cameras.main.flash(1000);
+                //ADD camera flash sound here
+                this.setUpPolaroid();
+                //this.setUpCat(400,-1000);
+                this.setUpTween(cat,polaroid,self);
+                gameReady=true;
+            }
+
 
         }, this);
 
