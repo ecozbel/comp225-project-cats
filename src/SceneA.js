@@ -189,14 +189,17 @@ class BegginingScene extends Phaser.Scene
         }
 
         var fullName;
-
+        var generatedPrompt;
         
         // Randomize Name button
         const randomNameButton = this.add.image(randomCatButton.x, randomCatButton.y + randomCatButton.displayHeight + 10, 'itemFrame')
             .setDisplaySize(300, 50)
             .setDepth(4)
             .setInteractive({ useHandCursor: true })
-            .on('pointerdown', () => console.log(getRandomFullName()));
+            .on('pointerdown', () => {
+                getRandomFullName();
+                console.log(fullName, getPromptWithCatName(generatedPrompt));
+            });
 
         this.add.text(randomNameButton.x, randomNameButton.y, 'Randomize Name',{ fontFamily: 'MinecraftiaRegular', fontSize: '18px',align:'left',stroke: '#000000',strokeThickness: 2 })
             .setOrigin(0.5)
@@ -207,7 +210,10 @@ class BegginingScene extends Phaser.Scene
             .setDisplaySize(300, 50)
             .setDepth(4)
             .setInteractive({ useHandCursor: true })
-            .on('pointerdown', () => console.log(getRandomPrompt()));//Call function to randomize prompt here
+            .on('pointerdown', () => {
+                getRandomPrompt();
+                console.log(fullName, getPromptWithCatName(generatedPrompt));
+            });//Call function to randomize prompt here
 
         this.add.text(randomPrompt.x, randomPrompt.y, 'Randomize Prompt',{ fontFamily: 'MinecraftiaRegular', fontSize: '18px',align:'left',stroke: '#000000',strokeThickness: 2 })
             .setOrigin(0.5)
@@ -226,33 +232,20 @@ class BegginingScene extends Phaser.Scene
         nameText = this.add.text(catNameBar.x, catNameBar.y,initialName,{ fontFamily: 'MinecraftiaRegular', fontSize: '16px',align:'left',stroke: '#000000',strokeThickness: 2 })
             .setOrigin(0.5)
             .setDepth(4);
-            
-
-
+    
         function getRandomFullName(){
             fullName = getRandomItem(titleArray) + " " + getRandomItem(adjArray) + getRandomItem(nounArray) + " " + getRandomItem(suffixArray);
             nameText.setText(fullName);
             return fullName;
         }
        
-        
-        fullName = getRandomFullName;
-
-        // takes data from json file and stores into a new updated object with prompts plus new random cat names
-        var updatedPrompts = [];
-        var generatedPrompt = "";
-
-        function getUpdatedPrompts() {
-            for (var indivPrompt = 0; indivPrompt < jsonFile.prompt.length; indivPrompt++ ) {
-                if (!updatedPrompts[indivPrompt]) {
-                    updatedPrompts[indivPrompt] = {};
-                    updatedPrompts[indivPrompt].objective = jsonFile.prompt[indivPrompt].objective.replaceAll("{{full_name}}", fullName);
-                    updatedPrompts[indivPrompt].introduction = jsonFile.prompt[indivPrompt].introduction.replaceAll("{{full_name}}", fullName);
-                    updatedPrompts[indivPrompt].outcome = jsonFile.prompt[indivPrompt].outcome.replaceAll("{{full_name}}", fullName);
-            }
+        function getPromptWithCatName(prompt) {
+            return {
+                objective: prompt.objective.replaceAll("{{full_name}}", fullName),
+                introduction: prompt.introduction.replaceAll("{{full_name}}", fullName),
+                outcome: prompt.outcome.replaceAll("{{full_name}}", fullName)
+            };
         }
-            return updatedPrompts;  
-    }
         
 
         const randomNumber = (min, max) => { 
@@ -262,15 +255,16 @@ class BegginingScene extends Phaser.Scene
         }
 
         function getRandomPrompt() {
-            var promptIndex = randomNumber(0, getUpdatedPrompts().length);
-            generatedPrompt = getUpdatedPrompts()[promptIndex]; // stores a generated random prompt into a variable we can use later
+            var promptIndex = randomNumber(0, jsonFile.prompt.length);
+            generatedPrompt = jsonFile.prompt[promptIndex]; // stores a generated random prompt into a variable we can use later
             return generatedPrompt;
         }
-        
-        
-        }
+
+        getRandomFullName();
+        getRandomPrompt();
     }
-        
+}
+    
 //Utilities
 //Scales given sprite to normal size
 function normalizeScale(sprite){
