@@ -8,6 +8,7 @@ import cameraShutterSound from "./assets/audio/cameraShutter.mp3";
 import cameraShutterSoundOGG from "./assets/audio/cameraShutter.ogg";
 import polaroidPrintSound from "./assets/audio/polaroidPrinting.mp3" ;
 import polaroidPrintSoundOGG from "./assets/audio/polaroidPrinting.ogg" ;
+import itemFrame from './assets/itemFrame.png';
 
 
 var cat;
@@ -32,6 +33,7 @@ class EndingScene extends Phaser.Scene
         this.load.image('scenery1',scenery1);
         this.load.audio("printSound",[polaroidPrintSound,polaroidPrintSoundOGG ])
         this.load.audio("shutterSound",[cameraShutterSound,cameraShutterSoundOGG])
+        this.load.image('itemFrame',itemFrame);
     }
 
     create ()
@@ -221,8 +223,25 @@ class EndingScene extends Phaser.Scene
             delay: 0
         });
         console.log("built tweens");
+
         //console.log(gameScene.slideOver);
+        const restartButton = this.add.image(polaroid.x, polaroid.y +polaroid.displayHeight/1.75 , 'itemFrame')
+            .setDisplaySize(300, 50)
+            .setDepth(4)
+            .setInteractive({ useHandCursor: true })
+            //call function to pass on cat and prompt selection to next scene here
+            .on('pointerdown', function(pointer, localX, localY, event){
+                this.scene.start('scene')
+          
+            },self );
+
+        
+            this.add.text(restartButton.x, restartButton.y, 'Restart',{ fontFamily: 'MinecraftiaRegular', fontSize: '18px',stroke: '#000000',strokeThickness: 2,align:'left'  })
+                .setOrigin(0.5)
+                .setDepth(4);
     }
+
+    
 
 
 }
