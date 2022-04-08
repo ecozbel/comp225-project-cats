@@ -88,12 +88,11 @@ class MyGame extends Phaser.Scene
     create ()
     {
         //var catBlink = game.scenes.BegginingScene.catAnimated;
-
+        
         // let jsonFile = this.cache.json.get('prompts');
         // console.log('--------->', jsonFile.prompt[0].introduction)
         console.log("sceneB this.game.cat: ");
         console.log(this.game.cat);
-
         var camera = this.cameras.main;
 
         var self = this;

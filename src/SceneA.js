@@ -129,7 +129,8 @@ class BegginingScene extends Phaser.Scene
             .on('pointerdown', function(pointer, localX, localY, event){
                 this.scene.start('sceneB')
                 this.game.cat = catAnimated;
-
+                this.game.cat.generatedPrompt = generatedPrompt;
+                this.game.cat.name = fullName;
                 // obj.scene.sys.updateList.remove(pawn);
                 // obj.scene.sys.displayList.remove(pawn);
                 // obj.scene = scene;

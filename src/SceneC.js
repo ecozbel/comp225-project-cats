@@ -49,6 +49,7 @@ class EndingScene extends Phaser.Scene
         // frame.setVisible(false);
         // bg.setVisible(false);
         
+
         var self = this;
         this.initialSpriteSetup(self);
 
@@ -151,13 +152,25 @@ class EndingScene extends Phaser.Scene
         console.log("cat: ");
         console.log(cat);
 
+        
 
-        endingPrompt = currentScene.add.text(0,0,'Ending prompt for Cat!',{
+        function getPromptWithName(prompt,name) {
+            return {
+                objective: prompt.objective.replaceAll("{{full_name}}", name),
+                introduction: prompt.introduction.replaceAll("{{full_name}}", name),
+                outcome: prompt.outcome.replaceAll("{{full_name}}", name)
+            };
+        }
+
+        var newPrompt = getPromptWithName(this.game.cat.generatedPrompt,this.game.cat.name);
+        
+        endingPrompt = currentScene.add.text(0,0,newPrompt.outcome,{
 			fontFamily: 'Permanent Marker',
-			fontSize: '30px',
+			fontSize: '18px',
 			color: '#000000',
 			fontStyle: 'italic',
-			resolution: 1
+			resolution: 1,
+            wordWrap : {width : 500, useAdvancedWrap : true},
 		});
 
         cat.setVisible(false);
@@ -179,8 +192,8 @@ class EndingScene extends Phaser.Scene
         cat.setDepth(3);
         cat.setScale(3.5);
 
-        console.log("ending scene cat: " + this.game.cat);
-        console.log(this.game.cat);
+        //console.log("ending scene cat: " + this.game.cat);
+        //console.log(getPromptWithCatName(this.game.cat.generatedPrompt,this.game.cat.name));
 
         bg.setVisible(true);
         bg.setScale(0.6);
@@ -198,10 +211,10 @@ class EndingScene extends Phaser.Scene
         //adjusts sprite's position relative to the container
         bg.y=bg.y-50;
         endingPrompt.y=endingPrompt.y+50;
-        endingPrompt.x= frame.x-50;
-        endingPrompt.y= frame.y +200;
+        endingPrompt.x= frame.x-230;
+        endingPrompt.y= frame.y +165;
         cat.x=cat.x-25;
-
+        
     }
 
     setUpTween(cat,polaroid,gameScene){
@@ -241,7 +254,7 @@ class EndingScene extends Phaser.Scene
                 .setDepth(4);
     }
 
-    
+
 
 
 }
