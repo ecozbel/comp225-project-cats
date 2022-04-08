@@ -189,10 +189,8 @@ class EndingScene extends Phaser.Scene
         cat.setDepth(3);
         cat.setScale(3.5);
 
-        cat.hatPosition.currentClothing.setVisible(true);
-        cat.shirtPosition.currentClothing.setVisible(true);
-        cat.pantsPosition.currentClothing.setVisible(true);
-        cat.shoePosition.currentClothing.setVisible(true);
+
+
 
         bg.setVisible(true);
         bg.setScale(0.6);
@@ -207,13 +205,35 @@ class EndingScene extends Phaser.Scene
         endingPrompt.set
         //add all contents of polaroid into container
         polaroid = this.add.container(400,-1000,[ bg,frame,cat,endingPrompt]);
+
+        if (cat.hatPosition.currentClothing != null) {
+            cat.hatPosition.currentClothing.setVisible(true);
+            polaroid.add(cat.hatPosition.currentClothing);
+            cat.hatPosition.currentClothing.x = cat.x - 18;
+            cat.hatPosition.currentClothing.y = cat.y-cat.displayHeight/2.4;
+            cat.hatPosition.currentClothing.setScale(0.4);
+        }
+        if (cat.shirtPosition.currentClothing != null) {
+            cat.shirtPosition.currentClothing.setVisible(true);
+        }
+        if (cat.pantsPosition.currentClothing != null) {
+            cat.pantsPosition.currentClothing.setVisible(true);
+        }
+        if (cat.shoePosition.currentClothing != null) {
+            cat.shoePosition.currentClothing.setVisible(true);
+        }    
+
+        // if (cat.hatPosition.currentClothing != null) {
+        //     polaroid.add(cat.hatPosition.currentClothing);
+        // }
+
         //adjusts sprite's position relative to the container
         bg.y=bg.y-50;
         endingPrompt.y=endingPrompt.y+50;
         endingPrompt.x= frame.x-240;
         endingPrompt.y= frame.y +165;
         cat.x=cat.x-25;
-        
+        //cat.hatPosition.currentClothing.x = cat.x;
     }
 
     setUpTween(cat,polaroid,gameScene){
