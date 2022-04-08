@@ -20,6 +20,7 @@ import hatSilhoetteimg from './assets/icons/hatIcon.png';
 import shirtSilhoetteimg from './assets/icons/shirtIcon.png';
 import shoeSilhoetteimg from './assets/icons/shoesIcon.png';
 import pantsSilhoetteimg from './assets/icons/pantsIcon.png';
+import pants1 from './assets/clothing/pants1.png';
 import itemFrame from './assets/itemFrame.png';
 import animatedLogo from './assets/logoAnimated.png';
 import catPalette from './assets/cat-palette.png';
@@ -79,6 +80,7 @@ class MyGame extends Phaser.Scene
             scene.load.image('shoe3',shoe3img);
             scene.load.image('shirt1', shirt1img);
             scene.load.image('shirt2', firefightercoat);
+            scene.load.image('pants1', pants1);
         }
 
 
@@ -142,7 +144,7 @@ class MyGame extends Phaser.Scene
             createClothing("shoe3",clothingTypes.shoe,scene);
             createClothing("shirt1",clothingTypes.shirt,scene);
             createClothing("shirt2",clothingTypes.shirt,scene);
-            createClothing("shirt2",clothingTypes.pants,scene);
+            createClothing("pants1",clothingTypes.pants,scene);
         }
 
         addAllClothing(this);
