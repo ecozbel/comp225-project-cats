@@ -348,16 +348,16 @@ class MyGame extends Phaser.Scene
                 currentClothing : null,
             }
             
-            cat.shirtPosition = { //these values arent quite right. need test images i think before they can be set right.
+            cat.shirtPosition = { 
                 x : cat.x,
                 y : cat.y+cat.displayHeight/12,
                 z : 3,
                 currentClothing : null,
             }
     
-            cat.pantsPosition = { //these values arent quite right. need test images i think before they can be set right.
-                x : cat.x,
-                y : 300 + 100,
+            cat.pantsPosition = {
+                x : cat.x + 10,
+                y : cat.y+cat.displayHeight/3.39,
                 z : 2,
                 currentClothing : null,
             }
