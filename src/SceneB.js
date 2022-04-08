@@ -424,6 +424,7 @@ class MyGame extends Phaser.Scene
                 scaletoIconSize(sprite);
                 sprite.x=sprite.getData('origin').x;
                 sprite.y=sprite.getData('origin').y;
+                sprite.ignoreDestroy = false;
         }
 
     }
