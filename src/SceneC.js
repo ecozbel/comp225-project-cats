@@ -211,7 +211,7 @@ class EndingScene extends Phaser.Scene
         //adjusts sprite's position relative to the container
         bg.y=bg.y-50;
         endingPrompt.y=endingPrompt.y+50;
-        endingPrompt.x= frame.x-230;
+        endingPrompt.x= frame.x-240;
         endingPrompt.y= frame.y +165;
         cat.x=cat.x-25;
         
