@@ -206,22 +206,38 @@ class EndingScene extends Phaser.Scene
         //add all contents of polaroid into container
         polaroid = this.add.container(400,-1000,[ bg,frame,cat,endingPrompt]);
 
+        if (cat.shoePosition.currentClothing != null) {
+            cat.shoePosition.currentClothing.setVisible(true);
+            polaroid.add(cat.shoePosition.currentClothing);
+            cat.shoePosition.currentClothing.x = cat.x - 18;
+            cat.shoePosition.currentClothing.y = cat.y+cat.displayHeight/2.65;
+            cat.shoePosition.currentClothing.setScale(0.4);
+            cat.shoePosition.currentClothing.setDepth(1);
+        }   
+        if (cat.pantsPosition.currentClothing != null) {
+            cat.pantsPosition.currentClothing.setVisible(true);
+            polaroid.add(cat.pantsPosition.currentClothing);
+            cat.pantsPosition.currentClothing.x = cat.x - 18;
+            cat.pantsPosition.currentClothing.y = cat.y+cat.displayHeight/3.39;
+            cat.pantsPosition.currentClothing.setScale(0.4);
+            cat.pantsPosition.currentClothing.setDepth(2);
+        } 
+        if (cat.shirtPosition.currentClothing != null) {
+            cat.shirtPosition.currentClothing.setVisible(true);
+            polaroid.add(cat.shirtPosition.currentClothing);
+            cat.shirtPosition.currentClothing.x = cat.x - 18;
+            cat.shirtPosition.currentClothing.y = cat.y+cat.displayHeight/12;
+            cat.shirtPosition.currentClothing.setScale(0.4);
+            cat.shirtPosition.currentClothing.setDepth(3);
+        }
         if (cat.hatPosition.currentClothing != null) {
             cat.hatPosition.currentClothing.setVisible(true);
             polaroid.add(cat.hatPosition.currentClothing);
             cat.hatPosition.currentClothing.x = cat.x - 18;
             cat.hatPosition.currentClothing.y = cat.y-cat.displayHeight/2.4;
             cat.hatPosition.currentClothing.setScale(0.4);
+            cat.hatPosition.currentClothing.setDepth(4);
         }
-        if (cat.shirtPosition.currentClothing != null) {
-            cat.shirtPosition.currentClothing.setVisible(true);
-        }
-        if (cat.pantsPosition.currentClothing != null) {
-            cat.pantsPosition.currentClothing.setVisible(true);
-        }
-        if (cat.shoePosition.currentClothing != null) {
-            cat.shoePosition.currentClothing.setVisible(true);
-        }    
 
         // if (cat.hatPosition.currentClothing != null) {
         //     polaroid.add(cat.hatPosition.currentClothing);
