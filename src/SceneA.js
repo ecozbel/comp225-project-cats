@@ -240,6 +240,7 @@ class BegginingScene extends Phaser.Scene
         }
        
         function getPromptWithCatName(prompt) {
+            // make applySubstitutions helper function that takes a string
             return {
                 objective: prompt.objective.replaceAll("{{full_name}}", fullName),
                 introduction: prompt.introduction.replaceAll("{{full_name}}", fullName),
@@ -247,7 +248,6 @@ class BegginingScene extends Phaser.Scene
             };
         }
         
-
         const randomNumber = (min, max) => { 
             //Use below if final number doesn't need to be whole number
             //return Math.random() * (max - min) + min;
