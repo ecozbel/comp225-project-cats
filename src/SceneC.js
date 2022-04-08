@@ -136,15 +136,19 @@ class EndingScene extends Phaser.Scene
 
         if (cat.hatPosition.currentClothing != null) {
             currentScene.add.existing(cat.hatPosition.currentClothing);
+            cat.hatPosition.currentClothing.setVisible(false);
         }
         if (cat.shoePosition.currentClothing != null) {
             currentScene.add.existing(cat.shoePosition.currentClothing);
+            cat.shoePosition.currentClothing.setVisible(false);
         }
         if (cat.pantsPosition.currentClothing != null) {
             currentScene.add.existing(cat.pantsPosition.currentClothing);
+            cat.pantsPosition.currentClothing.setVisible(false);
         }
         if (cat.shirtPosition.currentClothing != null) {
             currentScene.add.existing(cat.shirtPosition.currentClothing);
+            cat.shirtPosition.currentClothing.setVisible(false);
         }
 
 
@@ -178,13 +182,6 @@ class EndingScene extends Phaser.Scene
         bg.setVisible(false);
         endingPrompt.setVisible(false);
 
-
-        // currentScene.add.existing(cat.hatPosition.currentClothing);
-        // currentScene.add.existing(cat.shoePosition.currentClothing);
-        // currentScene.add.existing(cat.shirtPosition.currentClothing);
-        // currentScene.add.existing(cat.pantsPosition.currentClothing);
-
-
     }
 
     setUpPolaroid(){
@@ -192,8 +189,10 @@ class EndingScene extends Phaser.Scene
         cat.setDepth(3);
         cat.setScale(3.5);
 
-        //console.log("ending scene cat: " + this.game.cat);
-        //console.log(getPromptWithCatName(this.game.cat.generatedPrompt,this.game.cat.name));
+        cat.hatPosition.currentClothing.setVisible(true);
+        cat.shirtPosition.currentClothing.setVisible(true);
+        cat.pantsPosition.currentClothing.setVisible(true);
+        cat.shoePosition.currentClothing.setVisible(true);
 
         bg.setVisible(true);
         bg.setScale(0.6);
