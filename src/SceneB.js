@@ -20,6 +20,7 @@ import hatSilhoetteimg from './assets/icons/hatIcon.png';
 import shirtSilhoetteimg from './assets/icons/shirtIcon.png';
 import shoeSilhoetteimg from './assets/icons/shoesIcon.png';
 import pantsSilhoetteimg from './assets/icons/pantsIcon.png';
+import pants1 from './assets/clothing/pants1.png';
 import itemFrame from './assets/itemFrame.png';
 import animatedLogo from './assets/logoAnimated.png';
 import catPalette from './assets/cat-palette.png';
@@ -44,6 +45,7 @@ var logo;
 var pants;
 var atlasKey;
 var catAnimated;
+var allClothing;
 
 class MyGame extends Phaser.Scene
 {
@@ -58,22 +60,29 @@ class MyGame extends Phaser.Scene
     {
         this.load.image('logo', logoImg);
         this.load.image('cat',catimg);
-        this.load.image('hat1',hat1img);
-        this.load.image('hat2',hat2img);
-        this.load.image('shoe1',shoe1img);
-        this.load.image('shoe2',shoe2img);
-        this.load.image('shoe3',shoe3img);
         this.load.image('closet',closetimg);
         this.load.image('background', backgroundImg);
         this.load.image('background2', backgroundImg2);
-        this.load.image('shirt1', shirt1img);
         this.load.image('hatSilhoette', hatSilhoetteimg);
         this.load.image('shirtSilhoette', shirtSilhoetteimg);
         this.load.image('shoeSilhoette', shoeSilhoetteimg);
         this.load.image('pantsSilhoette', pantsSilhoetteimg);
         // console.log('---------> preloading')
         // this.load.json('prompts','src/assets/prompts.json');
-        this.load.image('shirt2', firefightercoat);
+        loadClothing(this);
+
+        //helper function to organize better
+        function loadClothing(scene){
+            scene.load.image('hat1',hat1img);
+            scene.load.image('hat2',hat2img);
+            scene.load.image('shoe1',shoe1img);
+            scene.load.image('shoe2',shoe2img);
+            scene.load.image('shoe3',shoe3img);
+            scene.load.image('shirt1', shirt1img);
+            scene.load.image('shirt2', firefightercoat);
+            scene.load.image('pants1', pants1);
+        }
+
 
 
     }
@@ -98,6 +107,8 @@ class MyGame extends Phaser.Scene
         bg.setStatic(true);
 
 
+
+
         this.matter.world.setGravity(0,0);
         closet = this.matter.add.sprite(150,200,'closet');
         closet.setStatic(true);
@@ -109,20 +120,34 @@ class MyGame extends Phaser.Scene
         console.log("sceneB closet: ");
         console.log(closet);
 
+        //this is an object to act as an enumerator for clothing types: hat, shoe, etc.
+        clothingTypes = {
 
-        //test assets for hats
-        hat = this.matter.add.sprite(600,300,'hat1');
-        hat2 = this.matter.add.sprite(600,300,'hat2');
+            hat : 0,
+            shoe : 1,
+            shirt : 2,
+            pants : 3,
 
-        //test assets for shoes
-        shoe = this.matter.add.sprite(600,300,'shoe1');
-        shoe2 = this.matter.add.sprite(600,300,'shoe2');
-        shoe3 = this.matter.add.sprite(600,300,'shoe3');
-        //test assets for shirts
-        shirt = this.matter.add.sprite(0,0,'shirt1');
-        shirt2 = this.matter.add.sprite(0,0,'shirt2');
-        //test assets for pants
-        pants = this.matter.add.sprite(0,0,'shirt2');
+        }
+
+        //Creates a layer acting as a closet category. Layer is like a type of array, but meant to store graphics objects.
+        var hatGroup = this.add.layer();
+        var shoeGroup = this.add.layer();
+        var shirtGroup = this.add.layer();
+        var pantsGroup = this.add.layer();
+
+        function addAllClothing(scene){
+            createClothing("hat1",clothingTypes.hat,scene);
+            createClothing("hat2",clothingTypes.hat,scene);
+            createClothing("shoe1",clothingTypes.shoe,scene);
+            createClothing("shoe2",clothingTypes.shoe,scene);
+            createClothing("shoe3",clothingTypes.shoe,scene);
+            createClothing("shirt1",clothingTypes.shirt,scene);
+            createClothing("shirt2",clothingTypes.shirt,scene);
+            createClothing("pants1",clothingTypes.pants,scene);
+        }
+
+        addAllClothing(this);
 
 
 
@@ -149,75 +174,8 @@ class MyGame extends Phaser.Scene
         }
 
         createClothingSnapPoints(cat);
-        //did this because I dont think javascript has enums
-        clothingTypes = {
 
-            hat : 0,
-            shoe : 1,
-            shirt : 2,
-            pants : 3,
-
-        }
-
-        //set up sprite properties of test hat object
-        scaletoIconSize(hat);
-        hat.setInteractive();
-        hat.setSensor(true);
-        scaletoIconSize(hat2);
-        hat2.setInteractive();
-        hat2.setSensor(true);
-
-        //set up sprite properties of test shoe object
-        scaletoIconSize(shoe);
-        shoe.setInteractive();
-        shoe.setSensor(true);
-        scaletoIconSize(shoe2);
-        shoe2.setInteractive();
-        shoe2.setSensor(true);
-        scaletoIconSize(shoe3);
-        shoe3.setInteractive();
-        shoe3.setSensor(true);
-
-        //set up sprite properties of test shirt object
-        scaletoIconSize(shirt);
-        shirt.setInteractive();
-        shirt.setSensor(true);
-        scaletoIconSize(shirt2);
-        shirt2.setInteractive();
-        shirt2.setSensor(true);
-
-        //pants
-        scaletoIconSize(pants);
-        pants.setInteractive();
-        pants.setSensor();
-
-        //specify typing of test hat & test shoe 
-        shirt.clothingType = clothingTypes.shirt;
-        shirt2.clothingType = clothingTypes.shirt;
-        shoe.clothingType = clothingTypes.shoe;
-        shoe2.clothingType = clothingTypes.shoe;
-        shoe3.clothingType = clothingTypes.shoe;
-        hat2.clothingType = clothingTypes.hat;
-        hat.clothingType = clothingTypes.hat;
-        pants.clothingType = clothingTypes.pants;
-        //set Spritees to be draggable
-
-        
-        //Creates a layer acting as a closet category. Layer is like a type of array, but meant to store graphics objects.
-        var hatGroup = this.add.layer();
-        var shoeGroup = this.add.layer();
-        var shirtGroup = this.add.layer();
-        var pantsGroup = this.add.layer();
-
-        //Adds items into layers/closet
-        hatGroup.add(hat);
-        hatGroup.add(hat2);
-        shoeGroup.add(shoe);
-        shoeGroup.add(shoe2);
-        shoeGroup.add(shoe3);
-        shirtGroup.add(shirt);
-        shirtGroup.add(shirt2);
-        pantsGroup.add(pants);
+ 
 
         gridAlignLayer(hatGroup);
         gridAlignLayer(shirtGroup);
@@ -235,6 +193,35 @@ class MyGame extends Phaser.Scene
                 y: closet.y-closet.displayHeight+objectLayer.first.displayHeight
             });
         }
+
+        //add a single piece of clothing to the scene.
+        function createClothing(spriteString,clothingType,scene){
+            var clothing = scene.matter.add.sprite(600,300,spriteString);
+            scaletoIconSize(clothing);
+            clothing.setInteractive();
+            clothing.setSensor(true);
+            clothing.clothingType = clothingType;
+            clothing.ignoreDestroy=true;
+            switch (clothingType){
+                case clothingTypes.hat:
+                    hatGroup.add(clothing);
+                    break;
+                case clothingTypes.shoe:
+                    shoeGroup.add(clothing);
+                    break;
+                case clothingTypes.shirt:
+                    shirtGroup.add(clothing);
+                    break;   
+                case clothingTypes.pants:
+                    pantsGroup.add(clothing);
+                    break;                                                 
+            }
+
+            return clothing;
+
+        }
+
+
 
 
         assignSpriteData(hatGroup,"hat");
@@ -439,6 +426,7 @@ class MyGame extends Phaser.Scene
                 scaletoIconSize(sprite);
                 sprite.x=sprite.getData('origin').x;
                 sprite.y=sprite.getData('origin').y;
+                sprite.ignoreDestroy = false;
         }
 
     }

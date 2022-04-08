@@ -8,6 +8,7 @@ import cameraShutterSound from "./assets/audio/cameraShutter.mp3";
 import cameraShutterSoundOGG from "./assets/audio/cameraShutter.ogg";
 import polaroidPrintSound from "./assets/audio/polaroidPrinting.mp3" ;
 import polaroidPrintSoundOGG from "./assets/audio/polaroidPrinting.ogg" ;
+import itemFrame from './assets/itemFrame.png';
 
 
 var cat;
@@ -32,6 +33,7 @@ class EndingScene extends Phaser.Scene
         this.load.image('scenery1',scenery1);
         this.load.audio("printSound",[polaroidPrintSound,polaroidPrintSoundOGG ])
         this.load.audio("shutterSound",[cameraShutterSound,cameraShutterSoundOGG])
+        this.load.image('itemFrame',itemFrame);
     }
 
     create ()
@@ -63,6 +65,11 @@ class EndingScene extends Phaser.Scene
         //var self = this;
 
 
+
+
+
+
+
         //"Takes photo" when clicked on screen
         this.input.on('pointerdown', function () {
             if (pictureCreated == false){
@@ -74,6 +81,7 @@ class EndingScene extends Phaser.Scene
                 //this.setUpCat(400,-1000);
                 this.setUpTween(cat,polaroid,self);
                 gameReady=true;
+
             }
 
 
@@ -125,6 +133,25 @@ class EndingScene extends Phaser.Scene
         frame = currentScene.add.sprite(0,0,'polaroid');
         bg = currentScene.add.sprite(0,0,'scenery1',);
 
+        if (cat.hatPosition.currentClothing != null) {
+            currentScene.add.existing(cat.hatPosition.currentClothing);
+        }
+        if (cat.shoePosition.currentClothing != null) {
+            currentScene.add.existing(cat.shoePosition.currentClothing);
+        }
+        if (cat.pantsPosition.currentClothing != null) {
+            currentScene.add.existing(cat.pantsPosition.currentClothing);
+        }
+        if (cat.shirtPosition.currentClothing != null) {
+            currentScene.add.existing(cat.shirtPosition.currentClothing);
+        }
+
+
+
+        console.log("cat: ");
+        console.log(cat);
+
+
         endingPrompt = currentScene.add.text(0,0,'Ending prompt for Cat!',{
 			fontFamily: 'Permanent Marker',
 			fontSize: '30px',
@@ -137,6 +164,13 @@ class EndingScene extends Phaser.Scene
         frame.setVisible(false);
         bg.setVisible(false);
         endingPrompt.setVisible(false);
+
+
+        // currentScene.add.existing(cat.hatPosition.currentClothing);
+        // currentScene.add.existing(cat.shoePosition.currentClothing);
+        // currentScene.add.existing(cat.shirtPosition.currentClothing);
+        // currentScene.add.existing(cat.pantsPosition.currentClothing);
+
 
     }
 
@@ -189,9 +223,25 @@ class EndingScene extends Phaser.Scene
             delay: 0
         });
         console.log("built tweens");
+
         //console.log(gameScene.slideOver);
+        const restartButton = this.add.image(polaroid.x, polaroid.y +polaroid.displayHeight/1.75 , 'itemFrame')
+            .setDisplaySize(300, 50)
+            .setDepth(4)
+            .setInteractive({ useHandCursor: true })
+            //call function to pass on cat and prompt selection to next scene here
+            .on('pointerdown', function(pointer, localX, localY, event){
+                this.scene.start('scene')
+          
+            },self );
+
+        
+            this.add.text(restartButton.x, restartButton.y, 'Restart',{ fontFamily: 'MinecraftiaRegular', fontSize: '18px',stroke: '#000000',strokeThickness: 2,align:'left'  })
+                .setOrigin(0.5)
+                .setDepth(4);
     }
 
+    
 
 
 }
