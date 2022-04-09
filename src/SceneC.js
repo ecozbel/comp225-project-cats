@@ -1,14 +1,6 @@
 import Phaser from "phaser";
-import { game } from './index.js';
-import polaroidImg from './assets/polaroid.png';
-import scenery1 from './assets/background4.png';
+import * as imports from "./importHelperC.js"
 
-
-import cameraShutterSound from "./assets/audio/cameraShutter.mp3";
-import cameraShutterSoundOGG from "./assets/audio/cameraShutter.ogg";
-import polaroidPrintSound from "./assets/audio/polaroidPrinting.mp3" ;
-import polaroidPrintSoundOGG from "./assets/audio/polaroidPrinting.ogg" ;
-import itemFrame from './assets/itemFrame.png';
 
 
 var cat;
@@ -29,11 +21,11 @@ class EndingScene extends Phaser.Scene
 
     preload ()
     {
-        this.load.image('polaroid', polaroidImg);
-        this.load.image('scenery1',scenery1);
-        this.load.audio("printSound",[polaroidPrintSound,polaroidPrintSoundOGG ])
-        this.load.audio("shutterSound",[cameraShutterSound,cameraShutterSoundOGG])
-        this.load.image('itemFrame',itemFrame);
+        this.load.image('polaroid', imports.polaroidImg);
+        this.load.image('scenery1',imports.scenery1);
+        this.load.audio("printSound",[imports.polaroidPrintSound,imports.polaroidPrintSoundOGG ])
+        this.load.audio("shutterSound",[imports.cameraShutterSound,imports.cameraShutterSoundOGG])
+        this.load.image('itemFrame',imports.itemFrame);
     }
 
     create ()

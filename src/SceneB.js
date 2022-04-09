@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 
 import { game } from './index.js';
-import * as imports from "./functions/importHelpers/importHelperB.js"
+import * as imports from "./importHelperB.js"
 var cat;
 var closet;
 var blankSprite;
@@ -19,8 +19,8 @@ class MyGame extends Phaser.Scene
 
     preload ()
     {
-        this.load.image('logo', imports.logoImg);
-        this.load.image('cat',imports.catimg);
+        //this.load.image('logo', imports.logoImg);
+        //this.load.image('cat',imports.catimg);
         this.load.image('closet',imports.closetimg);
         this.load.image('background', imports.backgroundImg);
         this.load.image('background2', imports.backgroundImg2);
@@ -38,7 +38,7 @@ class MyGame extends Phaser.Scene
             scene.load.image('hat2',imports.hat2img);
             scene.load.image('shoe1',imports.shoe1img);
             scene.load.image('shoe2',imports.shoe2img);
-            scene.load.image('shoe3',imports.hoe3img);
+            scene.load.image('shoe3',imports.shoe3img);
             scene.load.image('shirt1', imports.shirt1img);
             scene.load.image('shirt2', imports.firefightercoat);
             scene.load.image('pants1', imports.pants1);

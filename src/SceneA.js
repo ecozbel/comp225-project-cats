@@ -1,7 +1,7 @@
 import Phaser, { Game } from 'phaser';
 
 
-import * as imports from "./functions/importHelpers/importHelperA.js"
+import * as imports from "./importHelperA.js"
 
 
 var catAnimated;
