@@ -1,7 +1,8 @@
 import Phaser from 'phaser';
 
 import { game } from './index.js';
-import * as imports from "./importHelperB.js"
+import * as imports from "./importHelperB.js";
+import * as utilities from "./utilities.js";
 var cat;
 var closet;
 var blankSprite;
@@ -72,7 +73,7 @@ class MyGame extends Phaser.Scene
         this.matter.world.setGravity(0,0);
         closet = this.matter.add.sprite(150,200,'closet');
         closet.setStatic(true);
-        normalizeScale(closet);
+        utilities.normalizeScale(closet);
         cat = setupCat();
         //cat = this.add.existing(self.game.cat);
         console.log("sceneB cat: ");
@@ -157,7 +158,7 @@ class MyGame extends Phaser.Scene
         //add a single piece of clothing to the scene.
         function createClothing(spriteString,clothingType,scene){
             var clothing = scene.matter.add.sprite(600,300,spriteString);
-            scaletoIconSize(clothing);
+            utilities.scaletoIconSize(clothing);
             clothing.setInteractive();
             clothing.setSensor(true);
             clothing.clothingType = clothingType;
@@ -217,22 +218,22 @@ class MyGame extends Phaser.Scene
         const hatbutton = this.add.sprite(90,100,"hatSilhoette")
         .setInteractive({ useHandCursor: true })
         .on('pointerdown', () => displayLayer(hatGroup));
-        scaletoIconSize(hatbutton);
+        utilities.scaletoIconSize(hatbutton);
  
         const shirtbutton = this.add.sprite(90 + game.config.width*0.08,100,"shirtSilhoette")
         .setInteractive({ useHandCursor: true })
         .on('pointerdown', () => displayLayer(shirtGroup));
-        scaletoIconSize(shirtbutton);
+        utilities.scaletoIconSize(shirtbutton);
 
         const shoebutton = this.add.sprite(90 + game.config.width*0.24,100,"shoeSilhoette")
         .setInteractive({ useHandCursor: true })
         .on('pointerdown', () => displayLayer(shoeGroup));
-        scaletoIconSize(shoebutton);  
+        utilities.scaletoIconSize(shoebutton);  
 
         const pantsbutton = this.add.sprite(90 + game.config.width*0.16,100,"pantsSilhoette")
         .setInteractive({ useHandCursor: true })
         .on('pointerdown', () => displayLayer(pantsGroup));
-        scaletoIconSize(pantsbutton);  
+        utilities.scaletoIconSize(pantsbutton);  
 
         // Ending Scene button
         const EndingButton = this.add.image(cat.x - 150, cat.y - 330 , 'itemFrame')
@@ -326,7 +327,7 @@ class MyGame extends Phaser.Scene
 
         }
         this.input.on('drag', (pointer, gameObject, dragX, dragY) => {
-            normalizeClothing(gameObject);
+            utilities.normalizeClothing(gameObject);
             gameObject.x = dragX;
             gameObject.y = dragY;
         });
@@ -383,7 +384,7 @@ class MyGame extends Phaser.Scene
 
         function returnSpritetoCloset(sprite){
             sprite.getData('group').addAt(sprite, sprite.getData('index'));
-                scaletoIconSize(sprite);
+                utilities.scaletoIconSize(sprite);
                 sprite.x=sprite.getData('origin').x;
                 sprite.y=sprite.getData('origin').y;
                 sprite.ignoreDestroy = false;
@@ -398,21 +399,7 @@ class MyGame extends Phaser.Scene
     }
     
 }
-//Utilities
-//Scales given sprite to normal size
-function normalizeScale(sprite){
-    sprite.displayWidth=game.config.width*0.3; 
-    sprite.scaleY=sprite.scaleX;
-}
-//Scales given sprite to clothing size
-function normalizeClothing(sprite){
-    sprite.displayWidth=game.config.width*0.28; 
-    sprite.scaleY=sprite.scaleX;
-}
-//Scales given sprite to icon size
-function scaletoIconSize(sprite){
-    sprite.displayWidth=game.config.width*0.08; 
-    sprite.scaleY=sprite.scaleX;
-}
+
+
 
 export { MyGame };
