@@ -17,4 +17,31 @@ function scaletoIconSize(sprite){
     sprite.scaleY=sprite.scaleX;
 }
 
-export{normalizeScale,normalizeClothing,scaletoIconSize}
+function createClothingSnapPoints(cat){
+    cat.hatPosition = { 
+        x : cat.x,
+        y : cat.y-cat.displayHeight/2.4,
+        z : 4,
+        currentClothing : null,
+    }
+    cat.shoePosition = { 
+        x : cat.x,
+        y : cat.y+cat.displayHeight/2.65,
+        z : 1,
+        currentClothing : null,
+    }
+    cat.shirtPosition = { 
+        x : cat.x,
+        y : cat.y+cat.displayHeight/12,
+        z : 3,
+        currentClothing : null,
+    }
+    cat.pantsPosition = {
+        x : cat.x + 10,
+        y : cat.y+cat.displayHeight/3.39,
+        z : 2,
+        currentClothing : null,
+    }
+}
+
+export{normalizeScale,normalizeClothing,scaletoIconSize,createClothingSnapPoints}

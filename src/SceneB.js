@@ -134,9 +134,8 @@ class MyGame extends Phaser.Scene
             return cat;
         }
 
-        createClothingSnapPoints(cat);
+        utilities.createClothingSnapPoints(cat);
 
- 
 
         gridAlignLayer(hatGroup);
         gridAlignLayer(shirtGroup);
@@ -181,10 +180,6 @@ class MyGame extends Phaser.Scene
             return clothing;
 
         }
-
-
-
-
         assignSpriteData(hatGroup,"hat");
         assignSpriteData(shoeGroup,"shoe");
         assignSpriteData(shirtGroup,"shirt");
@@ -290,42 +285,6 @@ class MyGame extends Phaser.Scene
                         }
                     });
         }
-
-        //console.log(cat.displayHeight);
-
-        //different clothes snap to different places on cat. only shoe and hat right now
-        function createClothingSnapPoints(cat){
-        
-            cat.hatPosition = { 
-                x : cat.x,
-                y : cat.y-cat.displayHeight/2.4,
-                z : 4,
-                currentClothing : null,
-            }
-    
-            cat.shoePosition = { 
-                x : cat.x,
-                y : cat.y+cat.displayHeight/2.65,
-                z : 1,
-                currentClothing : null,
-            }
-            
-            cat.shirtPosition = { 
-                x : cat.x,
-                y : cat.y+cat.displayHeight/12,
-                z : 3,
-                currentClothing : null,
-            }
-    
-            cat.pantsPosition = {
-                x : cat.x + 10,
-                y : cat.y+cat.displayHeight/3.39,
-                z : 2,
-                currentClothing : null,
-            }
-
-
-        }
         this.input.on('drag', (pointer, gameObject, dragX, dragY) => {
             utilities.normalizeClothing(gameObject);
             gameObject.x = dragX;
@@ -391,9 +350,6 @@ class MyGame extends Phaser.Scene
         }
 
     }
-
-
-
     update(){
         
     }
