@@ -104,21 +104,6 @@ class EndingScene extends Phaser.Scene
         }
     }
 
-
-    setUpCat(_x,_y){
-
-        //cat = this.add.existing(this.game.cat);
-        // cat.setVisible(true);
-        // cat.setDepth(3);
-        // cat.x=_x;
-        // cat.y=_y;
-        // cat.setScale(3.5);
-        // //console
-        // console.log("ending scene cat: " + this.game.cat);
-        // console.log(this.game.cat);
-
-    }
-
     initialSpriteSetup(currentScene){
         cat = currentScene.add.existing(currentScene.game.cat);
         cat.x=0;
