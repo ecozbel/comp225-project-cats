@@ -29,6 +29,8 @@ class MyGame extends Phaser.Scene
         this.load.image('shirtSilhoette', imports.shirtSilhoetteimg);
         this.load.image('shoeSilhoette', imports.shoeSilhoetteimg);
         this.load.image('pantsSilhoette', imports.pantsSilhoetteimg);
+
+        this.load.image('hatSilhoetteOver', imports.hatSilhoetteOverimg);
         // console.log('---------> preloading')
         // this.load.json('prompts','src/assets/prompts.json');
         loadClothing(this);
@@ -223,6 +225,8 @@ class MyGame extends Phaser.Scene
         const hatbutton = this.add.sprite(90,100,"hatSilhoette")
         .setInteractive({ useHandCursor: true })
         .on('pointerdown', () => displayLayer(hatGroup));
+        hatbutton.on('pointerover', () => hatbutton.setTexture('hatSilhoetteOver'));
+        hatbutton.on('pointerout', () => hatbutton.setTexture('hatSilhoette'));
         utilities.scaletoIconSize(hatbutton);
  
         const shirtbutton = this.add.sprite(90 + game.config.width*0.08,100,"shirtSilhoette")
