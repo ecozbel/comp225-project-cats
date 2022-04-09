@@ -1,51 +1,12 @@
 import Phaser from 'phaser';
-import logoImg from './assets/logo.png';
-import { BegginingScene } from './SceneA';
-import catimg from './assets/cat.png';
-import hat1img from './assets/clothing/hat1.png';
-import hat2img from './assets/clothing/hat2.png';
-import shoe1img from './assets/clothing/shoe1.png';
-import shoe2img from './assets/clothing/shoe2.png';
-import shoe3img from './assets/clothing/shoe3.png';
-import closetimg from './assets/closet.png';
-import greenshirt from './assets/clothing/greentshirt.png';
-import flowertop from './assets/clothing/flowertop.png';
-import shirt1img from './assets/clothing/shirt1.png';
-import backgroundImg from './assets/background.png';
-import backgroundImg2 from './assets/background2.png';
-import firefighterhat from './assets/clothing/firefighterhat.png';
-import firefighterboots from './assets/clothing/firefighterboots.png';
-import firefightercoat from './assets/clothing/firefightercoat.png';
-import hatSilhoetteimg from './assets/icons/hatIcon.png';
-import shirtSilhoetteimg from './assets/icons/shirtIcon.png';
-import shoeSilhoetteimg from './assets/icons/shoesIcon.png';
-import pantsSilhoetteimg from './assets/icons/pantsIcon.png';
-import pants1 from './assets/clothing/pants1.png';
-import itemFrame from './assets/itemFrame.png';
-import animatedLogo from './assets/logoAnimated.png';
-import catPalette from './assets/cat-palette.png';
-import catAnimation from './assets/catanimated.png';
+
 import { game } from './index.js';
-import { chosenCat } from './SceneA';//can we delete this?
+import * as imports from "./functions/importHelpers/importHelperB.js"
 var cat;
 var closet;
-var hat;
-var hat2;
-var shirt;
-var shirt2;
-var shoe;
-var shoe2;
-var shoe3;
 var blankSprite;
 var clothingTypes;
-var layers;
-var shirt;
-var shoe;
-var logo;
-var pants;
-var atlasKey;
-var catAnimated;
-var allClothing;
+
 
 class MyGame extends Phaser.Scene
 {
@@ -58,29 +19,29 @@ class MyGame extends Phaser.Scene
 
     preload ()
     {
-        this.load.image('logo', logoImg);
-        this.load.image('cat',catimg);
-        this.load.image('closet',closetimg);
-        this.load.image('background', backgroundImg);
-        this.load.image('background2', backgroundImg2);
-        this.load.image('hatSilhoette', hatSilhoetteimg);
-        this.load.image('shirtSilhoette', shirtSilhoetteimg);
-        this.load.image('shoeSilhoette', shoeSilhoetteimg);
-        this.load.image('pantsSilhoette', pantsSilhoetteimg);
+        this.load.image('logo', imports.logoImg);
+        this.load.image('cat',imports.catimg);
+        this.load.image('closet',imports.closetimg);
+        this.load.image('background', imports.backgroundImg);
+        this.load.image('background2', imports.backgroundImg2);
+        this.load.image('hatSilhoette', imports.hatSilhoetteimg);
+        this.load.image('shirtSilhoette', imports.shirtSilhoetteimg);
+        this.load.image('shoeSilhoette', imports.shoeSilhoetteimg);
+        this.load.image('pantsSilhoette', imports.pantsSilhoetteimg);
         // console.log('---------> preloading')
         // this.load.json('prompts','src/assets/prompts.json');
         loadClothing(this);
 
         //helper function to organize better
         function loadClothing(scene){
-            scene.load.image('hat1',hat1img);
-            scene.load.image('hat2',hat2img);
-            scene.load.image('shoe1',shoe1img);
-            scene.load.image('shoe2',shoe2img);
-            scene.load.image('shoe3',shoe3img);
-            scene.load.image('shirt1', shirt1img);
-            scene.load.image('shirt2', firefightercoat);
-            scene.load.image('pants1', pants1);
+            scene.load.image('hat1',imports.hat1img);
+            scene.load.image('hat2',imports.hat2img);
+            scene.load.image('shoe1',imports.shoe1img);
+            scene.load.image('shoe2',imports.shoe2img);
+            scene.load.image('shoe3',imports.hoe3img);
+            scene.load.image('shirt1', imports.shirt1img);
+            scene.load.image('shirt2', imports.firefightercoat);
+            scene.load.image('pants1', imports.pants1);
         }
 
 

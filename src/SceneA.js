@@ -1,15 +1,7 @@
 import Phaser, { Game } from 'phaser';
-import logoImg from './assets/logo.png';
-import itemFrame from './assets/itemFrame.png';
-import animatedLogo from './assets/logoAnimated.png';
-import catPalette from './assets/cat-palette2.png';
-import catAnimation from './assets/catanimated.png';
-import menuBackground from './assets/menu_innerbackground.png';
-import menuSpriteSheet from './assets/menu_spriteSheet.png';
 
-import musicmp3 from "./assets/audio/music.mp3";
-import musicogg from "./assets/audio/music.ogg" ;
 
+import * as imports from "./functions/importHelpers/importHelperA.js"
 
 
 var catAnimated;
@@ -27,18 +19,18 @@ class BegginingScene extends Phaser.Scene
     preload ()
     {
         this.load.json('prompts','src/assets/prompts.json');
-        this.load.image('logo', logoImg);
-        this.load.image('itemFrame',itemFrame);
-        this.load.image('menuBackground',menuBackground);
-        this.load.spritesheet('animatedlogo', animatedLogo, { frameWidth: 800, frameHeight: 800 });
-        this.load.spritesheet('animatedDoor', menuSpriteSheet, { frameWidth: 800, frameHeight: 600 });
-        this.load.image('cat-palette', catPalette);
+        this.load.image('logo', imports.logoImg);
+        this.load.image('itemFrame',imports.itemFrame);
+        this.load.image('menuBackground',imports.menuBackground);
+        this.load.spritesheet('animatedlogo', imports.animatedLogo, { frameWidth: 800, frameHeight: 800 });
+        this.load.spritesheet('animatedDoor', imports.menuSpriteSheet, { frameWidth: 800, frameHeight: 600 });
+        this.load.image('cat-palette', imports.catPalette);
         // this.load.audio('backgroundMusic', ['assets/audio/music.mp3']);
-        this.load.spritesheet('catanimated', catAnimation, {
+        this.load.spritesheet('catanimated', imports.catAnimation, {
             frameWidth: 64,
             frameHeight: 64
         });
-        this.load.audio("music",[musicmp3,musicogg ])
+        this.load.audio("music",[imports.musicmp3,imports.musicogg ])
     }
     create ()
     {
