@@ -9,4 +9,5 @@ import menuSpriteSheet from './assets/menu_spriteSheet.png';
 import musicmp3 from "./assets/audio/music.mp3";
 import musicogg from "./assets/audio/music.ogg" ;
 
+
 export {musicmp3,musicogg,menuSpriteSheet,menuBackground,catAnimation,catPalette,animatedLogo,itemFrame,logoImg}
