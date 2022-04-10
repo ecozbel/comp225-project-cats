@@ -23,7 +23,7 @@ class MyGame extends Phaser.Scene
         //this.load.image('logo', imports.logoImg);
         //this.load.image('cat',imports.catimg);
         this.load.image('closet',imports.closetimg);
-        this.load.image('background', imports.backgroundImg);
+        this.load.image('background', imports.backgroundTest);
         this.load.image('background2', imports.backgroundImg2);
         this.load.image('hatSilhoette', imports.hatSilhoetteimg);
         this.load.image('shirtSilhoette', imports.shirtSilhoetteimg);
@@ -69,7 +69,7 @@ class MyGame extends Phaser.Scene
         //cat = this.add.existing(this.game.cat);
         
         //var bg = this.matter.add.image(350,250,'background');
-        var bg = this.matter.add.image(400,300,'background2');
+        var bg = this.matter.add.image(400,300,'background');
         bg.setStatic(true);
 
 
