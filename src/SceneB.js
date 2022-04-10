@@ -73,8 +73,11 @@ class MyGame extends Phaser.Scene
         //cat.scene = this;
         //cat = this.add.existing(this.game.cat);
         
+        //Use this background for testing placement
         //var bg = this.matter.add.image(350,250,'background');
-        var bg = this.matter.add.image(400,300,'background');
+
+        //Old art
+        var bg = this.matter.add.image(400,300,'background2');
         bg.setStatic(true);
 
 
