@@ -8,6 +8,11 @@ import hatSilhoetteimg from './assets/icons/hatIcon.png';
 import shirtSilhoetteimg from './assets/icons/shirtIcon.png';
 import shoeSilhoetteimg from './assets/icons/shoesIcon.png';
 import pantsSilhoetteimg from './assets/icons/pantsIcon.png';
+//MouseOver Icons
+import hatSilhoetteOverimg from './assets/icons/hatIconOver.png';
+import shirtSilhoetteOverimg from './assets/icons/shirtIconOver.png';
+import shoeSilhoetteOverimg from './assets/icons/shoesIconOver.png';
+import pantsSilhoettOverimg from './assets/icons/pantsIconOver.png';
 //Hats
 import hat1img from './assets/clothing/hat1.png';
 import hat2img from './assets/clothing/hat2.png';
@@ -29,4 +34,4 @@ import pants5 from './assets/clothing/pants5.png';
 import pants6 from './assets/clothing/pants6.png';
 
 export {hat1img,hat2img,shoe1img,shoe2img,shoe3img,closetimg,shirt1img,backgroundImg,backgroundImg2,firefighterhat,firefighterboots,firefightercoat,hatSilhoetteimg,shirtSilhoetteimg,shoeSilhoetteimg,pantsSilhoetteimg,pants1,
-pants2,pants3,pants4,pants5,pants6,backgroundTest}
+pants2,pants3,pants4,pants5,pants6,hatSilhoetteOverimg,shirtSilhoetteOverimg,shoeSilhoetteOverimg,pantsSilhoettOverimg,backgroundTest}
