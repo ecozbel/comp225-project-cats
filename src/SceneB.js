@@ -1,51 +1,13 @@
 import Phaser from 'phaser';
-import logoImg from './assets/logo.png';
-import { BegginingScene } from './SceneA';
-import catimg from './assets/cat.png';
-import hat1img from './assets/clothing/hat1.png';
-import hat2img from './assets/clothing/hat2.png';
-import shoe1img from './assets/clothing/shoe1.png';
-import shoe2img from './assets/clothing/shoe2.png';
-import shoe3img from './assets/clothing/shoe3.png';
-import closetimg from './assets/closet.png';
-import greenshirt from './assets/clothing/greentshirt.png';
-import flowertop from './assets/clothing/flowertop.png';
-import shirt1img from './assets/clothing/shirt1.png';
-import backgroundImg from './assets/background.png';
-import backgroundImg2 from './assets/background2.png';
-import firefighterhat from './assets/clothing/firefighterhat.png';
-import firefighterboots from './assets/clothing/firefighterboots.png';
-import firefightercoat from './assets/clothing/firefightercoat.png';
-import hatSilhoetteimg from './assets/icons/hatIcon.png';
-import shirtSilhoetteimg from './assets/icons/shirtIcon.png';
-import shoeSilhoetteimg from './assets/icons/shoesIcon.png';
-import pantsSilhoetteimg from './assets/icons/pantsIcon.png';
-import pants1 from './assets/clothing/pants1.png';
-import itemFrame from './assets/itemFrame.png';
-import animatedLogo from './assets/logoAnimated.png';
-import catPalette from './assets/cat-palette.png';
-import catAnimation from './assets/catanimated.png';
+
 import { game } from './index.js';
-import { chosenCat } from './SceneA';//can we delete this?
+import * as imports from "./importHelperB.js";
+import * as utilities from "./utilities.js";
 var cat;
 var closet;
-var hat;
-var hat2;
-var shirt;
-var shirt2;
-var shoe;
-var shoe2;
-var shoe3;
 var blankSprite;
 var clothingTypes;
-var layers;
-var shirt;
-var shoe;
-var logo;
-var pants;
-var atlasKey;
-var catAnimated;
-var allClothing;
+
 
 class MyGame extends Phaser.Scene
 {
@@ -58,29 +20,39 @@ class MyGame extends Phaser.Scene
 
     preload ()
     {
-        this.load.image('logo', logoImg);
-        this.load.image('cat',catimg);
-        this.load.image('closet',closetimg);
-        this.load.image('background', backgroundImg);
-        this.load.image('background2', backgroundImg2);
-        this.load.image('hatSilhoette', hatSilhoetteimg);
-        this.load.image('shirtSilhoette', shirtSilhoetteimg);
-        this.load.image('shoeSilhoette', shoeSilhoetteimg);
-        this.load.image('pantsSilhoette', pantsSilhoetteimg);
+        //this.load.image('logo', imports.logoImg);
+        //this.load.image('cat',imports.catimg);
+        this.load.image('closet',imports.closetimg);
+        this.load.image('background', imports.backgroundTest);
+        this.load.image('background2', imports.backgroundImg2);
+        this.load.image('hatSilhoette', imports.hatSilhoetteimg);
+        this.load.image('shirtSilhoette', imports.shirtSilhoetteimg);
+        this.load.image('shoeSilhoette', imports.shoeSilhoetteimg);
+        this.load.image('pantsSilhoette', imports.pantsSilhoetteimg);
+
+        this.load.image('hatSilhoetteOver', imports.hatSilhoetteOverimg);
+        this.load.image('shirtSilhoetteOver', imports.shirtSilhoetteOverimg);
+        this.load.image('shoeSilhoetteOver', imports.shoeSilhoetteOverimg);
+        this.load.image('pantsSilhoetteOver', imports.pantsSilhoettOverimg);
         // console.log('---------> preloading')
         // this.load.json('prompts','src/assets/prompts.json');
         loadClothing(this);
 
         //helper function to organize better
         function loadClothing(scene){
-            scene.load.image('hat1',hat1img);
-            scene.load.image('hat2',hat2img);
-            scene.load.image('shoe1',shoe1img);
-            scene.load.image('shoe2',shoe2img);
-            scene.load.image('shoe3',shoe3img);
-            scene.load.image('shirt1', shirt1img);
-            scene.load.image('shirt2', firefightercoat);
-            scene.load.image('pants1', pants1);
+            scene.load.image('hat1',imports.hat1img);
+            scene.load.image('hat2',imports.hat2img);
+            scene.load.image('shoe1',imports.shoe1img);
+            scene.load.image('shoe2',imports.shoe2img);
+            scene.load.image('shoe3',imports.shoe3img);
+            scene.load.image('shirt1', imports.shirt1img);
+            scene.load.image('shirt2', imports.firefightercoat);
+            scene.load.image('pants1', imports.pants1);
+            scene.load.image('pants2', imports.pants2);
+            scene.load.image('pants3', imports.pants3);
+            scene.load.image('pants4', imports.pants4);
+            scene.load.image('pants5', imports.pants5);
+            scene.load.image('pants6', imports.pants6);
         }
 
 
@@ -90,19 +62,21 @@ class MyGame extends Phaser.Scene
     create ()
     {
         //var catBlink = game.scenes.BegginingScene.catAnimated;
-
+        
         // let jsonFile = this.cache.json.get('prompts');
         // console.log('--------->', jsonFile.prompt[0].introduction)
         console.log("sceneB this.game.cat: ");
         console.log(this.game.cat);
-
         var camera = this.cameras.main;
 
         var self = this;
         //cat.scene = this;
         //cat = this.add.existing(this.game.cat);
         
+        //Use this background for testing placement
         //var bg = this.matter.add.image(350,250,'background');
+
+        //Old art
         var bg = this.matter.add.image(400,300,'background2');
         bg.setStatic(true);
 
@@ -112,7 +86,7 @@ class MyGame extends Phaser.Scene
         this.matter.world.setGravity(0,0);
         closet = this.matter.add.sprite(150,200,'closet');
         closet.setStatic(true);
-        normalizeScale(closet);
+        utilities.normalizeScale(closet);
         cat = setupCat();
         //cat = this.add.existing(self.game.cat);
         console.log("sceneB cat: ");
@@ -145,6 +119,11 @@ class MyGame extends Phaser.Scene
             createClothing("shirt1",clothingTypes.shirt,scene);
             createClothing("shirt2",clothingTypes.shirt,scene);
             createClothing("pants1",clothingTypes.pants,scene);
+            createClothing("pants2",clothingTypes.pants,scene);
+            createClothing("pants3",clothingTypes.pants,scene);
+            createClothing("pants4",clothingTypes.pants,scene);
+            createClothing("pants5",clothingTypes.pants,scene);
+            createClothing("pants6",clothingTypes.pants,scene);
         }
 
         addAllClothing(this);
@@ -173,9 +152,8 @@ class MyGame extends Phaser.Scene
             return cat;
         }
 
-        createClothingSnapPoints(cat);
+        utilities.createClothingSnapPoints(cat);
 
- 
 
         gridAlignLayer(hatGroup);
         gridAlignLayer(shirtGroup);
@@ -197,7 +175,7 @@ class MyGame extends Phaser.Scene
         //add a single piece of clothing to the scene.
         function createClothing(spriteString,clothingType,scene){
             var clothing = scene.matter.add.sprite(600,300,spriteString);
-            scaletoIconSize(clothing);
+            utilities.scaletoIconSize(clothing);
             clothing.setInteractive();
             clothing.setSensor(true);
             clothing.clothingType = clothingType;
@@ -220,10 +198,6 @@ class MyGame extends Phaser.Scene
             return clothing;
 
         }
-
-
-
-
         assignSpriteData(hatGroup,"hat");
         assignSpriteData(shoeGroup,"shoe");
         assignSpriteData(shirtGroup,"shirt");
@@ -257,22 +231,30 @@ class MyGame extends Phaser.Scene
         const hatbutton = this.add.sprite(90,100,"hatSilhoette")
         .setInteractive({ useHandCursor: true })
         .on('pointerdown', () => displayLayer(hatGroup));
-        scaletoIconSize(hatbutton);
+        hatbutton.on('pointerover', () => hatbutton.setTexture('hatSilhoetteOver'));
+        hatbutton.on('pointerout', () => hatbutton.setTexture('hatSilhoette'));
+        utilities.scaletoIconSize(hatbutton);
  
         const shirtbutton = this.add.sprite(90 + game.config.width*0.08,100,"shirtSilhoette")
         .setInteractive({ useHandCursor: true })
         .on('pointerdown', () => displayLayer(shirtGroup));
-        scaletoIconSize(shirtbutton);
+        shirtbutton.on('pointerover', () => shirtbutton.setTexture('shirtSilhoetteOver'));
+        shirtbutton.on('pointerout', () => shirtbutton.setTexture('shirtSilhoette'));
+        utilities.scaletoIconSize(shirtbutton);
 
         const shoebutton = this.add.sprite(90 + game.config.width*0.24,100,"shoeSilhoette")
         .setInteractive({ useHandCursor: true })
         .on('pointerdown', () => displayLayer(shoeGroup));
-        scaletoIconSize(shoebutton);  
+        shoebutton.on('pointerover', () => shoebutton.setTexture('shoeSilhoetteOver'));
+        shoebutton.on('pointerout', () => shoebutton.setTexture('shoeSilhoette'));
+        utilities.scaletoIconSize(shoebutton);  
 
         const pantsbutton = this.add.sprite(90 + game.config.width*0.16,100,"pantsSilhoette")
         .setInteractive({ useHandCursor: true })
         .on('pointerdown', () => displayLayer(pantsGroup));
-        scaletoIconSize(pantsbutton);  
+        pantsbutton.on('pointerover', () => pantsbutton.setTexture('pantsSilhoetteOver'));
+        pantsbutton.on('pointerout', () => pantsbutton.setTexture('pantsSilhoette'));
+        utilities.scaletoIconSize(pantsbutton);  
 
         // Ending Scene button
         const EndingButton = this.add.image(cat.x - 150, cat.y - 330 , 'itemFrame')
@@ -329,44 +311,8 @@ class MyGame extends Phaser.Scene
                         }
                     });
         }
-
-        //console.log(cat.displayHeight);
-
-        //different clothes snap to different places on cat. only shoe and hat right now
-        function createClothingSnapPoints(cat){
-        
-            cat.hatPosition = { 
-                x : cat.x,
-                y : cat.y-cat.displayHeight/2.4,
-                z : 4,
-                currentClothing : null,
-            }
-    
-            cat.shoePosition = { 
-                x : cat.x,
-                y : cat.y+cat.displayHeight/2.65,
-                z : 1,
-                currentClothing : null,
-            }
-            
-            cat.shirtPosition = { //these values arent quite right. need test images i think before they can be set right.
-                x : cat.x,
-                y : cat.y+cat.displayHeight/12,
-                z : 3,
-                currentClothing : null,
-            }
-    
-            cat.pantsPosition = { //these values arent quite right. need test images i think before they can be set right.
-                x : cat.x,
-                y : 300 + 100,
-                z : 2,
-                currentClothing : null,
-            }
-
-
-        }
         this.input.on('drag', (pointer, gameObject, dragX, dragY) => {
-            normalizeClothing(gameObject);
+            utilities.normalizeClothing(gameObject);
             gameObject.x = dragX;
             gameObject.y = dragY;
         });
@@ -423,36 +369,19 @@ class MyGame extends Phaser.Scene
 
         function returnSpritetoCloset(sprite){
             sprite.getData('group').addAt(sprite, sprite.getData('index'));
-                scaletoIconSize(sprite);
+                utilities.scaletoIconSize(sprite);
                 sprite.x=sprite.getData('origin').x;
                 sprite.y=sprite.getData('origin').y;
                 sprite.ignoreDestroy = false;
         }
 
     }
-
-
-
     update(){
         
     }
     
 }
-//Utilities
-//Scales given sprite to normal size
-function normalizeScale(sprite){
-    sprite.displayWidth=game.config.width*0.3; 
-    sprite.scaleY=sprite.scaleX;
-}
-//Scales given sprite to clothing size
-function normalizeClothing(sprite){
-    sprite.displayWidth=game.config.width*0.28; 
-    sprite.scaleY=sprite.scaleX;
-}
-//Scales given sprite to icon size
-function scaletoIconSize(sprite){
-    sprite.displayWidth=game.config.width*0.08; 
-    sprite.scaleY=sprite.scaleX;
-}
+
+
 
 export { MyGame };
