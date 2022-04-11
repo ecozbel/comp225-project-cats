@@ -247,6 +247,7 @@ class BegginingScene extends Phaser.Scene
                 outcome: prompt.outcome.replaceAll("{{full_name}}", fullName)
             };
         }
+
         
         const randomNumber = (min, max) => { 
             //Use below if final number doesn't need to be whole number
@@ -262,6 +263,8 @@ class BegginingScene extends Phaser.Scene
 
         getRandomFullName();
         getRandomPrompt();
+
+        
     }
 }
     
