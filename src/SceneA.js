@@ -28,6 +28,14 @@ class BegginingScene extends Phaser.Scene
             frameWidth: 64,
             frameHeight: 64
         });
+        this.load.spritesheet('catanimated2', imports.catAnimation2, {
+            frameWidth: 64,
+            frameHeight: 64
+        });
+        this.load.spritesheet('catanimated3', imports.catAnimation3, {
+            frameWidth: 64,
+            frameHeight: 64
+        });
         this.load.audio("music",[imports.musicmp3,imports.musicogg ])
     }
     create ()
@@ -87,7 +95,7 @@ class BegginingScene extends Phaser.Scene
             frames: this.anims.generateFrameNumbers('animatedDoor',{ start: 0, end: 8 }),
             frameRate: 9
         });
-        console.log(doorOpen);
+        //console.log(doorOpen);
 
         logo.play({key:'windblowing',repeat:-1});
         animatedBackground.play({key:'doorOpen',repeat:0});
@@ -140,13 +148,16 @@ class BegginingScene extends Phaser.Scene
             .setDepth(4)
             .setInteractive({ useHandCursor: true })
             .on('pointerdown', function(pointer, localX, localY, event){
-                var index = paletteCreator.catRandomizerConfig.paletteNames.indexOf(catAnimated.color);
-                index++;
-                if (index >= paletteCreator.catRandomizerConfig.paletteNames.length) {
-                    index = 0;
-                }
-            catAnimated.color = paletteCreator.catRandomizerConfig.paletteNames[index];
-            catAnimated.anims.play('catanimated-' + catAnimated.color);
+                // var index = paletteCreator.catRandomizerConfig.paletteNames.indexOf(catAnimated.color);
+                // index++;
+                // if (index >= paletteCreator.catRandomizerConfig.paletteNames.length) {
+                //     index = 0;
+                // }
+            var colorIndex = Phaser.Math.Between(0, paletteCreator.catRandomizerConfig.paletteNames.length-1);
+            catAnimated.color = paletteCreator.catRandomizerConfig.paletteNames[colorIndex];
+            var patternIndex = Phaser.Math.Between(0, paletteCreator.catRandomizerConfig.spriteSheet.keys.length-1);
+            catAnimated.pattern = paletteCreator.catRandomizerConfig.spriteSheet.keys[patternIndex];
+            catAnimated.anims.play(catAnimated.pattern +'-'+ catAnimated.color);
             animatedBackground.play({key:'doorOpen',repeat:0});
 
             // animatedBackground.play({key:'doorOpen',repeat:0});
