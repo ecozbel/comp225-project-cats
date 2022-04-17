@@ -191,7 +191,7 @@ class BegginingScene extends Phaser.Scene
             .setInteractive({ useHandCursor: true })
             .on('pointerdown', () => {
                 getRandomFullName();
-                console.log(fullName, getPromptWithCatName(generatedPrompt));
+                promptText.setText(getPromptWithCatName(generatedPrompt).introduction); 
             });
 
         this.add.text(randomNameButton.x, randomNameButton.y, 'Randomize Name',{ fontFamily: 'MinecraftiaRegular', fontSize: '18px',align:'left',stroke: '#000000',strokeThickness: 2 })
@@ -205,8 +205,8 @@ class BegginingScene extends Phaser.Scene
             .setInteractive({ useHandCursor: true })
             .on('pointerdown', () => {
                 getRandomPrompt();
-                //console.log(fullName, getPromptWithCatName(generatedPrompt));
-                promptBar.setText(getPromptWithCatName(generatedPrompt));
+                console.log(fullName, getPromptWithCatName(generatedPrompt));
+                promptText.setText(getPromptWithCatName(generatedPrompt).introduction);
             });//Call function to randomize prompt here
 
         this.add.text(randomPrompt.x, randomPrompt.y, 'Randomize Prompt',{ fontFamily: 'MinecraftiaRegular', fontSize: '18px',align:'left',stroke: '#000000',strokeThickness: 2 })
