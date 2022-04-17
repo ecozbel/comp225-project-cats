@@ -205,7 +205,8 @@ class BegginingScene extends Phaser.Scene
             .setInteractive({ useHandCursor: true })
             .on('pointerdown', () => {
                 getRandomPrompt();
-                console.log(fullName, getPromptWithCatName(generatedPrompt));
+                //console.log(fullName, getPromptWithCatName(generatedPrompt));
+                promptBar.setText(getPromptWithCatName(generatedPrompt));
             });//Call function to randomize prompt here
 
         this.add.text(randomPrompt.x, randomPrompt.y, 'Randomize Prompt',{ fontFamily: 'MinecraftiaRegular', fontSize: '18px',align:'left',stroke: '#000000',strokeThickness: 2 })
@@ -263,7 +264,7 @@ class BegginingScene extends Phaser.Scene
             .setDepth(4);
         
        
-        this.add.text(promptBar.x,promptBar.y,getPromptWithCatName(generatedPrompt).introduction,{
+        var promptText = this.add.text(promptBar.x,promptBar.y,getPromptWithCatName(generatedPrompt).introduction,{
 			fontFamily: 'Courier New',
 			fontSize: '12px',
 			color: '#000000',
