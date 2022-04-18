@@ -166,9 +166,6 @@ class EndingScene extends Phaser.Scene
         cat.setDepth(3);
         cat.setScale(3.5);
 
-
-
-
         bg.setVisible(true);
         bg.setScale(0.6);
         bg.setDepth(-1);
@@ -176,7 +173,6 @@ class EndingScene extends Phaser.Scene
         frame.setVisible(true);
         frame.setScale(20);
         frame.setDepth(1);
-
 
         endingPrompt.setVisible(true);
         endingPrompt.set
@@ -215,11 +211,6 @@ class EndingScene extends Phaser.Scene
             cat.hatPosition.currentClothing.setScale(0.4);
             cat.hatPosition.currentClothing.setDepth(4);
         }
-
-        // if (cat.hatPosition.currentClothing != null) {
-        //     polaroid.add(cat.hatPosition.currentClothing);
-        // }
-
         //adjusts sprite's position relative to the container
         bg.y=bg.y-50;
         endingPrompt.y=endingPrompt.y+50;
@@ -230,15 +221,6 @@ class EndingScene extends Phaser.Scene
     }
 
     setUpTween(cat,polaroid,gameScene){
-        //Tween that makes the photo slide from top
-        // gameScene.catSlideOver = gameScene.tweens.add({
-        //     targets: cat,
-        //     x: 400,
-        //     y: 280,
-        //     duration: 2000,
-        //     yoyo: false,
-        //     delay: 10
-        // });
         gameScene.polaroidSlideOver = gameScene.tweens.add({
             targets: polaroid,
             x: 400,

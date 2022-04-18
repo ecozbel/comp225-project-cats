@@ -37,6 +37,10 @@ import shirt10img from './assets/clothing/shirt10.png';
 import shirt11img from './assets/clothing/shirt11.png';
 import shirt12img from './assets/clothing/shirt12.png';
 import shirt13img from './assets/clothing/shirt13.png';
+import shirt14img from './assets/clothing/shirt14.png';
+import shirt15img from './assets/clothing/shirt15.png';
+import shirt16img from './assets/clothing/shirt16.png';
+
 
 //Pants
 import pants1 from './assets/clothing/pants1.png';
@@ -48,4 +52,4 @@ import pants6 from './assets/clothing/pants6.png';
 
 export {hat1img,hat2img,shoe1img,shoe2img,shoe3img,closetimg,shirt1img,backgroundImg,backgroundImg2,firefighterhat,firefighterboots,firefightercoat,hatSilhoetteimg,shirtSilhoetteimg,shoeSilhoetteimg,pantsSilhoetteimg,pants1,
 pants2,pants3,pants4,pants5,pants6,hatSilhoetteOverimg,shirtSilhoetteOverimg,shoeSilhoetteOverimg,pantsSilhoettOverimg,backgroundTest,shirt3img,shirt4img,shirt5img,shirt6img,shirt7img,shirt8img,shirt9img,
-shirt10img,shirt11img,shirt12img,shirt13img,backgroundNew}
+shirt10img,shirt11img,shirt12img,shirt13img,shirt14img,shirt15img,shirt16img,backgroundNew}

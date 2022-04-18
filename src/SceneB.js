@@ -60,6 +60,9 @@ class MyGame extends Phaser.Scene
             scene.load.image('shirt11', imports.shirt11img);
             scene.load.image('shirt12', imports.shirt12img);
             scene.load.image('shirt13', imports.shirt13img);
+            scene.load.image('shirt14', imports.shirt14img);
+            scene.load.image('shirt15', imports.shirt15img);
+            scene.load.image('shirt16', imports.shirt16img);
             scene.load.image('pants1', imports.pants1);
             scene.load.image('pants2', imports.pants2);
             scene.load.image('pants3', imports.pants3);
@@ -142,6 +145,9 @@ class MyGame extends Phaser.Scene
             createClothing("shirt11",clothingTypes.shirt,scene);
             createClothing("shirt12",clothingTypes.shirt,scene);
             createClothing("shirt13",clothingTypes.shirt,scene);
+            createClothing("shirt14",clothingTypes.shirt,scene);
+            createClothing("shirt15",clothingTypes.shirt,scene);
+            createClothing("shirt16",clothingTypes.shirt,scene);
             createClothing("pants1",clothingTypes.pants,scene);
             createClothing("pants2",clothingTypes.pants,scene);
             createClothing("pants3",clothingTypes.pants,scene);
