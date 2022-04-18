@@ -1,5 +1,5 @@
 //Photo Backgrounds
-import scenery1 from './assets/background4.png';
+import scenery1 from './assets/backgrounds/background4.png';
 ///Polaroid Visual Elements
 import itemFrame from './assets/itemFrame.png';
 import polaroidImg from './assets/polaroid.png';

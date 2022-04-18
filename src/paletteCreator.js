@@ -1,7 +1,7 @@
 export const catRandomizerConfig  = {
     paletteKey: 'cat-palette',                         // Palette file we're referencing.
-    paletteNames: ['tabby', 'dark', 'light', 'purple','rainbow','arctic', 'vaporwave', 'blackfur','black/white',
-    'spottybrown','wbb','siamese','garfield','tiger','brown'],   // Names for each palette to build out the names for the atlas.
+    paletteNames: ['tabby', 'dark', 'light', 'purple','pastel','arctic', 'vaporwave', 'blackfur','black/white',
+    'spottybrown','wbb','siamese','garfield','tiger','brown','lime'],   // Names for each palette to build out the names for the atlas.
     spriteSheet: {                                      // Spritesheet we're manipulating.
         keys: ['catanimated','catanimated2','catanimated3'],
         frameWidth: 64,                                 

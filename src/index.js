@@ -4,6 +4,7 @@ import Phaser, { Game } from 'phaser';
 import { BegginingScene } from './SceneA';
 import { MyGame } from './SceneB';
 import { EndingScene } from './SceneC';
+import { pickCatScene } from './sceneB_choosecat';
 
 
 const config = {
@@ -17,13 +18,14 @@ const config = {
         default: 'matter',
         matter: {
             debug: false
-        }
+        },
     },
     audio: {
         disableWebAudio: true
     },
     
     scene: [BegginingScene,MyGame,EndingScene]
+    //scene:[pickCatScene]
 };
 
 const game = new Phaser.Game(config);

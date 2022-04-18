@@ -159,6 +159,7 @@ class BegginingScene extends Phaser.Scene
             catAnimated.pattern = paletteCreator.catRandomizerConfig.spriteSheet.keys[patternIndex];
             catAnimated.anims.play(catAnimated.pattern +'-'+ catAnimated.color);
             animatedBackground.play({key:'doorOpen',repeat:0});
+            console.log(catAnimated.pattern +'-'+ catAnimated.color);
 
             // animatedBackground.play({key:'doorOpen',repeat:0});
             }, self);
