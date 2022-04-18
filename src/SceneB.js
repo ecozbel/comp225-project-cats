@@ -27,6 +27,9 @@ class MyGame extends Phaser.Scene
         this.load.image('background2', imports.backgroundImg2);
         this.load.image('backgroundnew', imports.backgroundNew);
 
+        this.load.plugin('rexoutlinepipelineplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexoutlinepipelineplugin.min.js', true);      //this.load.plugin('rexglowfilter2pipelineplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexglowfilter2pipelineplugin.min.js', true);
+
+
         this.load.image('hatSilhoette', imports.hatSilhoetteimg);
         this.load.image('shirtSilhoette', imports.shirtSilhoetteimg);
         this.load.image('shoeSilhoette', imports.shoeSilhoetteimg);
@@ -95,13 +98,14 @@ class MyGame extends Phaser.Scene
         //Old art
         var bg = this.matter.add.image(400,300,'backgroundnew');
         bg.setStatic(true);
-
+        var postFxPlugin = this.plugins.get('rexoutlinepipelineplugin');
 
 
 
         this.matter.world.setGravity(0,0);
         closet = this.matter.add.sprite(180,230,'closet');
         closet.setStatic(true);
+        
         //utilities.normalizeScale(closet);
         cat = setupCat();
         //cat = this.add.existing(self.game.cat);
@@ -242,6 +246,22 @@ class MyGame extends Phaser.Scene
                 gameObject.setData('type', type);
                 gameObject.setData('group', objectLayer);
                 gameObject.setData('index', objectLayer.getIndex(gameObject));
+                gameObject.on('pointerover', function () {
+                    //Inner highlight shader
+                    postFxPlugin.add(gameObject, {
+                        thickness: 3,
+                        outlineColor: 0xffb4db
+                    });
+                    //Outer highlight shader
+                    postFxPlugin.add(gameObject, {
+                        thickness: 5,
+                        outlineColor: 0x4e1a69
+                    });
+                })
+                gameObject.on('pointerout', function () {
+                    // Remove the outline shader effect
+                    postFxPlugin.remove(gameObject);
+                })
             });
     
         }
