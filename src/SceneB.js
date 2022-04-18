@@ -51,7 +51,7 @@ class MyGame extends Phaser.Scene
             scene.load.image('shoe2',imports.shoe2img);
             scene.load.image('shoe3',imports.shoe3img);
             scene.load.image('shirt1', imports.shirt1img);
-            scene.load.image('shirt2', imports.firefightercoat);
+            scene.load.image('shirt2', imports.shirt2img);
             scene.load.image('shirt3', imports.shirt3img);
             scene.load.image('shirt4', imports.shirt4img);
             scene.load.image('shirt5', imports.shirt5img);
