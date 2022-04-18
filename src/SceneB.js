@@ -433,6 +433,7 @@ class MyGame extends Phaser.Scene
                 sprite.x=sprite.getData('origin').x;
                 sprite.y=sprite.getData('origin').y;
                 sprite.ignoreDestroy = false;
+                displayLayer(sprite.getData('group'));
         }
         
 

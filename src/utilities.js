@@ -19,25 +19,25 @@ function scaletoIconSize(sprite){
 
 function createClothingSnapPoints(cat){
     cat.hatPosition = { 
-        x : cat.x,
+        x : cat.x+5,
         y : cat.y-cat.displayHeight/2.4,
         z : 4,
         currentClothing : null,
     }
     cat.shoePosition = { 
-        x : cat.x,
-        y : cat.y+cat.displayHeight/2.65,
+        x : cat.x+10,
+        y : cat.y+cat.displayHeight/2.55,
         z : 1,
         currentClothing : null,
     }
     cat.shirtPosition = { 
-        x : cat.x,
-        y : cat.y+cat.displayHeight/12,
+        x : cat.x+7,
+        y : cat.y+cat.displayHeight/11.7,
         z : 3,
         currentClothing : null,
     }
     cat.pantsPosition = {
-        x : cat.x + 10,
+        x : cat.x + 15,
         y : cat.y+cat.displayHeight/3.39,
         z : 2,
         currentClothing : null,
