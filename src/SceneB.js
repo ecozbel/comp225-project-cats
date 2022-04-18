@@ -47,6 +47,16 @@ class MyGame extends Phaser.Scene
         function loadClothing(scene){
             scene.load.image('hat1',imports.hat1img);
             scene.load.image('hat2',imports.hat2img);
+            scene.load.image('hat3',imports.hat3img);
+            scene.load.image('hat4',imports.hat4img);
+            scene.load.image('hat5',imports.hat5img);
+            scene.load.image('hat6',imports.hat6img);
+            scene.load.image('hat7',imports.hat7img);
+            scene.load.image('hat8',imports.hat8img);
+            scene.load.image('hat9',imports.hat9img);
+            scene.load.image('hat10',imports.hat10img);
+            scene.load.image('hat11',imports.hat11img);
+            scene.load.image('hat12',imports.hat12img);
             scene.load.image('shoe1',imports.shoe1img);
             scene.load.image('shoe2',imports.shoe2img);
             scene.load.image('shoe3',imports.shoe3img);
@@ -138,6 +148,16 @@ class MyGame extends Phaser.Scene
         function addAllClothing(scene){
             createClothing("hat1",clothingTypes.hat,scene);
             createClothing("hat2",clothingTypes.hat,scene);
+            createClothing("hat3",clothingTypes.hat,scene);
+            createClothing("hat4",clothingTypes.hat,scene);
+            createClothing("hat5",clothingTypes.hat,scene);
+            createClothing("hat6",clothingTypes.hat,scene);
+            createClothing("hat7",clothingTypes.hat,scene);
+            createClothing("hat8",clothingTypes.hat,scene);
+            createClothing("hat9",clothingTypes.hat,scene);
+            createClothing("hat10",clothingTypes.hat,scene);
+            createClothing("hat11",clothingTypes.hat,scene);
+            createClothing("hat12",clothingTypes.hat,scene);
             createClothing("shoe1",clothingTypes.shoe,scene);
             createClothing("shoe2",clothingTypes.shoe,scene);
             createClothing("shoe3",clothingTypes.shoe,scene);
