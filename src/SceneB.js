@@ -25,6 +25,8 @@ class MyGame extends Phaser.Scene
         this.load.image('closet',imports.closetimg);
         this.load.image('background', imports.backgroundTest);
         this.load.image('background2', imports.backgroundImg2);
+        this.load.image('backgroundnew', imports.backgroundNew);
+
         this.load.image('hatSilhoette', imports.hatSilhoetteimg);
         this.load.image('shirtSilhoette', imports.shirtSilhoetteimg);
         this.load.image('shoeSilhoette', imports.shoeSilhoetteimg);
@@ -88,7 +90,7 @@ class MyGame extends Phaser.Scene
         //var bg = this.matter.add.image(350,250,'background');
 
         //Old art
-        var bg = this.matter.add.image(400,300,'background2');
+        var bg = this.matter.add.image(400,300,'backgroundnew');
         bg.setStatic(true);
 
 

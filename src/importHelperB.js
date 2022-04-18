@@ -3,6 +3,7 @@ import closetimg from './assets/closet.png';
 import backgroundImg from './assets/backgrounds/background.png';
 import backgroundImg2 from './assets/backgrounds/background2.png';
 import backgroundTest from './assets/backgrounds/background_test.png';
+import backgroundNew from './assets/backgrounds/background_new.png';
 //Icons
 import hatSilhoetteimg from './assets/icons/hatIcon.png';
 import shirtSilhoetteimg from './assets/icons/shirtIcon.png';
@@ -47,4 +48,4 @@ import pants6 from './assets/clothing/pants6.png';
 
 export {hat1img,hat2img,shoe1img,shoe2img,shoe3img,closetimg,shirt1img,backgroundImg,backgroundImg2,firefighterhat,firefighterboots,firefightercoat,hatSilhoetteimg,shirtSilhoetteimg,shoeSilhoetteimg,pantsSilhoetteimg,pants1,
 pants2,pants3,pants4,pants5,pants6,hatSilhoetteOverimg,shirtSilhoetteOverimg,shoeSilhoetteOverimg,pantsSilhoettOverimg,backgroundTest,shirt3img,shirt4img,shirt5img,shirt6img,shirt7img,shirt8img,shirt9img,
-shirt10img,shirt11img,shirt12img,shirt13img}
+shirt10img,shirt11img,shirt12img,shirt13img,backgroundNew}
