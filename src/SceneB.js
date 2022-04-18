@@ -97,9 +97,9 @@ class MyGame extends Phaser.Scene
 
 
         this.matter.world.setGravity(0,0);
-        closet = this.matter.add.sprite(150,200,'closet');
+        closet = this.matter.add.sprite(180,230,'closet');
         closet.setStatic(true);
-        utilities.normalizeScale(closet);
+        //utilities.normalizeScale(closet);
         cat = setupCat();
         //cat = this.add.existing(self.game.cat);
         console.log("sceneB cat: ");
@@ -187,12 +187,12 @@ class MyGame extends Phaser.Scene
         //Visually arranges items in layer in a grid formation. 
         function gridAlignLayer(objectLayer){
             Phaser.Actions.GridAlign(objectLayer.getChildren(), {
-                width: 3,
-                height: 10,
-                cellWidth: 50,
-                cellHeight: 50,
-                x: closet.x-closet.displayWidth+objectLayer.first.displayWidth,
-                y: closet.y-closet.displayHeight+objectLayer.first.displayHeight
+                width: 4,
+                height: 4,
+                cellWidth: 60,
+                cellHeight: 60,
+                x: (closet.x-closet.displayWidth)+80,
+                y: closet.y-(closet.displayHeight/2)
             });
         }
 
@@ -252,28 +252,28 @@ class MyGame extends Phaser.Scene
 
         //button for switching between categories
 
-        const hatbutton = this.add.sprite(90,100,"hatSilhoette")
+        const hatbutton = this.add.sprite(closet.x- (closet.displayWidth/2) +60 ,closet.y- (closet.displayHeight/2) + 54,"hatSilhoette")
         .setInteractive({ useHandCursor: true })
         .on('pointerdown', () => displayLayer(hatGroup));
         hatbutton.on('pointerover', () => hatbutton.setTexture('hatSilhoetteOver'));
         hatbutton.on('pointerout', () => hatbutton.setTexture('hatSilhoette'));
         utilities.scaletoIconSize(hatbutton);
  
-        const shirtbutton = this.add.sprite(90 + game.config.width*0.08,100,"shirtSilhoette")
+        const shirtbutton = this.add.sprite(hatbutton.x+60,hatbutton.y,"shirtSilhoette")
         .setInteractive({ useHandCursor: true })
         .on('pointerdown', () => displayLayer(shirtGroup));
         shirtbutton.on('pointerover', () => shirtbutton.setTexture('shirtSilhoetteOver'));
         shirtbutton.on('pointerout', () => shirtbutton.setTexture('shirtSilhoette'));
         utilities.scaletoIconSize(shirtbutton);
 
-        const shoebutton = this.add.sprite(90 + game.config.width*0.24,100,"shoeSilhoette")
+        const shoebutton = this.add.sprite(shirtbutton.x+60 ,hatbutton.y,"shoeSilhoette")
         .setInteractive({ useHandCursor: true })
         .on('pointerdown', () => displayLayer(shoeGroup));
         shoebutton.on('pointerover', () => shoebutton.setTexture('shoeSilhoetteOver'));
         shoebutton.on('pointerout', () => shoebutton.setTexture('shoeSilhoette'));
         utilities.scaletoIconSize(shoebutton);  
 
-        const pantsbutton = this.add.sprite(90 + game.config.width*0.16,100,"pantsSilhoette")
+        const pantsbutton = this.add.sprite(shoebutton.x+60, hatbutton.y,"pantsSilhoette")
         .setInteractive({ useHandCursor: true })
         .on('pointerdown', () => displayLayer(pantsGroup));
         pantsbutton.on('pointerover', () => pantsbutton.setTexture('pantsSilhoetteOver'));

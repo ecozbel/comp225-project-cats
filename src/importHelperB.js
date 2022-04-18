@@ -1,5 +1,5 @@
 //Game Art Objects
-import closetimg from './assets/closet.png';
+import closetimg from './assets/closet_new.png';
 import backgroundImg from './assets/backgrounds/background.png';
 import backgroundImg2 from './assets/backgrounds/background2.png';
 import backgroundTest from './assets/backgrounds/background_test.png';
