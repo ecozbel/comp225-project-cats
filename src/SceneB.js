@@ -57,6 +57,10 @@ class MyGame extends Phaser.Scene
             scene.load.image('hat10',imports.hat10img);
             scene.load.image('hat11',imports.hat11img);
             scene.load.image('hat12',imports.hat12img);
+            scene.load.image('hat13',imports.hat13img);
+            scene.load.image('hat14',imports.hat14img);
+            scene.load.image('hat15',imports.hat15img);
+            scene.load.image('hat16',imports.hat16img);
             scene.load.image('shoe1',imports.shoe1img);
             scene.load.image('shoe2',imports.shoe2img);
             scene.load.image('shoe3',imports.shoe3img);
@@ -87,6 +91,9 @@ class MyGame extends Phaser.Scene
             scene.load.image('pants9', imports.pants9);
             scene.load.image('pants10', imports.pants10);
             scene.load.image('pants11', imports.pants11);
+            scene.load.image('pants12', imports.pants12);
+            scene.load.image('pants13', imports.pants13);
+            scene.load.image('pants14', imports.pants14);
         }
 
 
@@ -158,6 +165,10 @@ class MyGame extends Phaser.Scene
             createClothing("hat10",clothingTypes.hat,scene);
             createClothing("hat11",clothingTypes.hat,scene);
             createClothing("hat12",clothingTypes.hat,scene);
+            createClothing("hat13",clothingTypes.hat,scene);
+            createClothing("hat14",clothingTypes.hat,scene);
+            createClothing("hat15",clothingTypes.hat,scene);
+            createClothing("hat16",clothingTypes.hat,scene);
             createClothing("shoe1",clothingTypes.shoe,scene);
             createClothing("shoe2",clothingTypes.shoe,scene);
             createClothing("shoe3",clothingTypes.shoe,scene);
@@ -188,6 +199,9 @@ class MyGame extends Phaser.Scene
             createClothing("pants9",clothingTypes.pants,scene);
             createClothing("pants10",clothingTypes.pants,scene);
             createClothing("pants11",clothingTypes.pants,scene);
+            createClothing("pants12",clothingTypes.pants,scene);
+            createClothing("pants13",clothingTypes.pants,scene);
+            createClothing("pants14",clothingTypes.pants,scene);
         }
 
         addAllClothing(this);

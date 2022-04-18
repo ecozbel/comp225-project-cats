@@ -27,6 +27,10 @@ import hat9img from './assets/clothing/hat9.png';
 import hat10img from './assets/clothing/hat10.png';
 import hat11img from './assets/clothing/hat11.png';
 import hat12img from './assets/clothing/hat12.png';
+import hat13img from './assets/clothing/hat13.png';
+import hat14img from './assets/clothing/hat14.png';
+import hat15img from './assets/clothing/hat15.png';
+import hat16img from './assets/clothing/hat16.png';
 import firefighterhat from './assets/clothing/firefighterhat.png';
 //Shoes
 import shoe1img from './assets/clothing/shoe1.png';
@@ -65,7 +69,9 @@ import pants8 from './assets/clothing/pants8.png';
 import pants9 from './assets/clothing/pants9.png';
 import pants10 from './assets/clothing/pants10.png';
 import pants11 from './assets/clothing/pants11.png';
-
-export {hat1img,hat2img,hat3img,hat4img,hat5img,hat6img,hat7img,hat8img,hat9img,hat10img,hat11img,hat12img,shoe1img,shoe2img,shoe3img,closetimg,shirt1img,backgroundImg,backgroundImg2,firefighterhat,firefighterboots,firefightercoat,hatSilhoetteimg,shirtSilhoetteimg,shoeSilhoetteimg,pantsSilhoetteimg,pants1,
-pants2,pants3,pants4,pants5,pants6,pants7,pants8,pants9,pants10,pants11,hatSilhoetteOverimg,shirtSilhoetteOverimg,shoeSilhoetteOverimg,pantsSilhoettOverimg,backgroundTest,shirt2img,shirt3img,shirt4img,shirt5img,shirt6img,shirt7img,shirt8img,shirt9img,
+import pants12 from './assets/clothing/pants12.png';
+import pants13 from './assets/clothing/pants13.png';
+import pants14 from './assets/clothing/pants14.png';
+export {hat1img,hat2img,hat3img,hat4img,hat5img,hat6img,hat7img,hat8img,hat9img,hat10img,hat11img,hat12img,hat13img,hat14img,hat15img,hat16img,shoe1img,shoe2img,shoe3img,closetimg,shirt1img,backgroundImg,backgroundImg2,firefighterhat,firefighterboots,firefightercoat,hatSilhoetteimg,shirtSilhoetteimg,shoeSilhoetteimg,pantsSilhoetteimg,pants1,
+pants2,pants3,pants4,pants5,pants6,pants7,pants8,pants9,pants10,pants11,pants12,pants13,pants14,hatSilhoetteOverimg,shirtSilhoetteOverimg,shoeSilhoetteOverimg,pantsSilhoettOverimg,backgroundTest,shirt2img,shirt3img,shirt4img,shirt5img,shirt6img,shirt7img,shirt8img,shirt9img,
 shirt10img,shirt11img,shirt12img,shirt13img,shirt14img,shirt15img,shirt16img,backgroundNew}
