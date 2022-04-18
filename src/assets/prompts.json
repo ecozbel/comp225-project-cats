@@ -13,14 +13,14 @@
         },
         {
             "objective": "Help A Patient",
-            "introduction": "{{full_name}} has been called to surgery to help a patient who they've known for a long time. They're tail isn't the same as it used to to be, but they trust {{full_name}} who is the best surgeon in town!",
+            "introduction": "{{full_name}} has been called to surgery to help a patient who they've known for a long time. Their tail isn't the same as it used to to be, but they trust {{full_name}} who is the best surgeon in town!",
             "outcome": "It was a brutal surgery that spanned eleven hours, but luckily the patient was alright! {{full_name}}'s nurses complimented their new look and were envious for new scrubs. Before {{full_name}} could suggest a place, an alarm blared into the staff room, signaling a new patient coming into the hospital!"
     
         },
         {
             "objective": "Date Night",
             "introduction": "{{full_name}}'s overenthusiastic friends set him up on a blind date despite his protests. His paws are clammy just thinking about what to wear.",
-            "outcome": "{{full_name}} was so nervous, his fur was dripping with sweat, but when he met his date, he regained his composure. They had a lovely time and have already set up another date. It would take ages for {{full_name}} wipe the smug smirk off his friends' faces."
+            "outcome": "{{full_name}} was so nervous, his fur was dripping with sweat, but when he met his date, he regained his composure. They had a lovely time and have already set up another date. It would take ages for {{full_name}} to wipe the smug smirk off his friends' faces."
     
         },
     
@@ -34,7 +34,7 @@
         {
             "objective": "Green Thumb",
             "introduction": "{{full_name}} is having a rough morning and wants to garden for a bit to clear their head. The flower and vegetable patches are calling their name.",
-            "outcome": "{{full_name}} smiled when they saw the garden was doing well. It used to belong to their late partner and it's the perfect way for Kitty to stay connected even though they're gone."
+            "outcome": "{{full_name}} smiled when they saw the garden was doing well. It used to belong to their late partner and it's the perfect way to stay connected even though they're gone."
         
         }
     

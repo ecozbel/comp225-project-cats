@@ -396,11 +396,14 @@ class MyGame extends Phaser.Scene
                 sprite.y=sprite.getData('origin').y;
                 sprite.ignoreDestroy = false;
         }
+        
 
     }
     update(){
         
     }
+
+    
     
 }
 

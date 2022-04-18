@@ -6,6 +6,7 @@ var catAnimated;
 var atlasKey;
 var logo;
 var nameText;
+var promptBar;
 var animatedBackground;
 class BegginingScene extends Phaser.Scene
 {
@@ -22,6 +23,7 @@ class BegginingScene extends Phaser.Scene
         this.load.image('menuBackground',imports.menuBackground);
         this.load.spritesheet('animatedlogo', imports.animatedLogo, { frameWidth: 800, frameHeight: 800 });
         this.load.spritesheet('animatedDoor', imports.menuSpriteSheet, { frameWidth: 800, frameHeight: 600 });
+        
         this.load.image('cat-palette', imports.catPalette);
         // this.load.audio('backgroundMusic', ['assets/audio/music.mp3']);
         this.load.spritesheet('catanimated', imports.catAnimation, {
@@ -37,6 +39,8 @@ class BegginingScene extends Phaser.Scene
             frameHeight: 64
         });
         this.load.audio("music",[imports.musicmp3,imports.musicogg ])
+
+    
     }
     create ()
     {
@@ -188,7 +192,7 @@ class BegginingScene extends Phaser.Scene
             .setInteractive({ useHandCursor: true })
             .on('pointerdown', () => {
                 getRandomFullName();
-                console.log(fullName, getPromptWithCatName(generatedPrompt));
+                promptText.setText(getPromptWithCatName(generatedPrompt).introduction); 
             });
 
         this.add.text(randomNameButton.x, randomNameButton.y, 'Randomize Name',{ fontFamily: 'MinecraftiaRegular', fontSize: '18px',align:'left',stroke: '#000000',strokeThickness: 2 })
@@ -203,6 +207,7 @@ class BegginingScene extends Phaser.Scene
             .on('pointerdown', () => {
                 getRandomPrompt();
                 console.log(fullName, getPromptWithCatName(generatedPrompt));
+                promptText.setText(getPromptWithCatName(generatedPrompt).introduction);
             });//Call function to randomize prompt here
 
         this.add.text(randomPrompt.x, randomPrompt.y, 'Randomize Prompt',{ fontFamily: 'MinecraftiaRegular', fontSize: '18px',align:'left',stroke: '#000000',strokeThickness: 2 })
@@ -213,9 +218,10 @@ class BegginingScene extends Phaser.Scene
         //Initial Name of cat to be displayed
         var initialName = getRandomItem(titleArray) + " " + getRandomItem(adjArray) + getRandomItem(nounArray) + " " + getRandomItem(suffixArray);
         //Background eleement of name display
-        const catNameBar = this.add.image(catAnimated.x, catAnimated.y - catAnimated.displayHeight/1.5, 'itemFrame')
+        const catNameBar = this.add.image(catAnimated.x, catAnimated.y - catAnimated.displayHeight/1.05, 'itemFrame')
             .setDisplaySize(400, 50)
             .setDepth(4);
+        
             
 
         //Displayed text
@@ -230,14 +236,15 @@ class BegginingScene extends Phaser.Scene
         }
        
         function getPromptWithCatName(prompt) {
+            // make applySubstitutions helper function that takes a string
             return {
                 objective: prompt.objective.replaceAll("{{full_name}}", fullName),
                 introduction: prompt.introduction.replaceAll("{{full_name}}", fullName),
                 outcome: prompt.outcome.replaceAll("{{full_name}}", fullName)
             };
         }
-        
 
+        
         const randomNumber = (min, max) => { 
             //Use below if final number doesn't need to be whole number
             //return Math.random() * (max - min) + min;
@@ -252,8 +259,25 @@ class BegginingScene extends Phaser.Scene
 
         getRandomFullName();
         getRandomPrompt();
+
+        promptBar = this.add.image(catAnimated.x, catAnimated.y - catAnimated.displayHeight/1.35, 'itemFrame')
+            .setDisplaySize(400, 150)
+            .setDepth(4);
+        
+       
+        var promptText = this.add.text(promptBar.x,promptBar.y,getPromptWithCatName(generatedPrompt).introduction,{
+			fontFamily: 'Courier New',
+			fontSize: '12px',
+			color: '#000000',
+			resolution: 1,
+            wordWrap : {width : 250, useAdvancedWrap : true},
+		})
+        .setOrigin(0.5)
+        .setDepth(4);    
+
     }
-}
+
+    }
     
 
 
