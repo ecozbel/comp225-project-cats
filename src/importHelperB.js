@@ -36,6 +36,15 @@ import firefighterhat from './assets/clothing/firefighterhat.png';
 import shoe1img from './assets/clothing/shoe1.png';
 import shoe2img from './assets/clothing/shoe2.png';
 import shoe3img from './assets/clothing/shoe3.png';
+import shoe4img from './assets/clothing/shoe4.png';
+import shoe5img from './assets/clothing/shoe5.png';
+import shoe6img from './assets/clothing/shoe6.png';
+import shoe7img from './assets/clothing/shoe7.png';
+import shoe8img from './assets/clothing/shoe8.png';
+import shoe9img from './assets/clothing/shoe9.png';
+import shoe10img from './assets/clothing/shoe10.png';
+import shoe11img from './assets/clothing/shoe11.png';
+
 import firefighterboots from './assets/clothing/firefighterboots.png';
 //Shirts
 import shirt1img from './assets/clothing/shirt1.png';
@@ -72,6 +81,6 @@ import pants11 from './assets/clothing/pants11.png';
 import pants12 from './assets/clothing/pants12.png';
 import pants13 from './assets/clothing/pants13.png';
 import pants14 from './assets/clothing/pants14.png';
-export {hat1img,hat2img,hat3img,hat4img,hat5img,hat6img,hat7img,hat8img,hat9img,hat10img,hat11img,hat12img,hat13img,hat14img,hat15img,hat16img,shoe1img,shoe2img,shoe3img,closetimg,shirt1img,backgroundImg,backgroundImg2,firefighterhat,firefighterboots,firefightercoat,hatSilhoetteimg,shirtSilhoetteimg,shoeSilhoetteimg,pantsSilhoetteimg,pants1,
+export {hat1img,hat2img,hat3img,hat4img,hat5img,hat6img,hat7img,hat8img,hat9img,hat10img,hat11img,hat12img,hat13img,hat14img,hat15img,hat16img,shoe1img,shoe2img,shoe3img,shoe4img,shoe5img,shoe6img,shoe7img,shoe8img,shoe9img,shoe10img,shoe11img,closetimg,shirt1img,backgroundImg,backgroundImg2,firefighterhat,firefighterboots,firefightercoat,hatSilhoetteimg,shirtSilhoetteimg,shoeSilhoetteimg,pantsSilhoetteimg,pants1,
 pants2,pants3,pants4,pants5,pants6,pants7,pants8,pants9,pants10,pants11,pants12,pants13,pants14,hatSilhoetteOverimg,shirtSilhoetteOverimg,shoeSilhoetteOverimg,pantsSilhoettOverimg,backgroundTest,shirt2img,shirt3img,shirt4img,shirt5img,shirt6img,shirt7img,shirt8img,shirt9img,
 shirt10img,shirt11img,shirt12img,shirt13img,shirt14img,shirt15img,shirt16img,backgroundNew}
