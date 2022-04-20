@@ -23,7 +23,8 @@ class BegginingScene extends Phaser.Scene
         this.load.image('menuBackground',imports.menuBackground);
         this.load.spritesheet('animatedlogo', imports.animatedLogo, { frameWidth: 800, frameHeight: 800 });
         this.load.spritesheet('animatedDoor', imports.menuSpriteSheet, { frameWidth: 800, frameHeight: 600 });
-        
+        this.load.plugin('rextexttypingplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rextexttypingplugin.min.js', true);
+
         this.load.image('cat-palette', imports.catPalette);
         // this.load.audio('backgroundMusic', ['assets/audio/music.mp3']);
         this.load.spritesheet('catanimated', imports.catAnimation, {
@@ -192,7 +193,8 @@ class BegginingScene extends Phaser.Scene
             .setInteractive({ useHandCursor: true })
             .on('pointerdown', () => {
                 getRandomFullName();
-                promptText.setText(getPromptWithCatName(generatedPrompt).introduction); 
+                promptText.setText(getPromptWithCatName(generatedPrompt).introduction);
+                promptText.typing.start(getPromptWithCatName(generatedPrompt).introduction); 
             });
 
         this.add.text(randomNameButton.x, randomNameButton.y, 'Randomize Name',{ fontFamily: 'MinecraftiaRegular', fontSize: '18px',align:'left',stroke: '#000000',strokeThickness: 2 })
@@ -208,6 +210,7 @@ class BegginingScene extends Phaser.Scene
                 getRandomPrompt();
                 console.log(fullName, getPromptWithCatName(generatedPrompt));
                 promptText.setText(getPromptWithCatName(generatedPrompt).introduction);
+                promptText.typing.start(getPromptWithCatName(generatedPrompt).introduction);
             });//Call function to randomize prompt here
 
         this.add.text(randomPrompt.x, randomPrompt.y, 'Randomize Prompt',{ fontFamily: 'MinecraftiaRegular', fontSize: '18px',align:'left',stroke: '#000000',strokeThickness: 2 })
@@ -273,7 +276,15 @@ class BegginingScene extends Phaser.Scene
             wordWrap : {width : 250, useAdvancedWrap : true},
 		})
         .setOrigin(0.5)
-        .setDepth(4);    
+        .setDepth(4);  
+        
+        promptText.typing = this.plugins.get('rextexttypingplugin').add(promptText, {
+            speed: 100,
+            //typeMode: 'middle-to-sides'
+        });
+
+        promptText.typing.start(getPromptWithCatName(generatedPrompt).introduction);
+
 
     }
 
