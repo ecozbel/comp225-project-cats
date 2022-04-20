@@ -81,6 +81,11 @@ class pickCatScene extends Phaser.Scene
         paletteCreator.createPalettes(self);
         let mButton= new musicButton({scene:self,onKey:'musicOnButton',offKey:'musicOffButton' });
 
+        const titleArray = ['Mr.', 'Ms.', 'Mrs.', 'Sir', 'Dame','','',''];
+        const adjArray = ['Fluffy', 'Cuddly', 'Blue', 'Tabby', 'Silly',];
+        const nounArray = ['Whiskers','Kitty', 'Cat', 'Socks', 'Patches', 'Spot',];        
+        const suffixArray = ['Jr.','Sr.', 'IV', 'II', 'PhD', '', '', ''];
+
         const rerollButton = this.add.sprite(400,110,"catReroll",0).setInteractive({ useHandCursor: true })
         //on pointer down, play music and set icon to muted button
         .on('pointerdown', () => rerollCats());
@@ -133,6 +138,12 @@ class pickCatScene extends Phaser.Scene
             return newCat;
         }
 
+        function getRandomItem(arr) {
+            var item = Phaser.Utils.Array.GetRandom(arr);
+            return item;
+        }
+
+
         function openDoors(){
             
             displays[0].last.play({key:'doorOpen',repeat:0});
@@ -140,9 +151,15 @@ class pickCatScene extends Phaser.Scene
             displays[2].last.anims.playAfterDelay('doorOpen', 400);
         }
         function closeDoors(){
-            displays[0].last.play({key:'doorClose',repeat:0}).on('animationstart', () => displays[0].replace(displays[0].first,createRandomCat()));
-            displays[1].last.play({key:'doorClose',repeat:0}).on('animationstart', () => displays[1].replace(displays[1].first,createRandomCat()));
-            displays[2].last.play({key:'doorClose',repeat:0}).on('animationstart', () => displays[2].replace(displays[2].first,createRandomCat()));
+            displays[0].last.play({key:'doorClose',repeat:0}).on('animationstart', () => updateDisplay(displays[0]));
+            displays[1].last.play({key:'doorClose',repeat:0}).on('animationstart', () => updateDisplay(displays[1]));
+            displays[2].last.play({key:'doorClose',repeat:0}).on('animationstart', () => updateDisplay(displays[2]));
+        }
+
+        function updateDisplay(display){
+            display.replace(display.first,createRandomCat())
+            display.first.name = getRandomItem(titleArray) + " " + getRandomItem(adjArray) + getRandomItem(nounArray) + " " + getRandomItem(suffixArray);
+            display.getAt(2).setText( display.first.name);
         }
         this.anims.create({
             key: 'rerollMotion',
@@ -162,10 +179,12 @@ class pickCatScene extends Phaser.Scene
             let doorX = catDisplayConfig.doorPositons.X[i];
             let doorY= catDisplayConfig.doorPositons.Y[i];
             var door = this.add.sprite(0,0,'door').setDepth(4);
-            var catNameBox = this.add.image(0, 100, 'ribbon').setDisplaySize(200, 35).setDepth(2);
-            var catNameText = this.add.text(0, 100, 'Cat Name',{ fontFamily: 'MinecraftiaRegular', fontSize: '16px',align:'left',stroke: '#000000',strokeThickness: 4,resolution:10  })
-                .setOrigin(0.5).setDepth(2);
             var catAnimated=createRandomCat();
+            catAnimated.name = getRandomItem(titleArray) + " " + getRandomItem(adjArray) + getRandomItem(nounArray) + " " + getRandomItem(suffixArray);
+            var catNameBox = this.add.image(0, 100, 'ribbon').setDisplaySize(200, 35).setDepth(2);
+            var catNameText = this.add.text(0, 100, catAnimated.name,{ fontFamily: 'MinecraftiaRegular', fontSize: '12px',align:'left',stroke: '#000000',strokeThickness: 2,resolution:1  })
+                .setOrigin(0.5).setDepth(2);
+            
             displays[i] = this.add.container(doorX,doorY,[catAnimated,catNameBox,catNameText,door]);
             //displays[i].setInteractive(new Phaser.Geom.Rectangle(450, 200, 200, 200), Phaser.Geom.Rectangle.Contains);
         }
