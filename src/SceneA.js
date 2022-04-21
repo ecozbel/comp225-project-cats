@@ -1,298 +1,62 @@
 import Phaser, { Game } from 'phaser';
-import * as imports from "./importHelperA.js"
-import * as paletteCreator from './paletteCreator';
 
-var catAnimated;
-var atlasKey;
-var logo;
-var nameText;
-var promptBar;
-var animatedBackground;
-class BegginingScene extends Phaser.Scene
+// import mainMenuBG from './assets/backgrounds/mainMenuBackground.png';
+// import animatedLogo from './assets/menuAssets/logoAnimated.png';
+// import buttonFrame from './assets/icons/buttonFrameLarge.png'
+// import genericButton from './genericButton';
+
+import * as imports from './importHelperA.js';
+
+class sceneA extends Phaser.Scene
 {
     constructor ()
     {   
         super();
-        Phaser.Scene.call(this, { key: 'sceneA' });
+        Phaser.Scene.call(this, { key: 'sceneA_mainMenu' });
+        
     }
     preload ()
     {
-        this.load.json('prompts','src/assets/prompts.json');
-        this.load.image('logo', imports.logoImg);
-        this.load.image('itemFrame',imports.itemFrame);
-        this.load.image('menuBackground',imports.menuBackground);
         this.load.spritesheet('animatedlogo', imports.animatedLogo, { frameWidth: 800, frameHeight: 800 });
-        this.load.spritesheet('animatedDoor', imports.menuSpriteSheet, { frameWidth: 800, frameHeight: 600 });
-        this.load.plugin('rextexttypingplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rextexttypingplugin.min.js', true);
+        this.load.image('mainMenuBG',imports.mainMenuBG);
+        this.load.spritesheet('buttonFrame', imports.buttonFrame, {
+            frameWidth: 312,
+            frameHeight: 52
+        });
 
-        this.load.image('cat-palette', imports.catPalette);
-        // this.load.audio('backgroundMusic', ['assets/audio/music.mp3']);
-        this.load.spritesheet('catanimated', imports.catAnimation, {
-            frameWidth: 64,
-            frameHeight: 64
-        });
-        this.load.spritesheet('catanimated2', imports.catAnimation2, {
-            frameWidth: 64,
-            frameHeight: 64
-        });
-        this.load.spritesheet('catanimated3', imports.catAnimation3, {
-            frameWidth: 64,
-            frameHeight: 64
-        });
-        this.load.audio("music",[imports.musicmp3,imports.musicogg ])
-
-    
     }
-    create ()
-    {
-        let jsonFile = this.cache.json.get('prompts');
+    create(){
 
-
-        //MUSIC 
-        var backgroundMusic = this.sound.add('music',{ loop: false });
-
-        function toggleSound(givenSound){
-            if (givenSound.isPlaying){
-                givenSound.stop();
-            }
-            else{
-                givenSound.play();
-            }
-        }
-
-        this.matter.world.setGravity(0,0);
-        var self = this;
-
-        var innerBackground = this.matter.add.image(300,300,'menuBackground');
-        innerBackground.setStatic(true)
-        .setScale(1.5);
-
-
-
-
-        animatedBackground = this.add.sprite(400,300,'animatedDoor');
-        //console.log(animatedBackground);
-        //animatedBackground.setVisible(true);
-        animatedBackground.setDepth(2);
-        //bg.setStatic(true);
-
-
-
-
-
-        paletteCreator.createPalettes(self);
-        //var self = this;
-        catAnimated = this.add.sprite(600, 400, 'catanimated-' + paletteCreator.catRandomizerConfig.paletteNames[0]).setScale(6);
-        catAnimated.color = paletteCreator.catRandomizerConfig.paletteNames[0];
-        catAnimated.anims.play('catanimated-' + catAnimated.color);
-        catAnimated.ignoreDestroy=true;
-        var self = this;
-        logo = this.add.sprite(250,150,'animatedlogo').setDisplaySize(300, 300)
+        var background = this.add.image(400,300,'mainMenuBG')
+        var logo = this.add.sprite(250,160,'animatedlogo').setDisplaySize(400, 400)
         .setDepth(4);
         const windBlow = this.anims.create({
             key: 'windblowing',
             frames: this.anims.generateFrameNumbers('animatedlogo',{ start: 0, end: 2 }),
             frameRate: 8
         });
-
-        const doorOpen = this.anims.create({
-            key: 'doorOpen',
-            frames: this.anims.generateFrameNumbers('animatedDoor',{ start: 0, end: 8 }),
-            frameRate: 9
-        });
-        //console.log(doorOpen);
-
         logo.play({key:'windblowing',repeat:-1});
-        animatedBackground.play({key:'doorOpen',repeat:0});
 
-        
+        var camera = this.cameras.main;
+        var self = this;
+        let continueButton= new imports.genericButton({scene:self,key:'buttonFrame',x:250,y:400,text:"Start Game"});
+        continueButton.on('pointerdown', function(pointer, localX, localY, event){
+            camera.fadeOut(1000);    
+        },self );
+        camera.on('camerafadeoutcomplete', function(){
+            startNextScene();
 
-
-
-        const { width, height } = this.scale
-        // Play button
-        const confirmCatButton = this.add.image(logo.x, logo.y +logo.displayHeight/1.75 , 'itemFrame')
-            .setDisplaySize(300, 50)
-            .setDepth(4)
-            .setInteractive({ useHandCursor: true })
-            //call function to pass on cat and prompt selection to next scene here
-            .on('pointerdown', function(pointer, localX, localY, event){
-                this.scene.start('sceneB')
-                this.game.cat = catAnimated;
-                this.game.cat.generatedPrompt = generatedPrompt;
-                this.game.cat.name = fullName;
-                // obj.scene.sys.updateList.remove(pawn);
-                // obj.scene.sys.displayList.remove(pawn);
-                // obj.scene = scene;
-                // scene.sys.updateList.add(obj);
-                // scene.sys.displayList.add(obj);
-            
-            
-            },self );
-
-        
-        this.add.text(confirmCatButton.x, confirmCatButton.y, 'Confirm',{ fontFamily: 'MinecraftiaRegular', fontSize: '18px',stroke: '#000000',strokeThickness: 2,align:'left'  })
-            .setOrigin(0.5)
-            .setDepth(4);
-
-
-        // Settings button
-        const settingsButton = this.add.image(confirmCatButton.x, confirmCatButton.y + confirmCatButton.displayHeight + 10, 'itemFrame')
-            .setDisplaySize(300, 50)
-            .setDepth(4)
-            .setInteractive({ useHandCursor: true })
-            .on('pointerdown', () => toggleSound(backgroundMusic));
-            
-        this.add.text(settingsButton.x, settingsButton.y, 'Music on/off',{ fontFamily: 'MinecraftiaRegular', fontSize: '18px',align:'left',stroke: '#000000',strokeThickness: 2  })
-            .setOrigin(0.5)
-            .setDepth(4);
-
-        // Randomize Cat button
-        const randomCatButton = this.add.image(settingsButton.x, settingsButton.y + settingsButton.displayHeight + 10, 'itemFrame')
-            .setDisplaySize(300, 50)
-            .setDepth(4)
-            .setInteractive({ useHandCursor: true })
-            .on('pointerdown', function(pointer, localX, localY, event){
-                // var index = paletteCreator.catRandomizerConfig.paletteNames.indexOf(catAnimated.color);
-                // index++;
-                // if (index >= paletteCreator.catRandomizerConfig.paletteNames.length) {
-                //     index = 0;
-                // }
-            var colorIndex = Phaser.Math.Between(0, paletteCreator.catRandomizerConfig.paletteNames.length-1);
-            catAnimated.color = paletteCreator.catRandomizerConfig.paletteNames[colorIndex];
-            var patternIndex = Phaser.Math.Between(0, paletteCreator.catRandomizerConfig.spriteSheet.keys.length-1);
-            catAnimated.pattern = paletteCreator.catRandomizerConfig.spriteSheet.keys[patternIndex];
-            catAnimated.anims.play(catAnimated.pattern +'-'+ catAnimated.color);
-            animatedBackground.play({key:'doorOpen',repeat:0});
-            console.log(catAnimated.pattern +'-'+ catAnimated.color);
-
-            // animatedBackground.play({key:'doorOpen',repeat:0});
-            }, self);
-
-        this.add.text(randomCatButton.x, randomCatButton.y, 'Randomize Cat', { fontFamily: 'MinecraftiaRegular', fontSize: '18px',align:'left',stroke: '#000000',strokeThickness: 2  })
-            .setOrigin(0.5)
-            .setDepth(4);
-
-        const titleArray = ['Mr.', 'Ms.', 'Mrs.', 'Sir', 'Dame','','',''];
-        const adjArray = ['Fluffy', 'Cuddly', 'Blue', 'Tabby', 'Silly',];
-        const nounArray = ['Whiskers','Kitty', 'Cat', 'Socks', 'Patches', 'Spot',];        
-        const suffixArray = ['Jr.','Sr.', 'IV', 'II', 'PhD', '', '', ''];
-        //gets random item from an array
-        function getRandomItem(arr) {
-            var item = Phaser.Utils.Array.GetRandom(arr);
-            return item;
+        },self);
+        function startNextScene(){
+            self.scene.start('sceneB_pickCat');
         }
 
-        var fullName;
-        var generatedPrompt;
-        
-        // Randomize Name button
-        const randomNameButton = this.add.image(randomCatButton.x, randomCatButton.y + randomCatButton.displayHeight + 10, 'itemFrame')
-            .setDisplaySize(300, 50)
-            .setDepth(4)
-            .setInteractive({ useHandCursor: true })
-            .on('pointerdown', () => {
-                getRandomFullName();
-                promptText.setText(getPromptWithCatName(generatedPrompt).introduction);
-                promptText.typing.start(getPromptWithCatName(generatedPrompt).introduction); 
-            });
+        let aboutButton= new imports.genericButton({scene:self,key:'buttonFrame',x:continueButton.x,y:continueButton.y+81,text:"About"});
 
-        this.add.text(randomNameButton.x, randomNameButton.y, 'Randomize Name',{ fontFamily: 'MinecraftiaRegular', fontSize: '18px',align:'left',stroke: '#000000',strokeThickness: 2 })
-            .setOrigin(0.5)
-            .setDepth(4)
-
-        // Randomize Prompt button
-        const randomPrompt = this.add.image(randomNameButton.x, randomNameButton.y + randomNameButton.displayHeight + 10, 'itemFrame')
-            .setDisplaySize(300, 50)
-            .setDepth(4)
-            .setInteractive({ useHandCursor: true })
-            .on('pointerdown', () => {
-                getRandomPrompt();
-                console.log(fullName, getPromptWithCatName(generatedPrompt));
-                promptText.setText(getPromptWithCatName(generatedPrompt).introduction);
-                promptText.typing.start(getPromptWithCatName(generatedPrompt).introduction);
-            });//Call function to randomize prompt here
-
-        this.add.text(randomPrompt.x, randomPrompt.y, 'Randomize Prompt',{ fontFamily: 'MinecraftiaRegular', fontSize: '18px',align:'left',stroke: '#000000',strokeThickness: 2 })
-            .setOrigin(0.5)
-            .setDepth(4)
-
-
-        //Initial Name of cat to be displayed
-        var initialName = getRandomItem(titleArray) + " " + getRandomItem(adjArray) + getRandomItem(nounArray) + " " + getRandomItem(suffixArray);
-        //Background eleement of name display
-        const catNameBar = this.add.image(catAnimated.x, catAnimated.y - catAnimated.displayHeight/1.05, 'itemFrame')
-            .setDisplaySize(400, 50)
-            .setDepth(4);
-        
-            
-
-        //Displayed text
-        nameText = this.add.text(catNameBar.x, catNameBar.y,initialName,{ fontFamily: 'MinecraftiaRegular', fontSize: '16px',align:'left',stroke: '#000000',strokeThickness: 2 })
-            .setOrigin(0.5)
-            .setDepth(4);
-    
-        function getRandomFullName(){
-            fullName = getRandomItem(titleArray) + " " + getRandomItem(adjArray) + getRandomItem(nounArray) + " " + getRandomItem(suffixArray);
-            nameText.setText(fullName);
-            return fullName;
-        }
-       
-        function getPromptWithCatName(prompt) {
-            // make applySubstitutions helper function that takes a string
-            return {
-                objective: prompt.objective.replaceAll("{{full_name}}", fullName),
-                introduction: prompt.introduction.replaceAll("{{full_name}}", fullName),
-                outcome: prompt.outcome.replaceAll("{{full_name}}", fullName)
-            };
-        }
-
-        
-        const randomNumber = (min, max) => { 
-            //Use below if final number doesn't need to be whole number
-            //return Math.random() * (max - min) + min;
-            return Math.floor(Math.random() * (max - min) + min);
-        }
-
-        function getRandomPrompt() {
-            var promptIndex = randomNumber(0, jsonFile.prompt.length);
-            generatedPrompt = jsonFile.prompt[promptIndex]; // stores a generated random prompt into a variable we can use later
-            return generatedPrompt;
-        }
-
-        getRandomFullName();
-        getRandomPrompt();
-
-        promptBar = this.add.image(catAnimated.x, catAnimated.y - catAnimated.displayHeight/1.35, 'itemFrame')
-            .setDisplaySize(400, 150)
-            .setDepth(4);
-        
-       
-        var promptText = this.add.text(promptBar.x,promptBar.y,getPromptWithCatName(generatedPrompt).introduction,{
-			fontFamily: 'Courier New',
-			fontSize: '12px',
-			color: '#000000',
-			resolution: 1,
-            wordWrap : {width : 250, useAdvancedWrap : true},
-		})
-        .setOrigin(0.5)
-        .setDepth(4);  
-        
-        promptText.typing = this.plugins.get('rextexttypingplugin').add(promptText, {
-            speed: 100,
-            //typeMode: 'middle-to-sides'
-        });
-
-        promptText.typing.start(getPromptWithCatName(generatedPrompt).introduction);
-
-
+           
+    }
+    update(){
     }
 
-    }
-    
-
-
-export const chosenCat = catAnimated;
-console.log(chosenCat);
-export { BegginingScene };
-
+}
+export {sceneA};

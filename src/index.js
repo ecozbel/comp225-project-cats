@@ -1,12 +1,12 @@
 
 import Phaser, { Game } from 'phaser';
 
-import { BegginingScene } from './SceneA';
-import { MyGame } from './SceneB';
-import { EndingScene } from './SceneC';
-import { pickCatScene } from './sceneB_choosecat';
-import { showPromptScene } from './sceneC_showPrompt';
-import { mainMenuScene } from './sceneA_mainMenu';
+import { sceneA } from './sceneA';
+import { sceneD } from './sceneD';
+import { sceneE } from './sceneE';
+import { sceneB } from './sceneB';
+import { sceneC } from './sceneC';
+
 
 
 const config = {
@@ -27,7 +27,7 @@ const config = {
     },
     
     //scene: [BegginingScene,MyGame,EndingScene]
-    scene:[mainMenuScene,pickCatScene,showPromptScene,MyGame,EndingScene]
+    scene:[sceneA,sceneB,sceneC,sceneD,sceneE]
 };
 
 const game = new Phaser.Game(config);
