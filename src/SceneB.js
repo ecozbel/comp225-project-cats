@@ -7,6 +7,8 @@ var cat;
 var closet;
 var blankSprite;
 var clothingTypes;
+import buttonFrame from './assets/icons/buttonFrameLarge.png'
+import genericButton from './genericButton';
 
 
 class MyGame extends Phaser.Scene
@@ -26,6 +28,10 @@ class MyGame extends Phaser.Scene
         this.load.image('background', imports.backgroundTest);
         this.load.image('background2', imports.backgroundImg2);
         this.load.image('backgroundnew', imports.backgroundNew);
+        this.load.spritesheet('buttonFrame', buttonFrame, {
+            frameWidth: 312,
+            frameHeight: 52
+        });
 
         this.load.plugin('rexoutlinepipelineplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexoutlinepipelineplugin.min.js', true);      //this.load.plugin('rexglowfilter2pipelineplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexglowfilter2pipelineplugin.min.js', true);
 
@@ -387,14 +393,18 @@ class MyGame extends Phaser.Scene
                 //
             },self );
 
-            camera.on('camerafadeoutcomplete', function(){
-                startNextScene();
+        let continueButton= new genericButton({scene:self,key:'buttonFrame',x:cat.x - 150,y:cat.y - 330,text:"Continue"});
+        continueButton.on('pointerdown', function(pointer, localX, localY, event){
+            camera.fadeOut(1000);  
+            this.game.cat = cat;  
+        },self );
+        camera.on('camerafadeoutcomplete', function(){
+            startNextScene();
 
-            },self);
-                //this.scene.start('sceneC')
+        },self);
 
-            this.add.text(EndingButton.x, EndingButton.y, 'Continue',{ fontFamily: 'MinecraftiaRegular', fontSize: '18px',stroke: '#000000',strokeThickness: 2,align:'left'  })
-            .setOrigin(0.5)
+            // this.add.text(EndingButton.x, EndingButton.y, 'Continue',{ fontFamily: 'MinecraftiaRegular', fontSize: '18px',stroke: '#000000',strokeThickness: 2,align:'left'  })
+            // .setOrigin(0.5)
         // function startNextScene(){
         //     this.scene.start('sceneC')
         // }

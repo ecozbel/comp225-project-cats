@@ -17,6 +17,7 @@ class showPromptScene extends Phaser.Scene
     preload ()
     {
         this.load.json('prompts','src/assets/prompts.json');
+        this.load.plugin('rextexttypingplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rextexttypingplugin.min.js', true);
         this.load.image('promptBoard',promptBg);
         this.load.image('innerBG',innerBG);
         this.load.spritesheet('buttonFrame', buttonFrame, {
@@ -37,13 +38,19 @@ class showPromptScene extends Phaser.Scene
         iBG.setDepth(-1);
         iBG.setScale(1.5);
         var self = this;
+        var camera = this.cameras.main;
 
         let continueButton= new genericButton({scene:self,key:'buttonFrame',x:400,y:50,text:"Continue."});
         continueButton.on('pointerdown', function(pointer, localX, localY, event){
-            this.scene.start('sceneB')    
+            camera.fadeOut(1000);    
         },self );
+        camera.on('camerafadeoutcomplete', function(){
+            startNextScene();
 
-
+        },self);
+        function startNextScene(){
+            self.scene.start('sceneB');
+        }
         function getPromptWithCatName(prompt) {
             // make applySubstitutions helper function that takes a string
             return {
@@ -82,7 +89,13 @@ class showPromptScene extends Phaser.Scene
             wordWrap : {width : 370, padding:9, useAdvancedWrap : true},
 		})
         .setOrigin(0.5)
-        .setDepth(4);        
+        .setDepth(4);
+        promptText.typing = this.plugins.get('rextexttypingplugin').add(promptText, {
+            speed: 100,
+            //typeMode: 'middle-to-sides'
+        });
+
+        promptText.typing.start(getPromptWithCatName(generatedPrompt).introduction);        
     }
     update(){
     }

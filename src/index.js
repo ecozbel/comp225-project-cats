@@ -5,6 +5,8 @@ import { BegginingScene } from './SceneA';
 import { MyGame } from './SceneB';
 import { EndingScene } from './SceneC';
 import { pickCatScene } from './sceneB_choosecat';
+import { showPromptScene } from './sceneC_showPrompt';
+import { mainMenuScene } from './sceneA_mainMenu';
 
 
 const config = {
@@ -24,8 +26,8 @@ const config = {
         disableWebAudio: true
     },
     
-    scene: [BegginingScene,MyGame,EndingScene]
-    //scene:[pickCatScene]
+    //scene: [BegginingScene,MyGame,EndingScene]
+    scene:[mainMenuScene,pickCatScene,showPromptScene,MyGame,EndingScene]
 };
 
 const game = new Phaser.Game(config);

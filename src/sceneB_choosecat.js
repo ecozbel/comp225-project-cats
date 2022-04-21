@@ -207,15 +207,6 @@ class pickCatScene extends Phaser.Scene
                 .setOrigin(0.5).setDepth(2);
             
             displays[i] = this.add.container(doorX,doorY,[catAnimated,catNameBox,catNameText,door]);
-            //console.log(catAnimated.getBounds())
-            //displays[i].setInteractive(catAnimated.getBounds(),Phaser.Geom.Rectangle.Contains);
-            // displays[i].on('pointerdown',function(){ 
-            //     console.log('hey');
-            //     this.scene.start('showPromptScene');
-            //     this.game.cat = displays[i].first;
-            //     this.game.cat.name = displays[i].catNameText;
-            // },self);
-            //displays[i].setInteractive(new Phaser.Geom.Rectangle(450, 200, 200, 200), Phaser.Geom.Rectangle.Contains);
         }
 
         openDoors();
