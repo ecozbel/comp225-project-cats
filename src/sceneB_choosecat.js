@@ -75,6 +75,7 @@ class pickCatScene extends Phaser.Scene
         var self = this;
         var iBG = this.add.image(400,300,'innerBG');
         var oBG = this.add.image(400,300,'outerBG');
+        var camera = this.cameras.main;
         iBG.setDepth(-1);
         iBG.setScale(1.5);
         oBG.setDepth(0);
@@ -134,9 +135,29 @@ class pickCatScene extends Phaser.Scene
                 // Remove the outline shader effect
                 postFxPlugin.remove(newCat);
             })
+
+            newCat.on('pointerdown', function () {
+                // Remove the outline shader effect
+                postFxPlugin.remove(newCat);
+                
+                self.game.cat = newCat;
+                self.game.cat.name = newCat.name;
+                camera.fadeOut(1000); 
+                //self.scene.start('showPromptScene');
+            })
             newCat.ignoreDestroy=true;
             return newCat;
         }
+
+        camera.on('camerafadeoutcomplete', function(){
+            startNextScene();
+
+        },self);
+
+        function startNextScene(){
+            self.scene.start('showPromptScene');
+        }
+
 
         function getRandomItem(arr) {
             var item = Phaser.Utils.Array.GetRandom(arr);
@@ -186,6 +207,14 @@ class pickCatScene extends Phaser.Scene
                 .setOrigin(0.5).setDepth(2);
             
             displays[i] = this.add.container(doorX,doorY,[catAnimated,catNameBox,catNameText,door]);
+            //console.log(catAnimated.getBounds())
+            //displays[i].setInteractive(catAnimated.getBounds(),Phaser.Geom.Rectangle.Contains);
+            // displays[i].on('pointerdown',function(){ 
+            //     console.log('hey');
+            //     this.scene.start('showPromptScene');
+            //     this.game.cat = displays[i].first;
+            //     this.game.cat.name = displays[i].catNameText;
+            // },self);
             //displays[i].setInteractive(new Phaser.Geom.Rectangle(450, 200, 200, 200), Phaser.Geom.Rectangle.Contains);
         }
 

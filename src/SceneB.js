@@ -72,6 +72,10 @@ class MyGame extends Phaser.Scene
             scene.load.image('shoe9',imports.shoe9img);
             scene.load.image('shoe10',imports.shoe10img);
             scene.load.image('shoe11',imports.shoe11img);
+            scene.load.image('shoe12',imports.shoe12img);
+            scene.load.image('shoe13',imports.shoe13img);
+            scene.load.image('shoe14',imports.shoe14img);
+            scene.load.image('shoe15',imports.shoe15img);
             scene.load.image('shirt1', imports.shirt1img);
             scene.load.image('shirt2', imports.shirt2img);
             scene.load.image('shirt3', imports.shirt3img);
@@ -188,6 +192,10 @@ class MyGame extends Phaser.Scene
             createClothing("shoe9",clothingTypes.shoe,scene);
             createClothing("shoe10",clothingTypes.shoe,scene);
             createClothing("shoe11",clothingTypes.shoe,scene);
+            createClothing("shoe12",clothingTypes.shoe,scene);
+            createClothing("shoe13",clothingTypes.shoe,scene);
+            createClothing("shoe14",clothingTypes.shoe,scene);
+            createClothing("shoe15",clothingTypes.shoe,scene);
             createClothing("shirt1",clothingTypes.shirt,scene);
             createClothing("shirt2",clothingTypes.shirt,scene);
             createClothing("shirt3",clothingTypes.shirt,scene);
