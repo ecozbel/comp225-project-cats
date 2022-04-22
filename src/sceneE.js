@@ -181,20 +181,11 @@ class sceneE extends Phaser.Scene
 
         if (cat.shoePosition.currentClothing != null) {
             var shoes = cat.shoePosition.currentClothing;
-            shoes.setVisible(true);
-            polaroid.add(shoes);
-            utilities.scaleToGivenSize(shoes,this.game.config.width*0.146);
-            shoes.x =  cat.x-21.5;
-            shoes.y = cat.y+cat.displayHeight/2.61;
-            shoes.setDepth(1);
+            handleClothingItemPolaroidSlide(shoes,-21.5,cat.displayHeight/2.61,1,this);
         }   
         if (cat.pantsPosition.currentClothing != null) {
-            cat.pantsPosition.currentClothing.setVisible(true);
-            polaroid.add(cat.pantsPosition.currentClothing);
-            cat.pantsPosition.currentClothing.x = cat.x - 18;
-            cat.pantsPosition.currentClothing.y = cat.y+cat.displayHeight/3.39;
-            cat.pantsPosition.currentClothing.setScale(0.4);
-            cat.pantsPosition.currentClothing.setDepth(2);
+            var pants = cat.pantsPosition.currentClothing;
+            handleClothingItemPolaroidSlide(pants,-20,cat.displayHeight/3.39,2,this);
         } 
         if (cat.shirtPosition.currentClothing != null) {
             cat.shirtPosition.currentClothing.setVisible(true);
@@ -218,7 +209,20 @@ class sceneE extends Phaser.Scene
         endingPrompt.x= frame.x-240;
         endingPrompt.y= frame.y +165;
         cat.x=cat.x-25;
-        //cat.hatPosition.currentClothing.x = cat.x;
+
+
+        //helper function to reduce code duplication
+        function handleClothingItemPolaroidSlide(clothing,xOffset,yOffset,depth,thisPage){
+            clothing.setVisible(true);
+            polaroid.add(clothing);
+            utilities.scaleToGivenSize(clothing,thisPage.game.config.width*0.146);
+            clothing.x =  cat.x+xOffset;
+            clothing.y = cat.y+yOffset;
+            clothing.setDepth(depth);
+        }
+
+
+
     }
 
     setUpTween(cat,polaroid,gameScene){
