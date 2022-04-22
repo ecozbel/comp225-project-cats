@@ -216,24 +216,24 @@ class sceneE extends Phaser.Scene
             clothing.setDepth(depth);
         }
 
-        var texture = scene.textures.createCanvas("snapshot", frame.displayWidth, frame.displayHeight);
-        var canvas = texture.getCanvas();
-        function exportCanvasAsPNG(id, fileName, dataUrl) {
-            var canvasElement = document.getElementById(id);
-            var MIME_TYPE = "image/png";
-            var imgURL = dataUrl;
-            var dlLink = document.createElement('a');
-            dlLink.download = fileName;
-            dlLink.href = imgURL;
-            dlLink.dataset.downloadurl = [MIME_TYPE, dlLink.download, dlLink.href].join(':');
-            document.body.appendChild(dlLink);
-            dlLink.click();
-            document.body.removeChild(dlLink);
-        }
+        // var texture = scene.textures.createCanvas("snapshot", frame.displayWidth, frame.displayHeight);
+        // var canvas = texture.getCanvas();
+        // function exportCanvasAsPNG(id, fileName, dataUrl) {
+        //     var canvasElement = document.getElementById(id);
+        //     var MIME_TYPE = "image/png";
+        //     var imgURL = dataUrl;
+        //     var dlLink = document.createElement('a');
+        //     dlLink.download = fileName;
+        //     dlLink.href = imgURL;
+        //     dlLink.dataset.downloadurl = [MIME_TYPE, dlLink.download, dlLink.href].join(':');
+        //     document.body.appendChild(dlLink);
+        //     dlLink.click();
+        //     document.body.removeChild(dlLink);
+        // }
 
-        this.game.renderer.snapshot(function (image) {                
-            exportCanvasAsPNG(canvas, 'snapshot', image.src);
-        });
+        // this.game.renderer.snapshot(function (image) {                
+        //     exportCanvasAsPNG(canvas, 'snapshot', image.src);
+        // });
 
 
 
