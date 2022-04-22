@@ -100,6 +100,15 @@ class sceneB extends Phaser.Scene
             }
         }
 
+        var backButton= new imports.genericButton({scene:self,key:'buttonFrame',x:80,y:50,text:"Back"});
+        backButton.setDisplaySize(100,54);
+        backButton.on('pointerdown', function(pointer, localX, localY, event){
+            startPreviousScene();   
+        },self );
+        function startPreviousScene(){
+            self.scene.start('sceneA_mainMenu');
+        }
+
 
         const titleArray = ['Mr.', 'Ms.', 'Mrs.', 'Sir', 'Dame','','',''];
         const adjArray = ['Fluffy', 'Cuddly', 'Blue', 'Tabby', 'Silly',];

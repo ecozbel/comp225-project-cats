@@ -40,7 +40,15 @@ class sceneC extends Phaser.Scene
         var self = this;
         var camera = this.cameras.main;
 
-        let continueButton= new imports.genericButton({scene:self,key:'buttonFrame',x:400,y:50,text:"Continue."});
+        var backButton= new imports.genericButton({scene:self,key:'buttonFrame',x:200,y:570,text:"Back"});
+        backButton.on('pointerdown', function(pointer, localX, localY, event){
+            startPreviousScene();   
+        },self );
+        function startPreviousScene(){
+            self.scene.start('sceneB_pickCat');
+        }
+
+        var continueButton= new imports.genericButton({scene:self,key:'buttonFrame',x:600,y:570,text:"Continue"});
         continueButton.on('pointerdown', function(pointer, localX, localY, event){
             camera.fadeOut(1000);    
         },self );
