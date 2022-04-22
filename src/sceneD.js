@@ -487,27 +487,33 @@ class sceneD extends Phaser.Scene
                         handleClothingPlacement(cat.pantsPosition); 
                         break;                                                 
                 }
-
-
             }
             //Sprite shrinks and returns to closet if it is not dropped on cat.
             else{
                 /*
                 set the cat's clothing at this position to null to avoid crashing the game
-                in the polaroid scene
+                in the polaroid scene, if the sprite was on the cat
                 */
                 switch (sprite.clothingType){
                     case clothingTypes.hat:
-                        cat.hatPosition.currentClothing = null;
+                        if (cat.hatPosition.currentClothing === sprite){
+                            cat.hatPosition.currentClothing = null;
+                        }
                         break;
                     case clothingTypes.shoe:
-                        cat.shoePosition.currentClothing  = null;
+                        if (cat.shoePosition.currentClothing === sprite){
+                            cat.shoePosition.currentClothing = null;
+                        }
                         break;
                     case clothingTypes.shirt:
-                        cat.shirtPosition.currentClothing  = null;
+                        if (cat.shirtPosition.currentClothing === sprite){
+                            cat.shirtPosition.currentClothing = null;
+                        }
                         break;   
                     case clothingTypes.pants:
-                        cat.pantsPosition.currentClothing  = null;
+                        if (cat.pantsPosition.currentClothing === sprite){
+                            cat.pantsPosition.currentClothing = null;
+                        }
                         break;                                                 
                 }
                 returnSpritetoCloset(sprite);
