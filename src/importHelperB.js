@@ -111,5 +111,8 @@ import musicButton from './musicButton.js'
 import musicmp3 from "./assets/audio/music.mp3";
 import musicogg from "./assets/audio/music.ogg" ;
 
+import genericButton from './genericButton.js';
+
+
 export {musicmp3,musicogg,catAnimation,catPalette,door,doorClosing,innerBG,outerBG,musicOnSprite,musicOffSprite,
-    buttonFrame,ribbonFrame,catRerollButton,musicButton,itemFrame,catAnimation2,catAnimation3}
+    buttonFrame,ribbonFrame,catRerollButton,musicButton,itemFrame,catAnimation2,catAnimation3,genericButton}
