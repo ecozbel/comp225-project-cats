@@ -105,6 +105,8 @@ class sceneB extends Phaser.Scene
         const adjArray = ['Fluffy', 'Cuddly', 'Blue', 'Tabby', 'Silly',];
         const nounArray = ['Whiskers','Kitty', 'Cat', 'Socks', 'Patches', 'Spot',];        
         const suffixArray = ['Jr.','Sr.', 'IV', 'II', 'PhD', '', '', ''];
+        const chanceArray = ['concatenated name','standalone name'];
+        const standaloneNameArray = ['Meowcheal','Pawline'];
 
         const rerollButton = this.add.sprite(400,110,"catReroll",0).setInteractive({ useHandCursor: true })
         //on pointer down, play music and set icon to muted button
@@ -198,7 +200,15 @@ class sceneB extends Phaser.Scene
 
         function updateDisplay(display){
             display.replace(display.first,createRandomCat())
-            display.first.name = getRandomItem(titleArray) + " " + getRandomItem(adjArray) + getRandomItem(nounArray) + " " + getRandomItem(suffixArray);
+            var chance = getRandomItem(chanceArray)
+            if (chance = 'concatenated name'){
+                display.first.name = getRandomItem(titleArray) + " " + getRandomItem(adjArray) + getRandomItem(nounArray) + " " + getRandomItem(suffixArray);
+    
+            }
+            if (chance = 'standalone name'){
+                display.first.name = getRandomItem(standaloneNameArray);
+    
+            }
             display.getAt(2).setText( display.first.name);
         }
         this.anims.create({
