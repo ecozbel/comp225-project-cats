@@ -153,7 +153,6 @@ class sceneD extends Phaser.Scene
         console.log(cat);
         console.log("sceneB closet: ");
         console.log(closet);
-
         //this is an object to act as an enumerator for clothing types: hat, shoe, etc.
         clothingTypes = {
 
@@ -247,16 +246,14 @@ class sceneD extends Phaser.Scene
 
         //set up sprite properties of cat
         function setupCat(){
-            //cat = self.matter.add.sprite(500,350,'cat',null);
             cat = self.add.existing(self.game.cat);
             cat.x=500;
             cat.y=350;
             cat.setDepth(0);
             cat.setVisible(true);
             cat.setData('catLayer',self.add.layer());
-            //self.children.bringToTop(cat);
-            //normalizeScale(cat);
             cat.setScale(6.7);
+            cat.boundingBox = new Phaser.Geom.Rectangle(cat.x - 50,cat.y-100,100,200);
             return cat;
         }
 
@@ -449,9 +446,13 @@ class sceneD extends Phaser.Scene
             snapToCat(gameObject,pointer);
         });
 
-        //overlap check and snap
+        /*
+        overlap check and snap. this now uses a custom bounding box that I attatched to the 
+        cat in setupCat(). this seems to fix a lot of the bugs related to dragging back to closet
+        and clothes snapping. you can adjust the bounding box in the setUpCat() function.
+        */
         function snapToCat(sprite, pointer) {
-            if(Phaser.Geom.Intersects.RectangleToRectangle(sprite.getBounds(), cat.getBounds())){
+            if(Phaser.Geom.Intersects.RectangleToRectangle(sprite.getBounds(), cat.boundingBox)){
                 sprite.getData('group').replace(sprite,blankSprite );
                 cat.getData('catLayer').add(sprite);
 
