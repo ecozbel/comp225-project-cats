@@ -36,6 +36,21 @@
             "introduction": "{{full_name}} is having a rough morning and wants to garden for a bit to clear their head. The flower and vegetable patches are calling their name.",
             "outcome": "{{full_name}} smiled when they saw the garden was doing well. It used to belong to their late partner and it's the perfect way to stay connected even though they're gone."
         
+        },
+
+        {
+            "objective": "Night on the Town",
+            "introduction": "{{full_name}} is about to go out with friends after a long day at work. They're in for a fun night of dinner, drinks and plenty of kitty friends!",
+            "outcome": "{{full_name}} might have gone a little too hard on the catnip, all of that fun has them tired! Now, all they want is a catnap... or five!"
+        
+        },
+        
+        
+        {
+            "objective": "A True Scholar",
+            "introduction": "{{full_name}} is teaching their first class at Meowcalester College, and wants to dress to impress! With a lesson plan in hand, they came prepared!",
+            "outcome": "{{full_name}} loved their first day on the job! Freshly out of a PhD program, they weren't sure how their first class would go, but it went wonderfully!."
+        
         }
     
     
