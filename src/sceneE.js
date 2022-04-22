@@ -195,6 +195,9 @@ class sceneE extends Phaser.Scene
             var hat = cat.hatPosition.currentClothing;
             handleClothingItemPolaroidSlide(hat,-20,-cat.displayHeight/2.4,4,this);
         }
+
+        console.log("cat boundingBox:");
+        console.log(cat.boundingBox);
         //adjusts sprite's position relative to the container
         bg.y=bg.y-50;
         endingPrompt.y=endingPrompt.y+50;

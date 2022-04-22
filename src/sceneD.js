@@ -492,8 +492,15 @@ class sceneD extends Phaser.Scene
             }
             //Sprite shrinks and returns to closet if it is not dropped on cat.
             else{
+  
                 returnSpritetoCloset(sprite);
-                /*
+                
+            }
+        }
+
+        function returnSpritetoCloset(sprite){
+
+              /*
                 set the cat's clothing at this position to null to avoid crashing the game
                 in the polaroid scene
                 */
@@ -511,11 +518,8 @@ class sceneD extends Phaser.Scene
                         cat.pantsPosition.currentClothing  = null;
                         break;                                                 
                 }
-                
-            }
-        }
 
-        function returnSpritetoCloset(sprite){
+
             sprite.getData('group').addAt(sprite, sprite.getData('index'));
                 utilities.scaletoIconSize(sprite);
                 sprite.x=sprite.getData('origin').x;
