@@ -188,20 +188,12 @@ class sceneE extends Phaser.Scene
             handleClothingItemPolaroidSlide(pants,-20,cat.displayHeight/3.39,2,this);
         } 
         if (cat.shirtPosition.currentClothing != null) {
-            cat.shirtPosition.currentClothing.setVisible(true);
-            polaroid.add(cat.shirtPosition.currentClothing);
-            cat.shirtPosition.currentClothing.x = cat.x - 18;
-            cat.shirtPosition.currentClothing.y = cat.y+cat.displayHeight/12;
-            cat.shirtPosition.currentClothing.setScale(0.4);
-            cat.shirtPosition.currentClothing.setDepth(3);
+            var shirt = cat.shirtPosition.currentClothing;
+            handleClothingItemPolaroidSlide(shirt,-20,cat.displayHeight/12,3,this);
         }
         if (cat.hatPosition.currentClothing != null) {
-            cat.hatPosition.currentClothing.setVisible(true);
-            polaroid.add(cat.hatPosition.currentClothing);
-            cat.hatPosition.currentClothing.x = cat.x - 18;
-            cat.hatPosition.currentClothing.y = cat.y-cat.displayHeight/2.4;
-            cat.hatPosition.currentClothing.setScale(0.4);
-            cat.hatPosition.currentClothing.setDepth(4);
+            var hat = cat.hatPosition.currentClothing;
+            handleClothingItemPolaroidSlide(hat,-20,-cat.displayHeight/2.4,4,this);
         }
         //adjusts sprite's position relative to the container
         bg.y=bg.y-50;
