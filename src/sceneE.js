@@ -1,6 +1,6 @@
 import Phaser from "phaser";
 import * as imports from "./importHelperE.js"
-
+import * as utilities from "./utilities.js";
 
 
 var cat;
@@ -180,12 +180,13 @@ class sceneE extends Phaser.Scene
         polaroid = this.add.container(400,-1000,[ bg,frame,cat,endingPrompt]);
 
         if (cat.shoePosition.currentClothing != null) {
-            cat.shoePosition.currentClothing.setVisible(true);
-            polaroid.add(cat.shoePosition.currentClothing);
-            cat.shoePosition.currentClothing.x = cat.x - 18;
-            cat.shoePosition.currentClothing.y = cat.y+cat.displayHeight/2.65;
-            cat.shoePosition.currentClothing.setScale(0.4);
-            cat.shoePosition.currentClothing.setDepth(1);
+            var shoes = cat.shoePosition.currentClothing;
+            shoes.setVisible(true);
+            polaroid.add(shoes);
+            utilities.scaleToGivenSize(shoes,this.game.config.width*0.146);
+            shoes.x =  cat.x-21.5;
+            shoes.y = cat.y+cat.displayHeight/2.61;
+            shoes.setDepth(1);
         }   
         if (cat.pantsPosition.currentClothing != null) {
             cat.pantsPosition.currentClothing.setVisible(true);
