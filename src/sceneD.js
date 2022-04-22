@@ -377,18 +377,18 @@ class sceneD extends Phaser.Scene
         pantsbutton.on('pointerout', () => pantsbutton.setTexture('pantsSilhoette'));
         utilities.scaletoIconSize(pantsbutton);  
 
-        // Ending Scene button
-        const EndingButton = this.add.image(cat.x - 150, cat.y - 330 , 'itemFrame')
-            .setDisplaySize(300, 50)
-            .setInteractive({ useHandCursor: true })
-            //call function to pass on cat and prompt selection to next scene here
-            .on('pointerdown', function(pointer, localX, localY, event){
-                camera.fadeOut(1000); 
-                this.game.cat = cat;
-                //camera.on('camerafadeoutcomplete', functionstartNextScene(), camera);
-                //this.scene.start('sceneC')
-                //
-            },self );
+        // // Ending Scene button
+        // const EndingButton = this.add.image(cat.x - 150, cat.y - 330 , 'itemFrame')
+        //     .setDisplaySize(300, 50)
+        //     .setInteractive({ useHandCursor: true })
+        //     //call function to pass on cat and prompt selection to next scene here
+        //     .on('pointerdown', function(pointer, localX, localY, event){
+        //         camera.fadeOut(1000); 
+        //         this.game.cat = cat;
+        //         //camera.on('camerafadeoutcomplete', functionstartNextScene(), camera);
+        //         //this.scene.start('sceneC')
+        //         //
+        //     },self );
 
         let continueButton= new imports.genericButton({scene:self,key:'buttonFrame',x:cat.x - 150,y:cat.y - 330,text:"Continue"});
         continueButton.on('pointerdown', function(pointer, localX, localY, event){
