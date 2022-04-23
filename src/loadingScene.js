@@ -226,7 +226,7 @@ class loadingScene extends Phaser.Scene
         this.load.image('itemFrame',importsE.itemFrame);
         this.load.audio("buttonClick1Sound", importsA.buttonClick1Sound)
 
-        
+        this.load.image('polaroidBack',importsA.polaroidBack);
 
 
     }

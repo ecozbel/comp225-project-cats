@@ -50,7 +50,7 @@ class sceneGallery extends Phaser.Scene
         iBG.setDepth(-1);
         //iBG.setScale(1.5);
         
-        var tempBG = this.add.rectangle(0, 0, 400, 300, 0x000000);
+        var tempBG = this.add.rectangle(0, 0, 300, 300, 0x000000);
         tempBG.setVisible(false);
         //var catKey = "catanimated3-lime";
         //console.log(localStorage.getItem('cat7'));
@@ -102,7 +102,7 @@ class sceneGallery extends Phaser.Scene
 
                     let card = self.add.rexPerspectiveCard({
                         front: { key: 'photo'+i },
-                        back: { key: 'itemFrame'},
+                        back: { key: 'polaroidBack'},
                         flip: false
                     })
                     card.setScale(0.5);
@@ -113,7 +113,7 @@ class sceneGallery extends Phaser.Scene
                 else{
                     let card = self.add.rexPerspectiveCard({
                         front: { key: 'itemFrame' },
-                        back: { key: 'itemFrame'},
+                        back: { key: 'polaroidBack'},
                         flip: false
                     })
                     card.setScale(0.5);
@@ -128,8 +128,9 @@ class sceneGallery extends Phaser.Scene
                 x: 400, y: 280,
     
                 faces: polaroids,
-                faceSpace: 10,
-                faceWidth: 400
+                faceSpace: 50,
+                faceWidth: 400,
+                backWidth: 300
             })
     
             this.input.on('pointermove', function (pointer) {
