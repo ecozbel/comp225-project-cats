@@ -20,7 +20,12 @@ import mainMenuBG from './assets/backgrounds/mainMenuBackground.png';
 import animatedLogo from './assets/menuAssets/logoAnimated.png';
 import buttonFrame from './assets/icons/buttonFrameLarge.png'
 import genericButton from './genericButton';
+import musicButton from './musicButton';
+import musicOnSprite from './assets/icons/musicOn.png'
+import musicOffSprite from './assets/icons/musicOff.png'
+import musicmp3 from "./assets/audio/music.mp3";
+import musicogg from "./assets/audio/music.ogg" ;
 
 
 
-export{mainMenuBG,animatedLogo,buttonFrame,genericButton}
+export{mainMenuBG,animatedLogo,buttonFrame,genericButton,musicButton,musicOnSprite,musicOffSprite,musicmp3,musicogg}

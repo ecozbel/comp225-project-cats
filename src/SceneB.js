@@ -1,19 +1,5 @@
 import Phaser, { Game } from 'phaser';
 
-// import door from './assets/menuAssets/door.png';
-// import doorClosing from './assets/menuAssets/doorClosing.png';
-// import innerBG from './assets/backgrounds/catChoose_inner_background.png'
-// import outerBG from './assets/backgrounds/catChooseScene_outer_background.png'
-
-// import musicOnSprite from './assets/icons/musicOn.png'
-// import musicOffSprite from './assets/icons/musicOff.png'
-
-// import buttonFrame from './assets/icons/buttonFrameLarge.png'
-// import ribbonFrame from './assets/icons/catNameField.png'
-
-// import catRerollButton from './assets/icons/catRerollButton.png'
-// import musicButton from './musicButton.js'
-
 import * as imports from "./importHelperB.js"
 import * as paletteCreator from './paletteCreator';
 class sceneB extends Phaser.Scene
@@ -25,7 +11,7 @@ class sceneB extends Phaser.Scene
     }
     preload ()
     {
-        this.load.audio("music",[imports.musicmp3,imports.musicogg ])
+        
         this.load.image('innerBG',imports.innerBG)
         this.load.plugin('rexoutlinepipelineplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexoutlinepipelineplugin.min.js', true);      //this.load.plugin('rexglowfilter2pipelineplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexglowfilter2pipelineplugin.min.js', true);
         this.load.image('outerBG',imports.outerBG)
@@ -39,10 +25,6 @@ class sceneB extends Phaser.Scene
             frameHeight: 425
         });
 
-        this.load.spritesheet('musicOnButton', imports.musicOnSprite, {
-            frameWidth: 52,
-            frameHeight: 52
-        });
 
         this.load.spritesheet('catReroll', imports.catRerollButton, {
             frameWidth: 52,
@@ -53,10 +35,7 @@ class sceneB extends Phaser.Scene
             frameWidth: 312,
             frameHeight: 52
         });
-        this.load.spritesheet('musicOffButton', imports.musicOffSprite, {
-            frameWidth: 52,
-            frameHeight: 52
-        });
+        
         this.load.image('cat-palette', imports.catPalette);
         this.load.spritesheet('catanimated', imports.catAnimation, {
             frameWidth: 64,
@@ -81,14 +60,15 @@ class sceneB extends Phaser.Scene
         iBG.setScale(1.5);
         oBG.setDepth(0);
         paletteCreator.createPalettes(self);
- 
+
+
+
 
         //MUSIC 
-        var backgroundMusic = this.sound.add('music',{ loop: false });
-        var mButton= new imports.musicButton({scene:self,onKey:'musicOnButton',offKey:'musicOffButton' });
 
+        var mButton= new imports.musicButton({scene:self,onKey:'musicOnButton',offKey:'musicOffButton' });
         mButton.on('pointerdown', function () {
-            toggleSound(backgroundMusic)
+            toggleSound(this.game.bgMusic)
         },self);
 
         function toggleSound(givenSound){

@@ -104,7 +104,22 @@ class sceneC extends Phaser.Scene
         });
 
         promptText.typing.start(getPromptWithCatName(generatedPrompt).introduction); 
-        this.game.cat.generatedPrompt = generatedPrompt;       
+        this.game.cat.generatedPrompt = generatedPrompt;    
+        
+        var mButton= new imports.musicButton({scene:self,onKey:'musicOnButton',offKey:'musicOffButton' });
+
+        mButton.on('pointerdown', function () {
+            toggleSound(this.game.bgMusic)
+        },self);
+
+        function toggleSound(givenSound){
+            if (givenSound.isPlaying){
+                givenSound.stop();
+            }
+            else{
+                givenSound.play();
+            }
+        }
     }
     update(){
     }

@@ -32,6 +32,9 @@ class sceneD extends Phaser.Scene
             frameWidth: 312,
             frameHeight: 52
         });
+        this.load.plugin('rexparticlesalongboundsplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexparticlesalongboundsplugin.min.js', true);
+      
+        this.load.atlas('flares', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/assets/images/particles/flares/flares.png', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/assets/images/particles/flares/flares.json');
 
         this.load.plugin('rexoutlinepipelineplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexoutlinepipelineplugin.min.js', true);      //this.load.plugin('rexglowfilter2pipelineplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexglowfilter2pipelineplugin.min.js', true);
 
@@ -139,6 +142,21 @@ class sceneD extends Phaser.Scene
         var bg = this.matter.add.image(400,300,'backgroundnew');
         bg.setStatic(true);
         var postFxPlugin = this.plugins.get('rexoutlinepipelineplugin');
+
+        var mButton= new imports.musicButton({scene:self,onKey:'musicOnButton',offKey:'musicOffButton' });
+
+        mButton.on('pointerdown', function () {
+            toggleSound(this.game.bgMusic)
+        },self);
+
+        function toggleSound(givenSound){
+            if (givenSound.isPlaying){
+                givenSound.stop();
+            }
+            else{
+                givenSound.play();
+            }
+        }
 
 
 
@@ -469,6 +487,18 @@ class sceneD extends Phaser.Scene
                     sprite.setDepth(clothingPosition.z);
                     //set the clothPositions current clothing to be what was just dropped on it
                     clothingPosition.currentClothing = sprite;
+
+                    self.plugins.get('rexparticlesalongboundsplugin')
+                    .startEffect(
+                        sprite,
+                        {
+                            textureKey: 'flares',
+                            scale: { start: 0.1, end: 0.2 },
+                            // lifespan: 1000,
+                            //stepRate: 10,
+                            spread: 100
+                        }
+                )
 
                 }
 
