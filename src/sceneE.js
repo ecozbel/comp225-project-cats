@@ -81,23 +81,41 @@ class sceneE extends Phaser.Scene
                 let hat = cat.hatPosition.currentClothing;
                 let shirt = cat.shirtPosition.currentClothing;
                 let pants = cat.pantsPosition.currentClothing;
-                localStorage.setItem('cat1',cat.texture.key);
+                // localStorage.setItem('cat1',cat.texture.key);
                 
-                saveClothing("hat1",hat);
-                saveClothing("shirt1",shirt);
-                saveClothing("pants1",pants);
-                saveClothing("shoes1",shoe);
+                // saveClothing("hat1",hat);
+                // saveClothing("shirt1",shirt);
+                // saveClothing("pants1",pants);
+                // saveClothing("shoes1",shoe);
                 
 
                 var polaroidCount = localStorage.getItem('polaroidCount');
+                console.log(polaroidCount);
+                //var index = parseInt(polaroidCount)
                 if(polaroidCount == null){
                     localStorage.setItem('polaroidCount',"1")
+                    let index = 1;
+                    localStorage.setItem('cat'+index,cat.texture.key);
+                    saveClothing("hat"+index,hat);
+                    saveClothing("shirt"+index,shirt);
+                    saveClothing("pants"+index,pants);
+                    saveClothing("shoes"+index,shoe);
 
                 }
                 else{
-                    let oldCount = parseInt(polaroidCount)
-                    let newCount = oldCount+1;
+                    let index = parseInt(polaroidCount)+1
+                    if (index>=10){
+                        index = 0;
+                    }
+                    let newCount = index;
                     localStorage.setItem('polaroidCount',newCount)
+                    localStorage.setItem('cat'+index,cat.texture.key);
+                    
+                    saveClothing("hat"+index,hat);
+                    saveClothing("shirt"+index,shirt);
+                    saveClothing("pants"+index,pants);
+                    saveClothing("shoes"+index,shoe);
+
                 }
 
             }

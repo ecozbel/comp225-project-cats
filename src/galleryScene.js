@@ -22,10 +22,10 @@ class sceneGallery extends Phaser.Scene
         // this.load.image('polaroid', imports.polaroidImg);
         // this.load.image('scenery1',imports.scenery1);
 
-        this.load.image('hat1',imports.hat1img);
-        this.load.image('shirt1',imports.shirt1img);
-        this.load.image('shoe1',imports.shoe1img);
-        this.load.image('pants1',imports.pants1);
+        // this.load.image('hat2',imports.hat1img);
+        // this.load.image('shirt2',imports.shirt1img);
+        // this.load.image('shoe2',imports.shoe1img);
+        // this.load.image('pants2',imports.pants1);
         
 
     }
@@ -35,7 +35,7 @@ class sceneGallery extends Phaser.Scene
         //Get the polaroid count from local data manager (necessary to know how many polaroids to construct)
         var polaroidCount = localStorage.getItem('polaroidCount');
         var photoKey = "photo"+polaroidCount;
-        //constructPolaroid();
+        //constructPolaroids();
         // if(polaroidCount!=null){
         //     var intCount = parseInt(polaroidCount)
         //     for(var i=0;i<polaroidCount-1;i++){
@@ -44,38 +44,39 @@ class sceneGallery extends Phaser.Scene
         
         
         //var catKey = "catanimated3-lime";
-
+        //console.log(localStorage.getItem('cat7'));
 
         if(polaroidCount!=null){
-            var catKey = localStorage.getItem('cat1')
+            var catKey = localStorage.getItem('cat'+polaroidCount)
             cat = self.add.sprite(0,0,catKey).setScale(6)
             cat.setVisible(false);
 
-            hatKey = localStorage.getItem('hat1');
+            hatKey = localStorage.getItem('hat'+polaroidCount);
             //console.log(hatKey);
             if(hatKey != 'empty'&&hatKey !=null){
                 hat = self.add.sprite(0,0,hatKey).setScale(0.8)
                 hat.setVisible(false);
             }
 
-            shirtKey = localStorage.getItem('shirt1');
+            shirtKey = localStorage.getItem('shirt'+polaroidCount);
             //console.log(hatKey);
             if(shirtKey != 'empty'&&shirtKey !=null){
                 shirt = self.add.sprite(0,0,shirtKey).setScale(0.8)
                 shirt.setVisible(false);
             }
-            pantsKey = localStorage.getItem('pants1');
+            pantsKey = localStorage.getItem('pants'+polaroidCount);
             //console.log(hatKey);
             if(pantsKey != 'empty'&&pantsKey !=null){
                 pants = self.add.sprite(0,0,pantsKey).setScale(0.8)
                 pants.setVisible(false);
             }
-            shoesKey = localStorage.getItem('shoes1');
+            shoesKey = localStorage.getItem('shoes'+polaroidCount);
             //console.log(hatKey);
             if(shoesKey != 'empty'&&shoesKey !=null){
                 shoes = self.add.sprite(0,0,shoesKey).setScale(0.8)
                 shoes.setVisible(false);
             }
+            addPolaroid('photo1')
 
 
 
@@ -135,13 +136,13 @@ class sceneGallery extends Phaser.Scene
         // for (var i = 0; i < 3; i++) {
         //     polaroids.push(constructPolaroid())
         // }
-        addPolaroid();
-        function addPolaroid() {
+        //addPolaroid();
+        function addPolaroid(key) {
             let polaroid = self.add.renderTexture(800, 600, 800, 600);
             
             polaroid.setVisible(false);
             polaroid.setOrigin(0.5)
-            drawPolaroid(polaroid,'photo1');
+            drawPolaroid(polaroid,key);
 
         }
         
