@@ -97,6 +97,8 @@ class sceneGallery extends Phaser.Scene
                         flip: false
                     })
                     card.setScale(0.5);
+                    //polaroids.push(card)
+                    card.name = localStorage.getItem('catName'+i)
                     polaroids.push(card)
                 }
                 else{
@@ -106,6 +108,8 @@ class sceneGallery extends Phaser.Scene
                         flip: false
                     })
                     card.setScale(0.5);
+                    //polaroids.push(card)
+                    card.name = localStorage.getItem('catName'+i)
                     polaroids.push(card)
 
                 }
@@ -129,6 +133,7 @@ class sceneGallery extends Phaser.Scene
                 // carousel.roll.toNext(300);
                 // console.log(carousel.face);
             });
+            
         }
         
 
@@ -243,6 +248,8 @@ class sceneGallery extends Phaser.Scene
         leftButton.on('pointerdown', function(pointer, localX, localY, event){
             carousel.roll.toLeft(300);  
             console.log(carousel.face); 
+            let catName = polaroids[carousel.face].name
+            infoText.setText('Cat name: ' +catName);
         },self );
         
 
@@ -252,7 +259,13 @@ class sceneGallery extends Phaser.Scene
         rightButton.on('pointerdown', function(pointer, localX, localY, event){
             carousel.roll.toRight(300); 
             console.log(carousel.face);
+            let catName = polaroids[carousel.face].name
+            infoText.setText('Cat name: ' +catName);
         },self );
+
+        var firstName = polaroids[carousel.face].name
+        const infoText = this.add.text(350, 450, 'Cat name: ' + firstName).setDepth(5);
+        
         
     
            

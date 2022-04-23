@@ -110,11 +110,12 @@ class sceneE extends Phaser.Scene
                     let newCount = index;
                     localStorage.setItem('polaroidCount',newCount)
                     localStorage.setItem('cat'+index,cat.texture.key);
-                    
+                    localStorage.setItem('catName'+index,cat.name);
                     saveClothing("hat"+index,hat);
                     saveClothing("shirt"+index,shirt);
                     saveClothing("pants"+index,pants);
                     saveClothing("shoes"+index,shoe);
+                    
 
                 }
 
