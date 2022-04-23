@@ -1,7 +1,7 @@
 //mport * as imports from "./importHelperD.js"
 //import {leftButton} from './importHelperA';
 import * as utilities from "./utilities.js";
-
+import Phaser, { Game } from 'phaser';
 var hatKey;
 var shirtKey;
 var shoesKey;
@@ -119,6 +119,10 @@ class sceneGallery extends Phaser.Scene
                     card.setScale(0.5);
                     //polaroids.push(card)
                     card.name = localStorage.getItem('catName'+i)
+                    //polaroids.push(card)
+                    // card.setInteractive(true);
+                    // card.on('pointerover', () => card.setScale(0.8))
+                    // card.on('pointerout', () => card.setScale(0.5))
                     polaroids.push(card)
 
                 }
@@ -132,6 +136,13 @@ class sceneGallery extends Phaser.Scene
                 faceWidth: 400,
                 backWidth: 300
             })
+
+            //var invisRect = this.add.rectangle(400,280,400,400)
+            var r1 = this.add.graphics();
+            r1.setInteractive(polaroids[carousel.face].getBounds(), Phaser.Geom.Rectangle.Contains);
+            //invisRect.setVisible(false);
+            r1.on('pointerover', () => polaroids[carousel.face].setScale(1))
+            r1.on('pointerout', () => polaroids[carousel.face].setScale(0.5))
     
             this.input.on('pointermove', function (pointer) {
     
@@ -301,7 +312,7 @@ class sceneGallery extends Phaser.Scene
         },self );
 
         var firstName = polaroids[carousel.face].name
-        const infoText = this.add.text(350, 450, 'Cat name: ' + firstName).setDepth(5);
+        const infoText = this.add.text(250, 450, 'Cat name: ' + firstName).setDepth(-1);
         
         
     
