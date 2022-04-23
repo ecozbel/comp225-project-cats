@@ -57,4 +57,13 @@ function createClothingSnapPoints(cat){
     }
 }
 
-export{normalizeScale,normalizeClothing,scaletoIconSize,createClothingSnapPoints,scaleToGivenSize,scaleToPolaroidSize}
+//only plays sound effect if sound effects are enabled.
+function playSoundEffect(soundEffect){
+    if (global.soundEffectsOn == true){
+        soundEffect.play();
+    }
+}
+
+
+
+export{normalizeScale,normalizeClothing,scaletoIconSize,createClothingSnapPoints,scaleToGivenSize,scaleToPolaroidSize,playSoundEffect}
