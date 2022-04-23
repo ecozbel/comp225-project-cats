@@ -26,6 +26,8 @@ class sceneGallery extends Phaser.Scene
         // this.load.image('shirt2',imports.shirt1img);
         // this.load.image('shoe2',imports.shoe1img);
         // this.load.image('pants2',imports.pants1);
+
+        this.load.plugin('rexperspectiveimageplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexperspectiveimageplugin.min.js', true);
         
 
     }
@@ -41,16 +43,21 @@ class sceneGallery extends Phaser.Scene
         //     for(var i=0;i<polaroidCount-1;i++){
         //         addPolaroid(photoKey)
         //     }
+        var iBG = this.add.image(400,300,'innerBG');
+        iBG.setDepth(-1);
+        iBG.setScale(1.5);
         
-        
+        var tempBG = this.add.rectangle(0, 0, 400, 300, 0x000000);
+        tempBG.setVisible(false);
         //var catKey = "catanimated3-lime";
         //console.log(localStorage.getItem('cat7'));
         var frame = this.add.sprite(0,0,'polaroid');
         frame.setScale(12);
         frame.setVisible(false);
+        var polaroids = [];
         if(polaroidCount!=null){
-
-            for(var i=1;i<polaroidCount+1;i++){
+            
+            for(var i=1;i<11;i++){
                 var catKey = localStorage.getItem('cat'+i)
                 cat = self.add.sprite(0,0,catKey).setScale(3)
                 cat.setVisible(false);
@@ -81,15 +88,36 @@ class sceneGallery extends Phaser.Scene
                     shoes.setVisible(false);
                 }
                 addPolaroid('photo'+i);
+
+                let card = self.add.rexPerspectiveCard({
+                    front: { key: 'photo'+i },
+                    back: { key: 'itemFrame'},
+                    flip: false
+                })
+                card.setScale(0.5);
+                polaroids.push(card)
             }
-
-
-
+            var carousel = this.add.rexPerspectiveCarousel({
+                x: 400, y: 300,
+    
+                faces: polaroids,
+                faceSpace: 100,
+                faceWidth: 400
+            })
+    
+            this.input.on('pointermove', function (pointer) {
+    
+                if (!pointer.isDown) {
+                    return;
+                }
+    
+                carousel.rotationY += pointer.velocity.x * (1 / 800);
+            });
         }
         
 
 
-        var polaroids = [];
+        
         //Move functions to create polaroid here, set i<polaroidCount 
         // for (var i = 0; i < 3; i++) {
         //     polaroids.push(constructPolaroid())
@@ -107,7 +135,8 @@ class sceneGallery extends Phaser.Scene
         function drawPolaroid(polaroid,key){
  
            //draw the polaroid frame
-            
+           polaroid.draw(tempBG, 400,300 );
+
 
            //draw black square
            polaroid.draw(frame, 400,300 );
@@ -135,14 +164,23 @@ class sceneGallery extends Phaser.Scene
             //console.log(polaroid)
             //console.log(hat)
             polaroid.saveTexture(key);
+            
+            
             // draw the graphics inside the platform
             //polaroid.draw(self.borderGraphics);
         }
-        var photo = this.add.sprite(400,300,'photo'+polaroidCount);
-        photo.setVisible(true);
 
-        var photo2 = this.add.sprite(150,300,'photo2');
-        photo2.setVisible(true);
+
+        // this.add.rexPerspectiveCard({
+        //     front: { key: 'photo'+polaroidCount },
+        //     back: { key: 'itemFrame'},
+        //     flip: false
+        // })
+        // var photo = this.add.sprite(400,300,'photo'+polaroidCount);
+        // photo.setVisible(true);
+
+        // var photo2 = this.add.sprite(150,300,'photo2');
+        // photo2.setVisible(true);
         // var carousel = this.add.rexPerspectiveCarousel({
         //     x: 400, y: 300,
 
