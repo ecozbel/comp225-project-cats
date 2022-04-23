@@ -103,11 +103,11 @@ class sceneE extends Phaser.Scene
 
                 }
                 else{
-                    let index = parseInt(polaroidCount)+1
+                    let index = parseInt(polaroidCount)
                     if (index>=10){
-                        index = 0;
+                        index = 1;
                     }
-                    let newCount = index;
+                    let newCount = index+1;
                     localStorage.setItem('polaroidCount',newCount)
                     localStorage.setItem('cat'+index,cat.texture.key);
                     localStorage.setItem('catName'+index,cat.name);

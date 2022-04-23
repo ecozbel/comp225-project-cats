@@ -6,8 +6,8 @@ var hatKey;
 var shirtKey;
 var shoesKey;
 var pantsKey;
-
 var cat,hat,shoes,pants,shirt;
+
 
 class sceneGallery extends Phaser.Scene
 {
@@ -15,6 +15,7 @@ class sceneGallery extends Phaser.Scene
     {   
         super();
         Phaser.Scene.call(this, { key: 'scene_Gallery' });
+        
         
     }
     preload ()
@@ -34,6 +35,7 @@ class sceneGallery extends Phaser.Scene
     }
     create(){
         var self = this;
+        // var cat,hat,shoes,pants,shirt;
 
         //Get the polaroid count from local data manager (necessary to know how many polaroids to construct)
         var polaroidCount = localStorage.getItem('polaroidCount');
@@ -66,30 +68,37 @@ class sceneGallery extends Phaser.Scene
 
                     hatKey = localStorage.getItem('hat'+i);
                     //console.log(hatKey);
-                    if(hatKey != 'empty'&&hatKey !=null){
-                        hat = self.add.sprite(0,0,hatKey).setScale(0.3)
-                        hat.setVisible(false);
-                    }
+                    // if(hatKey != 'empty'&&hatKey !=null){
+                    //     hat = self.add.sprite(0,0,hatKey).setScale(0.3)
+                    //     hat.setVisible(false);
+                    // }
 
                     shirtKey = localStorage.getItem('shirt'+i);
                     //console.log(hatKey);
-                    if(shirtKey != 'empty'&&shirtKey !=null){
-                        shirt = self.add.sprite(0,0,shirtKey).setScale(0.3)
-                        shirt.setVisible(false);
-                    }
+                    // if(shirtKey != 'empty'&&shirtKey !=null){
+                    //     shirt = self.add.sprite(0,0,shirtKey).setScale(0.3)
+                    //     shirt.setVisible(false);
+                    // }
                     pantsKey = localStorage.getItem('pants'+i);
                     //console.log(hatKey);
-                    if(pantsKey != 'empty'&&pantsKey !=null){
-                        pants = self.add.sprite(0,0,pantsKey).setScale(0.3)
-                        pants.setVisible(false);
-                    }
+                    // if(pantsKey != 'empty'&&pantsKey !=null){
+                    //     pants = self.add.sprite(0,0,pantsKey).setScale(0.3)
+                    //     pants.setVisible(false);
+                    // }
                     shoesKey = localStorage.getItem('shoes'+i);
                     //console.log(hatKey);
-                    if(shoesKey != 'empty'&&shoesKey !=null){
-                        shoes = self.add.sprite(0,0,shoesKey).setScale(0.3)
-                        shoes.setVisible(false);
-                    }
-                    addPolaroid('photo'+i);
+                    // if(shoesKey != 'empty'&&shoesKey !=null){
+                    //     shoes = self.add.sprite(0,0,shoesKey).setScale(0.3)
+                    //     shoes.setVisible(false);
+                    // }
+                    //console.log(hatKey)
+                    var chosenHat = addClothing(hatKey,hat,self)
+                    var chosenShirt = addClothing(shirtKey,shirt,self)
+                    var chosenPants= addClothing(pantsKey,pants,self)
+                    var chosenShoes = addClothing(shoesKey,shoes,self)
+                    
+
+                    addPolaroid('photo'+i,chosenHat,chosenShirt,chosenPants,chosenShoes);
 
                     let card = self.add.rexPerspectiveCard({
                         front: { key: 'photo'+i },
@@ -137,6 +146,22 @@ class sceneGallery extends Phaser.Scene
         }
         
 
+        function addClothing(key,clothing,currentScene){
+            // console.log(clothing)
+            if(key != 'empty'&&key !=null){
+                clothing = currentScene.add.sprite(0,0,key).setScale(0.3)
+                clothing.setVisible(false);
+                return clothing;
+                //console.log(clothing)
+                //return(clothing)
+            }
+            if(key == 'empty'|| key==null){
+                clothing = null;
+                return clothing;
+                //clothing.setVisible(false);
+            }
+        }
+
 
         
         //Move functions to create polaroid here, set i<polaroidCount 
@@ -144,12 +169,43 @@ class sceneGallery extends Phaser.Scene
         //     polaroids.push(constructPolaroid())
         // }
         //addPolaroid();
-        function addPolaroid(key) {
+        function addPolaroid(key,givenHat,givenShirt,givenPants,givenShoes) {
             let polaroid = self.add.renderTexture(800, 600, 800, 600);
             
             polaroid.setVisible(false);
             polaroid.setOrigin(0.5)
-            drawPolaroid(polaroid,key);
+            //drawPolaroid(polaroid,key);
+
+
+            polaroid.draw(tempBG, 400,300 );
+
+
+           //draw black square
+           polaroid.draw(frame, 400,300 );
+
+           //draw the background
+     
+            // draw the cat
+            polaroid.draw(cat, 400,300 );
+     
+            // draw the clothes
+            
+            if(givenShoes!=null){
+                polaroid.draw(givenShoes, 406, 375);
+            }
+            if(givenPants!=null){
+                polaroid.draw(givenPants, 407, 355);
+            }
+            if(givenShirt!=null){
+                polaroid.draw(givenShirt, 403, 312);
+            }
+            if(givenHat!=null){
+                polaroid.draw(givenHat, 405, 215);
+            }
+            //polaroid.draw(hat, 400, 130);
+            //console.log(self.shirt)
+            //console.log(hat)
+            polaroid.saveTexture(key);
 
         }
         
@@ -169,45 +225,25 @@ class sceneGallery extends Phaser.Scene
      
             // draw the clothes
             
-            if(shoes!=null){
+            if(self.shoes!=null){
                 polaroid.draw(shoes, 406, 375);
             }
-            if(pants!=null){
+            if(self.pants!=null){
                 polaroid.draw(pants, 407, 355);
             }
-            if(shirt!=null){
+            if(self.shirt!=null){
                 polaroid.draw(shirt, 403, 312);
             }
-            if(hat!=null){
+            if(self.hat!=null){
                 polaroid.draw(hat, 405, 215);
             }
             //polaroid.draw(hat, 400, 130);
-            //console.log(polaroid)
+            console.log(shirt)
             //console.log(hat)
             polaroid.saveTexture(key);
             
-            
-            // draw the graphics inside the platform
-            //polaroid.draw(self.borderGraphics);
         }
 
-
-        // this.add.rexPerspectiveCard({
-        //     front: { key: 'photo'+polaroidCount },
-        //     back: { key: 'itemFrame'},
-        //     flip: false
-        // })
-        // var photo = this.add.sprite(400,300,'photo'+polaroidCount);
-        // photo.setVisible(true);
-
-        // var photo2 = this.add.sprite(150,300,'photo2');
-        // photo2.setVisible(true);
-        // var carousel = this.add.rexPerspectiveCarousel({
-        //     x: 400, y: 300,
-
-        //     faces: polaroids,
-        //     faceSpace: 60
-        // })
 
         function getPromptWithName(prompt,name) {
             return {
