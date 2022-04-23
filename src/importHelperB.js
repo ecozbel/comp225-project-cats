@@ -102,17 +102,11 @@ import door from './assets/menuAssets/door.png';
 import doorClosing from './assets/menuAssets/doorClosing.png';
 import innerBG from './assets/backgrounds/catChoose_inner_background.png'
 import outerBG from './assets/backgrounds/catChooseScene_outer_background.png'
-import musicOnSprite from './assets/icons/musicOn.png'
-import musicOffSprite from './assets/icons/musicOff.png'
 import buttonFrame from './assets/icons/buttonFrameLarge.png'
 import ribbonFrame from './assets/icons/catNameField.png'
 import catRerollButton from './assets/icons/catRerollButton.png'
-import musicButton from './musicButton.js'
-import musicmp3 from "./assets/audio/music.mp3";
-import musicogg from "./assets/audio/music.ogg" ;
-
-import genericButton from './genericButton.js';
 
 
-export {musicmp3,musicogg,catAnimation,catPalette,door,doorClosing,innerBG,outerBG,musicOnSprite,musicOffSprite,
-    buttonFrame,ribbonFrame,catRerollButton,musicButton,itemFrame,catAnimation2,catAnimation3,genericButton}
+
+export {catAnimation,catPalette,door,doorClosing,innerBG,outerBG,
+    buttonFrame,ribbonFrame,catRerollButton,itemFrame,catAnimation2,catAnimation3}

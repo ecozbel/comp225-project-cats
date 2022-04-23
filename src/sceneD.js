@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 
 import { game } from './index.js';
-import * as imports from "./importHelperD.js";
+// import * as imports from "./importHelperD.js";
 import * as utilities from "./utilities.js";
 var cat;
 var closet;
@@ -136,7 +136,7 @@ class sceneD extends Phaser.Scene
         bg.setStatic(true);
         var postFxPlugin = this.plugins.get('rexoutlinepipelineplugin');
 
-        var mButton= new imports.musicButton({scene:self,onKey:'musicOnButton',offKey:'musicOffButton' });
+        var mButton= new utilities.musicButton({scene:self,onKey:'musicOnButton',offKey:'musicOffButton' });
 
         mButton.on('pointerdown', function () {
             toggleSound(this.game.bgMusic)
@@ -387,7 +387,7 @@ class sceneD extends Phaser.Scene
         pantsbutton.on('pointerout', () => pantsbutton.setTexture('pantsSilhoette'));
         utilities.scaletoIconSize(pantsbutton);  
 
-        let continueButton= new imports.genericButton({scene:self,key:'buttonFrame',x:cat.x - 150,y:cat.y - 330,text:"Continue"});
+        let continueButton= new utilities.genericButton({scene:self,key:'buttonFrame',x:cat.x - 150,y:cat.y - 330,text:"Continue"});
         continueButton.on('pointerdown', function(pointer, localX, localY, event){
             camera.fadeOut(1000);  
             this.game.cat = cat;  
