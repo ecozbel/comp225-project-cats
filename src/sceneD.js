@@ -110,26 +110,26 @@ class sceneD extends Phaser.Scene
         //     scene.load.image('pants14', imports.pants14);
         //}
 
+        function loadSoundEffects(scene){
+            scene.load.audio("clothingPickup1",imports.clothingPickup1Sound);
+            scene.load.audio("clothingRussle5",imports.clothingRussle5Sound);
+        }
 
 
     }
       
     create ()
     {
-        //var catBlink = game.scenes.BegginingScene.catAnimated;
-        
-        // let jsonFile = this.cache.json.get('prompts');
-        // console.log('--------->', jsonFile.prompt[0].introduction)
+
         console.log("sceneB this.game.cat: ");
         console.log(this.game.cat);
         var camera = this.cameras.main;
 
         var self = this;
-        //cat.scene = this;
-        //cat = this.add.existing(this.game.cat);
-        
-        //Use this background for testing placement
-        //var bg = this.matter.add.image(350,250,'background');
+
+        //sound effects
+        var clothingPickup1 = this.sound.add('clothingPickup1',{ loop: false });
+        var clothingRussle5 = this.sound.add('clothingRussle5',{ loop: false });
 
         //Old art
         var bg = this.matter.add.image(400,300,'backgroundnew');
@@ -246,8 +246,6 @@ class sceneD extends Phaser.Scene
 
         addAllClothing(this);
 
-
-
         //Set up placeholder transparent sprite for closet
         blankSprite = this.matter.add.sprite(600,300,'hat1');
         blankSprite.setVisible(false);
@@ -294,6 +292,7 @@ class sceneD extends Phaser.Scene
             utilities.scaletoIconSize(clothing);
             clothing.setInteractive();
             clothing.setSensor(true);
+            clothing.on('pointerdown', () => utilities.playSoundEffect(clothingPickup1));
             clothing.clothingType = clothingType;
             clothing.ignoreDestroy=true;
             switch (clothingType){
@@ -362,44 +361,31 @@ class sceneD extends Phaser.Scene
 
         const hatbutton = this.add.sprite(closet.x- (closet.displayWidth/2) +60 ,closet.y- (closet.displayHeight/2) + 54,"hatSilhoette")
         .setInteractive({ useHandCursor: true })
-        .on('pointerdown', () => displayLayer(hatGroup));
+        .on('pointerdown', () => handleClosetButtonPress(hatGroup));
         hatbutton.on('pointerover', () => hatbutton.setTexture('hatSilhoetteOver'));
         hatbutton.on('pointerout', () => hatbutton.setTexture('hatSilhoette'));
         utilities.scaletoIconSize(hatbutton);
- 
+        
         const shirtbutton = this.add.sprite(hatbutton.x+60,hatbutton.y,"shirtSilhoette")
         .setInteractive({ useHandCursor: true })
-        .on('pointerdown', () => displayLayer(shirtGroup));
+        .on('pointerdown', () => handleClosetButtonPress(shirtGroup));
         shirtbutton.on('pointerover', () => shirtbutton.setTexture('shirtSilhoetteOver'));
         shirtbutton.on('pointerout', () => shirtbutton.setTexture('shirtSilhoette'));
         utilities.scaletoIconSize(shirtbutton);
 
         const shoebutton = this.add.sprite(shirtbutton.x+60 ,hatbutton.y,"shoeSilhoette")
         .setInteractive({ useHandCursor: true })
-        .on('pointerdown', () => displayLayer(shoeGroup));
+        .on('pointerdown', () => handleClosetButtonPress(shoeGroup));
         shoebutton.on('pointerover', () => shoebutton.setTexture('shoeSilhoetteOver'));
         shoebutton.on('pointerout', () => shoebutton.setTexture('shoeSilhoette'));
         utilities.scaletoIconSize(shoebutton);  
 
         const pantsbutton = this.add.sprite(shoebutton.x+60, hatbutton.y,"pantsSilhoette")
         .setInteractive({ useHandCursor: true })
-        .on('pointerdown', () => displayLayer(pantsGroup));
+        .on('pointerdown', () => handleClosetButtonPress(pantsGroup));
         pantsbutton.on('pointerover', () => pantsbutton.setTexture('pantsSilhoetteOver'));
         pantsbutton.on('pointerout', () => pantsbutton.setTexture('pantsSilhoette'));
         utilities.scaletoIconSize(pantsbutton);  
-
-        // // Ending Scene button
-        // const EndingButton = this.add.image(cat.x - 150, cat.y - 330 , 'itemFrame')
-        //     .setDisplaySize(300, 50)
-        //     .setInteractive({ useHandCursor: true })
-        //     //call function to pass on cat and prompt selection to next scene here
-        //     .on('pointerdown', function(pointer, localX, localY, event){
-        //         camera.fadeOut(1000); 
-        //         this.game.cat = cat;
-        //         //camera.on('camerafadeoutcomplete', functionstartNextScene(), camera);
-        //         //this.scene.start('sceneC')
-        //         //
-        //     },self );
 
         let continueButton= new imports.genericButton({scene:self,key:'buttonFrame',x:cat.x - 150,y:cat.y - 330,text:"Continue"});
         continueButton.on('pointerdown', function(pointer, localX, localY, event){
@@ -420,6 +406,12 @@ class sceneD extends Phaser.Scene
             self.scene.start('sceneE_photograph');
         }
 
+        //displays the layer and also plays the sound
+        function handleClosetButtonPress(chosenLayer){
+
+            displayLayer(chosenLayer);
+            utilities.playSoundEffect(global.buttonClickSound1)
+        }
 
         //Display chosen layer
         function displayLayer(chosenLayer){
@@ -457,6 +449,7 @@ class sceneD extends Phaser.Scene
             snapToCat(gameObject,pointer);
         });
 
+
         /*
         overlap check and snap. this now uses a custom bounding box that I attatched to the 
         cat in setupCat(). this seems to fix a lot of the bugs related to dragging back to closet
@@ -466,7 +459,7 @@ class sceneD extends Phaser.Scene
             if(Phaser.Geom.Intersects.RectangleToRectangle(sprite.getBounds(), cat.boundingBox)){
                 sprite.getData('group').replace(sprite,blankSprite );
                 cat.getData('catLayer').add(sprite);
-
+                
                 // function to make sure that same article of clothing can't be placed on a cat twice
                 function handleClothingPlacement(clothingPosition) {
 
@@ -474,6 +467,10 @@ class sceneD extends Phaser.Scene
                     if (clothingPosition.currentClothing != null && clothingPosition.currentClothing != sprite) { 
                         returnSpritetoCloset(clothingPosition.currentClothing);
                     } 
+
+                    //play clothing russle sound
+                    utilities.playSoundEffect(clothingRussle5);
+
                     //set the position of the sprite 
                     sprite.x = clothingPosition.x;
                     sprite.y = clothingPosition.y;

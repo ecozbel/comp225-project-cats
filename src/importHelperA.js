@@ -36,7 +36,7 @@ import galleryBG from './assets/backgrounds/galleryBG.png';
 import rightButton from './assets/icons/rightButton.png'
 
 import leftButton from './assets/icons/leftButton.png'
-
+import buttonClick1Sound from "./assets/audio/buttonClick1.mp3";
 
 export{mainMenuBG,animatedLogo,buttonFrame,genericButton,musicButton,musicOnSprite,musicOffSprite,musicmp3,
-    musicogg,catPalette,catAnimation,catAnimation2,catAnimation3,galleryBG,rightButton,leftButton}
+    musicogg,catPalette,catAnimation,catAnimation2,catAnimation3,galleryBG,rightButton,leftButton,buttonClick1Sound}

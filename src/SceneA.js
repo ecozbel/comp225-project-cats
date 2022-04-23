@@ -22,6 +22,7 @@ class sceneA extends Phaser.Scene
         this.load.audio("music",[imports.musicmp3,imports.musicogg ])
         this.load.spritesheet('animatedlogo', imports.animatedLogo, { frameWidth: 800, frameHeight: 800 });
         this.load.image('mainMenuBG',imports.mainMenuBG);
+        this.load.audio("buttonClick1Sound", imports.buttonClick1Sound)
         this.load.spritesheet('buttonFrame', imports.buttonFrame, {
             frameWidth: 312,
             frameHeight: 52
@@ -50,7 +51,7 @@ class sceneA extends Phaser.Scene
 
     }
     create(){
-
+        global.soundEffectsOn = true;//eventually, have a button to toggle this. all sound effect sonly play if this===true;
         var background = this.add.image(400,300,'mainMenuBG')
         var logo = this.add.sprite(250,160,'animatedlogo').setDisplaySize(400, 400)
         .setDepth(4);
@@ -83,6 +84,7 @@ class sceneA extends Phaser.Scene
             self.scene.start('sceneB_pickCat');
         }
 
+        global.buttonClickSound1 = this.sound.add("buttonClick1Sound",{ loop: false });
         var backgroundMusic = this.sound.add('music',{ loop: false });
         var mButton= new imports.musicButton({scene:self,onKey:'musicOnButton',offKey:'musicOffButton' });
         this.game.bgMusic = backgroundMusic;
