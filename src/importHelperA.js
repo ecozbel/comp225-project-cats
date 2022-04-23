@@ -31,7 +31,12 @@ import catAnimation from './assets/cat/catanimated.png';
 import catAnimation2 from './assets/cat/catanimated2.png';
 import catAnimation3 from './assets/cat/catanimated3.png';
 
+import galleryBG from './assets/backgrounds/galleryBG.png';
+
+import rightButton from './assets/icons/rightButton.png'
+
+import leftButton from './assets/icons/leftButton.png'
 
 
 export{mainMenuBG,animatedLogo,buttonFrame,genericButton,musicButton,musicOnSprite,musicOffSprite,musicmp3,
-    musicogg,catPalette,catAnimation,catAnimation2,catAnimation3}
+    musicogg,catPalette,catAnimation,catAnimation2,catAnimation3,galleryBG,rightButton,leftButton}

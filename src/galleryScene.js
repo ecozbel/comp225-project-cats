@@ -1,4 +1,5 @@
 import * as imports from "./importHelperD.js"
+import {leftButton} from './importHelperA';
 
 
 var hatKey;
@@ -43,9 +44,9 @@ class sceneGallery extends Phaser.Scene
         //     for(var i=0;i<polaroidCount-1;i++){
         //         addPolaroid(photoKey)
         //     }
-        var iBG = this.add.image(400,300,'innerBG');
+        var iBG = this.add.image(400,300,'galleryBG');
         iBG.setDepth(-1);
-        iBG.setScale(1.5);
+        //iBG.setScale(1.5);
         
         var tempBG = this.add.rectangle(0, 0, 400, 300, 0x000000);
         tempBG.setVisible(false);
@@ -59,49 +60,62 @@ class sceneGallery extends Phaser.Scene
             
             for(var i=1;i<11;i++){
                 var catKey = localStorage.getItem('cat'+i)
-                cat = self.add.sprite(0,0,catKey).setScale(3)
-                cat.setVisible(false);
+                if(catKey != null){
+                    cat = self.add.sprite(0,0,catKey).setScale(3)
+                    cat.setVisible(false);
 
-                hatKey = localStorage.getItem('hat'+i);
-                //console.log(hatKey);
-                if(hatKey != 'empty'&&hatKey !=null){
-                    hat = self.add.sprite(0,0,hatKey).setScale(0.3)
-                    hat.setVisible(false);
+                    hatKey = localStorage.getItem('hat'+i);
+                    //console.log(hatKey);
+                    if(hatKey != 'empty'&&hatKey !=null){
+                        hat = self.add.sprite(0,0,hatKey).setScale(0.3)
+                        hat.setVisible(false);
+                    }
+
+                    shirtKey = localStorage.getItem('shirt'+i);
+                    //console.log(hatKey);
+                    if(shirtKey != 'empty'&&shirtKey !=null){
+                        shirt = self.add.sprite(0,0,shirtKey).setScale(0.3)
+                        shirt.setVisible(false);
+                    }
+                    pantsKey = localStorage.getItem('pants'+i);
+                    //console.log(hatKey);
+                    if(pantsKey != 'empty'&&pantsKey !=null){
+                        pants = self.add.sprite(0,0,pantsKey).setScale(0.3)
+                        pants.setVisible(false);
+                    }
+                    shoesKey = localStorage.getItem('shoes'+i);
+                    //console.log(hatKey);
+                    if(shoesKey != 'empty'&&shoesKey !=null){
+                        shoes = self.add.sprite(0,0,shoesKey).setScale(0.3)
+                        shoes.setVisible(false);
+                    }
+                    addPolaroid('photo'+i);
+
+                    let card = self.add.rexPerspectiveCard({
+                        front: { key: 'photo'+i },
+                        back: { key: 'itemFrame'},
+                        flip: false
+                    })
+                    card.setScale(0.5);
+                    polaroids.push(card)
+                }
+                else{
+                    let card = self.add.rexPerspectiveCard({
+                        front: { key: 'itemFrame' },
+                        back: { key: 'itemFrame'},
+                        flip: false
+                    })
+                    card.setScale(0.5);
+                    polaroids.push(card)
+
                 }
 
-                shirtKey = localStorage.getItem('shirt'+i);
-                //console.log(hatKey);
-                if(shirtKey != 'empty'&&shirtKey !=null){
-                    shirt = self.add.sprite(0,0,shirtKey).setScale(0.3)
-                    shirt.setVisible(false);
-                }
-                pantsKey = localStorage.getItem('pants'+i);
-                //console.log(hatKey);
-                if(pantsKey != 'empty'&&pantsKey !=null){
-                    pants = self.add.sprite(0,0,pantsKey).setScale(0.3)
-                    pants.setVisible(false);
-                }
-                shoesKey = localStorage.getItem('shoes'+i);
-                //console.log(hatKey);
-                if(shoesKey != 'empty'&&shoesKey !=null){
-                    shoes = self.add.sprite(0,0,shoesKey).setScale(0.3)
-                    shoes.setVisible(false);
-                }
-                addPolaroid('photo'+i);
-
-                let card = self.add.rexPerspectiveCard({
-                    front: { key: 'photo'+i },
-                    back: { key: 'itemFrame'},
-                    flip: false
-                })
-                card.setScale(0.5);
-                polaroids.push(card)
             }
             var carousel = this.add.rexPerspectiveCarousel({
-                x: 400, y: 300,
+                x: 400, y: 280,
     
                 faces: polaroids,
-                faceSpace: 100,
+                faceSpace: 10,
                 faceWidth: 400
             })
     
@@ -111,7 +125,9 @@ class sceneGallery extends Phaser.Scene
                     return;
                 }
     
-                carousel.rotationY += pointer.velocity.x * (1 / 800);
+                //carousel.rotationY += pointer.velocity.x * (1 / 800);
+                // carousel.roll.toNext(300);
+                // console.log(carousel.face);
             });
         }
         
@@ -211,6 +227,7 @@ class sceneGallery extends Phaser.Scene
                 pants = currentScene.add.sprite(0,0,pantsKey);
             }
         }
+        // console.log(carousel.face);
 
         var backButton= new imports.genericButton({scene:self,key:'buttonFrame',x:80,y:50,text:"Back"});
         backButton.setDisplaySize(100,54);
@@ -220,11 +237,28 @@ class sceneGallery extends Phaser.Scene
         function startPreviousScene(){
             self.scene.start('sceneA_mainMenu');
         }
+        const leftButton = this.add.image(80, 300, 'leftButton',0).setInteractive().setDepth(4);
+        leftButton.on('pointerover', () => leftButton.setFrame(1))
+        leftButton.on('pointerout', () => leftButton.setFrame(0))
+        leftButton.on('pointerdown', function(pointer, localX, localY, event){
+            carousel.roll.toLeft(300);  
+            console.log(carousel.face); 
+        },self );
+        
 
+        const rightButton = this.add.image(720, 300, 'rightButton',0).setInteractive().setDepth(4);
+        rightButton.on('pointerover', () => rightButton.setFrame(1))
+        rightButton.on('pointerout', () => rightButton.setFrame(0))
+        rightButton.on('pointerdown', function(pointer, localX, localY, event){
+            carousel.roll.toRight(300); 
+            console.log(carousel.face);
+        },self );
+        
     
            
     }
     update(){
+        
     }
 
 }

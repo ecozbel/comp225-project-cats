@@ -83,6 +83,7 @@ class loadingScene extends Phaser.Scene
         this.load.audio("music",[importsA.musicmp3,importsA.musicogg ])
         this.load.spritesheet('animatedlogo', importsA.animatedLogo, { frameWidth: 800, frameHeight: 800 });
         this.load.image('mainMenuBG',importsA.mainMenuBG);
+        this.load.image('galleryBG',importsA.galleryBG);
         this.load.spritesheet('buttonFrame', importsA.buttonFrame, {
             frameWidth: 312,
             frameHeight: 52
@@ -92,6 +93,14 @@ class loadingScene extends Phaser.Scene
             frameHeight: 52
         });
         this.load.spritesheet('musicOffButton', importsA.musicOffSprite, {
+            frameWidth: 52,
+            frameHeight: 52
+        });
+        this.load.spritesheet('leftButton', importsA.leftButton, {
+            frameWidth: 52,
+            frameHeight: 52
+        });
+        this.load.spritesheet('rightButton', importsA.rightButton, {
             frameWidth: 52,
             frameHeight: 52
         });
