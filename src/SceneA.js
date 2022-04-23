@@ -100,43 +100,49 @@ class sceneA extends Phaser.Scene
             }
         }
 
-        var aboutButton= new utilities.genericButton({scene:self,key:'buttonFrame',x:continueButton.x,y:continueButton.y+162,text:"About"});
-        aboutButton.on('pointerdown', function(){
-            //self.toggleAboutBox(aboutBoxShowing);
-            console.log("click")
-        },self );
-
-
-        const aboutContent = "Welcome to Cat Town! In Cats wih Jobs, you get assigned a Cat Pal and your job is to help them get ready for their day. Each resident comes with a story, but your Cat Pal's looks for the day are ultimately up to you. You can view the last ten Cat Pals you have helped in the gallery."
         
-        var aboutBox = this.add.image(continueButton.x + 300,continueButton.y+162, 'promptBoard')
+
+
+        const aboutContent = "Welcome to Cat Town! In Cats with Jobs, you get assigned a Cat Pal and your job is to help them get ready for their day. Each resident comes with a story, but your Cat Pal's looks for the day are ultimately up to you. You can view the last ten Cat Pals you have helped in the gallery."
+        
+        var aboutBox = this.add.image(continueButton.x + 360,continueButton.y+20, 'promptBoard')
             .setDepth(4)
-            .setDisplaySize(150,250);
+            .setDisplaySize(350,350)
+            .setVisible(false);
             
         var aboutText = this.add.text(aboutBox.x,aboutBox.y-52,aboutContent,{
 			fontFamily: 'Courier New',
 			fontSize: '18px',
 			color: '#000000',
 			resolution: 1,
-            wordWrap : {width : 370, padding:9, useAdvancedWrap : true},
+            wordWrap : {width : 320, padding:4, useAdvancedWrap : true},
 		})
-        .setOrigin(0.5)
-        .setDepth(4);
 
+        .setOrigin(0.5)
+        .setDepth(4)
+        .setVisible(false);
+        var aboutButton= new utilities.genericButton({scene:self,key:'buttonFrame',x:continueButton.x,y:continueButton.y+162,text:"About"});
+        aboutButton.on('pointerdown', function(){
+            toggleAboutBox(aboutBox,aboutText);
+            console.log("click")
+        },self );
+
+        aboutBox.showing = false;
 
         var galleryButton= new utilities.genericButton({scene:self,key:'buttonFrame',x:continueButton.x,y:continueButton.y+81,text:"Gallery"});
         galleryButton.on('pointerdown', function(pointer, localX, localY, event){
             self.scene.start('scene_Gallery');
         },self );
         
-        function toggleAboutBox(aboutBoxShowing){
-            if(aboutBoxShowing == true){
-                aboutBoxShowing=false;
+        function toggleAboutBox(aboutBox,aboutText){
+            console.log(aboutBoxShowing)
+            if(aboutBox.showing == true){
+                aboutBox.showing=false;
                 aboutBox.setVisible(false);
                 aboutText.setVisible(false);
             }
             else{
-                aboutBoxShowing = true;
+                aboutBox.showing = true;
                 aboutBox.setVisible(true);
                 aboutText.setVisible(true);
             }
