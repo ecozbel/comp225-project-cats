@@ -26,6 +26,12 @@ import musicOffSprite from './assets/icons/musicOff.png'
 import musicmp3 from "./assets/audio/music.mp3";
 import musicogg from "./assets/audio/music.ogg" ;
 
+import catPalette from './assets/cat/cat-palettetest.png';
+import catAnimation from './assets/cat/catanimated.png';
+import catAnimation2 from './assets/cat/catanimated2.png';
+import catAnimation3 from './assets/cat/catanimated3.png';
 
 
-export{mainMenuBG,animatedLogo,buttonFrame,genericButton,musicButton,musicOnSprite,musicOffSprite,musicmp3,musicogg}
+
+export{mainMenuBG,animatedLogo,buttonFrame,genericButton,musicButton,musicOnSprite,musicOffSprite,musicmp3,
+    musicogg,catPalette,catAnimation,catAnimation2,catAnimation3}

@@ -36,19 +36,19 @@ class sceneB extends Phaser.Scene
             frameHeight: 52
         });
         
-        this.load.image('cat-palette', imports.catPalette);
-        this.load.spritesheet('catanimated', imports.catAnimation, {
-            frameWidth: 64,
-            frameHeight: 64
-        });
-        this.load.spritesheet('catanimated2', imports.catAnimation2, {
-            frameWidth: 64,
-            frameHeight: 64
-        });
-        this.load.spritesheet('catanimated3', imports.catAnimation3, {
-            frameWidth: 64,
-            frameHeight: 64
-        });
+        // this.load.image('cat-palette', imports.catPalette);
+        // this.load.spritesheet('catanimated', imports.catAnimation, {
+        //     frameWidth: 64,
+        //     frameHeight: 64
+        // });
+        // this.load.spritesheet('catanimated2', imports.catAnimation2, {
+        //     frameWidth: 64,
+        //     frameHeight: 64
+        // });
+        // this.load.spritesheet('catanimated3', imports.catAnimation3, {
+        //     frameWidth: 64,
+        //     frameHeight: 64
+        // });
 
     }
     create(){
@@ -59,7 +59,7 @@ class sceneB extends Phaser.Scene
         iBG.setDepth(-1);
         iBG.setScale(1.5);
         oBG.setDepth(0);
-        paletteCreator.createPalettes(self);
+        //paletteCreator.createPalettes(self);
 
 
 

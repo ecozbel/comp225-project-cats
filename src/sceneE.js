@@ -74,6 +74,8 @@ class sceneE extends Phaser.Scene
                 //this.setUpCat(400,-1000);
                 this.setUpTween(cat,polaroid,self);
                 gameReady=true;
+                console.log(cat.texture);
+                localStorage.setItem('cat1',cat.texture.key);
 
             }
 

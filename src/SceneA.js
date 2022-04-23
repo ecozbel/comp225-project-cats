@@ -6,6 +6,8 @@ import Phaser, { Game } from 'phaser';
 // import genericButton from './genericButton';
 
 import * as imports from './importHelperA.js';
+import * as paletteCreator from './paletteCreator';
+var initialSetup = false;
 
 class sceneA extends Phaser.Scene
 {
@@ -32,6 +34,19 @@ class sceneA extends Phaser.Scene
             frameWidth: 52,
             frameHeight: 52
         });
+        this.load.image('cat-palette', imports.catPalette);
+        this.load.spritesheet('catanimated', imports.catAnimation, {
+            frameWidth: 64,
+            frameHeight: 64
+        });
+        this.load.spritesheet('catanimated2', imports.catAnimation2, {
+            frameWidth: 64,
+            frameHeight: 64
+        });
+        this.load.spritesheet('catanimated3', imports.catAnimation3, {
+            frameWidth: 64,
+            frameHeight: 64
+        });
 
     }
     create(){
@@ -45,11 +60,17 @@ class sceneA extends Phaser.Scene
             frameRate: 8
         });
         logo.play({key:'windblowing',repeat:-1});
+        
 
         
 
         var camera = this.cameras.main;
         var self = this;
+        if(initialSetup != true){
+            paletteCreator.createPalettes(self);
+            initialSetup=true;
+        }
+        //paletteCreator.createPalettes(self);
         let continueButton= new imports.genericButton({scene:self,key:'buttonFrame',x:250,y:400,text:"Start Game"});
         continueButton.on('pointerdown', function(pointer, localX, localY, event){
             camera.fadeOut(1000);    
@@ -80,6 +101,10 @@ class sceneA extends Phaser.Scene
 
         let aboutButton= new imports.genericButton({scene:self,key:'buttonFrame',x:continueButton.x,y:continueButton.y+81,text:"About"});
 
+        var galleryButton= new imports.genericButton({scene:self,key:'buttonFrame',x:continueButton.x,y:continueButton.y+162,text:"Gallery"});
+        galleryButton.on('pointerdown', function(pointer, localX, localY, event){
+            self.scene.start('scene_Gallery');
+        },self );
            
     }
     update(){
