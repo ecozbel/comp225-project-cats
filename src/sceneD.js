@@ -24,95 +24,91 @@ class sceneD extends Phaser.Scene
     {
         //this.load.image('logo', imports.logoImg);
         //this.load.image('cat',imports.catimg);
-        this.load.image('closet',imports.closetimg);
-        this.load.image('background', imports.backgroundTest);
-        this.load.image('background2', imports.backgroundImg2);
-        this.load.image('backgroundnew', imports.backgroundNew);
-        this.load.spritesheet('buttonFrame', imports.buttonFrame, {
-            frameWidth: 312,
-            frameHeight: 52
-        });
-
-        this.load.plugin('rexoutlinepipelineplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexoutlinepipelineplugin.min.js', true);      //this.load.plugin('rexglowfilter2pipelineplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexglowfilter2pipelineplugin.min.js', true);
+        // this.load.image('closet',imports.closetimg);
+        // this.load.image('background', imports.backgroundTest);
+        // this.load.image('background2', imports.backgroundImg2);
+        // this.load.image('backgroundnew', imports.backgroundNew);
+  
 
 
-        this.load.image('hatSilhoette', imports.hatSilhoetteimg);
-        this.load.image('shirtSilhoette', imports.shirtSilhoetteimg);
-        this.load.image('shoeSilhoette', imports.shoeSilhoetteimg);
-        this.load.image('pantsSilhoette', imports.pantsSilhoetteimg);
 
-        this.load.image('hatSilhoetteOver', imports.hatSilhoetteOverimg);
-        this.load.image('shirtSilhoetteOver', imports.shirtSilhoetteOverimg);
-        this.load.image('shoeSilhoetteOver', imports.shoeSilhoetteOverimg);
-        this.load.image('pantsSilhoetteOver', imports.pantsSilhoettOverimg);
-        // console.log('---------> preloading')
-        // this.load.json('prompts','src/assets/prompts.json');
-        loadClothing(this);
+        // this.load.image('hatSilhoette', imports.hatSilhoetteimg);
+        // this.load.image('shirtSilhoette', imports.shirtSilhoetteimg);
+        // this.load.image('shoeSilhoette', imports.shoeSilhoetteimg);
+        // this.load.image('pantsSilhoette', imports.pantsSilhoetteimg);
 
-        //helper function to organize better
-        function loadClothing(scene){
-            scene.load.image('hat1',imports.hat1img);
-            scene.load.image('hat2',imports.hat2img);
-            scene.load.image('hat3',imports.hat3img);
-            scene.load.image('hat4',imports.hat4img);
-            scene.load.image('hat5',imports.hat5img);
-            scene.load.image('hat6',imports.hat6img);
-            scene.load.image('hat7',imports.hat7img);
-            scene.load.image('hat8',imports.hat8img);
-            scene.load.image('hat9',imports.hat9img);
-            scene.load.image('hat10',imports.hat10img);
-            scene.load.image('hat11',imports.hat11img);
-            scene.load.image('hat12',imports.hat12img);
-            scene.load.image('hat13',imports.hat13img);
-            scene.load.image('hat14',imports.hat14img);
-            scene.load.image('hat15',imports.hat15img);
-            scene.load.image('hat16',imports.hat16img);
-            scene.load.image('shoe1',imports.shoe1img);
-            scene.load.image('shoe2',imports.shoe2img);
-            scene.load.image('shoe3',imports.shoe3img);
-            scene.load.image('shoe4',imports.shoe4img);
-            scene.load.image('shoe5',imports.shoe5img);
-            scene.load.image('shoe6',imports.shoe6img);
-            scene.load.image('shoe7',imports.shoe7img);
-            scene.load.image('shoe8',imports.shoe8img);
-            scene.load.image('shoe9',imports.shoe9img);
-            scene.load.image('shoe10',imports.shoe10img);
-            scene.load.image('shoe11',imports.shoe11img);
-            scene.load.image('shoe12',imports.shoe12img);
-            scene.load.image('shoe13',imports.shoe13img);
-            scene.load.image('shoe14',imports.shoe14img);
-            scene.load.image('shoe15',imports.shoe15img);
-            scene.load.image('shirt1', imports.shirt1img);
-            scene.load.image('shirt2', imports.shirt2img);
-            scene.load.image('shirt3', imports.shirt3img);
-            scene.load.image('shirt4', imports.shirt4img);
-            scene.load.image('shirt5', imports.shirt5img);
-            scene.load.image('shirt6', imports.shirt6img);
-            scene.load.image('shirt7', imports.shirt7img);
-            scene.load.image('shirt8', imports.shirt8img);
-            scene.load.image('shirt9', imports.shirt9img);
-            scene.load.image('shirt10', imports.shirt10img);
-            scene.load.image('shirt11', imports.shirt11img);
-            scene.load.image('shirt12', imports.shirt12img);
-            scene.load.image('shirt13', imports.shirt13img);
-            scene.load.image('shirt14', imports.shirt14img);
-            scene.load.image('shirt15', imports.shirt15img);
-            scene.load.image('shirt16', imports.shirt16img);
-            scene.load.image('pants1', imports.pants1);
-            scene.load.image('pants2', imports.pants2);
-            scene.load.image('pants3', imports.pants3);
-            scene.load.image('pants4', imports.pants4);
-            scene.load.image('pants5', imports.pants5);
-            scene.load.image('pants6', imports.pants6);
-            scene.load.image('pants7', imports.pants7);
-            scene.load.image('pants8', imports.pants8);
-            scene.load.image('pants9', imports.pants9);
-            scene.load.image('pants10', imports.pants10);
-            scene.load.image('pants11', imports.pants11);
-            scene.load.image('pants12', imports.pants12);
-            scene.load.image('pants13', imports.pants13);
-            scene.load.image('pants14', imports.pants14);
-        }
+        // this.load.image('hatSilhoetteOver', imports.hatSilhoetteOverimg);
+        // this.load.image('shirtSilhoetteOver', imports.shirtSilhoetteOverimg);
+        // this.load.image('shoeSilhoetteOver', imports.shoeSilhoetteOverimg);
+        // this.load.image('pantsSilhoetteOver', imports.pantsSilhoettOverimg);
+        // // console.log('---------> preloading')
+        // // this.load.json('prompts','src/assets/prompts.json');
+        // loadClothing(this);
+
+        // //helper function to organize better
+        // function loadClothing(scene){
+        //     scene.load.image('hat1',imports.hat1img);
+        //     scene.load.image('hat2',imports.hat2img);
+        //     scene.load.image('hat3',imports.hat3img);
+        //     scene.load.image('hat4',imports.hat4img);
+        //     scene.load.image('hat5',imports.hat5img);
+        //     scene.load.image('hat6',imports.hat6img);
+        //     scene.load.image('hat7',imports.hat7img);
+        //     scene.load.image('hat8',imports.hat8img);
+        //     scene.load.image('hat9',imports.hat9img);
+        //     scene.load.image('hat10',imports.hat10img);
+        //     scene.load.image('hat11',imports.hat11img);
+        //     scene.load.image('hat12',imports.hat12img);
+        //     scene.load.image('hat13',imports.hat13img);
+        //     scene.load.image('hat14',imports.hat14img);
+        //     scene.load.image('hat15',imports.hat15img);
+        //     scene.load.image('hat16',imports.hat16img);
+        //     scene.load.image('shoe1',imports.shoe1img);
+        //     scene.load.image('shoe2',imports.shoe2img);
+        //     scene.load.image('shoe3',imports.shoe3img);
+        //     scene.load.image('shoe4',imports.shoe4img);
+        //     scene.load.image('shoe5',imports.shoe5img);
+        //     scene.load.image('shoe6',imports.shoe6img);
+        //     scene.load.image('shoe7',imports.shoe7img);
+        //     scene.load.image('shoe8',imports.shoe8img);
+        //     scene.load.image('shoe9',imports.shoe9img);
+        //     scene.load.image('shoe10',imports.shoe10img);
+        //     scene.load.image('shoe11',imports.shoe11img);
+        //     scene.load.image('shoe12',imports.shoe12img);
+        //     scene.load.image('shoe13',imports.shoe13img);
+        //     scene.load.image('shoe14',imports.shoe14img);
+        //     scene.load.image('shoe15',imports.shoe15img);
+        //     scene.load.image('shirt1', imports.shirt1img);
+        //     scene.load.image('shirt2', imports.shirt2img);
+        //     scene.load.image('shirt3', imports.shirt3img);
+        //     scene.load.image('shirt4', imports.shirt4img);
+        //     scene.load.image('shirt5', imports.shirt5img);
+        //     scene.load.image('shirt6', imports.shirt6img);
+        //     scene.load.image('shirt7', imports.shirt7img);
+        //     scene.load.image('shirt8', imports.shirt8img);
+        //     scene.load.image('shirt9', imports.shirt9img);
+        //     scene.load.image('shirt10', imports.shirt10img);
+        //     scene.load.image('shirt11', imports.shirt11img);
+        //     scene.load.image('shirt12', imports.shirt12img);
+        //     scene.load.image('shirt13', imports.shirt13img);
+        //     scene.load.image('shirt14', imports.shirt14img);
+        //     scene.load.image('shirt15', imports.shirt15img);
+        //     scene.load.image('shirt16', imports.shirt16img);
+        //     scene.load.image('pants1', imports.pants1);
+        //     scene.load.image('pants2', imports.pants2);
+        //     scene.load.image('pants3', imports.pants3);
+        //     scene.load.image('pants4', imports.pants4);
+        //     scene.load.image('pants5', imports.pants5);
+        //     scene.load.image('pants6', imports.pants6);
+        //     scene.load.image('pants7', imports.pants7);
+        //     scene.load.image('pants8', imports.pants8);
+        //     scene.load.image('pants9', imports.pants9);
+        //     scene.load.image('pants10', imports.pants10);
+        //     scene.load.image('pants11', imports.pants11);
+        //     scene.load.image('pants12', imports.pants12);
+        //     scene.load.image('pants13', imports.pants13);
+        //     scene.load.image('pants14', imports.pants14);
+        //}
 
 
 

@@ -12,29 +12,26 @@ class sceneB extends Phaser.Scene
     preload ()
     {
         
-        this.load.image('innerBG',imports.innerBG)
-        this.load.plugin('rexoutlinepipelineplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexoutlinepipelineplugin.min.js', true);      //this.load.plugin('rexglowfilter2pipelineplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexglowfilter2pipelineplugin.min.js', true);
-        this.load.image('outerBG',imports.outerBG)
-        this.load.image('ribbon',imports.ribbonFrame)
-        this.load.spritesheet('door', imports.door, {
-            frameWidth: 300,
-            frameHeight: 425
-        });
-        this.load.spritesheet('doorClosing', imports.doorClosing, {
-            frameWidth: 300,
-            frameHeight: 425
-        });
+        // this.load.image('innerBG',imports.innerBG)
+        // this.load.plugin('rexoutlinepipelineplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexoutlinepipelineplugin.min.js', true);      //this.load.plugin('rexglowfilter2pipelineplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexglowfilter2pipelineplugin.min.js', true);
+        // this.load.image('outerBG',imports.outerBG)
+        // this.load.image('ribbon',imports.ribbonFrame)
+        // this.load.spritesheet('door', imports.door, {
+        //     frameWidth: 300,
+        //     frameHeight: 425
+        // });
+        // this.load.spritesheet('doorClosing', imports.doorClosing, {
+        //     frameWidth: 300,
+        //     frameHeight: 425
+        // });
 
 
-        this.load.spritesheet('catReroll', imports.catRerollButton, {
-            frameWidth: 52,
-            frameHeight: 52
-        });
+        // this.load.spritesheet('catReroll', imports.catRerollButton, {
+        //     frameWidth: 52,
+        //     frameHeight: 52
+        // });
 
-        this.load.spritesheet('buttonFrame', imports.buttonFrame, {
-            frameWidth: 312,
-            frameHeight: 52
-        });
+        
         
         // this.load.image('cat-palette', imports.catPalette);
         // this.load.spritesheet('catanimated', imports.catAnimation, {

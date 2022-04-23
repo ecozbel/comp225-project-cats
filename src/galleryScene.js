@@ -33,18 +33,33 @@ class sceneGallery extends Phaser.Scene
         var self = this;
 
         //Get the polaroid count from local data manager (necessary to know how many polaroids to construct)
-        var polaroidCount = 3;
+        var polaroidCount = localStorage.getItem('polaroidCount');
         //constructPolaroid();
 
         //var catKey = "catanimated3-lime";
-        console.log(localStorage.getItem('cat1'))
-        var catKey = localStorage.getItem('cat1')
-        cat = self.add.sprite(0,0,catKey).setScale(6)
-        cat.setVisible(false);
 
-        hatKey = "hat1";
-        hat = self.add.sprite(0,0,hatKey).setScale(0.8)
-        hat.setVisible(false);
+
+        if(polaroidCount!=null){
+            var catKey = localStorage.getItem('cat1')
+            cat = self.add.sprite(0,0,catKey).setScale(6)
+            cat.setVisible(false);
+
+            hatKey = localStorage.getItem('hat1');
+            console.log(hatKey);
+            if(hatKey != 'empty'&&hatKey !=null){
+                hat = self.add.sprite(0,0,hatKey).setScale(0.8)
+                hat.setVisible(false);
+            }
+
+
+        }
+        // var catKey = localStorage.getItem('cat1')
+        // cat = self.add.sprite(0,0,catKey).setScale(6)
+        // cat.setVisible(false);
+
+        // hatKey = "hat1";
+        // hat = self.add.sprite(0,0,hatKey).setScale(0.8)
+        // hat.setVisible(false);
 
         //setUpClothes(self);
         
@@ -115,7 +130,10 @@ class sceneGallery extends Phaser.Scene
             polaroid.draw(cat, 400,300 );
      
             // draw the clothes
-            polaroid.draw(hat, 400, 130);
+            if(hat!=null){
+                polaroid.draw(hat, 400, 130);
+            }
+            //polaroid.draw(hat, 400, 130);
             //console.log(polaroid)
             console.log(hat)
             polaroid.saveTexture("photo1");

@@ -16,14 +16,11 @@ class sceneC extends Phaser.Scene
     }
     preload ()
     {
-        this.load.json('prompts','src/assets/prompts.json');
-        this.load.plugin('rextexttypingplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rextexttypingplugin.min.js', true);
-        this.load.image('promptBoard',imports.promptBg);
-        this.load.image('innerBG',imports.innerBG);
-        this.load.spritesheet('buttonFrame', imports.buttonFrame, {
-            frameWidth: 312,
-            frameHeight: 52
-        });
+        // this.load.json('prompts','src/assets/prompts.json');
+        // this.load.plugin('rextexttypingplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rextexttypingplugin.min.js', true);
+        // this.load.image('promptBoard',imports.promptBg);
+        // this.load.image('innerBG',imports.innerBG);
+    
 
     }
     create(){

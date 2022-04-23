@@ -21,11 +21,11 @@ class sceneE extends Phaser.Scene
 
     preload ()
     {
-        this.load.image('polaroid', imports.polaroidImg);
-        this.load.image('scenery1',imports.scenery1);
-        this.load.audio("printSound",[imports.polaroidPrintSound,imports.polaroidPrintSoundOGG ])
-        this.load.audio("shutterSound",[imports.cameraShutterSound,imports.cameraShutterSoundOGG])
-        this.load.image('itemFrame',imports.itemFrame);
+        // this.load.image('polaroid', imports.polaroidImg);
+        // this.load.image('scenery1',imports.scenery1);
+        // this.load.audio("printSound",[imports.polaroidPrintSound,imports.polaroidPrintSoundOGG ])
+        // this.load.audio("shutterSound",[imports.cameraShutterSound,imports.cameraShutterSoundOGG])
+        // this.load.image('itemFrame',imports.itemFrame);
     }
 
     create ()
@@ -75,7 +75,30 @@ class sceneE extends Phaser.Scene
                 this.setUpTween(cat,polaroid,self);
                 gameReady=true;
                 console.log(cat.texture);
+                
+
+                let shoe = cat.shoePosition.currentClothing;
+                let hat = cat.hatPosition.currentClothing;
+                let shirt = cat.shirtPosition.currentClothing;
+                let pants = cat.pantsPosition.currentClothing;
                 localStorage.setItem('cat1',cat.texture.key);
+                
+                saveClothing("hat1",hat);
+                saveClothing("shirt1",shirt);
+                saveClothing("pants1",pants);
+                saveClothing("shoes1",shoe);
+                
+
+                var polaroidCount = localStorage.getItem('polaroidCount');
+                if(polaroidCount == null){
+                    localStorage.setItem('polaroidCount',"1")
+
+                }
+                else{
+                    let oldCount = parseInt(polaroidCount)
+                    let newCount = oldCount+1;
+                    localStorage.setItem('polaroidCount',newCount)
+                }
 
             }
 
@@ -96,6 +119,17 @@ class sceneE extends Phaser.Scene
 
 
         });
+
+        function saveClothing(saveKey,clothing){
+
+            if(clothing!=null){
+                localStorage.setItem(saveKey,clothing.texture.key);
+            }
+            else{
+                localStorage.setItem(saveKey,"empty");
+            }
+
+        }
 
 
     }
