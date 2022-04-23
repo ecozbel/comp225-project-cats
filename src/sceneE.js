@@ -1,6 +1,7 @@
 import Phaser from "phaser";
-import * as imports from "./importHelperE.js"
+//import * as imports from "./importHelperE.js"
 import * as utilities from "./utilities.js";
+//import * as utilities from "./utilities.js";
 
 
 var cat;
@@ -150,6 +151,11 @@ class sceneE extends Phaser.Scene
 
         }
 
+        var galleryButton= new utilities.genericButton({scene:self,key:'buttonFrame',x:400,y:600,text:"Gallery"});
+        galleryButton.on('pointerdown', function(pointer, localX, localY, event){
+            self.scene.start('scene_Gallery');
+        },self );
+
 
     }
     update(){
@@ -294,7 +300,9 @@ class sceneE extends Phaser.Scene
 
 
 
+
     }
+    
 
     setUpTween(cat,polaroid,gameScene){
         gameScene.polaroidSlideOver = gameScene.tweens.add({
@@ -323,6 +331,7 @@ class sceneE extends Phaser.Scene
                 .setOrigin(0.5)
                 .setDepth(4);
     }
+    
 
 
 

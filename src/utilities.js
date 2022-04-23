@@ -1,5 +1,7 @@
 
 import { game } from './index.js';
+import musicButton from './musicButton.js'
+import genericButton from './genericButton.js';
 //Utilities
 //Scales given sprite to normal size
 function normalizeScale(sprite){
@@ -66,4 +68,4 @@ function playSoundEffect(soundEffect){
 
 
 
-export{normalizeScale,normalizeClothing,scaletoIconSize,createClothingSnapPoints,scaleToGivenSize,scaleToPolaroidSize,playSoundEffect}
+export{normalizeScale,normalizeClothing,scaletoIconSize,createClothingSnapPoints,scaleToGivenSize,scaleToPolaroidSize,playSoundEffect,musicButton,genericButton}

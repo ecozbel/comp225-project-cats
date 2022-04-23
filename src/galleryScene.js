@@ -1,6 +1,6 @@
-import * as imports from "./importHelperD.js"
-import {leftButton} from './importHelperA';
-
+//mport * as imports from "./importHelperD.js"
+//import {leftButton} from './importHelperA';
+import * as utilities from "./utilities.js";
 
 var hatKey;
 var shirtKey;
@@ -270,7 +270,7 @@ class sceneGallery extends Phaser.Scene
         }
         // console.log(carousel.face);
 
-        var backButton= new imports.genericButton({scene:self,key:'buttonFrame',x:80,y:50,text:"Back"});
+        var backButton= new utilities.genericButton({scene:self,key:'buttonFrame',x:80,y:50,text:"Back"});
         backButton.setDisplaySize(100,54);
         backButton.on('pointerdown', function(pointer, localX, localY, event){
             startPreviousScene();   

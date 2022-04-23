@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
-import * as imports from "./importHelperC.js"
-
+//import * as imports from "./importHelperC.js"
+import * as utilities from "./utilities.js";
 // import promptBg from './assets/promptBoard.png'
 // import innerBG from './assets/backgrounds/catChoose_inner_background.png'
 // import buttonFrame from './assets/icons/buttonFrameLarge.png'
@@ -37,7 +37,7 @@ class sceneC extends Phaser.Scene
         var self = this;
         var camera = this.cameras.main;
 
-        var backButton= new imports.genericButton({scene:self,key:'buttonFrame',x:200,y:570,text:"Back"});
+        var backButton= new utilities.genericButton({scene:self,key:'buttonFrame',x:200,y:570,text:"Back"});
         backButton.on('pointerdown', function(pointer, localX, localY, event){
             startPreviousScene();   
         },self );
@@ -45,7 +45,7 @@ class sceneC extends Phaser.Scene
             self.scene.start('sceneB_pickCat');
         }
 
-        var continueButton= new imports.genericButton({scene:self,key:'buttonFrame',x:600,y:570,text:"Continue"});
+        var continueButton= new utilities.genericButton({scene:self,key:'buttonFrame',x:600,y:570,text:"Continue"});
         continueButton.on('pointerdown', function(pointer, localX, localY, event){
             camera.fadeOut(1000);    
         },self );
@@ -103,7 +103,7 @@ class sceneC extends Phaser.Scene
         promptText.typing.start(getPromptWithCatName(generatedPrompt).introduction); 
         this.game.cat.generatedPrompt = generatedPrompt;    
         
-        var mButton= new imports.musicButton({scene:self,onKey:'musicOnButton',offKey:'musicOffButton' });
+        var mButton= new utilities.musicButton({scene:self,onKey:'musicOnButton',offKey:'musicOffButton' });
 
         mButton.on('pointerdown', function () {
             toggleSound(this.game.bgMusic)

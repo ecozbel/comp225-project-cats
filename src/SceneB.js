@@ -1,7 +1,8 @@
 import Phaser, { Game } from 'phaser';
 
-import * as imports from "./importHelperB.js"
+//import * as imports from "./importHelperB.js"
 import * as paletteCreator from './paletteCreator';
+import * as utilities from "./utilities.js";
 class sceneB extends Phaser.Scene
 {
     constructor ()
@@ -63,7 +64,7 @@ class sceneB extends Phaser.Scene
 
         //MUSIC 
 
-        var mButton= new imports.musicButton({scene:self,onKey:'musicOnButton',offKey:'musicOffButton' });
+        var mButton= new utilities.musicButton({scene:self,onKey:'musicOnButton',offKey:'musicOffButton' });
         mButton.on('pointerdown', function () {
             toggleSound(this.game.bgMusic)
         },self);
@@ -77,7 +78,7 @@ class sceneB extends Phaser.Scene
             }
         }
 
-        var backButton= new imports.genericButton({scene:self,key:'buttonFrame',x:80,y:50,text:"Back"});
+        var backButton= new utilities.genericButton({scene:self,key:'buttonFrame',x:80,y:50,text:"Back"});
         backButton.setDisplaySize(100,54);
         backButton.on('pointerdown', function(pointer, localX, localY, event){
             startPreviousScene();   
