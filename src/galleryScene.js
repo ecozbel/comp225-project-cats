@@ -45,90 +45,48 @@ class sceneGallery extends Phaser.Scene
         
         //var catKey = "catanimated3-lime";
         //console.log(localStorage.getItem('cat7'));
-
+        var frame = this.add.sprite(0,0,'polaroid');
+        frame.setScale(12);
+        frame.setVisible(false);
         if(polaroidCount!=null){
-            var catKey = localStorage.getItem('cat'+polaroidCount)
-            cat = self.add.sprite(0,0,catKey).setScale(6)
-            cat.setVisible(false);
 
-            hatKey = localStorage.getItem('hat'+polaroidCount);
-            //console.log(hatKey);
-            if(hatKey != 'empty'&&hatKey !=null){
-                hat = self.add.sprite(0,0,hatKey).setScale(0.8)
-                hat.setVisible(false);
-            }
+            for(var i=1;i<polaroidCount+1;i++){
+                var catKey = localStorage.getItem('cat'+i)
+                cat = self.add.sprite(0,0,catKey).setScale(3)
+                cat.setVisible(false);
 
-            shirtKey = localStorage.getItem('shirt'+polaroidCount);
-            //console.log(hatKey);
-            if(shirtKey != 'empty'&&shirtKey !=null){
-                shirt = self.add.sprite(0,0,shirtKey).setScale(0.8)
-                shirt.setVisible(false);
+                hatKey = localStorage.getItem('hat'+i);
+                //console.log(hatKey);
+                if(hatKey != 'empty'&&hatKey !=null){
+                    hat = self.add.sprite(0,0,hatKey).setScale(0.3)
+                    hat.setVisible(false);
+                }
+
+                shirtKey = localStorage.getItem('shirt'+i);
+                //console.log(hatKey);
+                if(shirtKey != 'empty'&&shirtKey !=null){
+                    shirt = self.add.sprite(0,0,shirtKey).setScale(0.3)
+                    shirt.setVisible(false);
+                }
+                pantsKey = localStorage.getItem('pants'+i);
+                //console.log(hatKey);
+                if(pantsKey != 'empty'&&pantsKey !=null){
+                    pants = self.add.sprite(0,0,pantsKey).setScale(0.3)
+                    pants.setVisible(false);
+                }
+                shoesKey = localStorage.getItem('shoes'+i);
+                //console.log(hatKey);
+                if(shoesKey != 'empty'&&shoesKey !=null){
+                    shoes = self.add.sprite(0,0,shoesKey).setScale(0.3)
+                    shoes.setVisible(false);
+                }
+                addPolaroid('photo'+i);
             }
-            pantsKey = localStorage.getItem('pants'+polaroidCount);
-            //console.log(hatKey);
-            if(pantsKey != 'empty'&&pantsKey !=null){
-                pants = self.add.sprite(0,0,pantsKey).setScale(0.8)
-                pants.setVisible(false);
-            }
-            shoesKey = localStorage.getItem('shoes'+polaroidCount);
-            //console.log(hatKey);
-            if(shoesKey != 'empty'&&shoesKey !=null){
-                shoes = self.add.sprite(0,0,shoesKey).setScale(0.8)
-                shoes.setVisible(false);
-            }
-            addPolaroid('photo1')
 
 
 
         }
-        // var catKey = localStorage.getItem('cat1')
-        // cat = self.add.sprite(0,0,catKey).setScale(6)
-        // cat.setVisible(false);
-
-        // hatKey = "hat1";
-        // hat = self.add.sprite(0,0,hatKey).setScale(0.8)
-        // hat.setVisible(false);
-
-        //setUpClothes(self);
         
-        // function constructPolaroid(){
-        //     //Get the chosen Cat's key from local data manager
-        //     var catKey = "catanimated3-lime";
-
-
-        //     this.borderGraphics = this.add.graphics();
-        //     this.borderGraphics.setVisible(false);
-
-        //     cat = self.add.sprite(0,0,catKey).setScale(4)
-        //     cat.setVisible(false);
-
-            
-        //     //Get the name of the cat from local data manager
-        //     var catName = 'Cat Name'
-        //     //Get the related prompt's key
-        //     var promptKey = "prompt1"
-
-        //     //pull correct prompt using key
-        //     var prompt = null;
-
-        //     //getPromptWithName(prompt,catName)
-
-        //     //Get the background type from prompt
-        //     var bgKey = 'nature'
-
-        //     //Get keys of clothes in the polaroid from local data manager
-        //     //Set key as null if the spot is empty (maybe look for "empty" keyword?)
-        //     hatKey = "hat1";
-        //    // hat = self.add.sprite(0,0,shoeKey).setScale(10)
-        //     shirtKey = "shirt1"
-        //     shoeKey="shoe1"
-        //     pantsKey="pants1"
-
-        //     hat = self.add.sprite(0,0,shoeKey).setScale(10)
-        //     //setUpClothes(self);
-        //     //var polaroid = this.add.container(400,300,[ cat,hat,shoe,shirt,pants]);
-        //     //return polaroid;
-        // }
 
 
         var polaroids = [];
@@ -152,6 +110,7 @@ class sceneGallery extends Phaser.Scene
             
 
            //draw black square
+           polaroid.draw(frame, 400,300 );
 
            //draw the background
      
@@ -159,17 +118,18 @@ class sceneGallery extends Phaser.Scene
             polaroid.draw(cat, 400,300 );
      
             // draw the clothes
-            if(hat!=null){
-                polaroid.draw(hat, 400, 130);
-            }
-            if(shirt!=null){
-                polaroid.draw(shirt, 400, 200);
-            }
+            
             if(shoes!=null){
-                polaroid.draw(shoes, 400, 400);
+                polaroid.draw(shoes, 406, 375);
             }
             if(pants!=null){
-                polaroid.draw(pants, 400, 250);
+                polaroid.draw(pants, 407, 355);
+            }
+            if(shirt!=null){
+                polaroid.draw(shirt, 403, 312);
+            }
+            if(hat!=null){
+                polaroid.draw(hat, 405, 215);
             }
             //polaroid.draw(hat, 400, 130);
             //console.log(polaroid)
@@ -178,8 +138,11 @@ class sceneGallery extends Phaser.Scene
             // draw the graphics inside the platform
             //polaroid.draw(self.borderGraphics);
         }
-        var photo = this.add.sprite(400,300,'photo1');
+        var photo = this.add.sprite(400,300,'photo'+polaroidCount);
         photo.setVisible(true);
+
+        var photo2 = this.add.sprite(150,300,'photo2');
+        photo2.setVisible(true);
         // var carousel = this.add.rexPerspectiveCarousel({
         //     x: 400, y: 300,
 
