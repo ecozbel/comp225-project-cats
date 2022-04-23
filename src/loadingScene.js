@@ -224,6 +224,7 @@ class loadingScene extends Phaser.Scene
         this.load.audio("printSound",[importsE.polaroidPrintSound,importsE.polaroidPrintSoundOGG ])
         this.load.audio("shutterSound",[importsE.cameraShutterSound,importsE.cameraShutterSoundOGG])
         this.load.image('itemFrame',importsE.itemFrame);
+        this.load.audio("buttonClick1Sound", importsA.buttonClick1Sound)
 
         
 

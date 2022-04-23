@@ -151,7 +151,7 @@ class sceneE extends Phaser.Scene
 
         }
 
-        var galleryButton= new utilities.genericButton({scene:self,key:'buttonFrame',x:400,y:600,text:"Gallery"});
+        var galleryButton= new utilities.genericButton({scene:self,key:'buttonFrame',x:400,y:580,text:"Go to gallery"});
         galleryButton.on('pointerdown', function(pointer, localX, localY, event){
             self.scene.start('scene_Gallery');
         },self );
