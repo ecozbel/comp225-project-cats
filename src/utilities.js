@@ -23,6 +23,12 @@ function scaleToGivenSize(sprite,size){
     sprite.scaleY=sprite.scaleX;
 }
 
+//Scales given sprite to specified size
+function scaleToPolaroidSize(sprite){
+    sprite.displayWidth=game.config.width*0.146; 
+    sprite.scaleY=sprite.scaleX;
+}
+
 function createClothingSnapPoints(cat){
     cat.hatPosition = { 
         x : cat.x+5,
@@ -50,4 +56,4 @@ function createClothingSnapPoints(cat){
     }
 }
 
-export{normalizeScale,normalizeClothing,scaletoIconSize,createClothingSnapPoints,scaleToGivenSize}
+export{normalizeScale,normalizeClothing,scaletoIconSize,createClothingSnapPoints,scaleToGivenSize,scaleToPolaroidSize}

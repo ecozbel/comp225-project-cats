@@ -145,6 +145,8 @@ class sceneE extends Phaser.Scene
 
         var newPrompt = getPromptWithName(this.game.cat.generatedPrompt,this.game.cat.name);
         
+        console.log("after prompt generated")//for debugging
+
         endingPrompt = currentScene.add.text(0,0,newPrompt.outcome,{
 			fontFamily: 'Permanent Marker',
 			fontSize: '18px',
@@ -179,24 +181,22 @@ class sceneE extends Phaser.Scene
         //add all contents of polaroid into container
         polaroid = this.add.container(400,-1000,[ bg,frame,cat,endingPrompt]);
 
+        console.log("before handleClothingItemPolaroidSLide:");//debugging
         if (cat.shoePosition.currentClothing != null) {
-            var shoes = cat.shoePosition.currentClothing;
-            handleClothingItemPolaroidSlide(shoes,-21.5,cat.displayHeight/2.61,1,this);
+            handleClothingItemPolaroidSlide(cat.shoePosition.currentClothing,-21.5,cat.displayHeight/2.61,1);
         }   
         if (cat.pantsPosition.currentClothing != null) {
-            var pants = cat.pantsPosition.currentClothing;
-            handleClothingItemPolaroidSlide(pants,-20,cat.displayHeight/3.39,2,this);
+            handleClothingItemPolaroidSlide(cat.pantsPosition.currentClothing,-20,cat.displayHeight/3.39,2);
         } 
         if (cat.shirtPosition.currentClothing != null) {
-            var shirt = cat.shirtPosition.currentClothing;
-            handleClothingItemPolaroidSlide(shirt,-20,cat.displayHeight/12,3,this);
+            handleClothingItemPolaroidSlide(cat.shirtPosition.currentClothing,-20,cat.displayHeight/12,3);
         }
         if (cat.hatPosition.currentClothing != null) {
-            var hat = cat.hatPosition.currentClothing;
-            handleClothingItemPolaroidSlide(hat,-20,-cat.displayHeight/2.4,4,this);
+            handleClothingItemPolaroidSlide(cat.hatPosition.currentClothing,-20,-cat.displayHeight/2.4,4);
         }
 
-        console.log("cat boundingBox:");
+
+        console.log("cat boundingBox:");//debugging
         console.log(cat.boundingBox);
         //adjusts sprite's position relative to the container
         bg.y=bg.y-50;
@@ -207,10 +207,10 @@ class sceneE extends Phaser.Scene
 
 
         //helper function to reduce code duplication
-        function handleClothingItemPolaroidSlide(clothing,xOffset,yOffset,depth,thisPage){
+        function handleClothingItemPolaroidSlide(clothing,xOffset,yOffset,depth){
             clothing.setVisible(true);
             polaroid.add(clothing);
-            utilities.scaleToGivenSize(clothing,thisPage.game.config.width*0.146);
+            utilities.scaleToPolaroidSize(clothing);
             clothing.x =  cat.x+xOffset;
             clothing.y = cat.y+yOffset;
             clothing.setDepth(depth);
