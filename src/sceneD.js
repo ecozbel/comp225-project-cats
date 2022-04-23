@@ -109,7 +109,7 @@ class sceneD extends Phaser.Scene
         //     scene.load.image('pants13', imports.pants13);
         //     scene.load.image('pants14', imports.pants14);
         //}
-
+        loadSoundEffects(this);
         function loadSoundEffects(scene){
             scene.load.audio("clothingPickup1",imports.clothingPickup1Sound);
             scene.load.audio("clothingRussle5",imports.clothingRussle5Sound);
