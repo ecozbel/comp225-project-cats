@@ -83,7 +83,7 @@ class sceneA extends Phaser.Scene
         function startNextScene(){
             self.scene.start('sceneB_pickCat');
         }
-
+        global.buttonClickSound1 = this.sound.add("buttonClick1Sound",{ loop: false });
         var backgroundMusic = this.sound.add('music',{ loop: false });
         var mButton= new utilities.musicButton({scene:self,onKey:'musicOnButton',offKey:'musicOffButton' });
         this.game.bgMusic = backgroundMusic;

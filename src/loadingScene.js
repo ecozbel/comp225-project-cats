@@ -228,6 +228,12 @@ class loadingScene extends Phaser.Scene
 
         this.load.image('polaroidBack',importsA.polaroidBack);
 
+        loadSoundEffects(this);
+        function loadSoundEffects(scene){
+            scene.load.audio("clothingPickup1",importsD.clothingPickup1Sound);
+            scene.load.audio("clothingRussle5",importsD.clothingRussle5Sound);
+        }
+
 
     }
     create(){
