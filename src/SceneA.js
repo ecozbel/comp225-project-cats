@@ -8,7 +8,7 @@ import * as paletteCreator from './paletteCreator';
 import * as utilities from "./utilities.js";
 var initialSetup = false;
 
-var aboutBoxShowing = false;
+
 
 class sceneA extends Phaser.Scene
 {
@@ -124,7 +124,6 @@ class sceneA extends Phaser.Scene
         var aboutButton= new utilities.genericButton({scene:self,key:'buttonFrame',x:continueButton.x,y:continueButton.y+162,text:"About"});
         aboutButton.on('pointerdown', function(){
             toggleAboutBox(aboutBox,aboutText);
-            console.log("click")
         },self );
 
         aboutBox.showing = false;
@@ -135,7 +134,7 @@ class sceneA extends Phaser.Scene
         },self );
         
         function toggleAboutBox(aboutBox,aboutText){
-            console.log(aboutBoxShowing)
+
             if(aboutBox.showing == true){
                 aboutBox.showing=false;
                 aboutBox.setVisible(false);
