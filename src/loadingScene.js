@@ -117,7 +117,9 @@ class loadingScene extends Phaser.Scene
             frameWidth: 64,
             frameHeight: 64
         });
-        this.load.image('innerBG',importsB.innerBG)
+        this.load.image('innerBG',importsB.innerBG);
+        this.load.plugin('rexperspectiveimageplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexperspectiveimageplugin.min.js', true);
+
         this.load.plugin('rexoutlinepipelineplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexoutlinepipelineplugin.min.js', true);      //this.load.plugin('rexglowfilter2pipelineplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexglowfilter2pipelineplugin.min.js', true);
         this.load.image('outerBG',importsB.outerBG)
         this.load.image('ribbon',importsB.ribbonFrame)

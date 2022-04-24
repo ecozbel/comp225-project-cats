@@ -20,18 +20,7 @@ class sceneGallery extends Phaser.Scene
     }
     preload ()
     {
-
-        // this.load.image('polaroid', imports.polaroidImg);
-        // this.load.image('scenery1',imports.scenery1);
-
-        // this.load.image('hat2',imports.hat1img);
-        // this.load.image('shirt2',imports.shirt1img);
-        // this.load.image('shoe2',imports.shoe1img);
-        // this.load.image('pants2',imports.pants1);
-
-        this.load.plugin('rexperspectiveimageplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexperspectiveimageplugin.min.js', true);
         
-
     }
     create(){
         var self = this;
@@ -40,12 +29,7 @@ class sceneGallery extends Phaser.Scene
         //Get the polaroid count from local data manager (necessary to know how many polaroids to construct)
         var polaroidCount = localStorage.getItem('polaroidCount');
         var photoKey = "photo"+polaroidCount;
-        //constructPolaroids();
-        // if(polaroidCount!=null){
-        //     var intCount = parseInt(polaroidCount)
-        //     for(var i=0;i<polaroidCount-1;i++){
-        //         addPolaroid(photoKey)
-        //     }
+
         var iBG = this.add.image(400,300,'galleryBG');
         iBG.setDepth(-1);
         //iBG.setScale(1.5);
@@ -133,11 +117,11 @@ class sceneGallery extends Phaser.Scene
             }
             var carousel = this.add.rexPerspectiveCarousel({
                 x: 400, y: 280,
-    
+                z:1,
                 faces: polaroids,
-                faceSpace: 50,
+                //faceSpace: 150,
                 faceWidth: 400,
-                backWidth: 300
+                //backWidth: 400
             })
 
             //var invisRect = this.add.rectangle(400,280,400,400)
@@ -146,17 +130,6 @@ class sceneGallery extends Phaser.Scene
             //invisRect.setVisible(false);
             r1.on('pointerover', () => polaroids[carousel.face].setScale(1))
             r1.on('pointerout', () => polaroids[carousel.face].setScale(0.5))
-    
-            this.input.on('pointermove', function (pointer) {
-    
-                if (!pointer.isDown) {
-                    return;
-                }
-    
-                //carousel.rotationY += pointer.velocity.x * (1 / 800);
-                // carousel.roll.toNext(300);
-                // console.log(carousel.face);
-            });
             
         }
         
@@ -178,22 +151,11 @@ class sceneGallery extends Phaser.Scene
         }
 
 
-        
-        //Move functions to create polaroid here, set i<polaroidCount 
-        // for (var i = 0; i < 3; i++) {
-        //     polaroids.push(constructPolaroid())
-        // }
-        //addPolaroid();
         function addPolaroid(key,givenHat,givenShirt,givenPants,givenShoes,bg) {
             let polaroid = self.add.renderTexture(800, 600, 800, 600);
             
             polaroid.setVisible(false);
             polaroid.setOrigin(0.5)
-            //drawPolaroid(polaroid,key);
-
-
-            
-
 
            //draw black square
            var r2 = self.add.rectangle(0, 0, 300, 300, 0x000000);
@@ -231,40 +193,6 @@ class sceneGallery extends Phaser.Scene
 
         }
         
-        function drawPolaroid(polaroid,key){
- 
-           //draw the polaroid frame
-           polaroid.draw(tempBG, 400,300 );
-
-
-           //draw black square
-           polaroid.draw(frame, 400,300 );
-
-           //draw the background
-     
-            // draw the cat
-            polaroid.draw(cat, 400,300 );
-     
-            // draw the clothes
-            
-            if(self.shoes!=null){
-                polaroid.draw(shoes, 406, 375);
-            }
-            if(self.pants!=null){
-                polaroid.draw(pants, 407, 355);
-            }
-            if(self.shirt!=null){
-                polaroid.draw(shirt, 403, 312);
-            }
-            if(self.hat!=null){
-                polaroid.draw(hat, 405, 215);
-            }
-            //polaroid.draw(hat, 400, 130);
-            console.log(shirt)
-            //console.log(hat)
-            polaroid.saveTexture(key);
-            
-        }
 
 
         function getPromptWithName(prompt,name) {

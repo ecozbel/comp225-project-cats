@@ -107,7 +107,7 @@ class sceneE extends Phaser.Scene
                 }
                 else{
                     let index = parseInt(polaroidCount)
-                    if (index>=10){
+                    if (index>10){
                         index = 1;
                     }
                     let newCount = index+1;
