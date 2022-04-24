@@ -74,12 +74,20 @@ class sceneA extends Phaser.Scene
         //paletteCreator.createPalettes(self);
         let continueButton= new utilities.genericButton({scene:self,key:'buttonFrame',x:250,y:400,text:"Start Game"});
         continueButton.on('pointerdown', function(pointer, localX, localY, event){
-            camera.fadeOut(1000);    
+            let camera = this.cameras.main;
+            camera.fadeOut(1000);
+            camera.on('camerafadeoutcomplete', function(){
+                startNextScene()
+    
+            },self);
+            
+                
+            
         },self );
-        camera.on('camerafadeoutcomplete', function(){
-            startNextScene();
+        // camera.on('camerafadeoutcomplete', function(){
+        //     self.events.emit('done');
 
-        },self);
+        // },self);
         function startNextScene(){
             self.scene.start('sceneB_pickCat');
         }
@@ -130,8 +138,17 @@ class sceneA extends Phaser.Scene
 
         var galleryButton= new utilities.genericButton({scene:self,key:'buttonFrame',x:continueButton.x,y:continueButton.y+81,text:"Gallery"});
         galleryButton.on('pointerdown', function(pointer, localX, localY, event){
-            self.scene.start('scene_Gallery');
+            let camera = this.cameras.main;
+            camera.fadeOut(1000);
+            camera.on('camerafadeoutcomplete', function(){
+                startGalleryScene()
+
+            },self);
         },self );
+
+        function startGalleryScene(){
+            self.scene.start('scene_Gallery');
+        }
         
         function toggleAboutBox(aboutBox,aboutText){
 
