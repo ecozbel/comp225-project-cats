@@ -7,7 +7,10 @@ import buttonFrame from './assets/icons/buttonFrameLarge.png'
 import genericButton from './genericButton.js';
 import musicButton from './musicButton.js';
 
-export{promptBg,innerBG,buttonFrame,genericButton,musicButton}
+//Sound Effects
+import keyboardTypingSound from "./assets/audio/keyBoardTypeLoop.mp3";
+
+export{promptBg,innerBG,buttonFrame,genericButton,musicButton,keyboardTypingSound}
 
 
 

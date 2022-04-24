@@ -60,10 +60,6 @@ class sceneB extends Phaser.Scene
         oBG.setDepth(0);
         //paletteCreator.createPalettes(self);
 
-        //sound effects
-        var doorOpenSounds1 = this.sound.add('doorOpenSound1');
-        var doorOpenSounds2 = this.sound.add('doorOpenSound2');
-        var doorOpenSounds3 = this.sound.add('doorOpenSound3');
         //MUSIC 
 
         var mButton= new utilities.musicButton({scene:self,onKey:'musicOnButton',offKey:'musicOffButton' });

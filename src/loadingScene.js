@@ -237,6 +237,7 @@ class loadingScene extends Phaser.Scene
             scene.load.audio("doorOpenSound1",importsB.doorOpenSound1);
             scene.load.audio("doorOpenSound2",importsB.doorOpenSound2);
             scene.load.audio("doorOpenSound3",importsB.doorOpenSound3);
+            scene.load.audio("keyBoardTypeLoop",importsC.keyboardTypingSound);
         }
 
 

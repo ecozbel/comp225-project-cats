@@ -96,9 +96,14 @@ class sceneC extends Phaser.Scene
         .setOrigin(0.5)
         .setDepth(4);
         promptText.typing = this.plugins.get('rextexttypingplugin').add(promptText, {
-            speed: 100,
+            speed: 40,
             //typeMode: 'middle-to-sides'
         });
+        
+        //sound
+        var keyboardTypingSound = this.sound.add("keyBoardTypeLoop");
+        keyboardTypingSound.play({loop:true});
+        promptText.typing.on('complete', function(typing, txt){ keyboardTypingSound.stop()});
 
         promptText.typing.start(getPromptWithCatName(generatedPrompt).introduction); 
         this.game.cat.generatedPrompt = generatedPrompt;    
