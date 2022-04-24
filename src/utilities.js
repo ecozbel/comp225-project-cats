@@ -28,8 +28,9 @@ function scaleToGivenSize(sprite,size){
 
 //Scales given sprite to specified size
 function scaleToPolaroidSize(sprite){
-    sprite.displayWidth=game.config.width*0.146; 
-    sprite.scaleY=sprite.scaleX;
+    // sprite.displayWidth=game.config.width*0.146; 
+    // sprite.scaleY=sprite.scaleX;
+    sprite.setScale(0.38);
 }
 
 function createClothingSnapPoints(cat){

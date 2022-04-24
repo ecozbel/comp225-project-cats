@@ -247,6 +247,7 @@ class sceneE extends Phaser.Scene
 
         console.log("before handleClothingItemPolaroidSLide:");//debugging
         if (cat.shoePosition.currentClothing != null) {
+            
             handleClothingItemPolaroidSlide(cat.shoePosition.currentClothing,-21.5,cat.displayHeight/2.61,1,cat);
         }   
         if (cat.pantsPosition.currentClothing != null) {
@@ -273,13 +274,19 @@ class sceneE extends Phaser.Scene
         //helper function to reduce code duplication
         function handleClothingItemPolaroidSlide(clothing,xOffset,yOffset,depth,cat){
             if (clothing != null) {
-                utilities.scaleToPolaroidSize(clothing);//it is function that's causing the crash. don't know why.
+                
+                utilities.scaleToPolaroidSize(clothing);
+                clothing.setVisible(true);
+                polaroid.add(clothing);
+                clothing.x =  cat.x+xOffset;
+                clothing.y = cat.y+yOffset;
+                clothing.setDepth(depth);//it is function that's causing the crash. don't know why.
             }
-            clothing.setVisible(true);
-            polaroid.add(clothing);
-            clothing.x =  cat.x+xOffset;
-            clothing.y = cat.y+yOffset;
-            clothing.setDepth(depth);
+            // clothing.setVisible(true);
+            // polaroid.add(clothing);
+            // clothing.x =  cat.x+xOffset;
+            // clothing.y = cat.y+yOffset;
+            // clothing.setDepth(depth);
         }
 
         // var texture = scene.textures.createCanvas("snapshot", frame.displayWidth, frame.displayHeight);

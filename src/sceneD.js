@@ -327,21 +327,30 @@ class sceneD extends Phaser.Scene
                 gameObject.setData('type', type);
                 gameObject.setData('group', objectLayer);
                 gameObject.setData('index', objectLayer.getIndex(gameObject));
+                //console.log(gameObject.scene.scene.key);
                 gameObject.on('pointerover', function () {
-                    //Inner highlight shader
-                    postFxPlugin.add(gameObject, {
-                        thickness: 3,
-                        outlineColor: 0xffb4db
-                    });
-                    //Outer highlight shader
-                    postFxPlugin.add(gameObject, {
-                        thickness: 5,
-                        outlineColor: 0x4e1a69
-                    });
+                    if(gameObject.scene.scene.key=="sceneD_dressUp"){
+                        //Inner highlight shader
+                        postFxPlugin.add(gameObject, {
+                            thickness: 3,
+                            outlineColor: 0xffb4db
+                        });
+
+                        //Outer highlight shader
+                        postFxPlugin.add(gameObject, {
+                            thickness: 5,
+                            outlineColor: 0x4e1a69
+                        });
+                    }
                 })
+        
                 gameObject.on('pointerout', function () {
+                    if(gameObject.scene.scene.key=="sceneD_dressUp"){
+                        postFxPlugin.remove(gameObject);
+                        
+                    }
                     // Remove the outline shader effect
-                    postFxPlugin.remove(gameObject);
+                    //postFxPlugin.remove(gameObject);
                 })
             });
     
