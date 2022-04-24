@@ -99,10 +99,14 @@ class sceneC extends Phaser.Scene
             speed: 40,
             //typeMode: 'middle-to-sides'
         });
-        
+
         //sound
         var keyboardTypingSound = this.sound.add("keyBoardTypeLoop");
-        keyboardTypingSound.play({loop:true});
+        if (global.soundEffectsOn == true){
+            keyboardTypingSound.play({loop:true});
+        }
+        
+
         promptText.typing.on('complete', function(typing, txt){ keyboardTypingSound.stop()});
 
         promptText.typing.start(getPromptWithCatName(generatedPrompt).introduction); 

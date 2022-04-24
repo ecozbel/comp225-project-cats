@@ -172,11 +172,11 @@ class sceneB extends Phaser.Scene
         }
 
         function playOpenDoorsSound(scene){
-
-            scene.sound.play("doorOpenSound1",{volume:0.35})
-            scene.sound.play("doorOpenSound2",{delay:1,volume:0.35})
-            scene.sound.play("doorOpenSound3",{volume:0.35})
-
+            if (global.soundEffectsOn == true){
+                scene.sound.play("doorOpenSound1",{volume:0.35})
+                scene.sound.play("doorOpenSound2",{delay:1,volume:0.35})
+                scene.sound.play("doorOpenSound3",{volume:0.35})
+            }
         }
 
         function openDoors(){
