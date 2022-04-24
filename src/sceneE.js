@@ -97,6 +97,8 @@ class sceneE extends Phaser.Scene
                     localStorage.setItem('polaroidCount',"1")
                     let index = 1;
                     localStorage.setItem('cat'+index,cat.texture.key);
+                    localStorage.setItem('catName'+index,cat.name);
+                    localStorage.setItem('polaroidBG'+index,cat.name,polaroid.first.texture.key);
                     saveClothing("hat"+index,hat);
                     saveClothing("shirt"+index,shirt);
                     saveClothing("pants"+index,pants);
@@ -112,6 +114,7 @@ class sceneE extends Phaser.Scene
                     localStorage.setItem('polaroidCount',newCount)
                     localStorage.setItem('cat'+index,cat.texture.key);
                     localStorage.setItem('catName'+index,cat.name);
+                    localStorage.setItem('polaroidBG'+index,polaroid.first.texture.key);
                     saveClothing("hat"+index,hat);
                     saveClothing("shirt"+index,shirt);
                     saveClothing("pants"+index,pants);
@@ -269,7 +272,7 @@ class sceneE extends Phaser.Scene
 
         //helper function to reduce code duplication
         function handleClothingItemPolaroidSlide(clothing,xOffset,yOffset,depth,cat){
-            if (clothing.body != null) {
+            if (clothing != null) {
                 utilities.scaleToPolaroidSize(clothing);//it is function that's causing the crash. don't know why.
             }
             clothing.setVisible(true);

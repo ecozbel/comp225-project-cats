@@ -96,9 +96,12 @@ class sceneGallery extends Phaser.Scene
                     var chosenShirt = addClothing(shirtKey,shirt,self)
                     var chosenPants= addClothing(pantsKey,pants,self)
                     var chosenShoes = addClothing(shoesKey,shoes,self)
-                    
+                    var bgKey = localStorage.getItem('polaroidBG'+i);
 
-                    addPolaroid('photo'+i,chosenHat,chosenShirt,chosenPants,chosenShoes);
+                    var bg = self.add.sprite(0,0,bgKey).setScale(0.4)
+                    bg.setVisible(false);
+
+                    addPolaroid('photo'+i,chosenHat,chosenShirt,chosenPants,chosenShoes,bg);
 
                     let card = self.add.rexPerspectiveCard({
                         front: { key: 'photo'+i },
@@ -181,7 +184,7 @@ class sceneGallery extends Phaser.Scene
         //     polaroids.push(constructPolaroid())
         // }
         //addPolaroid();
-        function addPolaroid(key,givenHat,givenShirt,givenPants,givenShoes) {
+        function addPolaroid(key,givenHat,givenShirt,givenPants,givenShoes,bg) {
             let polaroid = self.add.renderTexture(800, 600, 800, 600);
             
             polaroid.setVisible(false);
@@ -189,10 +192,17 @@ class sceneGallery extends Phaser.Scene
             //drawPolaroid(polaroid,key);
 
 
-            polaroid.draw(tempBG, 400,300 );
+            
 
 
            //draw black square
+           var r2 = self.add.rectangle(0, 0, 300, 300, 0x000000);
+           r2.setVisible(false);
+           r2.setDepth(-1);
+            //r2.setStrokeStyle(4, 0x000000);
+           
+           polaroid.draw(r2, 400,300 );
+           polaroid.draw(bg, 400,300 );
            polaroid.draw(frame, 400,300 );
 
            //draw the background
