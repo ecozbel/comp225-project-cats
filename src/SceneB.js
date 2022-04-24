@@ -1,4 +1,5 @@
 import Phaser, { Game } from 'phaser';
+import { doorOpenSound } from './importHelperB';
 
 //import * as imports from "./importHelperB.js"
 import * as paletteCreator from './paletteCreator';
@@ -59,9 +60,10 @@ class sceneB extends Phaser.Scene
         oBG.setDepth(0);
         //paletteCreator.createPalettes(self);
 
-
-
-
+        //sound effects
+        var doorOpenSounds1 = this.sound.add('doorOpenSound1');
+        var doorOpenSounds2 = this.sound.add('doorOpenSound2');
+        var doorOpenSounds3 = this.sound.add('doorOpenSound3');
         //MUSIC 
 
         var mButton= new utilities.musicButton({scene:self,onKey:'musicOnButton',offKey:'musicOffButton' });
@@ -97,11 +99,12 @@ class sceneB extends Phaser.Scene
 
         const rerollButton = this.add.sprite(400,110,"catReroll",0).setInteractive({ useHandCursor: true })
         //on pointer down, play music and set icon to muted button
-        .on('pointerdown', () => rerollCats());
+        .on('pointerdown', () => rerollCats(this));
         rerollButton.on('pointerover', () => rerollButton.play({key:'rerollMotion',repeat:-1}));
         rerollButton.on('pointerout', () => rerollButton.stop().setFrame(0));
 
-        function rerollCats(){
+        function rerollCats(scene){
+            playOpenDoorsSound(scene);
             closeDoors();
             openDoors();
         }
@@ -172,9 +175,15 @@ class sceneB extends Phaser.Scene
             return item;
         }
 
+        function playOpenDoorsSound(scene){
+
+            scene.sound.play("doorOpenSound1",{volume:0.35})
+            scene.sound.play("doorOpenSound2",{delay:1,volume:0.35})
+            scene.sound.play("doorOpenSound3",{volume:0.35})
+
+        }
 
         function openDoors(){
-            
             displays[0].last.play({key:'doorOpen',repeat:0});
             displays[1].last.anims.playAfterDelay('doorOpen', 800);
             displays[2].last.anims.playAfterDelay('doorOpen', 400);
@@ -226,6 +235,7 @@ class sceneB extends Phaser.Scene
         }
 
         openDoors();
+        playOpenDoorsSound(this);
         const pickCatText = this.add.image(400, 50, 'buttonFrame',0).setDisplaySize(300, 52).setInteractive().setDepth(4);
             pickCatText.on('pointerover', () => pickCatText.setFrame(1))
             pickCatText.on('pointerout', () => pickCatText.setFrame(0))

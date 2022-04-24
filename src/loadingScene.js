@@ -234,6 +234,9 @@ class loadingScene extends Phaser.Scene
         function loadSoundEffects(scene){
             scene.load.audio("clothingPickup1",importsD.clothingPickup1Sound);
             scene.load.audio("clothingRussle5",importsD.clothingRussle5Sound);
+            scene.load.audio("doorOpenSound1",importsB.doorOpenSound1);
+            scene.load.audio("doorOpenSound2",importsB.doorOpenSound2);
+            scene.load.audio("doorOpenSound3",importsB.doorOpenSound3);
         }
 
 

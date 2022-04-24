@@ -106,7 +106,10 @@ import buttonFrame from './assets/icons/buttonFrameLarge.png'
 import ribbonFrame from './assets/icons/catNameField.png'
 import catRerollButton from './assets/icons/catRerollButton.png'
 
-
+//Sound Effects
+import doorOpenSound1 from "./assets/audio/doorOpen1.mp3";
+import doorOpenSound2 from "./assets/audio/doorOpen2.mp3";
+import doorOpenSound3 from "./assets/audio/doorOpen3.mp3";
 
 export {catAnimation,catPalette,door,doorClosing,innerBG,outerBG,
-    buttonFrame,ribbonFrame,catRerollButton,itemFrame,catAnimation2,catAnimation3}
+    buttonFrame,ribbonFrame,catRerollButton,itemFrame,catAnimation2,catAnimation3,doorOpenSound1,doorOpenSound2,doorOpenSound3}
