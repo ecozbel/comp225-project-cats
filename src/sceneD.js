@@ -131,6 +131,12 @@ class sceneD extends Phaser.Scene
         var clothingPickup1 = this.sound.add('clothingPickup1',{ loop: false });
         var clothingRussle5 = this.sound.add('clothingRussle5',{ loop: false });
 
+        var clothingRussles = new Array();
+        clothingRussles[0] = this.sound.add('clothingRussle2',{ loop: false });
+        clothingRussles[1] = this.sound.add('clothingRussle3',{ loop: false });
+        clothingRussles[2] = this.sound.add('clothingRussle4',{ loop: false });
+        clothingRussles[3] = this.sound.add('clothingRussle5',{ loop: false });
+
         //Old art
         var bg = this.matter.add.image(400,300,'backgroundnew');
         bg.setStatic(true);
@@ -478,7 +484,7 @@ class sceneD extends Phaser.Scene
                     } 
 
                     //play clothing russle sound
-                    utilities.playSoundEffect(clothingRussle5);
+                    utilities.playSoundEffect(Phaser.Utils.Array.GetRandom(clothingRussles));
 
                     //set the position of the sprite 
                     sprite.x = clothingPosition.x;

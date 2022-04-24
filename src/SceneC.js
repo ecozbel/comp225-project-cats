@@ -47,7 +47,8 @@ class sceneC extends Phaser.Scene
 
         var continueButton= new utilities.genericButton({scene:self,key:'buttonFrame',x:600,y:570,text:"Continue"});
         continueButton.on('pointerdown', function(pointer, localX, localY, event){
-            camera.fadeOut(1000);    
+            camera.fadeOut(1000);
+            keyboardTypingSound.stop();    
         },self );
         camera.on('camerafadeoutcomplete', function(){
             startNextScene();
