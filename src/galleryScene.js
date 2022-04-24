@@ -251,6 +251,62 @@ class sceneGallery extends Phaser.Scene
 
         var firstName = polaroids[carousel.face].name
         const infoText = this.add.text(250, 450, 'Cat name: ' + firstName).setDepth(-1);
+
+
+        var downloadButton = new utilities.genericButton({scene:self,key:'buttonFrame',x:250,y:550,text:"Download"}).setDepth(-1);
+        downloadButton.on('pointerdown',function(){
+            //var chosenPhoto = this.add.sprite(400,300,'photo1');
+            this.game.photoIndex = carousel.face+1;
+            //chosenPhoto.setVisible(false);
+            
+            this.scene.start("downloadPhoto")
+            // console.log(this.textures.get("photo"+[carousel.face +1]))
+            // var sheet = this.textures.get("photo"+[carousel.face +1]);
+            //  // Create a canvas to draw new image data onto.
+            //  var canvasTexture = this.textures.createCanvas( 'temp_canvas', sheet.width, sheet.height);
+            //  var canvas = canvasTexture.getSourceImage();
+            //  var context = canvas.getContext('2d');
+ 
+             // Copy the sheet.
+             //context.drawImage(sheet, 0, 0);
+            //  console.log(canvas)
+            //  console.log(context)
+            //  //exportCanvasAsPNG('photo1', 'snapshot', polaroids[1].src);
+            //  self.textures.get('temp_canvas').destroy();
+             //canvasTexture.destroy();
+ 
+            //game.textures.get
+        },self );
+        // function exportCanvasAsPNG(id, fileName, dataUrl) {
+        //     var canvasElement = document.getElementById(id);
+        //     var MIME_TYPE = "image/png";
+        //     var imgURL = dataUrl;
+        //     var dlLink = document.createElement('a');
+        //     dlLink.download = fileName;
+        //     dlLink.href = imgURL;
+        //     dlLink.dataset.downloadurl = [MIME_TYPE, dlLink.download, dlLink.href].join(':');
+        //     document.body.appendChild(dlLink);
+        //     dlLink.click();
+        //     document.body.removeChild(dlLink);
+        // }
+        // var canvas;
+        // var oldHeight = polaroids[1].displayHeight ;
+        // var oldWidth =  polaroids[1].displayWidth;
+        // polaroids[1].setScale(10);
+        // var ready = true;
+
+        // var testSprite = this.add.sprite(0,0,'photo1')
+        // console.log(testSprite)
+        // var photo1Img = this.textures.get('photo1');
+        // console.log(photo1Img)
+        // exportCanvasAsPNG(canvas, 'snapshot', 'photo1');
+        // if(ready){
+        //     self.renderer.snapshot(function (image) {   
+        //         console.log(image);
+        //         //exportCanvasAsPNG(canvas, 'snapshot', image.src);
+        //     });
+        // }
+        // polaroids[1].setScale(0.5);
         
         
     

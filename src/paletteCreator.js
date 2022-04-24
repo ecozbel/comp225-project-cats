@@ -118,12 +118,12 @@ export function createPalettes(game)
 
 
         }
-
+    }
         // Destroy textures that are not longer needed.
         // NOTE: This doesn't remove the textures from TextureManager.list.
         //       However, it does destroy source image data.
-        //game.textures.get(catRandomizerConfig.spriteSheet.keys[0]).destroy();
-        //game.textures.get(catRandomizerConfig.paletteKey).destroy();
-}
+        game.textures.get(catRandomizerConfig.spriteSheet.keys[0]).destroy(true,true);
+        game.textures.get(catRandomizerConfig.paletteKey).destroy();
+
 }
     
