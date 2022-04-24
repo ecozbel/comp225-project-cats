@@ -380,7 +380,7 @@ class sceneD extends Phaser.Scene
                         returnSpritetoCloset(clothingPosition.currentClothing);
                     } 
 
-                    //play clothing russle sound
+                    //play a random clothing russle sound from the clothingrussles array of sounds
                     utilities.playSoundEffect(Phaser.Utils.Array.GetRandom(clothingRussles));
 
                     //set the position of the sprite 
@@ -461,9 +461,6 @@ class sceneD extends Phaser.Scene
     update(){
         
     }
-
-    
-    
 }
 
 
