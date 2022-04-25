@@ -118,7 +118,7 @@ class sceneA extends Phaser.Scene
             .setDisplaySize(350,350)
             .setVisible(false);
             
-        var aboutText = this.add.text(aboutBox.x,aboutBox.y-52,aboutContent,{
+        var aboutText = this.add.text(aboutBox.x,aboutBox.y-30,aboutContent,{
 			fontFamily: 'Courier New',
 			fontSize: '18px',
 			color: '#000000',
