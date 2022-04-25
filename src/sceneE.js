@@ -175,21 +175,28 @@ class sceneE extends Phaser.Scene
         frame = currentScene.add.sprite(0,0,'polaroid');
         bg = currentScene.add.sprite(0,0,'scenery1',);
 
-        if (cat.hatPosition.currentClothing != null) {
+        if (cat.hatPosition.currentClothing != null && cat.hatPosition.currentClothing.active==true) {
+            console.log(cat.hatPosition.currentClothing);
             currentScene.add.existing(cat.hatPosition.currentClothing);
             cat.hatPosition.currentClothing.setVisible(false);
         }
-        if (cat.shoePosition.currentClothing != null) {
+        if (cat.shoePosition.currentClothing != null&& cat.shoePosition.currentClothing.active==true) {
+            console.log(cat.shoePosition.currentClothing);
             currentScene.add.existing(cat.shoePosition.currentClothing);
             cat.shoePosition.currentClothing.setVisible(false);
         }
-        if (cat.pantsPosition.currentClothing != null) {
+        if (cat.pantsPosition.currentClothing != null&& cat.pantsPosition.currentClothing.active==true) {
+            console.log(cat.pantsPosition.currentClothing);
             currentScene.add.existing(cat.pantsPosition.currentClothing);
             cat.pantsPosition.currentClothing.setVisible(false);
         }
-        if (cat.shirtPosition.currentClothing != null) {
+        if (cat.shirtPosition.currentClothing != null&& cat.shirtPosition.currentClothing.active==true) {
+            console.log(cat.shirtPosition.currentClothing);
             currentScene.add.existing(cat.shirtPosition.currentClothing);
             cat.shirtPosition.currentClothing.setVisible(false);
+        }
+        else{
+            console.log("Sprite undefined")
         }
 
 

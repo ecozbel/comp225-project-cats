@@ -471,6 +471,7 @@ class sceneD extends Phaser.Scene
         function snapToCat(sprite, pointer) {
             if(Phaser.Geom.Intersects.RectangleToRectangle(sprite.getBounds(), cat.boundingBox)){
                 sprite.getData('group').replace(sprite,blankSprite );
+                sprite.ignoreDestroy = true;
                 cat.getData('catLayer').add(sprite);
                 
                 // function to make sure that same article of clothing can't be placed on a cat twice
