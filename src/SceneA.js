@@ -111,7 +111,7 @@ class sceneA extends Phaser.Scene
         
 
 
-        const aboutContent = "Welcome to Cat Town! In Cats with Jobs, you get assigned a Cat Pal and your job is to help them get ready for their day. Each resident comes with a story, but your Cat Pal's looks for the day are ultimately up to you. You can view the last ten Cat Pals you have helped in the gallery."
+        const aboutContent = "Welcome to Cat Town! In Cats with Jobs, you get assigned a Cat Pal and your job is to help them get ready for their day. Each resident comes with a story, but your Cat Pal's looks for the day are ultimately up to you. Memories of the last ten Cat Pals you have helped will be stored in the gallery."
         
         var aboutBox = this.add.image(continueButton.x + 360,continueButton.y+20, 'promptBoard')
             .setDepth(4)
