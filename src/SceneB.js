@@ -91,7 +91,7 @@ class sceneB extends Phaser.Scene
         const nounArray = ['Whiskers','Kitty', 'Cat', 'Socks', 'Patches', 'Spot',];        
         const suffixArray = ['Jr.','Sr.', 'IV', 'II', 'PhD', '', '', ''];
         const chanceArray = ['concatenated name','standalone name'];
-        const standaloneNameArray = ['Meowcheal','Pawline'];
+        const standaloneNameArray = ['Meowchael','Pawline', 'Jessicat', 'Purrudence', 'Jennifur', 'Clawdia'];
 
         const rerollButton = this.add.sprite(400,110,"catReroll",0).setInteractive({ useHandCursor: true })
         //on pointer down, play music and set icon to muted button
