@@ -1,21 +1,9 @@
 import Phaser, { Game } from 'phaser';
+import { doorOpenSound } from './importHelperB';
 
-// import door from './assets/menuAssets/door.png';
-// import doorClosing from './assets/menuAssets/doorClosing.png';
-// import innerBG from './assets/backgrounds/catChoose_inner_background.png'
-// import outerBG from './assets/backgrounds/catChooseScene_outer_background.png'
-
-// import musicOnSprite from './assets/icons/musicOn.png'
-// import musicOffSprite from './assets/icons/musicOff.png'
-
-// import buttonFrame from './assets/icons/buttonFrameLarge.png'
-// import ribbonFrame from './assets/icons/catNameField.png'
-
-// import catRerollButton from './assets/icons/catRerollButton.png'
-// import musicButton from './musicButton.js'
-
-import * as imports from "./importHelperB.js"
+//import * as imports from "./importHelperB.js"
 import * as paletteCreator from './paletteCreator';
+import * as utilities from "./utilities.js";
 class sceneB extends Phaser.Scene
 {
     constructor ()
@@ -25,51 +13,41 @@ class sceneB extends Phaser.Scene
     }
     preload ()
     {
-        this.load.audio("music",[imports.musicmp3,imports.musicogg ])
-        this.load.image('innerBG',imports.innerBG)
-        this.load.plugin('rexoutlinepipelineplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexoutlinepipelineplugin.min.js', true);      //this.load.plugin('rexglowfilter2pipelineplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexglowfilter2pipelineplugin.min.js', true);
-        this.load.image('outerBG',imports.outerBG)
-        this.load.image('ribbon',imports.ribbonFrame)
-        this.load.spritesheet('door', imports.door, {
-            frameWidth: 300,
-            frameHeight: 425
-        });
-        this.load.spritesheet('doorClosing', imports.doorClosing, {
-            frameWidth: 300,
-            frameHeight: 425
-        });
+        
+        // this.load.image('innerBG',imports.innerBG)
+        // this.load.plugin('rexoutlinepipelineplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexoutlinepipelineplugin.min.js', true);      //this.load.plugin('rexglowfilter2pipelineplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexglowfilter2pipelineplugin.min.js', true);
+        // this.load.image('outerBG',imports.outerBG)
+        // this.load.image('ribbon',imports.ribbonFrame)
+        // this.load.spritesheet('door', imports.door, {
+        //     frameWidth: 300,
+        //     frameHeight: 425
+        // });
+        // this.load.spritesheet('doorClosing', imports.doorClosing, {
+        //     frameWidth: 300,
+        //     frameHeight: 425
+        // });
 
-        this.load.spritesheet('musicOnButton', imports.musicOnSprite, {
-            frameWidth: 52,
-            frameHeight: 52
-        });
 
-        this.load.spritesheet('catReroll', imports.catRerollButton, {
-            frameWidth: 52,
-            frameHeight: 52
-        });
+        // this.load.spritesheet('catReroll', imports.catRerollButton, {
+        //     frameWidth: 52,
+        //     frameHeight: 52
+        // });
 
-        this.load.spritesheet('buttonFrame', imports.buttonFrame, {
-            frameWidth: 312,
-            frameHeight: 52
-        });
-        this.load.spritesheet('musicOffButton', imports.musicOffSprite, {
-            frameWidth: 52,
-            frameHeight: 52
-        });
-        this.load.image('cat-palette', imports.catPalette);
-        this.load.spritesheet('catanimated', imports.catAnimation, {
-            frameWidth: 64,
-            frameHeight: 64
-        });
-        this.load.spritesheet('catanimated2', imports.catAnimation2, {
-            frameWidth: 64,
-            frameHeight: 64
-        });
-        this.load.spritesheet('catanimated3', imports.catAnimation3, {
-            frameWidth: 64,
-            frameHeight: 64
-        });
+        
+        
+        // this.load.image('cat-palette', imports.catPalette);
+        // this.load.spritesheet('catanimated', imports.catAnimation, {
+        //     frameWidth: 64,
+        //     frameHeight: 64
+        // });
+        // this.load.spritesheet('catanimated2', imports.catAnimation2, {
+        //     frameWidth: 64,
+        //     frameHeight: 64
+        // });
+        // this.load.spritesheet('catanimated3', imports.catAnimation3, {
+        //     frameWidth: 64,
+        //     frameHeight: 64
+        // });
 
     }
     create(){
@@ -80,15 +58,13 @@ class sceneB extends Phaser.Scene
         iBG.setDepth(-1);
         iBG.setScale(1.5);
         oBG.setDepth(0);
-        paletteCreator.createPalettes(self);
- 
+        //paletteCreator.createPalettes(self);
 
         //MUSIC 
-        var backgroundMusic = this.sound.add('music',{ loop: false });
-        var mButton= new imports.musicButton({scene:self,onKey:'musicOnButton',offKey:'musicOffButton' });
 
+        var mButton= new utilities.musicButton({scene:self,onKey:'musicOnButton',offKey:'musicOffButton' });
         mButton.on('pointerdown', function () {
-            toggleSound(backgroundMusic)
+            toggleSound(this.game.bgMusic)
         },self);
 
         function toggleSound(givenSound){
@@ -98,6 +74,15 @@ class sceneB extends Phaser.Scene
             else{
                 givenSound.play();
             }
+        }
+
+        var backButton= new utilities.genericButton({scene:self,key:'buttonFrame',x:80,y:50,text:"Back"});
+        backButton.setDisplaySize(100,54);
+        backButton.on('pointerdown', function(pointer, localX, localY, event){
+            startPreviousScene();   
+        },self );
+        function startPreviousScene(){
+            self.scene.start('sceneA_mainMenu');
         }
 
 
@@ -110,11 +95,12 @@ class sceneB extends Phaser.Scene
 
         const rerollButton = this.add.sprite(400,110,"catReroll",0).setInteractive({ useHandCursor: true })
         //on pointer down, play music and set icon to muted button
-        .on('pointerdown', () => rerollCats());
+        .on('pointerdown', () => rerollCats(this));
         rerollButton.on('pointerover', () => rerollButton.play({key:'rerollMotion',repeat:-1}));
         rerollButton.on('pointerout', () => rerollButton.stop().setFrame(0));
 
-        function rerollCats(){
+        function rerollCats(scene){
+            playOpenDoorsSound(scene);
             closeDoors();
             openDoors();
         }
@@ -185,9 +171,15 @@ class sceneB extends Phaser.Scene
             return item;
         }
 
+        function playOpenDoorsSound(scene){
+            if (global.soundEffectsOn == true){
+                scene.sound.play("doorOpenSound1",{volume:0.35})
+                scene.sound.play("doorOpenSound2",{delay:1,volume:0.35})
+                scene.sound.play("doorOpenSound3",{volume:0.35})
+            }
+        }
 
         function openDoors(){
-            
             displays[0].last.play({key:'doorOpen',repeat:0});
             displays[1].last.anims.playAfterDelay('doorOpen', 800);
             displays[2].last.anims.playAfterDelay('doorOpen', 400);
@@ -239,6 +231,7 @@ class sceneB extends Phaser.Scene
         }
 
         openDoors();
+        playOpenDoorsSound(this);
         const pickCatText = this.add.image(400, 50, 'buttonFrame',0).setDisplaySize(300, 52).setInteractive().setDepth(4);
             pickCatText.on('pointerover', () => pickCatText.setFrame(1))
             pickCatText.on('pointerout', () => pickCatText.setFrame(0))

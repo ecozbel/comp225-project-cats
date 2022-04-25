@@ -1,6 +1,7 @@
 import Phaser from "phaser";
-import * as imports from "./importHelperE.js"
+//import * as imports from "./importHelperE.js"
 import * as utilities from "./utilities.js";
+//import * as utilities from "./utilities.js";
 
 
 var cat;
@@ -21,11 +22,11 @@ class sceneE extends Phaser.Scene
 
     preload ()
     {
-        this.load.image('polaroid', imports.polaroidImg);
-        this.load.image('scenery1',imports.scenery1);
-        this.load.audio("printSound",[imports.polaroidPrintSound,imports.polaroidPrintSoundOGG ])
-        this.load.audio("shutterSound",[imports.cameraShutterSound,imports.cameraShutterSoundOGG])
-        this.load.image('itemFrame',imports.itemFrame);
+        // this.load.image('polaroid', imports.polaroidImg);
+        // this.load.image('scenery1',imports.scenery1);
+        // this.load.audio("printSound",[imports.polaroidPrintSound,imports.polaroidPrintSoundOGG ])
+        // this.load.audio("shutterSound",[imports.cameraShutterSound,imports.cameraShutterSoundOGG])
+        // this.load.image('itemFrame',imports.itemFrame);
     }
 
     create ()
@@ -74,6 +75,53 @@ class sceneE extends Phaser.Scene
                 //this.setUpCat(400,-1000);
                 this.setUpTween(cat,polaroid,self);
                 gameReady=true;
+                console.log(cat.texture);
+                
+
+                let shoe = cat.shoePosition.currentClothing;
+                let hat = cat.hatPosition.currentClothing;
+                let shirt = cat.shirtPosition.currentClothing;
+                let pants = cat.pantsPosition.currentClothing;
+                // localStorage.setItem('cat1',cat.texture.key);
+                
+                // saveClothing("hat1",hat);
+                // saveClothing("shirt1",shirt);
+                // saveClothing("pants1",pants);
+                // saveClothing("shoes1",shoe);
+                
+
+                var polaroidCount = localStorage.getItem('polaroidCount');
+                console.log(polaroidCount);
+                //var index = parseInt(polaroidCount)
+                if(polaroidCount == null){
+                    localStorage.setItem('polaroidCount',"1")
+                    let index = 1;
+                    localStorage.setItem('cat'+index,cat.texture.key);
+                    localStorage.setItem('catName'+index,cat.name);
+                    localStorage.setItem('polaroidBG'+index,cat.name,polaroid.first.texture.key);
+                    saveClothing("hat"+index,hat);
+                    saveClothing("shirt"+index,shirt);
+                    saveClothing("pants"+index,pants);
+                    saveClothing("shoes"+index,shoe);
+
+                }
+                else{
+                    let index = parseInt(polaroidCount)
+                    if (index>10){
+                        index = 1;
+                    }
+                    let newCount = index+1;
+                    localStorage.setItem('polaroidCount',newCount)
+                    localStorage.setItem('cat'+index,cat.texture.key);
+                    localStorage.setItem('catName'+index,cat.name);
+                    localStorage.setItem('polaroidBG'+index,polaroid.first.texture.key);
+                    saveClothing("hat"+index,hat);
+                    saveClothing("shirt"+index,shirt);
+                    saveClothing("pants"+index,pants);
+                    saveClothing("shoes"+index,shoe);
+                    
+
+                }
 
             }
 
@@ -94,6 +142,22 @@ class sceneE extends Phaser.Scene
 
 
         });
+
+        function saveClothing(saveKey,clothing){
+
+            if(clothing!=null){
+                localStorage.setItem(saveKey,clothing.texture.key);
+            }
+            else{
+                localStorage.setItem(saveKey,"empty");
+            }
+
+        }
+
+        var galleryButton= new utilities.genericButton({scene:self,key:'buttonFrame',x:400,y:580,text:"Go to gallery"});
+        galleryButton.on('pointerdown', function(pointer, localX, localY, event){
+            self.scene.start('scene_Gallery');
+        },self );
 
 
     }
@@ -145,6 +209,8 @@ class sceneE extends Phaser.Scene
 
         var newPrompt = getPromptWithName(this.game.cat.generatedPrompt,this.game.cat.name);
         
+        console.log("after prompt generated")//for debugging
+
         endingPrompt = currentScene.add.text(0,0,newPrompt.outcome,{
 			fontFamily: 'Permanent Marker',
 			fontSize: '18px',
@@ -179,24 +245,23 @@ class sceneE extends Phaser.Scene
         //add all contents of polaroid into container
         polaroid = this.add.container(400,-1000,[ bg,frame,cat,endingPrompt]);
 
+        console.log("before handleClothingItemPolaroidSLide:");//debugging
         if (cat.shoePosition.currentClothing != null) {
-            var shoes = cat.shoePosition.currentClothing;
-            handleClothingItemPolaroidSlide(shoes,-21.5,cat.displayHeight/2.61,1,this);
+            
+            handleClothingItemPolaroidSlide(cat.shoePosition.currentClothing,-21.5,cat.displayHeight/2.61,1,cat);
         }   
         if (cat.pantsPosition.currentClothing != null) {
-            var pants = cat.pantsPosition.currentClothing;
-            handleClothingItemPolaroidSlide(pants,-20,cat.displayHeight/3.39,2,this);
+            handleClothingItemPolaroidSlide(cat.pantsPosition.currentClothing,-20,cat.displayHeight/3.39,2,cat);
         } 
         if (cat.shirtPosition.currentClothing != null) {
-            var shirt = cat.shirtPosition.currentClothing;
-            handleClothingItemPolaroidSlide(shirt,-20,cat.displayHeight/12,3,this);
+            handleClothingItemPolaroidSlide(cat.shirtPosition.currentClothing,-20,cat.displayHeight/12,3,cat);
         }
         if (cat.hatPosition.currentClothing != null) {
-            var hat = cat.hatPosition.currentClothing;
-            handleClothingItemPolaroidSlide(hat,-20,-cat.displayHeight/2.4,4,this);
+            handleClothingItemPolaroidSlide(cat.hatPosition.currentClothing,-20,-cat.displayHeight/2.4,4,cat);
         }
 
-        console.log("cat boundingBox:");
+
+        console.log("cat boundingBox:");//debugging
         console.log(cat.boundingBox);
         //adjusts sprite's position relative to the container
         bg.y=bg.y-50;
@@ -207,18 +272,47 @@ class sceneE extends Phaser.Scene
 
 
         //helper function to reduce code duplication
-        function handleClothingItemPolaroidSlide(clothing,xOffset,yOffset,depth,thisPage){
-            clothing.setVisible(true);
-            polaroid.add(clothing);
-            utilities.scaleToGivenSize(clothing,thisPage.game.config.width*0.146);
-            clothing.x =  cat.x+xOffset;
-            clothing.y = cat.y+yOffset;
-            clothing.setDepth(depth);
+        function handleClothingItemPolaroidSlide(clothing,xOffset,yOffset,depth,cat){
+            if (clothing != null) {
+                
+                utilities.scaleToPolaroidSize(clothing);
+                clothing.setVisible(true);
+                polaroid.add(clothing);
+                clothing.x =  cat.x+xOffset;
+                clothing.y = cat.y+yOffset;
+                clothing.setDepth(depth);//it is function that's causing the crash. don't know why.
+            }
+            // clothing.setVisible(true);
+            // polaroid.add(clothing);
+            // clothing.x =  cat.x+xOffset;
+            // clothing.y = cat.y+yOffset;
+            // clothing.setDepth(depth);
         }
+
+        // var texture = scene.textures.createCanvas("snapshot", frame.displayWidth, frame.displayHeight);
+        // var canvas = texture.getCanvas();
+        // function exportCanvasAsPNG(id, fileName, dataUrl) {
+        //     var canvasElement = document.getElementById(id);
+        //     var MIME_TYPE = "image/png";
+        //     var imgURL = dataUrl;
+        //     var dlLink = document.createElement('a');
+        //     dlLink.download = fileName;
+        //     dlLink.href = imgURL;
+        //     dlLink.dataset.downloadurl = [MIME_TYPE, dlLink.download, dlLink.href].join(':');
+        //     document.body.appendChild(dlLink);
+        //     dlLink.click();
+        //     document.body.removeChild(dlLink);
+        // }
+
+        // this.game.renderer.snapshot(function (image) {                
+        //     exportCanvasAsPNG(canvas, 'snapshot', image.src);
+        // });
+
 
 
 
     }
+    
 
     setUpTween(cat,polaroid,gameScene){
         gameScene.polaroidSlideOver = gameScene.tweens.add({
@@ -247,6 +341,7 @@ class sceneE extends Phaser.Scene
                 .setOrigin(0.5)
                 .setDepth(4);
     }
+    
 
 
 

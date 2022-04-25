@@ -90,8 +90,16 @@ import pants14 from './assets/clothing/pants14.png';
 //Misc
 import buttonFrame from './assets/icons/buttonFrameLarge.png'
 import genericButton from './genericButton';
+import musicButton from './musicButton.js';
 
+//Sound Effects
+import clothingPickup1Sound from "./assets/audio/clothingPickup1.mp3";
+import clothingRussle1Sound from "./assets/audio/clothingRussle1.mp3";
+import clothingRussle2Sound from "./assets/audio/clothingRussle2.mp3";
+import clothingRussle3Sound from "./assets/audio/clothingRussle3.mp3";
+import clothingRussle4Sound from "./assets/audio/clothingRussle4.mp3";
+import clothingRussle5Sound from "./assets/audio/clothingRussle5.mp3";
 
 export {hat1img,hat2img,hat3img,hat4img,hat5img,hat6img,hat7img,hat8img,hat9img,hat10img,hat11img,hat12img,hat13img,hat14img,hat15img,hat16img,shoe1img,shoe2img,shoe3img,shoe4img,shoe5img,shoe6img,shoe7img,shoe8img,shoe9img,shoe10img,shoe11img,shoe12img,shoe13img,shoe14img,shoe15img,closetimg,shirt1img,backgroundImg,backgroundImg2,firefighterhat,firefighterboots,firefightercoat,hatSilhoetteimg,shirtSilhoetteimg,shoeSilhoetteimg,pantsSilhoetteimg,pants1,
 pants2,pants3,pants4,pants5,pants6,pants7,pants8,pants9,pants10,pants11,pants12,pants13,pants14,hatSilhoetteOverimg,shirtSilhoetteOverimg,shoeSilhoetteOverimg,pantsSilhoettOverimg,backgroundTest,shirt2img,shirt3img,shirt4img,shirt5img,shirt6img,shirt7img,shirt8img,shirt9img,
-shirt10img,shirt11img,shirt12img,shirt13img,shirt14img,shirt15img,shirt16img,backgroundNew,buttonFrame,genericButton}
+shirt10img,shirt11img,shirt12img,shirt13img,shirt14img,shirt15img,shirt16img,backgroundNew,buttonFrame,genericButton,musicButton,clothingPickup1Sound,clothingRussle5Sound,clothingRussle1Sound,clothingRussle2Sound,clothingRussle3Sound,clothingRussle4Sound}

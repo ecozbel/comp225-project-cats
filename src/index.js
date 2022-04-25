@@ -1,6 +1,9 @@
 
 import Phaser, { Game } from 'phaser';
 
+import { sceneGallery } from './galleryScene.js';
+import { loadingScene } from './loadingScene.js';
+import {photoDownloader} from './photoDownloader.js';
 import { sceneA } from './sceneA';
 import { sceneD } from './sceneD';
 import { sceneE } from './sceneE';
@@ -27,7 +30,7 @@ const config = {
     },
     
     //scene: [BegginingScene,MyGame,EndingScene]
-    scene:[sceneA,sceneB,sceneC,sceneD,sceneE]
+    scene:[loadingScene,sceneA,sceneB,sceneC,sceneD,sceneE,sceneGallery,photoDownloader]
 };
 
 const game = new Phaser.Game(config);

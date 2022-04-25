@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
-import * as imports from "./importHelperC.js"
-
+//import * as imports from "./importHelperC.js"
+import * as utilities from "./utilities.js";
 // import promptBg from './assets/promptBoard.png'
 // import innerBG from './assets/backgrounds/catChoose_inner_background.png'
 // import buttonFrame from './assets/icons/buttonFrameLarge.png'
@@ -16,14 +16,11 @@ class sceneC extends Phaser.Scene
     }
     preload ()
     {
-        this.load.json('prompts','src/assets/prompts.json');
-        this.load.plugin('rextexttypingplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rextexttypingplugin.min.js', true);
-        this.load.image('promptBoard',imports.promptBg);
-        this.load.image('innerBG',imports.innerBG);
-        this.load.spritesheet('buttonFrame', imports.buttonFrame, {
-            frameWidth: 312,
-            frameHeight: 52
-        });
+        // this.load.json('prompts','src/assets/prompts.json');
+        // this.load.plugin('rextexttypingplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rextexttypingplugin.min.js', true);
+        // this.load.image('promptBoard',imports.promptBg);
+        // this.load.image('innerBG',imports.innerBG);
+    
 
     }
     create(){
@@ -40,9 +37,18 @@ class sceneC extends Phaser.Scene
         var self = this;
         var camera = this.cameras.main;
 
-        let continueButton= new imports.genericButton({scene:self,key:'buttonFrame',x:400,y:50,text:"Continue."});
+        var backButton= new utilities.genericButton({scene:self,key:'buttonFrame',x:200,y:570,text:"Back"});
+        backButton.on('pointerdown', function(pointer, localX, localY, event){
+            startPreviousScene();   
+        },self );
+        function startPreviousScene(){
+            self.scene.start('sceneB_pickCat');
+        }
+
+        var continueButton= new utilities.genericButton({scene:self,key:'buttonFrame',x:600,y:570,text:"Continue"});
         continueButton.on('pointerdown', function(pointer, localX, localY, event){
-            camera.fadeOut(1000);    
+            camera.fadeOut(1000);
+            keyboardTypingSound.stop();    
         },self );
         camera.on('camerafadeoutcomplete', function(){
             startNextScene();
@@ -91,12 +97,36 @@ class sceneC extends Phaser.Scene
         .setOrigin(0.5)
         .setDepth(4);
         promptText.typing = this.plugins.get('rextexttypingplugin').add(promptText, {
-            speed: 100,
+            speed: 40,
             //typeMode: 'middle-to-sides'
         });
 
+        //sound
+        var keyboardTypingSound = this.sound.add("keyBoardTypeLoop");
+        if (global.soundEffectsOn == true){
+            keyboardTypingSound.play({loop:true});
+        }
+        
+
+        promptText.typing.on('complete', function(typing, txt){ keyboardTypingSound.stop()});
+
         promptText.typing.start(getPromptWithCatName(generatedPrompt).introduction); 
-        this.game.cat.generatedPrompt = generatedPrompt;       
+        this.game.cat.generatedPrompt = generatedPrompt;    
+        
+        var mButton= new utilities.musicButton({scene:self,onKey:'musicOnButton',offKey:'musicOffButton' });
+
+        mButton.on('pointerdown', function () {
+            toggleSound(this.game.bgMusic)
+        },self);
+
+        function toggleSound(givenSound){
+            if (givenSound.isPlaying){
+                givenSound.stop();
+            }
+            else{
+                givenSound.play();
+            }
+        }
     }
     update(){
     }
