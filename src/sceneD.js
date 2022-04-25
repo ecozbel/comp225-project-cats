@@ -34,6 +34,7 @@ class sceneD extends Phaser.Scene
         });
 
         this.load.plugin('rexoutlinepipelineplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexoutlinepipelineplugin.min.js', true);      //this.load.plugin('rexglowfilter2pipelineplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexglowfilter2pipelineplugin.min.js', true);
+        this.load.scenePlugin('rexgesturesplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexgesturesplugin.min.js', 'rexGestures', 'rexGestures');
 
 
         this.load.image('hatSilhoette', imports.hatSilhoetteimg);
@@ -399,6 +400,10 @@ class sceneD extends Phaser.Scene
             startNextScene();
 
         },self);
+        
+        
+
+
 
             // this.add.text(EndingButton.x, EndingButton.y, 'Continue',{ fontFamily: 'MinecraftiaRegular', fontSize: '18px',stroke: '#000000',strokeThickness: 2,align:'left'  })
             // .setOrigin(0.5)
@@ -446,6 +451,9 @@ class sceneD extends Phaser.Scene
             snapToCat(gameObject,pointer);
         });
 
+        
+       
+
         /*
         overlap check and snap. this now uses a custom bounding box that I attatched to the 
         cat in setupCat(). this seems to fix a lot of the bugs related to dragging back to closet
@@ -458,7 +466,7 @@ class sceneD extends Phaser.Scene
 
                 // function to make sure that same article of clothing can't be placed on a cat twice
                 function handleClothingPlacement(clothingPosition) {
-
+                
                     // multiple clothes of same type cant be on cat
                     if (clothingPosition.currentClothing != null && clothingPosition.currentClothing != sprite) { 
                         returnSpritetoCloset(clothingPosition.currentClothing);
@@ -498,7 +506,7 @@ class sceneD extends Phaser.Scene
                 */
                 switch (sprite.clothingType){
                     case clothingTypes.hat:
-                        cat.hatPosition.currentClothing = null;
+                        cat.hatPosition.currentClothing = null;           
                         break;
                     case clothingTypes.shoe:
                         cat.shoePosition.currentClothing  = null;
@@ -515,21 +523,27 @@ class sceneD extends Phaser.Scene
             }
         }
 
+        
+      
         function returnSpritetoCloset(sprite){
-
-
-
-            
             sprite.getData('group').addAt(sprite, sprite.getData('index'));
-                utilities.scaletoIconSize(sprite);
-                sprite.x=sprite.getData('origin').x;
-                sprite.y=sprite.getData('origin').y;
-                sprite.ignoreDestroy = false;
-                displayLayer(sprite.getData('group'));
+            utilities.scaletoIconSize(sprite);
+            sprite.x=sprite.getData('origin').x;
+            sprite.y=sprite.getData('origin').y;
+            sprite.ignoreDestroy = false;
+            displayLayer(sprite.getData('group'));
         }
+
+  
+        
+        
+        
+
+        
         
 
     }
+
     update(){
         
     }
