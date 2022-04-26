@@ -232,13 +232,17 @@ class sceneGallery extends Phaser.Scene
         }  
         else{
             var infoText = this.add.text(250, 450, 'Cat name: TBD - Play to create memories!').setDepth(-1);
-        }
-        
+        }        
         //Button to download current displayed polaroid as png
         var downloadButton = new utilities.genericButton({scene:self,key:'buttonFrame',x:250,y:550,text:"Download"}).setDepth(-1);
         downloadButton.on('pointerdown',function(){
-            this.game.photoIndex = carousel.face+1;
-            this.scene.start("downloadPhoto")
+            if(polaroids[carousel.face].name !=""){
+                this.game.photoIndex = carousel.face+1;
+                this.scene.start("downloadPhoto")
+            }
+            else{
+                console.log("no photo there!")
+            }
         },self );
            
     }
