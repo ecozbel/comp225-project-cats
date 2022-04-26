@@ -32,12 +32,8 @@ class sceneGallery extends Phaser.Scene
 
         var iBG = this.add.image(400,300,'galleryBG');
         iBG.setDepth(-1);
-        //iBG.setScale(1.5);
-        
         var tempBG = this.add.rectangle(0, 0, 300, 300, 0x000000);
         tempBG.setVisible(false);
-        //var catKey = "catanimated3-lime";
-        //console.log(localStorage.getItem('cat7'));
         var frame = this.add.sprite(0,0,'polaroid');
         frame.setScale(12);
         frame.setVisible(false);
@@ -116,14 +112,13 @@ class sceneGallery extends Phaser.Scene
             })
 
         }
-            //Invisible rectangle to act as hit area
+        //Invisible rectangle to act as hit area
         var r1 = this.add.graphics();
         r1.setInteractive(polaroids[carousel.face].getBounds(), Phaser.Geom.Rectangle.Contains);
         r1.on('pointerover', () => polaroids[carousel.face].setScale(1))
         r1.on('pointerout', () => polaroids[carousel.face].setScale(0.5))
 
         function addClothing(key,clothing,currentScene){
-            // console.log(clothing)
             if(key != 'empty'&&key !=null){
                 clothing = currentScene.add.sprite(0,0,key).setScale(0.3)
                 clothing.setVisible(false);
@@ -238,7 +233,7 @@ class sceneGallery extends Phaser.Scene
         else{
             var infoText = this.add.text(250, 450, 'Cat name: TBD - Play to create memories!').setDepth(-1);
         }
-        //const infoText = this.add.text(250, 450, 'Cat name: ' + firstName).setDepth(-1);
+        
         //Button to download current displayed polaroid as png
         var downloadButton = new utilities.genericButton({scene:self,key:'buttonFrame',x:250,y:550,text:"Download"}).setDepth(-1);
         downloadButton.on('pointerdown',function(){
