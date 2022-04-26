@@ -70,6 +70,7 @@ class sceneE extends Phaser.Scene
                 pictureCreated = true;
                 shutterSound.play();
                 this.cameras.main.flash(1000);
+                creategalleryButton()
                 //ADD camera flash sound here
                 this.setUpPolaroid();
                 //this.setUpCat(400,-1000);
@@ -153,12 +154,13 @@ class sceneE extends Phaser.Scene
             }
 
         }
-
-        var galleryButton= new utilities.genericButton({scene:self,key:'buttonFrame',x:400,y:580,text:"Go to gallery"});
-        galleryButton.on('pointerdown', function(pointer, localX, localY, event){
-            self.scene.start('scene_Gallery');
-        },self );
-
+        function creategalleryButton(){
+            var galleryButton= new utilities.genericButton({scene:self,key:'buttonFrame',x:400,y:580,text:"Go to gallery"});
+            galleryButton.on('pointerdown', function(pointer, localX, localY, event){
+                self.scene.start('scene_Gallery');
+            },self );
+        }
+    
 
     }
     update(){
