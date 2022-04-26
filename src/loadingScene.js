@@ -247,7 +247,7 @@ class loadingScene extends Phaser.Scene
 
     }
     create(){
-        this.scene.start('sceneA_mainMenu');
+        this.scene.start('IntroScene');
     }
 }
 

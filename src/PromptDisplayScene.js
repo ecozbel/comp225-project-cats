@@ -132,4 +132,4 @@ class PromptDisplayScene extends Phaser.Scene
     }
 
 }
-export {DressUpScene};
+export {PromptDisplayScene};

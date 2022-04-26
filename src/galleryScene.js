@@ -193,7 +193,7 @@ class sceneGallery extends Phaser.Scene
             startPreviousScene();   
         },self );
         function startPreviousScene(){
-            self.scene.start('sceneA_mainMenu');
+            self.scene.start('IntroScene');
         }
         //Button to go left on carousel
         const leftButton = this.add.image(80, 300, 'leftButton',0).setInteractive().setDepth(4);
