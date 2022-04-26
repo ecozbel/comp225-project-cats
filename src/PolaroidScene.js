@@ -12,12 +12,12 @@ var endingPrompt;
 var pictureCreated;
 
 var gameReady=false;
-class sceneE extends Phaser.Scene
+class PolaroidScene extends Phaser.Scene
 {
     constructor ()
     {   
         super();
-        Phaser.Scene.call(this, { key: 'sceneE_photograph' });
+        Phaser.Scene.call(this, { key: 'PolaroidScene' });
     }
 
     preload ()
@@ -358,4 +358,4 @@ class sceneE extends Phaser.Scene
 }
 
 
-export { sceneE };
+export { PolaroidScene };

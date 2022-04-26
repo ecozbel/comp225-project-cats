@@ -10,12 +10,12 @@ var initialSetup = false;
 
 
 
-class sceneA extends Phaser.Scene
+class IntroScene extends Phaser.Scene
 {
     constructor ()
     {   
         super();
-        Phaser.Scene.call(this, { key: 'sceneA_mainMenu' });
+        Phaser.Scene.call(this, { key: 'IntroScene' });
         
     }
     preload ()
@@ -89,7 +89,7 @@ class sceneA extends Phaser.Scene
 
         // },self);
         function startNextScene(){
-            self.scene.start('sceneB_pickCat');
+            self.scene.start('PickCatScene');
         }
         global.buttonClickSound1 = this.sound.add("buttonClick1Sound",{ loop: false });
         var backgroundMusic = this.sound.add('music',{ loop: false });
@@ -169,4 +169,4 @@ class sceneA extends Phaser.Scene
     }
 
 }
-export {sceneA};
+export {IntroScene};

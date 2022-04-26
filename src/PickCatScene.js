@@ -4,12 +4,12 @@ import { doorOpenSound } from './importHelperB';
 //import * as imports from "./importHelperB.js"
 import * as paletteCreator from './paletteCreator';
 import * as utilities from "./utilities.js";
-class sceneB extends Phaser.Scene
+class PickCatScene extends Phaser.Scene
 {
     constructor ()
     {   
         super();
-        Phaser.Scene.call(this, { key: 'sceneB_pickCat' });
+        Phaser.Scene.call(this, { key: 'PickCatScene' });
     }
     preload ()
     {
@@ -82,7 +82,7 @@ class sceneB extends Phaser.Scene
             startPreviousScene();   
         },self );
         function startPreviousScene(){
-            self.scene.start('sceneA_mainMenu');
+            self.scene.start('IntroScene');
         }
 
 
@@ -162,7 +162,7 @@ class sceneB extends Phaser.Scene
         },self);
 
         function startNextScene(){
-            self.scene.start('sceneC_showPrompt');
+            self.scene.start('PromptDisplayScene');
         }
 
 
@@ -243,4 +243,4 @@ class sceneB extends Phaser.Scene
     }
 
 }
-export {sceneB};
+export {PickCatScene};
