@@ -42,7 +42,7 @@ class PromptDisplayScene extends Phaser.Scene
             startPreviousScene();   
         },self );
         function startPreviousScene(){
-            self.scene.start('{PickCatScene}');
+            self.scene.start('PickCatScene');
         }
 
         var continueButton= new utilities.genericButton({scene:self,key:'buttonFrame',x:600,y:570,text:"Continue"});
