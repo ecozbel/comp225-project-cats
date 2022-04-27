@@ -6,12 +6,12 @@ import * as utilities from "./utilities.js";
 // import buttonFrame from './assets/icons/buttonFrameLarge.png'
 // import genericButton from './genericButton';
 
-class sceneC extends Phaser.Scene
+class PromptDisplayScene extends Phaser.Scene
 {
     constructor ()
     {   
         super();
-        Phaser.Scene.call(this, { key: 'sceneC_showPrompt' });
+        Phaser.Scene.call(this, { key: 'PromptDisplayScene' });
         
     }
     preload ()
@@ -42,7 +42,7 @@ class sceneC extends Phaser.Scene
             startPreviousScene();   
         },self );
         function startPreviousScene(){
-            self.scene.start('sceneB_pickCat');
+            self.scene.start('PickCatScene');
         }
 
         var continueButton= new utilities.genericButton({scene:self,key:'buttonFrame',x:600,y:570,text:"Continue"});
@@ -55,7 +55,7 @@ class sceneC extends Phaser.Scene
 
         },self);
         function startNextScene(){
-            self.scene.start('sceneD_dressUp');
+            self.scene.start('DressUpScene');
         }
         function getPromptWithCatName(prompt) {
             // make applySubstitutions helper function that takes a string
@@ -132,4 +132,4 @@ class sceneC extends Phaser.Scene
     }
 
 }
-export {sceneC};
+export {PromptDisplayScene};

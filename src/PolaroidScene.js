@@ -12,12 +12,12 @@ var endingPrompt;
 var pictureCreated;
 
 var gameReady=false;
-class sceneE extends Phaser.Scene
+class PolaroidScene extends Phaser.Scene
 {
     constructor ()
     {   
         super();
-        Phaser.Scene.call(this, { key: 'sceneE_photograph' });
+        Phaser.Scene.call(this, { key: 'PolaroidScene' });
     }
 
     preload ()
@@ -70,6 +70,7 @@ class sceneE extends Phaser.Scene
                 pictureCreated = true;
                 shutterSound.play();
                 this.cameras.main.flash(1000);
+                creategalleryButton()
                 //ADD camera flash sound here
                 this.setUpPolaroid();
                 //this.setUpCat(400,-1000);
@@ -153,12 +154,13 @@ class sceneE extends Phaser.Scene
             }
 
         }
-
-        var galleryButton= new utilities.genericButton({scene:self,key:'buttonFrame',x:400,y:580,text:"Go to gallery"});
-        galleryButton.on('pointerdown', function(pointer, localX, localY, event){
-            self.scene.start('scene_Gallery');
-        },self );
-
+        function creategalleryButton(){
+            var galleryButton= new utilities.genericButton({scene:self,key:'buttonFrame',x:400,y:580,text:"Go to gallery"});
+            galleryButton.on('pointerdown', function(pointer, localX, localY, event){
+                self.scene.start('scene_Gallery');
+            },self );
+        }
+    
 
     }
     update(){
@@ -356,4 +358,4 @@ class sceneE extends Phaser.Scene
 }
 
 
-export { sceneE };
+export { PolaroidScene };

@@ -4,11 +4,11 @@ import Phaser, { Game } from 'phaser';
 import { sceneGallery } from './galleryScene.js';
 import { loadingScene } from './loadingScene.js';
 import {photoDownloader} from './photoDownloader.js';
-import { sceneA } from './sceneA';
-import { sceneD } from './sceneD';
-import { sceneE } from './sceneE';
-import { sceneB } from './sceneB';
-import { sceneC } from './sceneC';
+import { IntroScene} from './IntroScene';
+import { DressUpScene } from './DressUpScene';
+import { PolaroidScene } from './PolaroidScene';
+import { PickCatScene } from './PickCatScene';
+import { PromptDisplayScene } from './PromptDisplayScene';
 
 
 
@@ -29,8 +29,7 @@ const config = {
         disableWebAudio: true
     },
     
-    //scene: [BegginingScene,MyGame,EndingScene]
-    scene:[loadingScene,sceneA,sceneB,sceneC,sceneD,sceneE,sceneGallery,photoDownloader]
+    scene:[loadingScene,IntroScene,PickCatScene,PromptDisplayScene,DressUpScene,PolaroidScene,sceneGallery,photoDownloader]
 };
 
 const game = new Phaser.Game(config);

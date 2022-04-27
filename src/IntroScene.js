@@ -10,12 +10,12 @@ var initialSetup = false;
 
 
 
-class sceneA extends Phaser.Scene
+class IntroScene extends Phaser.Scene
 {
     constructor ()
     {   
         super();
-        Phaser.Scene.call(this, { key: 'sceneA_mainMenu' });
+        Phaser.Scene.call(this, { key: 'IntroScene' });
         
     }
     preload ()
@@ -89,7 +89,7 @@ class sceneA extends Phaser.Scene
 
         // },self);
         function startNextScene(){
-            self.scene.start('sceneB_pickCat');
+            self.scene.start('PickCatScene');
         }
         global.buttonClickSound1 = this.sound.add("buttonClick1Sound",{ loop: false });
         var backgroundMusic = this.sound.add('music',{ loop: false });
@@ -111,7 +111,7 @@ class sceneA extends Phaser.Scene
         
 
 
-        const aboutContent = "Welcome to Cat Town! In Cats with Jobs, you get assigned a Cat Pal and your job is to help them get ready for their day. Each resident comes with a story, but your Cat Pal's looks for the day are ultimately up to you. Memories of the last ten Cat Pals you have helped will be stored in the gallery. Original artwork created by Ceyhun, Ifraah, Nawal and Jarett. With thanks to Richard Davey's phaser template."
+        const aboutContent = "Welcome to Cat Town! In Cats with Jobs, you get assigned a Cat Pal and your job is to help them get ready for their day. Each resident comes with a story, but your Cat Pal's looks for the day are ultimately up to you. Memories of the last ten Cat Pals you have helped will be stored in the gallery. Original artwork and music created by Ceyhun, Ifraah, Nawal and Jarett. With thanks to Richard Davey's phaser template."
         
         var aboutBox = this.add.image(continueButton.x + 360,continueButton.y+20, 'promptBoard')
             .setDepth(4)
@@ -169,4 +169,4 @@ class sceneA extends Phaser.Scene
     }
 
 }
-export {sceneA};
+export {IntroScene};

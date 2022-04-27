@@ -51,8 +51,13 @@
             "introduction": "{{full_name}} is teaching their first class at Meowcalester College, and wants to dress to impress! With a lesson plan in hand, they came prepared!",
             "outcome": "{{full_name}} loved their first day on the job! Freshly out of a PhD program, they weren't sure how their first class would go, but it went wonderfully!."
         
+        },
+
+        {
+            "objective": "Party Kitty",
+            "introduction": "{{full_name}} is about to unwind! They are throwing a house party f",
+            "outcome": "{{full_name}} loved their first day on the job! Freshly out of a PhD program, they weren't sure how their first class would go, but it went wonderfully!."
+        
         }
-    
-    
     ]
     }

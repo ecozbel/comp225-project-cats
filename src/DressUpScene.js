@@ -9,12 +9,12 @@ var clothingTypes;
 
 
 
-class sceneD extends Phaser.Scene
+class DressUpScene extends Phaser.Scene
 {
     constructor ()
     {   
         super();
-        Phaser.Scene.call(this, { key: 'sceneD_dressUp' });
+        Phaser.Scene.call(this, { key: 'DressUpScene' });
     }
     
 
@@ -25,12 +25,13 @@ class sceneD extends Phaser.Scene
             url: 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexgesturesplugin.min.js',
             sceneKey: 'rexGestures'
         });  
+        
     }
       
     create ()
     {
 
-        console.log("sceneB this.game.cat: ");
+        console.log("PickCatScene this.game.cat: ");
         console.log(this.game.cat);
         var camera = this.cameras.main;
 
@@ -72,9 +73,9 @@ class sceneD extends Phaser.Scene
         
 
         cat = setupCat();
-        console.log("sceneB cat: ");
+        console.log("PickCatScene cat: ");
         console.log(cat);
-        console.log("sceneB closet: ");
+        console.log("PickCatScene closet: ");
         console.log(closet);
         //this is an object to act as an enumerator for clothing types: hat, shoe, etc.
         clothingTypes = {
@@ -242,7 +243,7 @@ class sceneD extends Phaser.Scene
                 gameObject.setData('index', objectLayer.getIndex(gameObject));
                 //console.log(gameObject.scene.scene.key);
                 gameObject.on('pointerover', function () {
-                    if(gameObject.scene.scene.key=="sceneD_dressUp"){
+                    if(gameObject.scene.scene.key=="DressUpScene"){
                         //Inner highlight shader
                         postFxPlugin.add(gameObject, {
                             thickness: 3,
@@ -258,7 +259,7 @@ class sceneD extends Phaser.Scene
                 })
         
                 gameObject.on('pointerout', function () {
-                    if(gameObject.scene.scene.key=="sceneD_dressUp"){
+                    if(gameObject.scene.scene.key=="DressUpScene"){
                         postFxPlugin.remove(gameObject);
                         
                     }
@@ -320,7 +321,7 @@ class sceneD extends Phaser.Scene
         },self);
 
         function startNextScene(){
-            self.scene.start('sceneE_photograph');
+            self.scene.start('PolaroidScene');
         }
 
         //displays the layer and also plays the sound
@@ -484,4 +485,4 @@ class sceneD extends Phaser.Scene
 
 
 
-export { sceneD };
+export {DressUpScene };
