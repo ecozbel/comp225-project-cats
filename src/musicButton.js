@@ -18,7 +18,6 @@ export default class musicButton extends Phaser.GameObjects.Sprite {
             this.setTexture("musicOffButton")
         }
 
-
         function toggleMusicButton(button){
             global.soundEffectsOn = !global.soundEffectsOn;
             if (button.texture.key=="musicOnButton"){

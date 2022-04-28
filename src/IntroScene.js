@@ -18,36 +18,7 @@ class IntroScene extends Phaser.Scene
         Phaser.Scene.call(this, { key: 'IntroScene' });
         
     }
-    preload ()
-    {
-        // this.load.audio("music",[imports.musicmp3,imports.musicogg ])
-        // this.load.spritesheet('animatedlogo', imports.animatedLogo, { frameWidth: 800, frameHeight: 800 });
-        // this.load.image('mainMenuBG',imports.mainMenuBG);
-        // this.load.spritesheet('buttonFrame', imports.buttonFrame, {
-        //     frameWidth: 312,
-        //     frameHeight: 52
-        // });
-        // this.load.spritesheet('musicOnButton', imports.musicOnSprite, {
-        //     frameWidth: 52,
-        //     frameHeight: 52
-        // });
-        // this.load.spritesheet('musicOffButton', imports.musicOffSprite, {
-        //     frameWidth: 52,
-        //     frameHeight: 52
-        // });
-        // this.load.image('cat-palette', imports.catPalette);
-        // this.load.spritesheet('catanimated', imports.catAnimation, {
-        //     frameWidth: 64,
-        //     frameHeight: 64
-        // });
-        // this.load.spritesheet('catanimated2', imports.catAnimation2, {
-        //     frameWidth: 64,
-        //     frameHeight: 64
-        // });
-        // this.load.spritesheet('catanimated3', imports.catAnimation3, {
-        //     frameWidth: 64,
-        //     frameHeight: 64
-        // });
+    preload () {
 
     }
     create(){
@@ -92,20 +63,27 @@ class IntroScene extends Phaser.Scene
             self.scene.start('PickCatScene');
         }
         global.buttonClickSound1 = this.sound.add("buttonClick1Sound",{ loop: false });
-        var backgroundMusic = this.sound.add('music',{ loop: false });
         var mButton= new utilities.musicButton({scene:self,onKey:'musicOnButton',offKey:'musicOffButton' });
-        this.game.bgMusic = backgroundMusic;
+        var backgroundMusic = this.game.bgMusic;
+        
+        
         mButton.on('pointerdown', function () {
             toggleSound(backgroundMusic)
         },self);
 
+        //plays the music if its not playing already, otherwise, just toggles the sound of the music.
+        //so it doesn't play from the beginning every time.
         function toggleSound(givenSound){
-            if (givenSound.isPlaying){
-                givenSound.stop();
+            if (!givenSound.isPlaying){
+                givenSound.play()
             }
-            else{
-                givenSound.play();
+
+            if (global.soundEffectsOn == true){
+                givenSound.volume = 1;
+            } else {
+                givenSound.volume = 0;
             }
+
         }
 
         

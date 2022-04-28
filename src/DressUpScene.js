@@ -56,12 +56,16 @@ class DressUpScene extends Phaser.Scene
             toggleSound(this.game.bgMusic)
         },self);
 
+        //plays the music if its not playing already, otherwise, just toggles the sound of the music.
+        //so it doesn't play from the beginning every time.
         function toggleSound(givenSound){
-            if (givenSound.isPlaying){
-                givenSound.stop();
+            if (!givenSound.isPlaying){
+                givenSound.play()
             }
-            else{
-                givenSound.play();
+            if (global.soundEffectsOn == true){
+                givenSound.volume = 1;
+            } else {
+                givenSound.volume = 0;
             }
         }
 

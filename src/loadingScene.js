@@ -248,6 +248,9 @@ class loadingScene extends Phaser.Scene
 
     }
     create(){
+
+        var backgroundMusic = this.sound.add('music',{ loop: true });
+        this.game.bgMusic = backgroundMusic;
         this.scene.start('IntroScene');
     }
 }
