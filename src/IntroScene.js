@@ -51,7 +51,7 @@ class IntroScene extends Phaser.Scene
 
     }
     create(){
-        global.soundEffectsOn = true;
+        
         var background = this.add.image(400,300,'mainMenuBG')
         var logo = this.add.sprite(250,160,'animatedlogo').setDisplaySize(400, 400)
         .setDepth(4);

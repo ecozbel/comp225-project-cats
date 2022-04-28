@@ -20,6 +20,7 @@ class loadingScene extends Phaser.Scene
     }
     preload ()
     {
+        global.soundEffectsOn = false;
         var progressBar = this.add.graphics();
             var progressBox = this.add.graphics();
             progressBox.fillStyle( 0x645690, 0.8);
