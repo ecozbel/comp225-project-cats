@@ -23,7 +23,6 @@ function scaletoIconSize(sprite){
 function scaleToGivenSize(sprite,size){
     sprite.displayWidth=size; 
     sprite.displayHeight=size; 
-    //sprite.scaleY=sprite.scaleX;
 }
 
 //Scales given sprite to specified size

@@ -401,12 +401,6 @@ class DressUpScene extends Phaser.Scene
                     //set the clothPositions current clothing to be what was just dropped on it
                     clothingPosition.currentClothing = sprite;
 
-                   
-                    
-                   
-
-            
-
                 }
 
                 //switch statement to handle multiple types of clothes

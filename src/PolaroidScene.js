@@ -22,26 +22,12 @@ class PolaroidScene extends Phaser.Scene
 
     preload ()
     {
-        // this.load.image('polaroid', imports.polaroidImg);
-        // this.load.image('scenery1',imports.scenery1);
-        // this.load.audio("printSound",[imports.polaroidPrintSound,imports.polaroidPrintSoundOGG ])
-        // this.load.audio("shutterSound",[imports.cameraShutterSound,imports.cameraShutterSoundOGG])
-        // this.load.image('itemFrame',imports.itemFrame);
+
     }
 
     create ()
     {
         pictureCreated = false;
-        // cat = this.add.existing(this.game.cat);
-        // cat.x=0;
-        // cat.y=0;
-        // frame = this.add.sprite(0,0,'polaroid');
-        // bg = this.add.sprite(0,0,'scenery1');
-
-        // cat.setVisible(false);
-        // frame.setVisible(false);
-        // bg.setVisible(false);
-        
 
         var self = this;
         this.initialSpriteSetup(self);
@@ -56,13 +42,6 @@ class PolaroidScene extends Phaser.Scene
         var photoInfo = this.add.text(100,100,"Click for photo!")
 
         this.cameras.main.setBackgroundColor('000000');
-        //var self = this;
-
-
-
-
-
-
 
         //"Takes photo" when clicked on screen
         this.input.on('pointerdown', function () {
@@ -83,17 +62,11 @@ class PolaroidScene extends Phaser.Scene
                 let hat = cat.hatPosition.currentClothing;
                 let shirt = cat.shirtPosition.currentClothing;
                 let pants = cat.pantsPosition.currentClothing;
-                // localStorage.setItem('cat1',cat.texture.key);
-                
-                // saveClothing("hat1",hat);
-                // saveClothing("shirt1",shirt);
-                // saveClothing("pants1",pants);
-                // saveClothing("shoes1",shoe);
-                
 
+            
                 var polaroidCount = localStorage.getItem('polaroidCount');
                 console.log(polaroidCount);
-                //var index = parseInt(polaroidCount)
+
                 if(polaroidCount == null){
                     localStorage.setItem('polaroidCount',"1")
                     let index = 1;
@@ -291,34 +264,7 @@ class PolaroidScene extends Phaser.Scene
                 clothing.y = cat.y+yOffset;
                 clothing.setDepth(depth);//it is function that's causing the crash. don't know why.
             }
-            // clothing.setVisible(true);
-            // polaroid.add(clothing);
-            // clothing.x =  cat.x+xOffset;
-            // clothing.y = cat.y+yOffset;
-            // clothing.setDepth(depth);
         }
-
-        // var texture = scene.textures.createCanvas("snapshot", frame.displayWidth, frame.displayHeight);
-        // var canvas = texture.getCanvas();
-        // function exportCanvasAsPNG(id, fileName, dataUrl) {
-        //     var canvasElement = document.getElementById(id);
-        //     var MIME_TYPE = "image/png";
-        //     var imgURL = dataUrl;
-        //     var dlLink = document.createElement('a');
-        //     dlLink.download = fileName;
-        //     dlLink.href = imgURL;
-        //     dlLink.dataset.downloadurl = [MIME_TYPE, dlLink.download, dlLink.href].join(':');
-        //     document.body.appendChild(dlLink);
-        //     dlLink.click();
-        //     document.body.removeChild(dlLink);
-        // }
-
-        // this.game.renderer.snapshot(function (image) {                
-        //     exportCanvasAsPNG(canvas, 'snapshot', image.src);
-        // });
-
-
-
 
     }
     
@@ -334,7 +280,6 @@ class PolaroidScene extends Phaser.Scene
         });
         console.log("built tweens");
 
-        //console.log(gameScene.slideOver);
         const restartButton = this.add.image(polaroid.x, polaroid.y +polaroid.displayHeight/1.75 , 'itemFrame')
             .setDisplaySize(300, 50)
             .setDepth(4)

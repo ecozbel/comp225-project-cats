@@ -1,10 +1,5 @@
 import Phaser from 'phaser';
-//import * as imports from "./importHelperC.js"
 import * as utilities from "./utilities.js";
-// import promptBg from './assets/promptBoard.png'
-// import innerBG from './assets/backgrounds/catChoose_inner_background.png'
-// import buttonFrame from './assets/icons/buttonFrameLarge.png'
-// import genericButton from './genericButton';
 
 class PromptDisplayScene extends Phaser.Scene
 {
@@ -16,11 +11,6 @@ class PromptDisplayScene extends Phaser.Scene
     }
     preload ()
     {
-        // this.load.json('prompts','src/assets/prompts.json');
-        // this.load.plugin('rextexttypingplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rextexttypingplugin.min.js', true);
-        // this.load.image('promptBoard',imports.promptBg);
-        // this.load.image('innerBG',imports.innerBG);
-    
 
     }
     create(){
@@ -67,7 +57,7 @@ class PromptDisplayScene extends Phaser.Scene
             };
         }
 
-        //var generatedPrompt;
+
         const randomNumber = (min, max) => { 
             //Use below if final number doesn't need to be whole number
             //return Math.random() * (max - min) + min;
@@ -80,7 +70,7 @@ class PromptDisplayScene extends Phaser.Scene
             return generatedPrompt;
         }
 
-        // getRandomFullName();
+
         getRandomPrompt();
 
         var promptBar = this.add.image(280, 300, 'promptBoard')
@@ -99,7 +89,6 @@ class PromptDisplayScene extends Phaser.Scene
         .setDepth(4);
         promptText.typing = this.plugins.get('rextexttypingplugin').add(promptText, {
             speed: 40,
-            //typeMode: 'middle-to-sides'
         });
 
         //sound
