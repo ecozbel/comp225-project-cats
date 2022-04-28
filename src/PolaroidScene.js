@@ -47,7 +47,7 @@ class PolaroidScene extends Phaser.Scene
         this.input.on('pointerdown', function () {
             if (pictureCreated == false){
                 pictureCreated = true;
-                shutterSound.play();
+                utilities.playSoundEffect(shutterSound);
                 this.cameras.main.flash(1000);
                 creategalleryButton()
                 //ADD camera flash sound here
@@ -111,9 +111,7 @@ class PolaroidScene extends Phaser.Scene
         //Listener for when camera flash effect is done
         this.cameras.main.on('cameraflashcomplete', function () {
             //Maybe could add camera sound here too
-            printSound.play();
-            //Maybe polaroid sliding out of camera sound effect
-
+            utilities.play(printSound);
 
         });
 
