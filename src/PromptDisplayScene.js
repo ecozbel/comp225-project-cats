@@ -40,6 +40,7 @@ class PromptDisplayScene extends Phaser.Scene
         var backButton= new utilities.genericButton({scene:self,key:'buttonFrame',x:200,y:570,text:"Back"});
         backButton.on('pointerdown', function(pointer, localX, localY, event){
             startPreviousScene();   
+            keyboardTypingSound.stop();  
         },self );
         function startPreviousScene(){
             self.scene.start('PickCatScene');
