@@ -111,7 +111,7 @@ class PolaroidScene extends Phaser.Scene
         //Listener for when camera flash effect is done
         this.cameras.main.on('cameraflashcomplete', function () {
             //Maybe could add camera sound here too
-            utilities.play(printSound);
+            utilities.playSoundEffect(printSound);
 
         });
 
