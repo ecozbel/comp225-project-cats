@@ -1,10 +1,5 @@
 import Phaser from 'phaser';
-//import * as imports from "./importHelperC.js"
 import * as utilities from "./utilities.js";
-// import promptBg from './assets/promptBoard.png'
-// import innerBG from './assets/backgrounds/catChoose_inner_background.png'
-// import buttonFrame from './assets/icons/buttonFrameLarge.png'
-// import genericButton from './genericButton';
 
 class PromptDisplayScene extends Phaser.Scene
 {
@@ -16,11 +11,6 @@ class PromptDisplayScene extends Phaser.Scene
     }
     preload ()
     {
-        // this.load.json('prompts','src/assets/prompts.json');
-        // this.load.plugin('rextexttypingplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rextexttypingplugin.min.js', true);
-        // this.load.image('promptBoard',imports.promptBg);
-        // this.load.image('innerBG',imports.innerBG);
-    
 
     }
     create(){
@@ -40,6 +30,7 @@ class PromptDisplayScene extends Phaser.Scene
         var backButton= new utilities.genericButton({scene:self,key:'buttonFrame',x:200,y:570,text:"Back"});
         backButton.on('pointerdown', function(pointer, localX, localY, event){
             startPreviousScene();   
+            keyboardTypingSound.stop();  
         },self );
         function startPreviousScene(){
             self.scene.start('PickCatScene');
@@ -66,7 +57,7 @@ class PromptDisplayScene extends Phaser.Scene
             };
         }
 
-        //var generatedPrompt;
+
         const randomNumber = (min, max) => { 
             //Use below if final number doesn't need to be whole number
             //return Math.random() * (max - min) + min;
@@ -79,7 +70,7 @@ class PromptDisplayScene extends Phaser.Scene
             return generatedPrompt;
         }
 
-        // getRandomFullName();
+
         getRandomPrompt();
 
         var promptBar = this.add.image(280, 300, 'promptBoard')
@@ -98,7 +89,6 @@ class PromptDisplayScene extends Phaser.Scene
         .setDepth(4);
         promptText.typing = this.plugins.get('rextexttypingplugin').add(promptText, {
             speed: 40,
-            //typeMode: 'middle-to-sides'
         });
 
         //sound
@@ -119,12 +109,16 @@ class PromptDisplayScene extends Phaser.Scene
             toggleSound(this.game.bgMusic)
         },self);
 
+        //plays the music if its not playing already, otherwise, just toggles the sound of the music.
+        //so it doesn't play from the beginning every time.
         function toggleSound(givenSound){
-            if (givenSound.isPlaying){
-                givenSound.stop();
+            if (!givenSound.isPlaying){
+                givenSound.play()
             }
-            else{
-                givenSound.play();
+            if (global.soundEffectsOn == true){
+                givenSound.volume = 1;
+            } else {
+                givenSound.volume = 0;
             }
         }
     }

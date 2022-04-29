@@ -13,42 +13,7 @@ class PickCatScene extends Phaser.Scene
     }
     preload ()
     {
-        
-        // this.load.image('innerBG',imports.innerBG)
-        // this.load.plugin('rexoutlinepipelineplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexoutlinepipelineplugin.min.js', true);      //this.load.plugin('rexglowfilter2pipelineplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexglowfilter2pipelineplugin.min.js', true);
-        // this.load.image('outerBG',imports.outerBG)
-        // this.load.image('ribbon',imports.ribbonFrame)
-        // this.load.spritesheet('door', imports.door, {
-        //     frameWidth: 300,
-        //     frameHeight: 425
-        // });
-        // this.load.spritesheet('doorClosing', imports.doorClosing, {
-        //     frameWidth: 300,
-        //     frameHeight: 425
-        // });
-
-
-        // this.load.spritesheet('catReroll', imports.catRerollButton, {
-        //     frameWidth: 52,
-        //     frameHeight: 52
-        // });
-
-        
-        
-        // this.load.image('cat-palette', imports.catPalette);
-        // this.load.spritesheet('catanimated', imports.catAnimation, {
-        //     frameWidth: 64,
-        //     frameHeight: 64
-        // });
-        // this.load.spritesheet('catanimated2', imports.catAnimation2, {
-        //     frameWidth: 64,
-        //     frameHeight: 64
-        // });
-        // this.load.spritesheet('catanimated3', imports.catAnimation3, {
-        //     frameWidth: 64,
-        //     frameHeight: 64
-        // });
-
+    
     }
     create(){
         var self = this;
@@ -58,7 +23,6 @@ class PickCatScene extends Phaser.Scene
         iBG.setDepth(-1);
         iBG.setScale(1.5);
         oBG.setDepth(0);
-        //paletteCreator.createPalettes(self);
 
         //MUSIC 
 
@@ -67,12 +31,16 @@ class PickCatScene extends Phaser.Scene
             toggleSound(this.game.bgMusic)
         },self);
 
+        //plays the music if its not playing already, otherwise, just toggles the sound of the music.
+        //so it doesn't play from the beginning every time.
         function toggleSound(givenSound){
-            if (givenSound.isPlaying){
-                givenSound.stop();
+            if (!givenSound.isPlaying){
+                givenSound.play()
             }
-            else{
-                givenSound.play();
+            if (global.soundEffectsOn == true){
+                givenSound.volume = 1;
+            } else {
+                givenSound.volume = 0;
             }
         }
 
@@ -150,7 +118,6 @@ class PickCatScene extends Phaser.Scene
                 self.game.cat = newCat;
                 self.game.cat.name = newCat.name;
                 camera.fadeOut(1000); 
-                //self.scene.start('showPromptScene');
             })
             newCat.ignoreDestroy=true;
             return newCat;

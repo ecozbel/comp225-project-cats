@@ -11,7 +11,15 @@ export default class musicButton extends Phaser.GameObjects.Sprite {
         this.on('pointerover', () => this.setFrame(1).setScale(1));
         this.on('pointerout', () => this.setFrame(0).setScale(0.5));
 
+        //set the right texture in every scene depending on sound option
+        if (global.soundEffectsOn){
+            this.setTexture("musicOnButton")
+        } else if (!global.soundEffectsOn) {
+            this.setTexture("musicOffButton")
+        }
+
         function toggleMusicButton(button){
+            global.soundEffectsOn = !global.soundEffectsOn;
             if (button.texture.key=="musicOnButton"){
                 //mute music here
                 button.setTexture("musicOffButton")

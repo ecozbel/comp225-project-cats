@@ -20,6 +20,7 @@ class loadingScene extends Phaser.Scene
     }
     preload ()
     {
+        global.soundEffectsOn = false;
         var progressBar = this.add.graphics();
             var progressBox = this.add.graphics();
             progressBox.fillStyle( 0x645690, 0.8);
@@ -247,6 +248,9 @@ class loadingScene extends Phaser.Scene
 
     }
     create(){
+
+        var backgroundMusic = this.sound.add('music',{ loop: true });
+        this.game.bgMusic = backgroundMusic;
         this.scene.start('IntroScene');
     }
 }
