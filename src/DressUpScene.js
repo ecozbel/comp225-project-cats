@@ -310,7 +310,7 @@ class DressUpScene extends Phaser.Scene
         pantsbutton.on('pointerout', () => pantsbutton.setTexture('pantsSilhoette'));
         utilities.scaletoIconSize(pantsbutton);  
 
-        let continueButton= new utilities.genericButton({scene:self,key:'buttonFrame',x:cat.x - 150,y:cat.y - 330,text:"Continue"});
+        let continueButton= new utilities.genericButton({scene:self,key:'buttonFrame',x:cat.x +140,y:cat.y + 230 ,text:"Continue"});
         continueButton.on('pointerdown', function(pointer, localX, localY, event){
             camera.fadeOut(1000);  
             this.game.cat = cat;  
@@ -319,6 +319,53 @@ class DressUpScene extends Phaser.Scene
             startNextScene();
 
         },self);
+
+        function getPromptWithName(prompt,name) {
+            return {
+                objective: prompt.objective.replaceAll("{{full_name}}", name),
+                introduction: prompt.introduction.replaceAll("{{full_name}}", name),
+                outcome: prompt.outcome.replaceAll("{{full_name}}", name)
+            };
+        }
+
+        var promptReminderContent = getPromptWithName(this.game.cat.generatedPrompt,this.game.cat.name);
+  
+        var promptReminderBox = this.add.image(continueButton.x-435, continueButton.y-75, 'promptBoard')
+            .setDepth(4)
+            .setDisplaySize(380,175)
+            .setVisible(false);
+            
+        var promptReminderText = this.add.text(promptReminderBox.x,promptReminderBox.y-10,promptReminderContent.introduction,{
+			fontFamily: 'Courier New',
+			fontSize: '14px',
+			color: '#000000',
+			resolution: 1,
+            wordWrap : {width : 315, padding: 4, useAdvancedWrap : true},
+		})
+
+        .setOrigin(0.5)
+        .setDepth(4)
+        .setVisible(false);
+        var promptReminderButton= new utilities.genericButton({scene:self,key:'buttonFrame',x:continueButton.x - 450,y:continueButton.y-555,text:promptReminderContent.objective});
+        promptReminderButton.on('pointerdown', function(){
+            toggleAboutBox(promptReminderBox,promptReminderText);
+        },self );
+
+        promptReminderBox.showing = false;
+
+        function toggleAboutBox(promptReminderBox,promptReminderText){
+
+            if(promptReminderBox.showing == true){
+                promptReminderBox.showing=false;
+                promptReminderBox.setVisible(false);
+                promptReminderText.setVisible(false);
+            }
+            else{
+                promptReminderBox.showing = true;
+                promptReminderBox.setVisible(true);
+                promptReminderText.setVisible(true);
+            }
+        }
 
         function startNextScene(){
             self.scene.start('PolaroidScene');
@@ -467,14 +514,14 @@ class DressUpScene extends Phaser.Scene
                 displayLayer(sprite.getData('group'));
         }
 
+        // code for jay
+        // let newButton = new utilities.genericButton({scene:self, key:'buttonFrame', x:cat.x-300, y:cat.y, text:'remove'});
         
-        let newButton = new utilities.genericButton({scene:self, key:'buttonFrame', x:cat.x-300, y:cat.y, text:'remove'});
-        
-        this.rexGestures.add.tap(newButton, { taps: 2 })
-            .on('tap', function (tap) {
-                returnSpritetoCloset(cat.hatPosition.currentClothing);
+        // this.rexGestures.add.tap(newButton, { taps: 2 })
+        //     .on('tap', function (tap) {
+        //         returnSpritetoCloset(cat.hatPosition.currentClothing);
 
-            });
+        //     });
         
 
     }
