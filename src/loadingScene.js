@@ -114,6 +114,11 @@ class loadingScene extends Phaser.Scene
             frameWidth: 64,
             frameHeight: 64
         });
+
+        this.load.spritesheet('cameraAnim', importsA.cameraAnim, {
+            frameWidth: 256,
+            frameHeight: 256
+        });
         this.load.spritesheet('catanimated3', importsA.catAnimation3, {
             frameWidth: 64,
             frameHeight: 64

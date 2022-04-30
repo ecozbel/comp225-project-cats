@@ -49,14 +49,23 @@ class PolaroidScene extends Phaser.Scene
         //var newPrompt = getPromptWithName(this.game.cat.generatedPrompt,this.game.cat.name);
 
 
+        var cameraButton = this.add.sprite(400,300,'cameraAnim')
+        .setDepth(4)
+        .setInteractive({ useHandCursor: true });
+        var cameraAnim = this.anims.create({
+            key: 'cameraflashing',
+            frames: this.anims.generateFrameNumbers('cameraAnim',{ start: 0, end: 4 }),
+            frameRate: 5
+        });
 
-
-        var photoInfo = this.add.text(100,100,"Click for a photo!")
-
+        //cameraButton.play({key:'cameraAnim',repeat:-1});
+        cameraButton.on('pointerover', () => cameraButton.play({key:'cameraflashing',repeat:-1}));
+        cameraButton.on('pointerout', () => cameraButton.stop().setFrame(0));
         this.cameras.main.setBackgroundColor('000000');
 
         //"Takes photo" when clicked on screen
-        this.input.on('pointerdown', function () {
+        cameraButton.on('pointerdown', function () {
+            cameraButton.setVisible(false);
             if (pictureCreated == false){
                 pictureCreated = true;
                 utilities.playSoundEffect(shutterSound);

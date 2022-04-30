@@ -21,5 +21,7 @@ import leftButton from './assets/icons/leftButton.png'
 import buttonClick1Sound from "./assets/audio/buttonClick1.mp3";
 import polaroidBack from './assets/polaroidBack.png'
 
+import cameraAnim from './assets/menuAssets/cameraAnim.png'
+
 export{mainMenuBG,animatedLogo,buttonFrame,genericButton,musicButton,musicOnSprite,musicOffSprite,musicmp3,
-    musicogg,catPalette,catAnimation,catAnimation2,catAnimation3,galleryBG,rightButton,leftButton,buttonClick1Sound,polaroidBack}
+    musicogg,catPalette,catAnimation,catAnimation2,catAnimation3,galleryBG,rightButton,leftButton,buttonClick1Sound,polaroidBack,cameraAnim}

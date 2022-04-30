@@ -140,7 +140,7 @@ class sceneGallery extends Phaser.Scene
            r2.setDepth(-1);
            //draw the background and frame elements
            polaroid.draw(r2, 400,300 );
-           polaroid.draw(bg, 400,300 );
+           polaroid.draw(bg, 400,290 );
            polaroid.draw(frame, 400,300 );
 
             // draw the cat
