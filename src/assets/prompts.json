@@ -9,7 +9,7 @@
         },
         {
             "objective": "Holiday Time",
-            "introduction": "{{full_name}} is planning on going on a Mediterrenean vacation. They need your help deciding on the beach outfit.",
+            "introduction": "{{full_name}} is planning on going on a Mediterranean vacation. They need your help deciding on the beach outfit.",
             "outcome": "{{full_name}} had a wonderful time abroad. Just what they needed!",
             "promptIndex":  "2",
             "backgroundType": "beach"
@@ -51,8 +51,8 @@
         },
         {
             "objective": "Mountain Biking",
-            "introduction": "{{full_name}} wants to go mountain biking in the nature reserve today. They need your help picking out the perfect outfit.",
-            "outcome": "{{full_name}} thought all that uphill pedalling was super worth it when they got to the vantage point. They set their bike aside to pose against the cliff.",
+            "introduction": "{{full_name}} wants to go mountain biking at the nature reserve today. They need your help picking out the perfect outfit.",
+            "outcome": "Before {{full_name}} found a hidden path through the trees, they were worried all that uphill pedalling wouldn't be worth it. When they got to the end of the hidden trail and the leaves cleared up, they witnessed the gorgeous view and all their worries disappeared. They set their bike aside to take it all in, and posed for a shot.",
             "promptIndex":  "8",
             "backgroundType": "nature"
         },

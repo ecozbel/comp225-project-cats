@@ -83,12 +83,12 @@ class PromptDisplayScene extends Phaser.Scene
 			fontSize: '22px',
 			color: '#000000',
 			resolution: 1,
-            wordWrap : {width : 370, padding:9, useAdvancedWrap : true},
+            wordWrap : {width : 350, useAdvancedWrap : false},
 		})
         .setOrigin(0.5)
         .setDepth(4);
         promptText.typing = this.plugins.get('rextexttypingplugin').add(promptText, {
-            speed: 40,
+            speed: 5,
         });
 
         //sound
