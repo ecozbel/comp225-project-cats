@@ -224,6 +224,9 @@ class loadingScene extends Phaser.Scene
         }
         this.load.image('polaroid', importsE.polaroidImg);
         this.load.image('scenery1',importsE.scenery1);
+        this.load.image('scenery2',importsE.scenery2);
+        this.load.image('scenery3',importsE.scenery3);
+        this.load.image('scenery4',importsE.scenery4);
         this.load.audio("printSound",[importsE.polaroidPrintSound,importsE.polaroidPrintSoundOGG ])
         this.load.audio("shutterSound",[importsE.cameraShutterSound,importsE.cameraShutterSoundOGG])
         this.load.image('itemFrame',importsE.itemFrame);

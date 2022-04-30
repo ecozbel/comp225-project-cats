@@ -30,11 +30,23 @@ class PolaroidScene extends Phaser.Scene
         pictureCreated = false;
 
         var self = this;
+        function getPromptWithName(prompt,name) {
+            return {
+                objective: prompt.objective.replaceAll("{{full_name}}", name),
+                introduction: prompt.introduction.replaceAll("{{full_name}}", name),
+                outcome: prompt.outcome.replaceAll("{{full_name}}", name),
+                backgroundType : prompt.backgroundType,
+                index : prompt.promptIndex
+            };
+        }
+        this.newPrompt = getPromptWithName(this.game.cat.generatedPrompt,this.game.cat.name);
+        console.log(this.newPrompt.backgroundType);
         this.initialSpriteSetup(self);
 
         var printSound = this.sound.add('printSound',{ loop: false });
 
         var shutterSound = this.sound.add('shutterSound',{ loop: false });
+        //var newPrompt = getPromptWithName(this.game.cat.generatedPrompt,this.game.cat.name);
 
 
 
@@ -72,7 +84,8 @@ class PolaroidScene extends Phaser.Scene
                     let index = 1;
                     localStorage.setItem('cat'+index,cat.texture.key);
                     localStorage.setItem('catName'+index,cat.name);
-                    localStorage.setItem('polaroidBG'+index,cat.name,polaroid.first.texture.key);
+                    localStorage.setItem('polaroidBG'+index,polaroid.first.texture.key);
+                    localStorage.setItem('promptIndex'+index,self.newPrompt.index);
                     saveClothing("hat"+index,hat);
                     saveClothing("shirt"+index,shirt);
                     saveClothing("pants"+index,pants);
@@ -146,8 +159,18 @@ class PolaroidScene extends Phaser.Scene
         cat.x=0;
         cat.y=0;
         frame = currentScene.add.sprite(0,0,'polaroid');
-        bg = currentScene.add.sprite(0,0,'scenery1',);
-
+        if(currentScene.newPrompt.backgroundType == "town"){
+            bg = currentScene.add.sprite(0,0,'scenery1',);
+        }
+        if(currentScene.newPrompt.backgroundType == "beach"){
+            bg = currentScene.add.sprite(0,0,'scenery2',);
+        }
+        if(currentScene.newPrompt.backgroundType == "nature"){
+            bg = currentScene.add.sprite(0,0,'scenery3',);
+        }
+        if(currentScene.newPrompt.backgroundType == "restaurant"){
+            bg = currentScene.add.sprite(0,0,'scenery4',);
+        }       
         if (cat.hatPosition.currentClothing != null && cat.hatPosition.currentClothing.active==true) {
             console.log(cat.hatPosition.currentClothing);
             currentScene.add.existing(cat.hatPosition.currentClothing);
@@ -179,19 +202,21 @@ class PolaroidScene extends Phaser.Scene
 
         
 
-        function getPromptWithName(prompt,name) {
-            return {
-                objective: prompt.objective.replaceAll("{{full_name}}", name),
-                introduction: prompt.introduction.replaceAll("{{full_name}}", name),
-                outcome: prompt.outcome.replaceAll("{{full_name}}", name)
-            };
-        }
+        // function getPromptWithName(prompt,name) {
+        //     return {
+        //         objective: prompt.objective.replaceAll("{{full_name}}", name),
+        //         introduction: prompt.introduction.replaceAll("{{full_name}}", name),
+        //         outcome: prompt.outcome.replaceAll("{{full_name}}", name),
+        //         backgroundType : prompt.backgroundType,
+        //         index : prompt.promptIndex
+        //     };
+        // }
 
-        var newPrompt = getPromptWithName(this.game.cat.generatedPrompt,this.game.cat.name);
+        // var newPrompt = getPromptWithName(this.game.cat.generatedPrompt,this.game.cat.name);
         
         console.log("after prompt generated")//for debugging
 
-        endingPrompt = currentScene.add.text(0,0,newPrompt.outcome,{
+        endingPrompt = currentScene.add.text(0,0,currentScene.newPrompt.outcome,{
 			fontFamily: 'Permanent Marker',
 			fontSize: '18px',
 			color: '#000000',
