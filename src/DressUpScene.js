@@ -263,7 +263,7 @@ class DressUpScene extends Phaser.Scene
         pantsbutton.on('pointerout', () => pantsbutton.setTexture('pantsSilhoette'));
         utilities.scaletoIconSize(pantsbutton);  
 
-        let continueButton= new utilities.genericButton({scene:self,key:'buttonFrame',x:cat.x +140,y:cat.y + 230 ,text:"Continue"});
+        let continueButton= new utilities.genericButton({scene:self,key:'buttonFrame',x:cat.x +140,y:cat.y + 230 ,text:"Continue",displayWidth: 300, displayHeight:36});
         continueButton.on('pointerdown', function(pointer, localX, localY, event){
             camera.fadeOut(1000);  
             this.game.cat = cat;  
@@ -299,7 +299,7 @@ class DressUpScene extends Phaser.Scene
         .setOrigin(0.5)
         .setDepth(4)
         .setVisible(false);
-        var promptReminderButton= new utilities.genericButton({scene:self,key:'buttonFrame',x:continueButton.x - 450,y:continueButton.y-555,text:promptReminderContent.objective});
+        var promptReminderButton= new utilities.genericButton({scene:self,key:'buttonFrame',x:closet.x,y:continueButton.y-555,text:promptReminderContent.objective,displayWidth: 300, displayHeight:36});
         promptReminderButton.on('pointerdown', function(){
             toggleAboutBox(promptReminderBox,promptReminderText);
         },self );

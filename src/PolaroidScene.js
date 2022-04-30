@@ -51,7 +51,7 @@ class PolaroidScene extends Phaser.Scene
 
 
 
-        var photoInfo = this.add.text(100,100,"Click for photo!")
+        var photoInfo = this.add.text(100,100,"Click for a photo!")
 
         this.cameras.main.setBackgroundColor('000000');
 
@@ -139,10 +139,12 @@ class PolaroidScene extends Phaser.Scene
 
         }
         function creategalleryButton(){
-            var galleryButton= new utilities.genericButton({scene:self,key:'buttonFrame',x:400,y:580,text:"Go to gallery"});
+            var galleryButton= new utilities.genericButton({scene:self,key:'buttonFrame',x:400,y:580,text:"Go to gallery",displayWidth: 300, displayHeight:36});
             galleryButton.on('pointerdown', function(pointer, localX, localY, event){
                 self.scene.start('scene_Gallery');
             },self );
+            galleryButton.setDepth(5);
+            galleryButton.currentText.setDepth(6);
         }
     
 
