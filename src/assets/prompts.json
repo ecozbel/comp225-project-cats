@@ -24,21 +24,21 @@
         {
             "objective": "Stealthy Movie Star",
             "introduction": "{{full_name}} is a movie star. They have a dinner in town but want to be hidden from the paparazzi today. Could you help them pick out an outfit?",
-            "outcome": "Seems {{full_name}}'s outfit wasn't so stealthy after all. They didn't neglect to pose when they saw the paparazzi outside the restaurant though!",
+            "outcome": "Seems {{full_name}}'s outfit wasn't so stealthy after all. Although, they didn't neglect to pose when they saw the paparazzi outside the restaurant!",
             "promptIndex":  "4",
             "backgroundType": "town"
         },
         {
             "objective": "Date Night",
             "introduction": "{{full_name}} is going on a romantic first date tonight. They want to dress to impress and need your help picking out the fit.",
-            "outcome": "{{full_name}} definetely felt a connection! Although their date thought it was a bit odd that {{full_name}} stood up to pose for a photo.",
+            "outcome": "{{full_name}} definitely felt a connection! Although their date thought it was a bit odd that {{full_name}} stood up to pose for a photo.",
             "promptIndex":  "5",
             "backgroundType": "restaurant"
         },
         {
             "objective": "Birthday Dinner",
             "introduction": "{{full_name}} was invited out for their best-friend's birthday dinner. Stuck between different style choices, they need your help getting dressed up for the occasion.",
-            "outcome": "{{full_name}} had a great time, definetely a memorable birthday dinner.",
+            "outcome": "{{full_name}} had a great time, definitely a memorable birthday dinner.",
             "promptIndex":  "6",
             "backgroundType": "restaurant"
         },
@@ -52,7 +52,7 @@
         {
             "objective": "Mountain Biking",
             "introduction": "{{full_name}} wants to go mountain biking in the nature reserve today. They need your help picking out the perfect outfit.",
-            "outcome": "{{full_name}} thought all that uphill pedalling was fully worth it when they got to the vantage point. They set their bike aside to pose for a photo",
+            "outcome": "{{full_name}} thought all that uphill pedalling was super worth it when they got to the vantage point. They set their bike aside to pose against the cliff.",
             "promptIndex":  "8",
             "backgroundType": "nature"
         },
@@ -65,8 +65,8 @@
         },
         {
             "objective": "Concert Night",
-            "introduction": "The upcoming band Rage Against the Dogs is having a concert at the local bar tonight.{{full_name}} is the lead singer! The upcoming talent needs your help picking an outfit that will stand out on stage.",
-            "outcome": "{{full_name}} was photographed on the way to the venue. They will definetely look like a natural on that stage.",
+            "introduction": "The upcoming band: 'Rage Against the Dogs' are having a concert at the local bar tonight.{{full_name}} is the lead singer! The upcoming talent needs your help picking an outfit that will stand out on stage.",
+            "outcome": "{{full_name}} was photographed on the way to the venue. They will definitely look like a natural on that stage.",
             "promptIndex":  "10",
             "backgroundType": "town"
         },
