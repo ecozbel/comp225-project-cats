@@ -186,21 +186,37 @@ class PolaroidScene extends Phaser.Scene
             console.log(cat.hatPosition.currentClothing);
             currentScene.add.existing(cat.hatPosition.currentClothing);
             cat.hatPosition.currentClothing.setVisible(false);
+            let pipelineInstance = currentScene.plugins.get('rexoutlinepipelineplugin').get(cat.hatPosition.currentClothing)[0];
+            if(pipelineInstance != null){
+                currentScene.plugins.get('rexoutlinepipelineplugin').remove(cat.hatPosition.currentClothing);
+            }
         }
         if (cat.shoePosition.currentClothing != null&& cat.shoePosition.currentClothing.active==true) {
             console.log(cat.shoePosition.currentClothing);
             currentScene.add.existing(cat.shoePosition.currentClothing);
             cat.shoePosition.currentClothing.setVisible(false);
+            let pipelineInstance = currentScene.plugins.get('rexoutlinepipelineplugin').get(cat.shoePosition.currentClothing)[0];
+            if(pipelineInstance != null){
+                currentScene.plugins.get('rexoutlinepipelineplugin').remove(cat.shoePosition.currentClothing);
+            }
         }
         if (cat.pantsPosition.currentClothing != null&& cat.pantsPosition.currentClothing.active==true) {
             console.log(cat.pantsPosition.currentClothing);
             currentScene.add.existing(cat.pantsPosition.currentClothing);
             cat.pantsPosition.currentClothing.setVisible(false);
+            let pipelineInstance = currentScene.plugins.get('rexoutlinepipelineplugin').get(cat.pantsPosition.currentClothing)[0];
+            if(pipelineInstance != null){
+                currentScene.plugins.get('rexoutlinepipelineplugin').remove(cat.pantsPosition.currentClothing);
+            }
         }
         if (cat.shirtPosition.currentClothing != null&& cat.shirtPosition.currentClothing.active==true) {
             console.log(cat.shirtPosition.currentClothing);
             currentScene.add.existing(cat.shirtPosition.currentClothing);
             cat.shirtPosition.currentClothing.setVisible(false);
+            let pipelineInstance = currentScene.plugins.get('rexoutlinepipelineplugin').get(cat.shirtPosition.currentClothing)[0];
+            if(pipelineInstance != null){
+                currentScene.plugins.get('rexoutlinepipelineplugin').remove(cat.shirtPosition.currentClothing);
+            }
         }
         else{
             console.log("Sprite undefined")
