@@ -14,6 +14,3 @@ export default class genericButton extends Phaser.GameObjects.Sprite {
         .setDepth(4);
     }
 }
-
-
-
