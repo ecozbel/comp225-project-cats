@@ -7,11 +7,9 @@ class PromptDisplayScene extends Phaser.Scene
     {   
         super();
         Phaser.Scene.call(this, { key: 'PromptDisplayScene' });
-        
     }
     preload ()
     {
-
     }
     create(){
         let jsonFile = this.cache.json.get('prompts');
@@ -26,7 +24,7 @@ class PromptDisplayScene extends Phaser.Scene
         iBG.setScale(1.5);
         var self = this;
         var camera = this.cameras.main;
-
+        //Button to back out to cat choosing scene
         var backButton= new utilities.genericButton({scene:self,key:'buttonFrame',x:200,y:570,text:"Back"});
         backButton.on('pointerdown', function(pointer, localX, localY, event){
             startPreviousScene();   
@@ -35,7 +33,7 @@ class PromptDisplayScene extends Phaser.Scene
         function startPreviousScene(){
             self.scene.start('PickCatScene');
         }
-
+        //Button to progress to next scene
         var continueButton= new utilities.genericButton({scene:self,key:'buttonFrame',x:600,y:570,text:"Continue"});
         continueButton.on('pointerdown', function(pointer, localX, localY, event){
             camera.fadeOut(1000);
@@ -43,21 +41,17 @@ class PromptDisplayScene extends Phaser.Scene
         },self );
         camera.on('camerafadeoutcomplete', function(){
             startNextScene();
-
         },self);
         function startNextScene(){
             self.scene.start('DressUpScene');
         }
         function getPromptWithCatName(prompt) {
-            // make applySubstitutions helper function that takes a string
             return {
                 objective: prompt.objective.replaceAll("{{full_name}}", fullName),
                 introduction: prompt.introduction.replaceAll("{{full_name}}", fullName),
                 outcome: prompt.outcome.replaceAll("{{full_name}}", fullName)
             };
         }
-
-
         const randomNumber = (min, max) => { 
             //Use below if final number doesn't need to be whole number
             //return Math.random() * (max - min) + min;
@@ -69,15 +63,10 @@ class PromptDisplayScene extends Phaser.Scene
             generatedPrompt = jsonFile.prompt[promptIndex]; // stores a generated random prompt into a variable we can use later
             return generatedPrompt;
         }
-
-
         getRandomPrompt();
-
         var promptBar = this.add.image(280, 300, 'promptBoard')
             .setDepth(4)
             .setDisplaySize(404,404);
-        
-       
         var promptText = this.add.text(promptBar.x,promptBar.y-52,getPromptWithCatName(generatedPrompt).introduction,{
 			fontFamily: 'Courier New',
 			fontSize: '22px',
@@ -90,25 +79,19 @@ class PromptDisplayScene extends Phaser.Scene
         promptText.typing = this.plugins.get('rextexttypingplugin').add(promptText, {
             speed: 5,
         });
-
-        //sound
+        //Sound effects for text
         var keyboardTypingSound = this.sound.add("keyBoardTypeLoop");
         if (global.soundEffectsOn == true){
             keyboardTypingSound.play({loop:true});
         }
-        
-
         promptText.typing.on('complete', function(typing, txt){ keyboardTypingSound.stop()});
-
         promptText.typing.start(getPromptWithCatName(generatedPrompt).introduction); 
-        this.game.cat.generatedPrompt = generatedPrompt;    
-        
+        this.game.cat.generatedPrompt = generatedPrompt;   
+        //Button to control sounds 
         var mButton= new utilities.musicButton({scene:self,onKey:'musicOnButton',offKey:'musicOffButton' });
-
         mButton.on('pointerdown', function () {
             toggleSound(this.game.bgMusic)
         },self);
-
         //plays the music if its not playing already, otherwise, just toggles the sound of the music.
         //so it doesn't play from the beginning every time.
         function toggleSound(givenSound){
@@ -122,8 +105,8 @@ class PromptDisplayScene extends Phaser.Scene
             }
         }
     }
-    update(){
+    update()
+    {
     }
-
 }
 export {PromptDisplayScene};

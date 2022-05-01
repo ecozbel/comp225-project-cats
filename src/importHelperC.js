@@ -1,6 +1,3 @@
-
-
-
 import promptBg from './assets/promptBoard.png'
 import innerBG from './assets/backgrounds/catChoose_inner_background.png'
 import buttonFrame from './assets/icons/buttonFrameLarge.png'

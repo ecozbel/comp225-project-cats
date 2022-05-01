@@ -1,5 +1,3 @@
-//mport * as imports from "./importHelperD.js"
-//import {leftButton} from './importHelperA';
 import * as utilities from "./utilities.js";
 import Phaser, { Game } from 'phaser';
 var hatKey;
@@ -8,28 +6,21 @@ var shoesKey;
 var pantsKey;
 var cat,hat,shoes,pants,shirt;
 
-
 class sceneGallery extends Phaser.Scene
 {
     constructor ()
     {   
         super();
-        Phaser.Scene.call(this, { key: 'scene_Gallery' });
-        
-        
+        Phaser.Scene.call(this, { key: 'scene_Gallery' }); 
     }
     preload ()
-    {
-        
+    {  
     }
     create(){
         var self = this;
-        // var cat,hat,shoes,pants,shirt;
-
         //Get the polaroid count from local data manager (necessary to know how many polaroids to construct)
         var polaroidCount = localStorage.getItem('polaroidCount');
         var photoKey = "photo"+polaroidCount;
-
         var iBG = this.add.image(400,300,'galleryBG');
         iBG.setDepth(-1);
         var tempBG = this.add.rectangle(0, 0, 300, 300, 0x000000);
@@ -38,14 +29,14 @@ class sceneGallery extends Phaser.Scene
         frame.setScale(12);
         frame.setVisible(false);
         var polaroids = [];
+        //If the game has been played before, build a carousel of past "memories"
         if(polaroidCount!=null){
-            
             for(var i=1;i<11;i++){
                 var catKey = localStorage.getItem('cat'+i)
                 if(catKey != null){
                     cat = self.add.sprite(0,0,catKey).setScale(3)
                     cat.setVisible(false);
-
+                    //Get texture keys for the appropriate clothing from local storage
                     hatKey = localStorage.getItem('hat'+i);
                     shirtKey = localStorage.getItem('shirt'+i);
                     pantsKey = localStorage.getItem('pants'+i);
@@ -55,12 +46,9 @@ class sceneGallery extends Phaser.Scene
                     var chosenPants= addClothing(pantsKey,pants,self)
                     var chosenShoes = addClothing(shoesKey,shoes,self)
                     var bgKey = localStorage.getItem('polaroidBG'+i);
-
                     var bg = self.add.sprite(0,0,bgKey).setScale(0.4)
                     bg.setVisible(false);
-
                     addPolaroid('photo'+i,chosenHat,chosenShirt,chosenPants,chosenShoes,bg);
-
                     let card = self.add.rexPerspectiveCard({
                         front: { key: 'photo'+i },
                         back: { key: 'polaroidBack'},
@@ -79,9 +67,7 @@ class sceneGallery extends Phaser.Scene
                     card.setScale(0.5);
                     card.name = localStorage.getItem('catName'+i)
                     polaroids.push(card)
-
                 }
-
             }
         }
         if (polaroids.length !=0 && polaroidCount!=null){
@@ -103,21 +89,20 @@ class sceneGallery extends Phaser.Scene
                 emptyCard.setScale(0.5);
                 polaroids.push(emptyCard)
             }
-                //Carousel (webGL only): a display for polaroids
+            //Carousel (webGL only): a display for polaroids
             var carousel = this.add.rexPerspectiveCarousel({
                 x: 400, y: 280,
                 z:1,
                 faces: polaroids,
                 faceWidth: 400,
             })
-
         }
         //Invisible rectangle to act as hit area
         var r1 = this.add.graphics();
         r1.setInteractive(polaroids[carousel.face].getBounds(), Phaser.Geom.Rectangle.Contains);
         r1.on('pointerover', () => polaroids[carousel.face].setScale(1))
         r1.on('pointerout', () => polaroids[carousel.face].setScale(0.5))
-
+        //Add clothing to the scene, if it exists
         function addClothing(key,clothing,currentScene){
             if(key != 'empty'&&key !=null){
                 clothing = currentScene.add.sprite(0,0,key).setScale(0.3)
@@ -133,7 +118,6 @@ class sceneGallery extends Phaser.Scene
             let polaroid = self.add.renderTexture(800, 600, 800, 600);
             polaroid.setVisible(false);
             polaroid.setOrigin(0.5)
-
            //draw black square (frame background)
            var r2 = self.add.rectangle(0, 0, 300, 300, 0x000000);
            r2.setVisible(false);
@@ -142,10 +126,8 @@ class sceneGallery extends Phaser.Scene
            polaroid.draw(r2, 400,300 );
            polaroid.draw(bg, 400,290 );
            polaroid.draw(frame, 400,300 );
-
             // draw the cat
             polaroid.draw(cat, 400,297 );
-     
             // draw the clothes
             if(givenShoes!=null){
                 polaroid.draw(givenShoes, 406, 372);
@@ -244,11 +226,9 @@ class sceneGallery extends Phaser.Scene
                 console.log("no photo there!")
             }
         },self );
-           
     }
     update()
     {
     }
-
 }
 export {sceneGallery};

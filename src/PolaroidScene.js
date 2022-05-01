@@ -16,11 +16,9 @@ class PolaroidScene extends Phaser.Scene
         super();
         Phaser.Scene.call(this, { key: 'PolaroidScene' });
     }
-
     preload ()
     {
     }
-
     create ()
     {
         pictureCreated = false;

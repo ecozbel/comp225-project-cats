@@ -1,7 +1,4 @@
 import Phaser, { Game } from 'phaser';
-import { doorOpenSound } from './importHelperB';
-
-//import * as imports from "./importHelperB.js"
 import * as paletteCreator from './paletteCreator';
 import * as utilities from "./utilities.js";
 class PickCatScene extends Phaser.Scene
@@ -13,24 +10,21 @@ class PickCatScene extends Phaser.Scene
     }
     preload ()
     {
-    
     }
     create(){
         var self = this;
+        //Scene backgrounds
         var iBG = this.add.image(400,300,'innerBG');
         var oBG = this.add.image(400,300,'outerBG');
         var camera = this.cameras.main;
         iBG.setDepth(-1);
         iBG.setScale(1.5);
         oBG.setDepth(0);
-
         //MUSIC 
-
         var mButton= new utilities.musicButton({scene:self,onKey:'musicOnButton',offKey:'musicOffButton' });
         mButton.on('pointerdown', function () {
             toggleSound(this.game.bgMusic)
         },self);
-
         //plays the music if its not playing already, otherwise, just toggles the sound of the music.
         //so it doesn't play from the beginning every time.
         function toggleSound(givenSound){
@@ -43,7 +37,7 @@ class PickCatScene extends Phaser.Scene
                 givenSound.volume = 0;
             }
         }
-
+        //Button to back out to main menu
         var backButton= new utilities.genericButton({scene:self,key:'buttonFrame',x:80,y:50,text:"Back"});
         backButton.setDisplaySize(100,54);
         backButton.on('pointerdown', function(pointer, localX, localY, event){
@@ -52,21 +46,19 @@ class PickCatScene extends Phaser.Scene
         function startPreviousScene(){
             self.scene.start('IntroScene');
         }
-
-
+        //Components to build Cat Name 
         const titleArray = ['Mr.', 'Ms.', 'Mrs.', 'Sir', 'Dame','','',''];
         const adjArray = ['Fluffy', 'Cuddly', 'Blue', 'Tabby', 'Silly',];
         const nounArray = ['Whiskers','Kitty', 'Cat', 'Socks', 'Patches', 'Spot',];        
         const suffixArray = ['Jr.','Sr.', 'IV', 'II', 'PhD', '', '', ''];
         const chanceArray = ['concatenated name','standalone name'];
         const standaloneNameArray = ['Meowchael','Pawline', 'Jessicat', 'Purrudence', 'Jennifur', 'Clawdia'];
-
+        //Button that rerolls cats on screen
         const rerollButton = this.add.sprite(400,110,"catReroll",0).setInteractive({ useHandCursor: true })
-        //on pointer down, play music and set icon to muted button
         .on('pointerdown', () => rerollCats(this));
         rerollButton.on('pointerover', () => rerollButton.play({key:'rerollMotion',repeat:-1}));
         rerollButton.on('pointerout', () => rerollButton.stop().setFrame(0));
-
+        //Open and close the doors, cats will be rerolled within closeDoors() function.
         function rerollCats(scene){
             playOpenDoorsSound(scene);
             closeDoors();
@@ -114,7 +106,6 @@ class PickCatScene extends Phaser.Scene
             newCat.on('pointerdown', function () {
                 // Remove the outline shader effect
                 postFxPlugin.remove(newCat);
-                
                 self.game.cat = newCat;
                 self.game.cat.name = newCat.name;
                 camera.fadeOut(1000); 
@@ -122,22 +113,17 @@ class PickCatScene extends Phaser.Scene
             newCat.ignoreDestroy=true;
             return newCat;
         }
-
         camera.on('camerafadeoutcomplete', function(){
             startNextScene();
 
         },self);
-
         function startNextScene(){
             self.scene.start('PromptDisplayScene');
         }
-
-
         function getRandomItem(arr) {
             var item = Phaser.Utils.Array.GetRandom(arr);
             return item;
         }
-
         function playOpenDoorsSound(scene){
             if (global.soundEffectsOn == true){
                 scene.sound.play("doorOpenSound1",{volume:0.35})
@@ -145,7 +131,6 @@ class PickCatScene extends Phaser.Scene
                 scene.sound.play("doorOpenSound3",{volume:0.35})
             }
         }
-
         function openDoors(){
             displays[0].last.play({key:'doorOpen',repeat:0});
             displays[1].last.anims.playAfterDelay('doorOpen', 800);
@@ -184,6 +169,7 @@ class PickCatScene extends Phaser.Scene
             }
         };
         var displays=[];
+        //Build the animated door and cats
         for(var i=0;i<3;i++){
             let doorX = catDisplayConfig.doorPositons.X[i];
             let doorY= catDisplayConfig.doorPositons.Y[i];
@@ -196,9 +182,10 @@ class PickCatScene extends Phaser.Scene
             
             displays[i] = this.add.container(doorX,doorY,[catAnimated,catNameBox,catNameText,door]);
         }
-
+        //Initial functions to run
         openDoors();
         playOpenDoorsSound(this);
+        //Text box for info
         const pickCatText = this.add.image(400, 50, 'buttonFrame',0).setDisplaySize(300, 52).setInteractive().setDepth(4);
             pickCatText.on('pointerover', () => pickCatText.setFrame(1))
             pickCatText.on('pointerout', () => pickCatText.setFrame(0))
@@ -206,8 +193,8 @@ class PickCatScene extends Phaser.Scene
             .setOrigin(0.5)
             .setDepth(4);
     }
-    update(){
+    update()
+    {
     }
-
 }
 export {PickCatScene};

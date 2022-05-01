@@ -10,8 +10,6 @@ import { PolaroidScene } from './PolaroidScene';
 import { PickCatScene } from './PickCatScene';
 import { PromptDisplayScene } from './PromptDisplayScene';
 
-
-
 const config = {
     type: Phaser.AUTO,
     parent: 'mygame',
@@ -28,7 +26,6 @@ const config = {
     audio: {
         disableWebAudio: true
     },
-    
     scene:[loadingScene,IntroScene,PickCatScene,PromptDisplayScene,DressUpScene,PolaroidScene,sceneGallery,photoDownloader]
 };
 
