@@ -7,6 +7,7 @@ var frame;
 var bg;
 var endingPrompt;
 var pictureCreated;
+var r2;
 
 var gameReady=false;
 class PolaroidScene extends Phaser.Scene
@@ -50,7 +51,7 @@ class PolaroidScene extends Phaser.Scene
         });
         cameraButton.on('pointerover', () => cameraButton.play({key:'cameraflashing',repeat:-1}));
         cameraButton.on('pointerout', () => cameraButton.stop().setFrame(0));
-        this.cameras.main.setBackgroundColor('000000');
+        this.cameras.main.setBackgroundColor('#63d9f0');
         //"Takes photo" when clicked on camera button and produces a polaroid
         cameraButton.on('pointerdown', function () {
             cameraButton.setVisible(false);
@@ -74,7 +75,7 @@ class PolaroidScene extends Phaser.Scene
                     let index = 1;
                     localStorage.setItem('cat'+index,cat.texture.key);
                     localStorage.setItem('catName'+index,cat.name);
-                    localStorage.setItem('polaroidBG'+index,polaroid.first.texture.key);
+                    localStorage.setItem('polaroidBG'+index,polaroid.getAt(1).texture.key);
                     localStorage.setItem('promptIndex'+index,self.newPrompt.index);
                     saveClothing("hat"+index,hat);
                     saveClothing("shirt"+index,shirt);
@@ -91,7 +92,7 @@ class PolaroidScene extends Phaser.Scene
                     localStorage.setItem('polaroidCount',newCount)
                     localStorage.setItem('cat'+index,cat.texture.key);
                     localStorage.setItem('catName'+index,cat.name);
-                    localStorage.setItem('polaroidBG'+index,polaroid.first.texture.key);
+                    localStorage.setItem('polaroidBG'+index,polaroid.getAt(1).texture.key);
                     saveClothing("hat"+index,hat);
                     saveClothing("shirt"+index,shirt);
                     saveClothing("pants"+index,pants);
@@ -134,6 +135,8 @@ class PolaroidScene extends Phaser.Scene
         cat.x=0;
         cat.y=0;
         frame = currentScene.add.sprite(0,0,'polaroid');
+        r2 = currentScene.add.rectangle(0, 0, 500, 500, 0x000000);
+
         //Add appropriate background connected to prompt
         if(currentScene.newPrompt.backgroundType == "town"){
             bg = currentScene.add.sprite(0,0,'scenery1',);
@@ -195,6 +198,7 @@ class PolaroidScene extends Phaser.Scene
         cat.setVisible(false);
         frame.setVisible(false);
         bg.setVisible(false);
+        r2.setVisible(false);
         endingPrompt.setVisible(false);
     }
 
@@ -207,6 +211,8 @@ class PolaroidScene extends Phaser.Scene
         bg.setVisible(true);
         bg.setScale(0.6);
         bg.setDepth(-1);
+        r2.setDepth(-2);
+        r2.setVisible(true);
         //Set up polaroid frame
         frame.setVisible(true);
         frame.setScale(20);
@@ -214,7 +220,7 @@ class PolaroidScene extends Phaser.Scene
         //Set up written prompt
         endingPrompt.setVisible(true);
         //Add all contents of polaroid into container
-        polaroid = this.add.container(400,-1000,[ bg,frame,cat,endingPrompt]);
+        polaroid = this.add.container(400,-1000,[ r2,bg,frame,cat,endingPrompt]);
         //Set up animations for clothing items
         if (cat.shoePosition.currentClothing != null) {
             handleClothingItemPolaroidSlide(cat.shoePosition.currentClothing,-21.5,cat.displayHeight/2.61,1,cat);
