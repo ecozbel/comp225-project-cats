@@ -1,26 +1,19 @@
 import Phaser, { Game } from 'phaser';
-
-
-
 class photoDownloader extends Phaser.Scene
 {
     constructor ()
     {   
         super();
-        Phaser.Scene.call(this, { key: 'downloadPhoto' });
-        
+        Phaser.Scene.call(this, { key: 'downloadPhoto' }); 
     }
     preload ()
-    {
-        
+    {  
     }
     create(){
-
-
         var key = "photo" + this.game.photoIndex;
         var img = this.add.image(400,300,key).setScale(1.5);
         var canvas;
-
+        //Function to export current canvas as PNG (With thanks to Phaser forum user @Ananth)
         function exportCanvasAsPNG(id, fileName, dataUrl) {
             var canvasElement = document.getElementById(id);
             var MIME_TYPE = "image/png";
@@ -35,14 +28,14 @@ class photoDownloader extends Phaser.Scene
 
         }
         var self = this;
+        //Takes a screenshot once the renderer is done
         this.renderer.snapshot(function (image) {   
-            //console.log(image);
             exportCanvasAsPNG(canvas, 'snapshot', image.src);
             self.scene.start("scene_Gallery")
         });      
     }
-    update(){
+    update()
+    {
     }
-
 }
 export {photoDownloader};

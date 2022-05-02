@@ -1,8 +1,4 @@
-
 import Phaser from 'phaser';
-// const continueButtonX = 400;
-// const continueButtonnY = 50;
-
 export default class genericButton extends Phaser.GameObjects.Sprite {
     constructor(config) {
         super(config.scene, config.x, config.y, config.key,config.text,config.displayHeight,config.displayWidth);
@@ -18,6 +14,3 @@ export default class genericButton extends Phaser.GameObjects.Sprite {
         .setDepth(4);
     }
 }
-
-
-

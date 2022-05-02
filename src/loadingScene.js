@@ -1,7 +1,4 @@
 import Phaser, { Game } from 'phaser';
-
-
-
 import * as importsA from './importHelperA.js';
 import * as importsB from "./importHelperB.js"
 import * as importsC from "./importHelperC.js"
@@ -9,14 +6,12 @@ import * as importsD from "./importHelperD.js"
 import * as importsE from "./importHelperE.js"
 import * as paletteCreator from './paletteCreator';
 
-
 class loadingScene extends Phaser.Scene
 {
     constructor ()
     {   
         super();
         Phaser.Scene.call(this, { key: 'loadingScene' });
-        
     }
     preload ()
     {
@@ -25,7 +20,6 @@ class loadingScene extends Phaser.Scene
             var progressBox = this.add.graphics();
             progressBox.fillStyle( 0x645690, 0.8);
             progressBox.fillRect(240, 270, 320, 50);
-            
             var width = this.cameras.main.width;
             var height = this.cameras.main.height;
             var loadingText = this.make.text({
@@ -38,8 +32,7 @@ class loadingScene extends Phaser.Scene
                 }
             });
             loadingText.setOrigin(0.5, 0.5);
-            
-            var percentText = this.make.text({
+            var percentage = this.make.text({
                 x: width / 2,
                 y: height / 2 - 5,
                 text: '0%',
@@ -48,9 +41,8 @@ class loadingScene extends Phaser.Scene
                     fill: '#330033'
                 }
             });
-            percentText.setOrigin(0.5, 0.5);
-            
-            var assetText = this.make.text({
+            percentage.setOrigin(0.5, 0.5);
+            var assetInfo = this.make.text({
                 x: width / 2,
                 y: height / 2 + 50,
                 text: '',
@@ -59,28 +51,24 @@ class loadingScene extends Phaser.Scene
                     fill: '#330033'
                 }
             });
-            assetText.setOrigin(0.5, 0.5);
-            
+            assetInfo.setOrigin(0.5, 0.5);
             this.load.on('progress', function (value) {
-                percentText.setText(parseInt(value * 100) + '%');
+                percentage.setText(parseInt(value * 100) + '%');
                 progressBar.clear();
                 progressBar.fillStyle(0xFF9999, 1);
                 progressBar.fillRect(250, 280, 300 * value, 30);
             });
             
             this.load.on('fileprogress', function (file) {
-                assetText.setText('Loading asset: ' + file.key);
+                assetInfo.setText('Loading asset: ' + file.key);
             });
             this.load.on('complete', function () {
                 progressBar.destroy();
                 progressBox.destroy();
                 loadingText.destroy();
-                percentText.destroy();
-                assetText.destroy();
-                // this.scene.start('sceneA_mainMenu');
-
+                percentage.destroy();
+                assetInfo.destroy();
             });
-        
         this.load.audio("music",[importsA.musicmp3,importsA.musicogg ])
         this.load.spritesheet('animatedlogo', importsA.animatedLogo, { frameWidth: 800, frameHeight: 800 });
         this.load.image('mainMenuBG',importsA.mainMenuBG);
@@ -105,6 +93,11 @@ class loadingScene extends Phaser.Scene
             frameWidth: 52,
             frameHeight: 52
         });
+        this.load.scenePlugin({
+            key: 'rexgesturesplugin',
+            url: 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexgesturesplugin.min.js',
+            sceneKey: 'rexGestures'
+        });  
         this.load.image('cat-palette', importsA.catPalette);
         this.load.spritesheet('catanimated', importsA.catAnimation, {
             frameWidth: 64,
@@ -236,9 +229,7 @@ class loadingScene extends Phaser.Scene
         this.load.audio("shutterSound",[importsE.cameraShutterSound,importsE.cameraShutterSoundOGG])
         this.load.image('itemFrame',importsE.itemFrame);
         this.load.audio("buttonClick1Sound", importsA.buttonClick1Sound)
-
         this.load.image('polaroidBack',importsA.polaroidBack);
-
         loadSoundEffects(this);
         function loadSoundEffects(scene){
             scene.load.audio("clothingPickup1",importsD.clothingPickup1Sound);
@@ -252,11 +243,8 @@ class loadingScene extends Phaser.Scene
             scene.load.audio("doorOpenSound3",importsB.doorOpenSound3);
             scene.load.audio("keyBoardTypeLoop",importsC.keyboardTypingSound);
         }
-
-
     }
     create(){
-
         var backgroundMusic = this.sound.add('music',{ loop: true });
         this.game.bgMusic = backgroundMusic;
         this.scene.start('IntroScene');
