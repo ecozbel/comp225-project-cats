@@ -3,79 +3,91 @@
         {
             "objective": "Lifeguard Duty",
             "introduction": "{{full_name}} needs help deciding what to wear at the beach today, they are the designated lifeguard.",
-            "outcome": "Under {{full_name}}'s watchful eyes, everything went smoothly. No major incidents.",
+            "outcome": "Under {{full_name}}'s watchful eyes, everything went smoothly. No major incidents. Execept maybe the occasional false alarm of dogs in the water!",
             "promptIndex":  "1",
-            "backgroundType": "beach"
+            "backgroundType": "beach",
+            "galleryPrompt": "Photo taken two seconds before a crazy wave drenched everyone!"
         },
         {
             "objective": "Holiday Time",
             "introduction": "{{full_name}} is planning on going on a Mediterranean vacation. They need your help deciding on the beach outfit.",
-            "outcome": "{{full_name}} had a wonderful time abroad. Just what they needed!",
+            "outcome": "{{full_name}} had a wonderful time abroad. Just what they needed! Sun, good food, pics for perfect for the catgram.",
             "promptIndex":  "2",
-            "backgroundType": "beach"
+            "backgroundType": "beach",
+            "galleryPrompt": "Photo taken at the nicest beach in the area. Only the locals know it, at least for now."
         },
         {
             "objective": "Walk Around Town",
             "introduction": "{{full_name}} is going for a stroll around Cat Town. Could you help them pick out an outfit?",
             "outcome": "{{full_name}} really enjoyed the walk around town, especially with all that sunshine! They even got to visit the newly opened bakery.",
             "promptIndex":  "3",
-            "backgroundType": "town"
+            "backgroundType": "town",
+            "galleryPrompt": "Photo taken at cute corner street. The smell of sweet pastries flood the area."
         },
         {
             "objective": "Stealthy Movie Star",
             "introduction": "{{full_name}} is a movie star. They have a dinner in town but want to be hidden from the paparazzi today. Could you help them pick out an outfit?",
             "outcome": "Seems {{full_name}}'s outfit wasn't so stealthy after all. Although, they didn't neglect to pose when they saw the paparazzi outside the restaurant!",
             "promptIndex":  "4",
-            "backgroundType": "town"
+            "backgroundType": "town",
+            "galleryPrompt": "Photo taken by paparazzi with their big, obnoxious cameras. You hear them before you see them!"
         },
         {
             "objective": "Date Night",
             "introduction": "{{full_name}} is going on a romantic first date tonight. They want to dress to impress and need your help picking out the fit.",
-            "outcome": "{{full_name}} definitely felt a connection! Although their date thought it was a bit odd that {{full_name}} stood up to pose for a photo.",
+            "outcome": "{{full_name}} definitely felt a connection! Although their date thought it was a bit odd that {{full_name}} stood up to pose for a photo. Dealbreaker?",
             "promptIndex":  "5",
-            "backgroundType": "restaurant"
+            "backgroundType": "restaurant",
+            "galleryPrompt": "Photo taken before a promising date turns sour!"
         },
         {
             "objective": "Birthday Dinner",
             "introduction": "{{full_name}} was invited out for their best-friend's birthday dinner. Stuck between different style choices, they need your help getting dressed up for the occasion.",
-            "outcome": "{{full_name}} had a great time, definitely a memorable birthday dinner.",
+            "outcome": "{{full_name}} had a great time, definitely a memorable birthday dinner. Everyone brought the same gift...catnip?",
             "promptIndex":  "6",
-            "backgroundType": "restaurant"
+            "backgroundType": "restaurant",
+            "galleryPrompt": "Photo taken at the most bougie restuarant in town, Purringtons Cat Lounge. 10/10 lighting."
         },
         {
             "objective": "Going Hiking",
             "introduction": "{{full_name}} wants to go on a hike and watch the sunset today. Could you help them get dressed?",
-            "outcome": "{{full_name}} took a couple of minutes to appreaciate the view as the sun set over the mountains. They even got to have a photo taken by passer-bys.",
+            "outcome": "{{full_name}} took a couple of minutes to appreaciate the view as the sun set over the mountains. Luckily a nice couple took a photo of {{full_name}} and the views.",
             "promptIndex":  "7",
-            "backgroundType": "nature"
+            "backgroundType": "nature",
+            "galleryPrompt": "Photo taken at Mount Feline."
         },
         {
             "objective": "Mountain Biking",
             "introduction": "{{full_name}} wants to go mountain biking at the nature reserve today. They need your help picking out the perfect outfit.",
             "outcome": "Before {{full_name}} found a hidden path through the trees, they were worried all that uphill pedalling wouldn't be worth it. When they got to the end of the hidden trail and the leaves cleared up, they witnessed the gorgeous view and all their worries disappeared. They set their bike aside to take it all in, and posed for a shot.",
             "promptIndex":  "8",
-            "backgroundType": "nature"
+            "backgroundType": "nature",
+            "galleryPrompt": "Photo taken after a successful ride out in nature."
         },
         {
             "objective": "Anniversary Dinner",
             "introduction": "It is the tenth year anniversary of {{full_name}}'s marriage! They will be celebrating at a fancy restaurant. They need your help deciding what to wear for the occasion.",
-            "outcome": "Although {{full_name}} forgot the flowers, they made it up with an extra expensive bottle of Catpagne. and they sure did look dapper doing so.",
+            "outcome": "Although {{full_name}} forgot the flowers, they made it up with an extra expensive bottle of catpagne and they sure did look dapper doing so.",
             "promptIndex":  "9",
-            "backgroundType": "restaurant"
+            "backgroundType": "restaurant",
+            "galleryPrompt": "Photo taken at Sweet Whiskers restaurant."
         },
         {
             "objective": "Concert Night",
-            "introduction": "The upcoming band: 'Rage Against the Dogs' are having a concert at the local bar tonight.{{full_name}} is the lead singer! The upcoming talent needs your help picking an outfit that will stand out on stage.",
-            "outcome": "{{full_name}} was photographed on the way to the venue. They will definitely look like a natural on that stage.",
+            "introduction": "The upcoming band: 'Rage Against the Dogs' are having a concert at the local bar tonight. {{full_name}} is the lead singer! The upcoming talent needs your help picking an outfit that will stand out on stage.",
+            "outcome": "{{full_name}} was photographed on the way to the venue. They'll definitely look like a natural on stage.",
             "promptIndex":  "10",
-            "backgroundType": "town"
+            "backgroundType": "town",
+            "galleryPrompt": "Photo taken by @RAGEAGAINSTTHEDOGSFAN13453 who happened to see the company car pass by."
+            
         },
         {
             "objective": "Trouble in Town",
             "introduction": "Oh no, there is a fire in the townsquare! Volunteer squad leader {{full_name}} needs to get ready to potentially go into burning buildings! Can you help them get equipped?",
-            "outcome": "{{full_name}} was fully ready to heroically jump into action. It was a false alarm though... At least {{full_name}} looked really cool rushing into the scene. ",
+            "outcome": "{{full_name}} was ready to heroically jump into action. It was a false alarm though... 911 is not the fish delivery line! At least {{full_name}} looked really cool rushing onto scene.",
             "promptIndex":  "11",
-            "backgroundType": "town"
+            "backgroundType": "town",
+            "galleryPrompt": "Photo taken by bystanders in awe of the firefighters."
             
         }
     ]
