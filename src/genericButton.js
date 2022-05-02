@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+//Generic button that displays a given text and highlights on mouse hover
 export default class genericButton extends Phaser.GameObjects.Sprite {
     constructor(config) {
         super(config.scene, config.x, config.y, config.key,config.text,config.displayHeight,config.displayWidth);

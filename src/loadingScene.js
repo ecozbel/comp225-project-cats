@@ -15,60 +15,60 @@ class loadingScene extends Phaser.Scene
     }
     preload ()
     {
+        this.cameras.main.setBackgroundColor('#63d9f0');
         global.soundEffectsOn = false;
         var progressBar = this.add.graphics();
-            var progressBox = this.add.graphics();
-            progressBox.fillStyle( 0x645690, 0.8);
-            progressBox.fillRect(240, 270, 320, 50);
-            var width = this.cameras.main.width;
-            var height = this.cameras.main.height;
-            var loadingText = this.make.text({
-                x: width / 2,
-                y: height / 2 - 50,
-                text: 'Loading...',
-                style: {
-                    font: '20px monospace',
-                    fill: '#330033'
-                }
-            });
-            loadingText.setOrigin(0.5, 0.5);
-            var percentage = this.make.text({
-                x: width / 2,
-                y: height / 2 - 5,
-                text: '0%',
-                style: {
-                    font: '18px monospace',
-                    fill: '#330033'
-                }
-            });
-            percentage.setOrigin(0.5, 0.5);
-            var assetInfo = this.make.text({
-                x: width / 2,
-                y: height / 2 + 50,
-                text: '',
-                style: {
-                    font: '18px monospace',
-                    fill: '#330033'
-                }
-            });
-            assetInfo.setOrigin(0.5, 0.5);
-            this.load.on('progress', function (value) {
-                percentage.setText(parseInt(value * 100) + '%');
-                progressBar.clear();
-                progressBar.fillStyle(0xFF9999, 1);
-                progressBar.fillRect(250, 280, 300 * value, 30);
-            });
-            
-            this.load.on('fileprogress', function (file) {
-                assetInfo.setText('Loading asset: ' + file.key);
-            });
-            this.load.on('complete', function () {
-                progressBar.destroy();
-                progressBox.destroy();
-                loadingText.destroy();
-                percentage.destroy();
-                assetInfo.destroy();
-            });
+        var progressBox = this.add.graphics();
+        progressBox.fillStyle( 0xb25ae8, 0.8);
+        progressBox.fillRect(240, 270, 320, 50);
+        var width = this.cameras.main.width;
+        var height = this.cameras.main.height;
+        var loadingText = this.make.text({
+            x: width / 2,
+            y: height / 2 - 50,
+            text: 'Loading...',
+            style: {
+                font: '20px monospace',
+                fill: '#ffffff'
+            }
+        });
+        loadingText.setOrigin(0.5, 0.5);
+        var percentage = this.make.text({
+            x: width / 2,
+            y: height / 2 - 5,
+            text: '0%',
+            style: {
+                font: '18px monospace',
+                fill: '#ffffff'
+            }
+        });
+        percentage.setOrigin(0.5, 0.5);
+        var assetInfo = this.make.text({
+            x: width / 2,
+            y: height / 2 + 50,
+            text: '',
+            style: {
+                font: '18px monospace',
+                fill: '#ffffff'
+            }
+        });
+        assetInfo.setOrigin(0.5, 0.5);
+        this.load.on('progress', function (value) {
+            percentage.setText(parseInt(value * 100) + '%');
+            progressBar.clear();
+            progressBar.fillStyle(0xFF9999, 1);
+            progressBar.fillRect(250, 280, 300 * value, 30);
+        });
+        this.load.on('fileprogress', function (file) {
+            assetInfo.setText('Loading asset: ' + file.key);
+        });
+        this.load.on('complete', function () {
+            progressBar.destroy();
+            progressBox.destroy();
+            loadingText.destroy();
+            percentage.destroy();
+            assetInfo.destroy();
+        });
         this.load.audio("music",[importsA.musicmp3,importsA.musicogg ])
         this.load.spritesheet('animatedlogo', importsA.animatedLogo, { frameWidth: 800, frameHeight: 800 });
         this.load.image('mainMenuBG',importsA.mainMenuBG);

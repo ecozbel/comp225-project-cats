@@ -113,7 +113,8 @@ class IntroScene extends Phaser.Scene
             }
         } 
     }
-    update(){
+    update()
+    {
     }
 }
 export {IntroScene};

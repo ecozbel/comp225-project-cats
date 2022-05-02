@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 const musicButtonX = 750;
 const musicButtonY = 50;
+//Button that controls all sounds globally
 export default class musicButton extends Phaser.GameObjects.Sprite {
     constructor(config) {
         super(config.scene, musicButtonX, musicButtonY, config.onKey);
