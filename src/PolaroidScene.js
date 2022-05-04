@@ -35,7 +35,6 @@ class PolaroidScene extends Phaser.Scene
             };
         }
         this.newPrompt = getPromptWithName(this.game.cat.generatedPrompt,this.game.cat.name);
-        console.log(this.newPrompt.backgroundType);
         //Set up for art assets in scene
         this.initialSpriteSetup(self);
         var printSound = this.sound.add('printSound',{ loop: false });
@@ -68,7 +67,6 @@ class PolaroidScene extends Phaser.Scene
                 let shirt = cat.shirtPosition.currentClothing;
                 let pants = cat.pantsPosition.currentClothing;            
                 var polaroidCount = localStorage.getItem('polaroidCount');
-                console.log(polaroidCount);
                 //Find the correct local storage index and save clothing keys
                 if(polaroidCount == null){
                     localStorage.setItem('polaroidCount',"1")

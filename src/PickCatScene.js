@@ -77,6 +77,7 @@ class PickCatScene extends Phaser.Scene
             
         });
         var postFxPlugin = this.plugins.get('rexoutlinepipelineplugin');
+        //Creates a random cat
         function createRandomCat(){
             var colorIndex = Phaser.Math.Between(0, paletteCreator.catRandomizerConfig.paletteNames.length-1);
             var patternIndex = Phaser.Math.Between(0, paletteCreator.catRandomizerConfig.spriteSheet.keys.length-1);
@@ -87,7 +88,6 @@ class PickCatScene extends Phaser.Scene
             newCat.setInteractive()
             newCat.on('pointerover', function () {
                 //Inner highlight shader
-                console.log("over!");
                 postFxPlugin.add(newCat, {
                     thickness: 3,
                     outlineColor: 0xffb4db
@@ -141,7 +141,7 @@ class PickCatScene extends Phaser.Scene
             displays[1].last.play({key:'doorClose',repeat:0}).on('animationstart', () => updateDisplay(displays[1]));
             displays[2].last.play({key:'doorClose',repeat:0}).on('animationstart', () => updateDisplay(displays[2]));
         }
-
+        //Updates name of cat
         function updateDisplay(display){
             display.replace(display.first,createRandomCat())
             var chance = getRandomItem(chanceArray)

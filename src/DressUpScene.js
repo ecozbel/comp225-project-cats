@@ -81,7 +81,7 @@ class DressUpScene extends Phaser.Scene
             addAllClothingOfType(16,"hat",clothingTypes.hat);
             addAllClothingOfType(15,"shoe",clothingTypes.shoe);
             addAllClothingOfType(16,"shirt",clothingTypes.shirt);
-            addAllClothingOfType(14,"pants",clothingTypes.pants);
+            addAllClothingOfType(16,"pants",clothingTypes.pants);
         }
         //add a single piece of clothing to the scene.
         function createClothing(spriteString,clothingType,scene){

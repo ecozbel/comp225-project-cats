@@ -183,7 +183,6 @@ class sceneGallery extends Phaser.Scene
         leftButton.on('pointerout', () => leftButton.setFrame(0))
         leftButton.on('pointerdown', function(pointer, localX, localY, event){
             carousel.roll.toLeft(300);  
-            console.log(carousel.face); 
             let catName = polaroids[carousel.face].name
             if (catName !=null){
                 infoText.setText('Cat name: ' +catName);
@@ -198,7 +197,6 @@ class sceneGallery extends Phaser.Scene
         rightButton.on('pointerout', () => rightButton.setFrame(0))
         rightButton.on('pointerdown', function(pointer, localX, localY, event){
             carousel.roll.toRight(300); 
-            console.log(carousel.face);
             let catName = polaroids[carousel.face].name
             if (catName !=""){
                 infoText.setText('Cat name: ' +catName);
@@ -210,10 +208,22 @@ class sceneGallery extends Phaser.Scene
         //Name to display at render
         var firstName = polaroids[carousel.face].name
         if (firstName !=""){
-            var infoText = this.add.text(250, 450, 'Cat name: ' + firstName).setDepth(-1);
+            var infoText = this.add.text(210, 450, 'Cat name: ' + firstName,{
+                fontFamily: 'Courier New',
+                fontSize: '18px',
+                color: '#000000',
+                resolution: 1,
+                wordWrap : {width : 350, useAdvancedWrap : false},
+            }).setDepth(-1);
         }  
         else{
-            var infoText = this.add.text(250, 450, 'Cat name: TBD - Play to create memories!').setDepth(-1);
+            var infoText = this.add.text(210, 450, 'Cat name: TBD!',{
+                fontFamily: 'Courier New',
+                fontSize: '18px',
+                color: '#000000',
+                resolution: 1,
+                wordWrap : {width : 350, useAdvancedWrap : false},
+            }).setDepth(-1);
         }        
         //Button to download current displayed polaroid as png
         var downloadButton = new utilities.genericButton({scene:self,key:'buttonFrame',x:250,y:550,text:"Download"}).setDepth(-1);

@@ -21,7 +21,6 @@ export function createPalettes(game)
     var colorLookup = {};
     var x, y;
     var pixel, palette;
-    console.log(game);
     var paletteWidth = game.textures.get(catRandomizerConfig.paletteKey).getSourceImage().width;
     var i;
     // Go through each pixel in the palette image and add it to the color lookup.

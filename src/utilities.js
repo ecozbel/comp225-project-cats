@@ -27,8 +27,6 @@ function scaleToGivenSize(sprite,size){
 
 //Scales given sprite to specified size
 function scaleToPolaroidSize(sprite){
-    // sprite.displayWidth=game.config.width*0.146; 
-    // sprite.scaleY=sprite.scaleX;
     sprite.setScale(0.38);
 }
 
@@ -157,6 +155,8 @@ function addAllClothing(scene){
     createClothing("pants12",clothingTypes.pants,scene);
     createClothing("pants13",clothingTypes.pants,scene);
     createClothing("pants14",clothingTypes.pants,scene);
+    createClothing("pants15",clothingTypes.pants,scene);
+    createClothing("pants16",clothingTypes.pants,scene);
 }
 
 

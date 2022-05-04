@@ -150,8 +150,6 @@ class loadingScene extends Phaser.Scene
         this.load.image('shirtSilhoetteOver', importsA.shirtSilhoetteOverimg);
         this.load.image('shoeSilhoetteOver', importsA.shoeSilhoetteOverimg);
         this.load.image('pantsSilhoetteOver', importsA.pantsSilhoettOverimg);
-        // console.log('---------> preloading')
-        // this.load.json('prompts','src/assets/prompts.json');
         loadClothing(this,importsA);
         //helper function to organize better
         function loadClothing(scene,imports){
@@ -216,6 +214,8 @@ class loadingScene extends Phaser.Scene
             scene.load.image('pants12', imports.pants12);
             scene.load.image('pants13', imports.pants13);
             scene.load.image('pants14', imports.pants14);
+            scene.load.image('pants15', imports.pants15);
+            scene.load.image('pants16', imports.pants16);
         }
         this.load.image('polaroid', importsA.polaroidImg);
         this.load.image('scenery1',importsA.scenery1);
