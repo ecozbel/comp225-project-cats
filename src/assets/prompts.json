@@ -59,7 +59,7 @@
         {
             "objective": "Mountain Biking",
             "introduction": "{{full_name}} wants to go mountain biking at the nature reserve today. They need your help picking out the perfect outfit.",
-            "outcome": "Before {{full_name}} found a hidden path through the trees, they were worried all that uphill pedalling wouldn't be worth it. When they got to the end of the hidden trail and the leaves cleared up, they witnessed the gorgeous view and all their worries disappeared. They set their bike aside to take it all in, and posed for a shot.",
+            "outcome": "Before {{full_name}} found a hidden path through the trees, they were worried all that uphill pedalling wouldn't be worth it. When they got to the end of the hidden trail and the leaves cleared up, all their worries disappeared with the gorgeous view. They set their bike aside, and posed for a shot.",
             "promptIndex":  "8",
             "backgroundType": "nature",
             "galleryPrompt": "Photo taken after a successful ride out in nature."

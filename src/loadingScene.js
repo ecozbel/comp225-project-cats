@@ -1,9 +1,6 @@
 import Phaser, { Game } from 'phaser';
 import * as importsA from './importHelperA.js';
-import * as importsB from "./importHelperB.js"
-import * as importsC from "./importHelperC.js"
-import * as importsD from "./importHelperD.js"
-import * as importsE from "./importHelperE.js"
+
 import * as paletteCreator from './paletteCreator';
 
 class loadingScene extends Phaser.Scene
@@ -116,46 +113,46 @@ class loadingScene extends Phaser.Scene
             frameWidth: 64,
             frameHeight: 64
         });
-        this.load.image('innerBG',importsB.innerBG);
+        this.load.image('innerBG',importsA.innerBG);
         this.load.plugin('rexperspectiveimageplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexperspectiveimageplugin.min.js', true);
 
         this.load.plugin('rexoutlinepipelineplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexoutlinepipelineplugin.min.js', true);      //this.load.plugin('rexglowfilter2pipelineplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexglowfilter2pipelineplugin.min.js', true);
-        this.load.image('outerBG',importsB.outerBG)
-        this.load.image('ribbon',importsB.ribbonFrame)
-        this.load.spritesheet('door', importsB.door, {
+        this.load.image('outerBG',importsA.outerBG)
+        this.load.image('ribbon',importsA.ribbonFrame)
+        this.load.spritesheet('door', importsA.door, {
             frameWidth: 300,
             frameHeight: 425
         });
-        this.load.spritesheet('doorClosing', importsB.doorClosing, {
+        this.load.spritesheet('doorClosing', importsA.doorClosing, {
             frameWidth: 300,
             frameHeight: 425
         });
-        this.load.spritesheet('catReroll', importsB.catRerollButton, {
+        this.load.spritesheet('catReroll', importsA.catRerollButton, {
             frameWidth: 52,
             frameHeight: 52
         });
         this.load.json('prompts','src/assets/prompts.json');
         this.load.plugin('rextexttypingplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rextexttypingplugin.min.js', true);
-        this.load.image('promptBoard',importsC.promptBg);
-        this.load.image('innerBG',importsC.innerBG);
+        this.load.image('promptBoard',importsA.promptBg);
+        this.load.image('innerBG',importsA.innerBG);
 
-        this.load.image('closet',importsD.closetimg);
-        this.load.image('background', importsD.backgroundTest);
-        this.load.image('background2', importsD.backgroundImg2);
-        this.load.image('backgroundnew', importsD.backgroundNew);
+        this.load.image('closet',importsA.closetimg);
+        this.load.image('background', importsA.backgroundTest);
+        this.load.image('background2', importsA.backgroundImg2);
+        this.load.image('backgroundnew', importsA.backgroundNew);
   
-        this.load.image('hatSilhoette', importsD.hatSilhoetteimg);
-        this.load.image('shirtSilhoette', importsD.shirtSilhoetteimg);
-        this.load.image('shoeSilhoette', importsD.shoeSilhoetteimg);
-        this.load.image('pantsSilhoette', importsD.pantsSilhoetteimg);
+        this.load.image('hatSilhoette', importsA.hatSilhoetteimg);
+        this.load.image('shirtSilhoette', importsA.shirtSilhoetteimg);
+        this.load.image('shoeSilhoette', importsA.shoeSilhoetteimg);
+        this.load.image('pantsSilhoette', importsA.pantsSilhoetteimg);
 
-        this.load.image('hatSilhoetteOver', importsD.hatSilhoetteOverimg);
-        this.load.image('shirtSilhoetteOver', importsD.shirtSilhoetteOverimg);
-        this.load.image('shoeSilhoetteOver', importsD.shoeSilhoetteOverimg);
-        this.load.image('pantsSilhoetteOver', importsD.pantsSilhoettOverimg);
+        this.load.image('hatSilhoetteOver', importsA.hatSilhoetteOverimg);
+        this.load.image('shirtSilhoetteOver', importsA.shirtSilhoetteOverimg);
+        this.load.image('shoeSilhoetteOver', importsA.shoeSilhoetteOverimg);
+        this.load.image('pantsSilhoetteOver', importsA.pantsSilhoettOverimg);
         // console.log('---------> preloading')
         // this.load.json('prompts','src/assets/prompts.json');
-        loadClothing(this,importsD);
+        loadClothing(this,importsA);
         //helper function to organize better
         function loadClothing(scene,imports){
             scene.load.image('hat1',imports.hat1img);
@@ -220,28 +217,28 @@ class loadingScene extends Phaser.Scene
             scene.load.image('pants13', imports.pants13);
             scene.load.image('pants14', imports.pants14);
         }
-        this.load.image('polaroid', importsE.polaroidImg);
-        this.load.image('scenery1',importsE.scenery1);
-        this.load.image('scenery2',importsE.scenery2);
-        this.load.image('scenery3',importsE.scenery3);
-        this.load.image('scenery4',importsE.scenery4);
-        this.load.audio("printSound",[importsE.polaroidPrintSound,importsE.polaroidPrintSoundOGG ])
-        this.load.audio("shutterSound",[importsE.cameraShutterSound,importsE.cameraShutterSoundOGG])
-        this.load.image('itemFrame',importsE.itemFrame);
+        this.load.image('polaroid', importsA.polaroidImg);
+        this.load.image('scenery1',importsA.scenery1);
+        this.load.image('scenery2',importsA.scenery2);
+        this.load.image('scenery3',importsA.scenery3);
+        this.load.image('scenery4',importsA.scenery4);
+        this.load.audio("printSound",[importsA.polaroidPrintSound,importsA.polaroidPrintSoundOGG ])
+        this.load.audio("shutterSound",[importsA.cameraShutterSound,importsA.cameraShutterSoundOGG])
+        this.load.image('itemFrame',importsA.itemFrame);
         this.load.audio("buttonClick1Sound", importsA.buttonClick1Sound)
         this.load.image('polaroidBack',importsA.polaroidBack);
         loadSoundEffects(this);
         function loadSoundEffects(scene){
-            scene.load.audio("clothingPickup1",importsD.clothingPickup1Sound);
-            scene.load.audio("clothingRussle5",importsD.clothingRussle5Sound);
-            scene.load.audio("clothingRussle4",importsD.clothingRussle4Sound);
-            scene.load.audio("clothingRussle3",importsD.clothingRussle3Sound);
-            scene.load.audio("clothingRussle2",importsD.clothingRussle2Sound);
-            scene.load.audio("clothingRussle1",importsD.clothingRussle1Sound);
-            scene.load.audio("doorOpenSound1",importsB.doorOpenSound1);
-            scene.load.audio("doorOpenSound2",importsB.doorOpenSound2);
-            scene.load.audio("doorOpenSound3",importsB.doorOpenSound3);
-            scene.load.audio("keyBoardTypeLoop",importsC.keyboardTypingSound);
+            scene.load.audio("clothingPickup1",importsA.clothingPickup1Sound);
+            scene.load.audio("clothingRussle5",importsA.clothingRussle5Sound);
+            scene.load.audio("clothingRussle4",importsA.clothingRussle4Sound);
+            scene.load.audio("clothingRussle3",importsA.clothingRussle3Sound);
+            scene.load.audio("clothingRussle2",importsA.clothingRussle2Sound);
+            scene.load.audio("clothingRussle1",importsA.clothingRussle1Sound);
+            scene.load.audio("doorOpenSound1",importsA.doorOpenSound1);
+            scene.load.audio("doorOpenSound2",importsA.doorOpenSound2);
+            scene.load.audio("doorOpenSound3",importsA.doorOpenSound3);
+            scene.load.audio("keyBoardTypeLoop",importsA.keyboardTypingSound);
         }
     }
     create(){
