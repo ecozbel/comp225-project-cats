@@ -51,8 +51,8 @@ class PickCatScene extends Phaser.Scene
         const adjArray = ['Fluffy', 'Cuddly', 'Blue', 'Tabby', 'Silly',];
         const nounArray = ['Whiskers','Kitty', 'Cat', 'Socks', 'Patches', 'Spot',];        
         const suffixArray = ['Jr.','Sr.', 'IV', 'II', 'PhD', '', '', ''];
-        const chanceArray = ['concatenated name','standalone name'];
-        const standaloneNameArray = ['Meowchael','Pawline', 'Jessicat', 'Purrudence', 'Jennifur', 'Clawdia'];
+        const standaloneNameArray = ['Meowchael','Pawline', 'Jessicat', 'Purrudence', 'Jennifur', 'Clawdia',
+        'Pawl','Purrcy','Whiskers','Luna','Garfield','Catarina','Clawrence','Leo','Simba','Bella','Milo'];
         //Button that rerolls cats on screen
         const rerollButton = this.add.sprite(400,110,"catReroll",0).setInteractive({ useHandCursor: true })
         .on('pointerdown', () => rerollCats(this));
@@ -144,12 +144,11 @@ class PickCatScene extends Phaser.Scene
         //Updates name of cat
         function updateDisplay(display){
             display.replace(display.first,createRandomCat())
-            var chance = getRandomItem(chanceArray)
-            if (chance = 'concatenated name'){
+            var value = Phaser.Math.Between(0, 10);
+            if (value > 5){
                 display.first.name = getRandomItem(titleArray) + " " + getRandomItem(adjArray) + getRandomItem(nounArray) + " " + getRandomItem(suffixArray);
-    
             }
-            if (chance = 'standalone name'){
+            if (value <= 5){
                 display.first.name = getRandomItem(standaloneNameArray);
     
             }
