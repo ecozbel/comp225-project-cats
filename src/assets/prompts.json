@@ -11,7 +11,7 @@
         {
             "objective": "Holiday Time",
             "introduction": "{{full_name}} is planning on going on a Mediterranean vacation. They need your help deciding on the beach outfit.",
-            "outcome": "{{full_name}} had a wonderful time abroad. Just what they needed! Sun, good food, pics for perfect for the catgram.",
+            "outcome": "{{full_name}} had a wonderful time abroad. Just what they needed! Sun, good food, and pics perfect for the catgram.",
             "promptIndex":  "2",
             "backgroundType": "beach",
             "galleryPrompt": "Photo taken at the nicest beach in the area. Only the locals know it, at least for now."
