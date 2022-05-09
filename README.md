@@ -1,5 +1,4 @@
 # Cats with Jobs
-![Game Logo](/menuAssets/logo.png)
 
 # INTRODUCTION
 
