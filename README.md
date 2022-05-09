@@ -1,10 +1,11 @@
 # Cats with Jobs
+![Game Logo](/menuAssets/logo.png)
 
 # INTRODUCTION
 
 Software Design and Development (COMP 225) semester long project;
 
-Cats with Jobs is a web application developed with HTML5, JavaScript, and the Phaser game framework. Through this calming, narrative based dress up game, you pick a Cat Pal and your job is to help them get ready for their day. Each resident comes with a story, but your Cat Pal's looks for the day are ultimately up to you. Memories of the last ten Cat Pals you have helped will be stored in a gallery.
+Cats with Jobs is a web application developed with HTML5, CSS, JavaScript, and the Phaser game framework. Through this calming, narrative based dress up game, you pick a Cat Pal and your job is to help them get ready for their day. Each resident comes with a story, but your Cat Pal's looks for the day are ultimately up to you. Memories of the last ten Cat Pals you have helped will be stored in a gallery.
 
 # COMPATIBILITY
 
