@@ -13,7 +13,7 @@ Cats with Jobs is currently compatible with browsers Safari, Chrome, and Firefox
 
 # SETUP
 
-Node.js is required to install dependencies and run scripts via npm.
+Node.js is required to install dependencies and run scripts via npm (Node only used for build, game is not run on it)
 
 After cloning the repo, run `npm install` from your project directory. Then, you can start the local development server by running `npm start`.
 
